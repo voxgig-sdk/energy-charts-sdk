@@ -1,0 +1,28 @@
+# BasicCrossBorderModelFlow
+
+main: kit: flow: BasicCrossBorderModelFlow:
+{
+  entity: "cross_border_model",
+  kind: "basic",
+  name: "BasicCrossBorderModelFlow",
+  step: [
+    {
+      input: {
+        ref: "cross_border_model_ref01",
+        srcdatavar: "cross_border_model_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-cross_border_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCrossBorderModelFlow"
+}

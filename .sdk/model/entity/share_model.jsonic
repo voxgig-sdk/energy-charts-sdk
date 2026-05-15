@@ -1,0 +1,125 @@
+# Entity: share_model
+
+main: kit: entity: share_model: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "forecast"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "unix_second"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "share_model"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/solar_share"
+          parts: [
+            "solar_share"
+          ]
+          select: {
+            exist: [
+              "country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/wind_offshore_share"
+          parts: [
+            "wind_offshore_share"
+          ]
+          select: {
+            exist: [
+              "country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/wind_onshore_share"
+          parts: [
+            "wind_onshore_share"
+          ]
+          select: {
+            exist: [
+              "country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

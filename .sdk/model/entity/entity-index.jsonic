@@ -1,0 +1,12 @@
+# Entity Models
+
+@"cross_border_model.jsonic"
+@"daily_avg_dict.jsonic"
+@"frequency.jsonic"
+@"installed_model.jsonic"
+@"price.jsonic"
+@"production_model.jsonic"
+@"public_power_forecast.jsonic"
+@"ren_share_model.jsonic"
+@"share_model.jsonic"
+@"traffic_model.jsonic"

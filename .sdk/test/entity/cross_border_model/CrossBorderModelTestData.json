@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "cross_border_model": {
+      "CROSS_BORDER_MODEL00": {
+        "country": "s1e",
+        "deprecated": false,
+        "unix_second": "s20"
+      },
+      "CROSS_BORDER_MODEL01": {
+        "country": "s3c",
+        "deprecated": false,
+        "unix_second": "s3e"
+      },
+      "CROSS_BORDER_MODEL02": {
+        "country": "s5a",
+        "deprecated": false,
+        "unix_second": "s5c"
+      }
+    }
+  },
+  "new": {
+    "cross_border_model": {
+      "cross_border_model_ref01": {
+        "country": "s78",
+        "deprecated": false,
+        "unix_second": "s7a"
+      }
+    }
+  }
+}

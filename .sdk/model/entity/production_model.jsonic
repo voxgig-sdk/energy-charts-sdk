@@ -1,0 +1,137 @@
+# Entity: production_model
+
+main: kit: entity: production_model: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "production_type"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "unix_second"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "production_model"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "end"
+                orig: "end"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "subtype"
+                orig: "subtype"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/public_power"
+          parts: [
+            "public_power"
+          ]
+          select: {
+            exist: [
+              "country"
+              "end"
+              "start"
+              "subtype"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "end"
+                orig: "end"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/total_power"
+          parts: [
+            "total_power"
+          ]
+          select: {
+            exist: [
+              "country"
+              "end"
+              "start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

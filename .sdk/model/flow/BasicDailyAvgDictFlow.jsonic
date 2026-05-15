@@ -1,0 +1,22 @@
+# BasicDailyAvgDictFlow
+
+main: kit: flow: BasicDailyAvgDictFlow:
+{
+  entity: "daily_avg_dict",
+  kind: "basic",
+  name: "BasicDailyAvgDictFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "daily_avg_dict_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDailyAvgDictFlow"
+}

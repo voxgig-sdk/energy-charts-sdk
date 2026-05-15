@@ -1,0 +1,82 @@
+# Entity: frequency
+
+main: kit: entity: frequency: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "unix_second"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "frequency"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: ""
+                kind: "query"
+                name: "end"
+                orig: "end"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "DE-Freiburg"
+                kind: "query"
+                name: "region"
+                orig: "region"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/frequency"
+          parts: [
+            "frequency"
+          ]
+          select: {
+            exist: [
+              "end"
+              "region"
+              "start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

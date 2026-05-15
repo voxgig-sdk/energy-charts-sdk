@@ -1,0 +1,87 @@
+# Entity: installed_model
+
+main: kit: entity: installed_model: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "last_update"
+      req: true
+      type: "`$ANY`"
+    }
+    {
+      name: "production_type"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "time"
+      req: true
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "installed_model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: false
+                kind: "query"
+                name: "installation_decommission"
+                orig: "installation_decommission"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "yearly"
+                kind: "query"
+                name: "time_step"
+                orig: "time_step"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/installed_power"
+          parts: [
+            "installed_power"
+          ]
+          select: {
+            exist: [
+              "country"
+              "installation_decommission"
+              "time_step"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

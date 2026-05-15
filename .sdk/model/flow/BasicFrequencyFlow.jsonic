@@ -1,0 +1,22 @@
+# BasicFrequencyFlow
+
+main: kit: flow: BasicFrequencyFlow:
+{
+  entity: "frequency",
+  kind: "basic",
+  name: "BasicFrequencyFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "frequency_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicFrequencyFlow"
+}

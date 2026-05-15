@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "frequency": {
+      "FREQUENCY00": {
+        "data": [],
+        "deprecated": false,
+        "unix_second": "s20"
+      },
+      "FREQUENCY01": {
+        "data": [],
+        "deprecated": false,
+        "unix_second": "s3e"
+      },
+      "FREQUENCY02": {
+        "data": [],
+        "deprecated": false,
+        "unix_second": "s5c"
+      }
+    }
+  },
+  "new": {
+    "frequency": {
+      "frequency_ref01": {
+        "data": [],
+        "deprecated": false,
+        "unix_second": "s7a"
+      }
+    }
+  }
+}

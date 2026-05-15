@@ -1,0 +1,22 @@
+# BasicPublicPowerForecastFlow
+
+main: kit: flow: BasicPublicPowerForecastFlow:
+{
+  entity: "public_power_forecast",
+  kind: "basic",
+  name: "BasicPublicPowerForecastFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "public_power_forecast_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPublicPowerForecastFlow"
+}

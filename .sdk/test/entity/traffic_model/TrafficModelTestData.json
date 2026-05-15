@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "traffic_model": {
+      "TRAFFIC_MODEL00": {
+        "deprecated": true,
+        "share": [],
+        "signal": [],
+        "substitute": false,
+        "unix_second": []
+      },
+      "TRAFFIC_MODEL01": {
+        "deprecated": true,
+        "share": [],
+        "signal": [],
+        "substitute": false,
+        "unix_second": []
+      },
+      "TRAFFIC_MODEL02": {
+        "deprecated": true,
+        "share": [],
+        "signal": [],
+        "substitute": false,
+        "unix_second": []
+      }
+    }
+  },
+  "new": {
+    "traffic_model": {
+      "traffic_model_ref01": {
+        "deprecated": true,
+        "share": [],
+        "signal": [],
+        "substitute": false,
+        "unix_second": []
+      }
+    }
+  }
+}

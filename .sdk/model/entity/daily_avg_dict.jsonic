@@ -1,0 +1,184 @@
+# Entity: daily_avg_dict
+
+main: kit: entity: daily_avg_dict: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "day"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "daily_avg_dict"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: -1
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ren_share_daily_avg"
+          parts: [
+            "ren_share_daily_avg"
+          ]
+          select: {
+            exist: [
+              "country"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: -1
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/solar_share_daily_avg"
+          parts: [
+            "solar_share_daily_avg"
+          ]
+          select: {
+            exist: [
+              "country"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: -1
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/wind_offshore_share_daily_avg"
+          parts: [
+            "wind_offshore_share_daily_avg"
+          ]
+          select: {
+            exist: [
+              "country"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: -1
+                kind: "query"
+                name: "year"
+                orig: "year"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/wind_onshore_share_daily_avg"
+          parts: [
+            "wind_onshore_share_daily_avg"
+          ]
+          select: {
+            exist: [
+              "country"
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

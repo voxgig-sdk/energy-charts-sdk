@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "daily_avg_dict": {
+      "DAILY_AVG_DICT00": {
+        "data": [],
+        "day": [],
+        "deprecated": true
+      },
+      "DAILY_AVG_DICT01": {
+        "data": [],
+        "day": [],
+        "deprecated": true
+      },
+      "DAILY_AVG_DICT02": {
+        "data": [],
+        "day": [],
+        "deprecated": true
+      }
+    }
+  },
+  "new": {
+    "daily_avg_dict": {
+      "daily_avg_dict_ref01": {
+        "data": [],
+        "day": [],
+        "deprecated": true
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "public_power_forecast": {
+      "PUBLIC_POWER_FORECAST00": {
+        "deprecated": true,
+        "forecast_type": "s33",
+        "forecast_value": [],
+        "production_type": "s35",
+        "unix_second": []
+      },
+      "PUBLIC_POWER_FORECAST01": {
+        "deprecated": true,
+        "forecast_type": "s65",
+        "forecast_value": [],
+        "production_type": "s67",
+        "unix_second": []
+      },
+      "PUBLIC_POWER_FORECAST02": {
+        "deprecated": true,
+        "forecast_type": "s97",
+        "forecast_value": [],
+        "production_type": "s99",
+        "unix_second": []
+      }
+    }
+  },
+  "new": {
+    "public_power_forecast": {
+      "public_power_forecast_ref01": {
+        "deprecated": true,
+        "forecast_type": "sc9",
+        "forecast_value": [],
+        "production_type": "scb",
+        "unix_second": []
+      }
+    }
+  }
+}

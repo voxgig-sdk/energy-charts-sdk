@@ -1,0 +1,22 @@
+# BasicTrafficModelFlow
+
+main: kit: flow: BasicTrafficModelFlow:
+{
+  entity: "traffic_model",
+  kind: "basic",
+  name: "BasicTrafficModelFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "traffic_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTrafficModelFlow"
+}

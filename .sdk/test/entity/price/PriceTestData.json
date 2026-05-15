@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "price": {
+      "PRICE00": {
+        "deprecated": true,
+        "license_info": "s33",
+        "price": 52,
+        "unit": "s35",
+        "unix_second": "s36"
+      },
+      "PRICE01": {
+        "deprecated": true,
+        "license_info": "s65",
+        "price": 102,
+        "unit": "s67",
+        "unix_second": "s68"
+      },
+      "PRICE02": {
+        "deprecated": true,
+        "license_info": "s97",
+        "price": 152,
+        "unit": "s99",
+        "unix_second": "s9a"
+      }
+    }
+  },
+  "new": {
+    "price": {
+      "price_ref01": {
+        "deprecated": true,
+        "license_info": "sc9",
+        "price": 202,
+        "unit": "scb",
+        "unix_second": "scc"
+      }
+    }
+  }
+}

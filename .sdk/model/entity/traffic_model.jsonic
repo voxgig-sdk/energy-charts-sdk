@@ -1,0 +1,83 @@
+# Entity: traffic_model
+
+main: kit: entity: traffic_model: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "share"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "signal"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "substitute"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "unix_second"
+      req: true
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "traffic_model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "postal_code"
+                orig: "postal_code"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/signal"
+          parts: [
+            "signal"
+          ]
+          select: {
+            exist: [
+              "country"
+              "postal_code"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

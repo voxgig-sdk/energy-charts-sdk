@@ -1,0 +1,28 @@
+# BasicShareModelFlow
+
+main: kit: flow: BasicShareModelFlow:
+{
+  entity: "share_model",
+  kind: "basic",
+  name: "BasicShareModelFlow",
+  step: [
+    {
+      input: {
+        ref: "share_model_ref01",
+        srcdatavar: "share_model_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-share_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicShareModelFlow"
+}

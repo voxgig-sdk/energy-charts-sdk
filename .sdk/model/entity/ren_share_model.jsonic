@@ -1,0 +1,84 @@
+# Entity: ren_share_model
+
+main: kit: entity: ren_share_model: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "ren_share"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "solar_share"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "substitute"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "unix_second"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "wind_offshore_share"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "wind_onshore_share"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "ren_share_model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ren_share_forecast"
+          parts: [
+            "ren_share_forecast"
+          ]
+          select: {
+            exist: [
+              "country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

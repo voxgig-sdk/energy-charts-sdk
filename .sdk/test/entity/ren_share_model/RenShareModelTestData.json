@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "ren_share_model": {
+      "REN_SHARE_MODEL00": {
+        "deprecated": true,
+        "ren_share": [],
+        "solar_share": "s48",
+        "substitute": false,
+        "unix_second": [],
+        "wind_offshore_share": "s4b",
+        "wind_onshore_share": "s4c"
+      },
+      "REN_SHARE_MODEL01": {
+        "deprecated": true,
+        "ren_share": [],
+        "solar_share": "s8e",
+        "substitute": false,
+        "unix_second": [],
+        "wind_offshore_share": "s91",
+        "wind_onshore_share": "s92"
+      },
+      "REN_SHARE_MODEL02": {
+        "deprecated": true,
+        "ren_share": [],
+        "solar_share": "sd4",
+        "substitute": false,
+        "unix_second": [],
+        "wind_offshore_share": "sd7",
+        "wind_onshore_share": "sd8"
+      }
+    }
+  },
+  "new": {
+    "ren_share_model": {
+      "ren_share_model_ref01": {
+        "deprecated": true,
+        "ren_share": [],
+        "solar_share": "s11a",
+        "substitute": false,
+        "unix_second": [],
+        "wind_offshore_share": "s11d",
+        "wind_onshore_share": "s11e"
+      }
+    }
+  }
+}

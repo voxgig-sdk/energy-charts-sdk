@@ -1,0 +1,22 @@
+# BasicRenShareModelFlow
+
+main: kit: flow: BasicRenShareModelFlow:
+{
+  entity: "ren_share_model",
+  kind: "basic",
+  name: "BasicRenShareModelFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ren_share_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRenShareModelFlow"
+}

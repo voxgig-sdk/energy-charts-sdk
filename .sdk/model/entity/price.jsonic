@@ -1,0 +1,92 @@
+# Entity: price
+
+main: kit: entity: price: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "license_info"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "price"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "unit"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "unix_second"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "price"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "DE-LU"
+                kind: "query"
+                name: "bzn"
+                orig: "bzn"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "end"
+                orig: "end"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/price"
+          parts: [
+            "price"
+          ]
+          select: {
+            exist: [
+              "bzn"
+              "end"
+              "start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

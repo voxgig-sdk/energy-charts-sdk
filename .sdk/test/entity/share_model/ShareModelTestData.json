@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "share_model": {
+      "SHARE_MODEL00": {
+        "data": "s28",
+        "deprecated": false,
+        "forecast": "s2a",
+        "unix_second": "s2b"
+      },
+      "SHARE_MODEL01": {
+        "data": "s50",
+        "deprecated": false,
+        "forecast": "s52",
+        "unix_second": "s53"
+      },
+      "SHARE_MODEL02": {
+        "data": "s78",
+        "deprecated": false,
+        "forecast": "s7a",
+        "unix_second": "s7b"
+      }
+    }
+  },
+  "new": {
+    "share_model": {
+      "share_model_ref01": {
+        "data": "sa0",
+        "deprecated": false,
+        "forecast": "sa2",
+        "unix_second": "sa3"
+      }
+    }
+  }
+}

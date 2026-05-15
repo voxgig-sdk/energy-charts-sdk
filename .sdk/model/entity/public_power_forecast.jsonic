@@ -1,0 +1,110 @@
+# Entity: public_power_forecast
+
+main: kit: entity: public_power_forecast: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "deprecated"
+      req: true
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "forecast_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "forecast_value"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "production_type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "unix_second"
+      req: true
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "public_power_forecast"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "de"
+                kind: "query"
+                name: "country"
+                orig: "country"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "end"
+                orig: "end"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "current"
+                kind: "query"
+                name: "forecast_type"
+                orig: "forecast_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "solar"
+                kind: "query"
+                name: "production_type"
+                orig: "production_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: ""
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/public_power_forecast"
+          parts: [
+            "public_power_forecast"
+          ]
+          select: {
+            exist: [
+              "country"
+              "end"
+              "forecast_type"
+              "production_type"
+              "start"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "production_model": {
+      "PRODUCTION_MODEL00": {
+        "deprecated": true,
+        "production_type": "s1f",
+        "unix_second": "s20"
+      },
+      "PRODUCTION_MODEL01": {
+        "deprecated": true,
+        "production_type": "s3d",
+        "unix_second": "s3e"
+      },
+      "PRODUCTION_MODEL02": {
+        "deprecated": true,
+        "production_type": "s5b",
+        "unix_second": "s5c"
+      }
+    }
+  },
+  "new": {
+    "production_model": {
+      "production_model_ref01": {
+        "deprecated": true,
+        "production_type": "s79",
+        "unix_second": "s7a"
+      }
+    }
+  }
+}

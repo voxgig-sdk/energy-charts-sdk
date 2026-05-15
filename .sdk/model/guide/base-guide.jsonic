@@ -1,0 +1,90 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 10
+  metrics: count: path: 17
+  metrics: count: method: 17
+
+  entity: cross_border_model: {
+    path: "/cbet": {
+      op: load: method: *GET
+    }
+    path: "/cbpf": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: daily_avg_dict: {
+    path: "/ren_share_daily_avg": {
+      op: list: method: *GET
+    }
+    path: "/solar_share_daily_avg": {
+      op: list: method: *GET
+    }
+    path: "/wind_offshore_share_daily_avg": {
+      op: list: method: *GET
+    }
+    path: "/wind_onshore_share_daily_avg": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: frequency: {
+    path: "/frequency": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: installed_model: {
+    path: "/installed_power": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: price: {
+    path: "/price": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.price`")|top
+    }
+  }
+
+  entity: production_model: {
+    path: "/public_power": {
+      op: load: method: *GET
+    }
+    path: "/total_power": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: public_power_forecast: {
+    path: "/public_power_forecast": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ren_share_model: {
+    path: "/ren_share_forecast": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: share_model: {
+    path: "/solar_share": {
+      op: load: method: *GET
+    }
+    path: "/wind_offshore_share": {
+      op: load: method: *GET
+    }
+    path: "/wind_onshore_share": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: traffic_model: {
+    path: "/signal": {
+      op: list: method: *GET
+    }
+  }
+
+}
