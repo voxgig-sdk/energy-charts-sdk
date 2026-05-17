@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/energy-charts-sdk/core"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

@@ -6,21 +6,24 @@
         "license_info": "s33",
         "price": 52,
         "unit": "s35",
-        "unix_second": "s36"
+        "unix_second": "s36",
+        "id": "PRICE00"
       },
       "PRICE01": {
         "deprecated": true,
         "license_info": "s65",
         "price": 102,
         "unit": "s67",
-        "unix_second": "s68"
+        "unix_second": "s68",
+        "id": "PRICE01"
       },
       "PRICE02": {
         "deprecated": true,
         "license_info": "s97",
         "price": 152,
         "unit": "s99",
-        "unix_second": "s9a"
+        "unix_second": "s9a",
+        "id": "PRICE02"
       }
     }
   },

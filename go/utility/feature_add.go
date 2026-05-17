@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/energy-charts-sdk/core"
+import "github.com/voxgig-sdk/energy-charts-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

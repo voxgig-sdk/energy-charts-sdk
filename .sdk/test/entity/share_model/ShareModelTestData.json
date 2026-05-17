@@ -5,19 +5,22 @@
         "data": "s28",
         "deprecated": false,
         "forecast": "s2a",
-        "unix_second": "s2b"
+        "unix_second": "s2b",
+        "id": "SHARE_MODEL00"
       },
       "SHARE_MODEL01": {
         "data": "s50",
         "deprecated": false,
         "forecast": "s52",
-        "unix_second": "s53"
+        "unix_second": "s53",
+        "id": "SHARE_MODEL01"
       },
       "SHARE_MODEL02": {
         "data": "s78",
         "deprecated": false,
         "forecast": "s7a",
-        "unix_second": "s7b"
+        "unix_second": "s7b",
+        "id": "SHARE_MODEL02"
       }
     }
   },

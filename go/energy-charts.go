@@ -1,10 +1,10 @@
 package voxgigenergychartssdk
 
 import (
-	"github.com/voxgig-sdk/energy-charts-sdk/core"
-	"github.com/voxgig-sdk/energy-charts-sdk/entity"
-	"github.com/voxgig-sdk/energy-charts-sdk/feature"
-	_ "github.com/voxgig-sdk/energy-charts-sdk/utility"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/core"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/entity"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/feature"
+	_ "github.com/voxgig-sdk/energy-charts-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

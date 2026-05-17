@@ -4,17 +4,20 @@
       "PRODUCTION_MODEL00": {
         "deprecated": true,
         "production_type": "s1f",
-        "unix_second": "s20"
+        "unix_second": "s20",
+        "id": "PRODUCTION_MODEL00"
       },
       "PRODUCTION_MODEL01": {
         "deprecated": true,
         "production_type": "s3d",
-        "unix_second": "s3e"
+        "unix_second": "s3e",
+        "id": "PRODUCTION_MODEL01"
       },
       "PRODUCTION_MODEL02": {
         "deprecated": true,
         "production_type": "s5b",
-        "unix_second": "s5c"
+        "unix_second": "s5c",
+        "id": "PRODUCTION_MODEL02"
       }
     }
   },

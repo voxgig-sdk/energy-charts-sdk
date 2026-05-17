@@ -4,17 +4,20 @@
       "CROSS_BORDER_MODEL00": {
         "country": "s1e",
         "deprecated": false,
-        "unix_second": "s20"
+        "unix_second": "s20",
+        "id": "CROSS_BORDER_MODEL00"
       },
       "CROSS_BORDER_MODEL01": {
         "country": "s3c",
         "deprecated": false,
-        "unix_second": "s3e"
+        "unix_second": "s3e",
+        "id": "CROSS_BORDER_MODEL01"
       },
       "CROSS_BORDER_MODEL02": {
         "country": "s5a",
         "deprecated": false,
-        "unix_second": "s5c"
+        "unix_second": "s5c",
+        "id": "CROSS_BORDER_MODEL02"
       }
     }
   },

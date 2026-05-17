@@ -2,7 +2,7 @@
 
 
 
-Available for [Golang](go/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
+Available for [Golang](go/) and [Go CLI](go-cli/) and [Lua](lua/) and [PHP](php/) and [Python](py/) and [Ruby](rb/) and [TypeScript](ts/).
 
 
 ## Entities
@@ -68,7 +68,7 @@ and `body`.
 ### Golang
 
 ```go
-import sdk "github.com/voxgig-sdk/energy-charts-sdk"
+import sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 
 client := sdk.NewEnergyChartsSDK(map[string]any{
     "apikey": os.Getenv("ENERGY-CHARTS_APIKEY"),
@@ -278,6 +278,7 @@ console.log(result.data)
 ## Language-specific documentation
 
 - [Golang SDK](go/README.md)
+- [Go CLI SDK](go-cli/README.md)
 - [Lua SDK](lua/README.md)
 - [PHP SDK](php/README.md)
 - [Python SDK](py/README.md)

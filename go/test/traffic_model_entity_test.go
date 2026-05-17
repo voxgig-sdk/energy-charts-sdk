@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/energy-charts-sdk"
-	"github.com/voxgig-sdk/energy-charts-sdk/core"
+	sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/energy-charts-sdk/go/utility/struct"
 )
 
 func TestTrafficModelEntity(t *testing.T) {

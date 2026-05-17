@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/energy-charts-sdk"
-	"github.com/voxgig-sdk/energy-charts-sdk/core"
+	sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
+	"github.com/voxgig-sdk/energy-charts-sdk/go/core"
 )
 
 func TestProductionModelDirect(t *testing.T) {

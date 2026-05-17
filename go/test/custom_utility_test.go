@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/energy-charts-sdk"
+	sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {
