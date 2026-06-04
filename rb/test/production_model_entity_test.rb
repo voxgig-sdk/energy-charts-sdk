@@ -82,7 +82,6 @@ def production_model_basic_setup(extra)
     "ENERGYCHARTS_TEST_PRODUCTION_MODEL_ENTID" => idmap,
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
     "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +93,6 @@ def production_model_basic_setup(extra)
   if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ENERGYCHARTS_APIKEY"],
       },
       extra || {},
     ])

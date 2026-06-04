@@ -62,14 +62,12 @@ def public_power_forecast_direct_setup(mockres)
   env = Runner.env_override({
     "ENERGYCHARTS_TEST_PUBLIC_POWER_FORECAST_ENTID" => {},
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   live = env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["ENERGYCHARTS_APIKEY"],
     }
     client = EnergyChartsSDK.new(merged_opts)
     return {

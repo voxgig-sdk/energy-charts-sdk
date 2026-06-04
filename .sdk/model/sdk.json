@@ -21,7 +21,26 @@
         ],
         "termsOfService": "https://energy-charts.info/data-protection.html",
         "title": "Energy-Charts API",
-        "version": "1.5"
+        "version": "1.5",
+        "tagline": "European electricity data — production, prices, cross-border flows and renewable share from Fraunhofer ISE",
+        "homepage": "https://www.energy-charts.info/",
+        "docs_url": "https://api.energy-charts.info/",
+        "license_short": "CC BY 4.0 — free to reuse with attribution to Fraunhofer ISE / Energy-Charts.info",
+        "license_md": "- Data is published under the [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) licence (CC BY 4.0).\n- Attribute responses to Fraunhofer ISE / Energy-Charts.info when redistributing or visualising the data.\n- Underlying data is sourced from ENTSO-E and other TSO/market operators; their terms may apply to bulk reuse.\n- No authentication is required and CORS is enabled, so the API is usable directly from browser apps.",
+        "about_md": "[Energy-Charts](https://www.energy-charts.info/) is an open electricity data service operated by the [Fraunhofer Institute for Solar Energy Systems (ISE)](https://www.ise.fraunhofer.de/). It exposes the same time-series that power the Energy-Charts dashboards used by researchers, journalists and grid analysts across Europe.\n\nWhat you get from the API:\n\n- Generation by source (solar, wind on/offshore, nuclear, hydro, fossil, biomass) for European bidding zones\n- Day-ahead spot prices in EUR/MWh per bidding zone\n- Cross-border physical flows and scheduled exchanges between zones\n- Installed capacity by technology and renewable share of generation / load\n- Grid frequency samples and public-power forecasts\n\nNo API key is required and responses are JSON. Data updates follow the cadence of the upstream TSO and market operator feeds (typically 15-minute or hourly resolution).",
+        "entity_desc": {
+          "cross_border_model": "Physical cross-border electricity flows between bidding zones, returned by the cross-border endpoints (e.g. `/cbpf`).",
+          "daily_avg_dict": "Daily averaged values keyed by date, used by endpoints that summarise a metric per day.",
+          "frequency": "Grid frequency samples for the European synchronous area, served by `/frequency`.",
+          "installed_model": "Installed generation capacity broken down by technology and year, served by `/installed_power`.",
+          "price": "Day-ahead spot market prices in EUR/MWh per bidding zone, served by `/price` (e.g. `/price?bzn=DE-LU`).",
+          "production_model": "Electricity generation time-series by production type for a country or bidding zone, served by `/public_power` and related endpoints.",
+          "public_power_forecast": "Forecast of public net electricity generation served by the public-power forecast endpoint.",
+          "ren_share_model": "Renewable share of generation or load over a time window, served by the renewable-share endpoints.",
+          "share_model": "Per-source share of generation as fractions or percentages over a time range.",
+          "traffic_model": "Scheduled commercial exchanges / traffic between bidding zones."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -29,7 +48,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "cross_border_model": {

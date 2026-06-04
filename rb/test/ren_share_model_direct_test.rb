@@ -62,14 +62,12 @@ def ren_share_model_direct_setup(mockres)
   env = Runner.env_override({
     "ENERGYCHARTS_TEST_REN_SHARE_MODEL_ENTID" => {},
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   live = env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["ENERGYCHARTS_APIKEY"],
     }
     client = EnergyChartsSDK.new(merged_opts)
     return {
