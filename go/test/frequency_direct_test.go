@@ -93,12 +93,14 @@ func frequencyDirectSetup(mockres any) *frequencyDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ENERGYCHARTS_TEST_FREQUENCY_ENTID": map[string]any{},
 		"ENERGYCHARTS_TEST_LIVE":    "FALSE",
+		"ENERGYCHARTS_APIKEY":       "NONE",
 	})
 
 	live := env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["ENERGYCHARTS_APIKEY"],
 		}
 		client := sdk.NewEnergyChartsSDK(mergedOpts)
 

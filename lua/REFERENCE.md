@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -138,7 +138,7 @@ local cross_border_model = client:CrossBorderModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CrossBorderModel(nil):load({ id = "cross_border_model_id" }, nil)
+local result, err = client:CrossBorderModel():load({ id = "cross_border_model_id" })
 ```
 
 ### Common Methods
@@ -192,7 +192,7 @@ local daily_avg_dict = client:DailyAvgDict(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:DailyAvgDict(nil):list(nil, nil)
+local results, err = client:DailyAvgDict():list()
 ```
 
 ### Common Methods
@@ -246,7 +246,7 @@ local frequency = client:Frequency(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Frequency(nil):list(nil, nil)
+local results, err = client:Frequency():list()
 ```
 
 ### Common Methods
@@ -301,7 +301,7 @@ local installed_model = client:InstalledModel(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:InstalledModel(nil):list(nil, nil)
+local results, err = client:InstalledModel():list()
 ```
 
 ### Common Methods
@@ -357,7 +357,7 @@ local price = client:Price(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Price(nil):load({ id = "price_id" }, nil)
+local result, err = client:Price():load({ id = "price_id" })
 ```
 
 ### Common Methods
@@ -411,7 +411,7 @@ local production_model = client:ProductionModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ProductionModel(nil):load({ id = "production_model_id" }, nil)
+local result, err = client:ProductionModel():load({ id = "production_model_id" })
 ```
 
 ### Common Methods
@@ -467,7 +467,7 @@ local public_power_forecast = client:PublicPowerForecast(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:PublicPowerForecast(nil):list(nil, nil)
+local results, err = client:PublicPowerForecast():list()
 ```
 
 ### Common Methods
@@ -525,7 +525,7 @@ local ren_share_model = client:RenShareModel(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:RenShareModel(nil):list(nil, nil)
+local results, err = client:RenShareModel():list()
 ```
 
 ### Common Methods
@@ -580,7 +580,7 @@ local share_model = client:ShareModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ShareModel(nil):load({ id = "share_model_id" }, nil)
+local result, err = client:ShareModel():load({ id = "share_model_id" })
 ```
 
 ### Common Methods
@@ -636,7 +636,7 @@ local traffic_model = client:TrafficModel(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:TrafficModel(nil):list(nil, nil)
+local results, err = client:TrafficModel():list()
 ```
 
 ### Common Methods

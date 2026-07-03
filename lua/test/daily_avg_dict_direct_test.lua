@@ -63,12 +63,14 @@ function daily_avg_dict_direct_setup(mockres)
   local env = runner.env_override({
     ["ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID"] = {},
     ["ENERGYCHARTS_TEST_LIVE"] = "FALSE",
+    ["ENERGYCHARTS_APIKEY"] = "NONE",
   })
 
   local live = env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["ENERGYCHARTS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

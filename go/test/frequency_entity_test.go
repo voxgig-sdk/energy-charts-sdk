@@ -119,6 +119,7 @@ func frequencyBasicSetup(extra map[string]any) *entityTestSetup {
 		"ENERGYCHARTS_TEST_FREQUENCY_ENTID": idmap,
 		"ENERGYCHARTS_TEST_LIVE":      "FALSE",
 		"ENERGYCHARTS_TEST_EXPLAIN":   "FALSE",
+		"ENERGYCHARTS_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ENERGYCHARTS_TEST_FREQUENCY_ENTID"])
@@ -129,6 +130,7 @@ func frequencyBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["ENERGYCHARTS_APIKEY"],
 			},
 			extra,
 		})

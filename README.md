@@ -1,22 +1,8 @@
 # EnergyCharts SDK
 
-European electricity data — production, prices, cross-border flows and renewable share from Fraunhofer ISE
+Energy-Charts API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Energy-Charts API
-
-[Energy-Charts](https://www.energy-charts.info/) is an open electricity data service operated by the [Fraunhofer Institute for Solar Energy Systems (ISE)](https://www.ise.fraunhofer.de/). It exposes the same time-series that power the Energy-Charts dashboards used by researchers, journalists and grid analysts across Europe.
-
-What you get from the API:
-
-- Generation by source (solar, wind on/offshore, nuclear, hydro, fossil, biomass) for European bidding zones
-- Day-ahead spot prices in EUR/MWh per bidding zone
-- Cross-border physical flows and scheduled exchanges between zones
-- Installed capacity by technology and renewable share of generation / load
-- Grid frequency samples and public-power forecasts
-
-No API key is required and responses are JSON. Data updates follow the cadence of the upstream TSO and market operator feeds (typically 15-minute or hourly resolution).
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install energy-charts-sdk
 luarocks install energy-charts-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { EnergyChartsSDK } from 'energy-charts'
 
-const client = new EnergyChartsSDK({})
+const client = new EnergyChartsSDK({
+  apikey: process.env.ENERGY-CHARTS_APIKEY,
+})
 
+// Load crossbordermodel data
+const crossbordermodel = await client.CrossBorderModel().load({})
+console.log(crossbordermodel.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,16 +90,16 @@ The API exposes 10 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **CrossBorderModel** | Physical cross-border electricity flows between bidding zones, returned by the cross-border endpoints (e.g. `/cbpf`). | `/cbet` |
-| **DailyAvgDict** | Daily averaged values keyed by date, used by endpoints that summarise a metric per day. | `/ren_share_daily_avg` |
-| **Frequency** | Grid frequency samples for the European synchronous area, served by `/frequency`. | `/frequency` |
-| **InstalledModel** | Installed generation capacity broken down by technology and year, served by `/installed_power`. | `/installed_power` |
-| **Price** | Day-ahead spot market prices in EUR/MWh per bidding zone, served by `/price` (e.g. `/price?bzn=DE-LU`). | `/price` |
-| **ProductionModel** | Electricity generation time-series by production type for a country or bidding zone, served by `/public_power` and related endpoints. | `/public_power` |
-| **PublicPowerForecast** | Forecast of public net electricity generation served by the public-power forecast endpoint. | `/public_power_forecast` |
-| **RenShareModel** | Renewable share of generation or load over a time window, served by the renewable-share endpoints. | `/ren_share_forecast` |
-| **ShareModel** | Per-source share of generation as fractions or percentages over a time range. | `/solar_share` |
-| **TrafficModel** | Scheduled commercial exchanges / traffic between bidding zones. | `/signal` |
+| **CrossBorderModel** |  | `/cbet` |
+| **DailyAvgDict** |  | `/ren_share_daily_avg` |
+| **Frequency** |  | `/frequency` |
+| **InstalledModel** |  | `/installed_power` |
+| **Price** |  | `/price` |
+| **ProductionModel** |  | `/public_power` |
+| **PublicPowerForecast** |  | `/public_power_forecast` |
+| **RenShareModel** |  | `/ren_share_forecast` |
+| **ShareModel** |  | `/solar_share` |
+| **TrafficModel** |  | `/signal` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -119,15 +109,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from energycharts_sdk import EnergyChartsSDK
 
-client = EnergyChartsSDK({})
+client = EnergyChartsSDK({
+    "apikey": os.environ.get("ENERGY-CHARTS_APIKEY"),
+})
 
 
 # Load a specific crossbordermodel
-crossbordermodel, err = client.CrossBorderModel(None).load(
-    {"id": "example_id"}, None
-)
+crossbordermodel, err = client.CrossBorderModel().load({"id": "example_id"})
+print(crossbordermodel)
 ```
 
 ### PHP
@@ -136,13 +128,14 @@ crossbordermodel, err = client.CrossBorderModel(None).load(
 <?php
 require_once 'energycharts_sdk.php';
 
-$client = new EnergyChartsSDK([]);
+$client = new EnergyChartsSDK([
+    "apikey" => getenv("ENERGY-CHARTS_APIKEY"),
+]);
 
 
 // Load a specific crossbordermodel
-[$crossbordermodel, $err] = $client->CrossBorderModel(null)->load(
-    ["id" => "example_id"], null
-);
+[$crossbordermodel, $err] = $client->CrossBorderModel()->load(["id" => "example_id"]);
+print_r($crossbordermodel);
 ```
 
 ### Golang
@@ -150,8 +143,13 @@ $client = new EnergyChartsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 
-client := sdk.NewEnergyChartsSDK(map[string]any{})
+client := sdk.NewEnergyChartsSDK(map[string]any{
+    "apikey": os.Getenv("ENERGY-CHARTS_APIKEY"),
+})
 
+// Load crossbordermodel data
+crossbordermodel, err := client.CrossBorderModel(nil).Load(map[string]any{}, nil)
+fmt.Println(crossbordermodel)
 ```
 
 ### Ruby
@@ -159,13 +157,14 @@ client := sdk.NewEnergyChartsSDK(map[string]any{})
 ```ruby
 require_relative "EnergyCharts_sdk"
 
-client = EnergyChartsSDK.new({})
+client = EnergyChartsSDK.new({
+  "apikey" => ENV["ENERGY-CHARTS_APIKEY"],
+})
 
 
 # Load a specific crossbordermodel
-crossbordermodel, err = client.CrossBorderModel(nil).load(
-  { "id" => "example_id" }, nil
-)
+crossbordermodel, err = client.CrossBorderModel().load({ "id" => "example_id" })
+puts crossbordermodel
 ```
 
 ### Lua
@@ -173,13 +172,14 @@ crossbordermodel, err = client.CrossBorderModel(nil).load(
 ```lua
 local sdk = require("energy-charts_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("ENERGY-CHARTS_APIKEY"),
+})
 
 
 -- Load a specific crossbordermodel
-local crossbordermodel, err = client:CrossBorderModel(nil):load(
-  { id = "example_id" }, nil
-)
+local crossbordermodel, err = client:CrossBorderModel():load({ id = "example_id" })
+print(crossbordermodel)
 ```
 
 ## Unit testing in offline mode
@@ -198,25 +198,21 @@ const result = await client.CrossBorderModel().load({ id: 'test01' })
 ### Python
 
 ```python
-client = EnergyChartsSDK.test(None, None)
-result, err = client.CrossBorderModel(None).load(
-    {"id": "test01"}, None
-)
+client = EnergyChartsSDK.test()
+result, err = client.CrossBorderModel().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = EnergyChartsSDK::test(null, null);
-[$result, $err] = $client->CrossBorderModel(null)->load(
-    ["id" => "test01"], null
-);
+$client = EnergyChartsSDK::test();
+[$result, $err] = $client->CrossBorderModel()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.CrossBorderModel(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -225,19 +221,15 @@ result, err := client.CrossBorderModel(nil).Load(
 ### Ruby
 
 ```ruby
-client = EnergyChartsSDK.test(nil, nil)
-result, err = client.CrossBorderModel(nil).load(
-  { "id" => "test01" }, nil
-)
+client = EnergyChartsSDK.test
+result, err = client.CrossBorderModel().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:CrossBorderModel(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:CrossBorderModel():load({ id = "test01" })
 ```
 
 ## How it works
@@ -341,16 +333,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Energy-Charts API
-
-- Upstream: [https://www.energy-charts.info/](https://www.energy-charts.info/)
-- API docs: [https://api.energy-charts.info/](https://api.energy-charts.info/)
-
-- Data is published under the [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/) licence (CC BY 4.0).
-- Attribute responses to Fraunhofer ISE / Energy-Charts.info when redistributing or visualising the data.
-- Underlying data is sourced from ENTSO-E and other TSO/market operators; their terms may apply to bulk reuse.
-- No authentication is required and CORS is enabled, so the API is usable directly from browser apps.
 
 ---
 
