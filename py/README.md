@@ -10,7 +10,7 @@ The Python SDK for the EnergyCharts API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install energy-charts-sdk
+pip install voxgig-sdk-energy-charts
 ```
 
 Or install from source:

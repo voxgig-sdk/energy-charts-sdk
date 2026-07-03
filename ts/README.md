@@ -10,7 +10,7 @@ The TypeScript SDK for the EnergyCharts API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install energy-charts
+npm install @voxgig-sdk/energy-charts
 ```
 ## Tutorial: your first API call
 
