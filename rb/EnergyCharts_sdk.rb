@@ -208,130 +208,70 @@ class EnergyChartsSDK
   end
 
 
-  # Idiomatic facade: client.cross_border_model.list / client.cross_border_model.load({ "id" => ... })
-  def cross_border_model
-    require_relative 'entity/cross_border_model_entity'
-    @cross_border_model ||= CrossBorderModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.cross_border_model instead.
+  # Canonical facade: client.CrossBorderModel.list / client.CrossBorderModel.load({ "id" => ... })
   def CrossBorderModel(data = nil)
     require_relative 'entity/cross_border_model_entity'
     CrossBorderModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.daily_avg_dict.list / client.daily_avg_dict.load({ "id" => ... })
-  def daily_avg_dict
-    require_relative 'entity/daily_avg_dict_entity'
-    @daily_avg_dict ||= DailyAvgDictEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.daily_avg_dict instead.
+  # Canonical facade: client.DailyAvgDict.list / client.DailyAvgDict.load({ "id" => ... })
   def DailyAvgDict(data = nil)
     require_relative 'entity/daily_avg_dict_entity'
     DailyAvgDictEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.frequency.list / client.frequency.load({ "id" => ... })
-  def frequency
-    require_relative 'entity/frequency_entity'
-    @frequency ||= FrequencyEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.frequency instead.
+  # Canonical facade: client.Frequency.list / client.Frequency.load({ "id" => ... })
   def Frequency(data = nil)
     require_relative 'entity/frequency_entity'
     FrequencyEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.installed_model.list / client.installed_model.load({ "id" => ... })
-  def installed_model
-    require_relative 'entity/installed_model_entity'
-    @installed_model ||= InstalledModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.installed_model instead.
+  # Canonical facade: client.InstalledModel.list / client.InstalledModel.load({ "id" => ... })
   def InstalledModel(data = nil)
     require_relative 'entity/installed_model_entity'
     InstalledModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.price.list / client.price.load({ "id" => ... })
-  def price
-    require_relative 'entity/price_entity'
-    @price ||= PriceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.price instead.
+  # Canonical facade: client.Price.list / client.Price.load({ "id" => ... })
   def Price(data = nil)
     require_relative 'entity/price_entity'
     PriceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.production_model.list / client.production_model.load({ "id" => ... })
-  def production_model
-    require_relative 'entity/production_model_entity'
-    @production_model ||= ProductionModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.production_model instead.
+  # Canonical facade: client.ProductionModel.list / client.ProductionModel.load({ "id" => ... })
   def ProductionModel(data = nil)
     require_relative 'entity/production_model_entity'
     ProductionModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.public_power_forecast.list / client.public_power_forecast.load({ "id" => ... })
-  def public_power_forecast
-    require_relative 'entity/public_power_forecast_entity'
-    @public_power_forecast ||= PublicPowerForecastEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.public_power_forecast instead.
+  # Canonical facade: client.PublicPowerForecast.list / client.PublicPowerForecast.load({ "id" => ... })
   def PublicPowerForecast(data = nil)
     require_relative 'entity/public_power_forecast_entity'
     PublicPowerForecastEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ren_share_model.list / client.ren_share_model.load({ "id" => ... })
-  def ren_share_model
-    require_relative 'entity/ren_share_model_entity'
-    @ren_share_model ||= RenShareModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ren_share_model instead.
+  # Canonical facade: client.RenShareModel.list / client.RenShareModel.load({ "id" => ... })
   def RenShareModel(data = nil)
     require_relative 'entity/ren_share_model_entity'
     RenShareModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.share_model.list / client.share_model.load({ "id" => ... })
-  def share_model
-    require_relative 'entity/share_model_entity'
-    @share_model ||= ShareModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.share_model instead.
+  # Canonical facade: client.ShareModel.list / client.ShareModel.load({ "id" => ... })
   def ShareModel(data = nil)
     require_relative 'entity/share_model_entity'
     ShareModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.traffic_model.list / client.traffic_model.load({ "id" => ... })
-  def traffic_model
-    require_relative 'entity/traffic_model_entity'
-    @traffic_model ||= TrafficModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.traffic_model instead.
+  # Canonical facade: client.TrafficModel.list / client.TrafficModel.load({ "id" => ... })
   def TrafficModel(data = nil)
     require_relative 'entity/traffic_model_entity'
     TrafficModelEntity.new(self, data)

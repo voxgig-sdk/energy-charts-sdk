@@ -33,9 +33,10 @@ $client = new EnergyChartsSDK();
 
 ```php
 try {
-    $result = $client->crossbordermodel()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare CrossBorderModel record (throws on error).
+    $crossbordermodel = $client->CrossBorderModel()->load(["id" => "example_id"]);
+    print_r($crossbordermodel);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = EnergyChartsSDK::test();
+$client = EnergyChartsSDK::test([
+    "entity" => ["crossbordermodel" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->crossbordermodel()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$crossbordermodel = $client->CrossBorderModel()->load(["id" => "test01"]);
+print_r($crossbordermodel);
 ```
 
 ### Use a custom fetch function
@@ -169,7 +174,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `CrossBorderModel` | `($data): CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
 | `DailyAvgDict` | `($data): DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
 | `Frequency` | `($data): FrequencyEntity` | Create a Frequency entity instance. |
-| `InstalledModel` | `($data): InstalledModelEntity` | Create a InstalledModel entity instance. |
+| `InstalledModel` | `($data): InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price` | `($data): PriceEntity` | Create a Price entity instance. |
 | `ProductionModel` | `($data): ProductionModelEntity` | Create a ProductionModel entity instance. |
 | `PublicPowerForecast` | `($data): PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
@@ -354,7 +359,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `const cross_border_model = client.cross_border_model`
+Create an instance: `$cross_border_model = $client->CrossBorderModel();`
 
 #### Operations
 
@@ -372,14 +377,15 @@ Create an instance: `const cross_border_model = client.cross_border_model`
 
 #### Example: Load
 
-```ts
-const cross_border_model = await client.cross_border_model.load({ id: 'cross_border_model_id' })
+```php
+// load() returns the bare CrossBorderModel record (throws on error).
+$cross_border_model = $client->CrossBorderModel()->load(["id" => "cross_border_model_id"]);
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `const daily_avg_dict = client.daily_avg_dict`
+Create an instance: `$daily_avg_dict = $client->DailyAvgDict();`
 
 #### Operations
 
@@ -397,14 +403,15 @@ Create an instance: `const daily_avg_dict = client.daily_avg_dict`
 
 #### Example: List
 
-```ts
-const daily_avg_dicts = await client.daily_avg_dict.list()
+```php
+// list() returns an array of DailyAvgDict records (throws on error).
+$daily_avg_dicts = $client->DailyAvgDict()->list();
 ```
 
 
 ### Frequency
 
-Create an instance: `const frequency = client.frequency`
+Create an instance: `$frequency = $client->Frequency();`
 
 #### Operations
 
@@ -422,14 +429,15 @@ Create an instance: `const frequency = client.frequency`
 
 #### Example: List
 
-```ts
-const frequencys = await client.frequency.list()
+```php
+// list() returns an array of Frequency records (throws on error).
+$frequencys = $client->Frequency()->list();
 ```
 
 
 ### InstalledModel
 
-Create an instance: `const installed_model = client.installed_model`
+Create an instance: `$installed_model = $client->InstalledModel();`
 
 #### Operations
 
@@ -448,14 +456,15 @@ Create an instance: `const installed_model = client.installed_model`
 
 #### Example: List
 
-```ts
-const installed_models = await client.installed_model.list()
+```php
+// list() returns an array of InstalledModel records (throws on error).
+$installed_models = $client->InstalledModel()->list();
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `$price = $client->Price();`
 
 #### Operations
 
@@ -475,14 +484,15 @@ Create an instance: `const price = client.price`
 
 #### Example: Load
 
-```ts
-const price = await client.price.load({ id: 'price_id' })
+```php
+// load() returns the bare Price record (throws on error).
+$price = $client->Price()->load(["id" => "price_id"]);
 ```
 
 
 ### ProductionModel
 
-Create an instance: `const production_model = client.production_model`
+Create an instance: `$production_model = $client->ProductionModel();`
 
 #### Operations
 
@@ -500,14 +510,15 @@ Create an instance: `const production_model = client.production_model`
 
 #### Example: Load
 
-```ts
-const production_model = await client.production_model.load({ id: 'production_model_id' })
+```php
+// load() returns the bare ProductionModel record (throws on error).
+$production_model = $client->ProductionModel()->load(["id" => "production_model_id"]);
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `const public_power_forecast = client.public_power_forecast`
+Create an instance: `$public_power_forecast = $client->PublicPowerForecast();`
 
 #### Operations
 
@@ -527,14 +538,15 @@ Create an instance: `const public_power_forecast = client.public_power_forecast`
 
 #### Example: List
 
-```ts
-const public_power_forecasts = await client.public_power_forecast.list()
+```php
+// list() returns an array of PublicPowerForecast records (throws on error).
+$public_power_forecasts = $client->PublicPowerForecast()->list();
 ```
 
 
 ### RenShareModel
 
-Create an instance: `const ren_share_model = client.ren_share_model`
+Create an instance: `$ren_share_model = $client->RenShareModel();`
 
 #### Operations
 
@@ -556,14 +568,15 @@ Create an instance: `const ren_share_model = client.ren_share_model`
 
 #### Example: List
 
-```ts
-const ren_share_models = await client.ren_share_model.list()
+```php
+// list() returns an array of RenShareModel records (throws on error).
+$ren_share_models = $client->RenShareModel()->list();
 ```
 
 
 ### ShareModel
 
-Create an instance: `const share_model = client.share_model`
+Create an instance: `$share_model = $client->ShareModel();`
 
 #### Operations
 
@@ -582,14 +595,15 @@ Create an instance: `const share_model = client.share_model`
 
 #### Example: Load
 
-```ts
-const share_model = await client.share_model.load({ id: 'share_model_id' })
+```php
+// load() returns the bare ShareModel record (throws on error).
+$share_model = $client->ShareModel()->load(["id" => "share_model_id"]);
 ```
 
 
 ### TrafficModel
 
-Create an instance: `const traffic_model = client.traffic_model`
+Create an instance: `$traffic_model = $client->TrafficModel();`
 
 #### Operations
 
@@ -609,8 +623,9 @@ Create an instance: `const traffic_model = client.traffic_model`
 
 #### Example: List
 
-```ts
-const traffic_models = await client.traffic_model.list()
+```php
+// list() returns an array of TrafficModel records (throws on error).
+$traffic_models = $client->TrafficModel()->list();
 ```
 
 
@@ -685,7 +700,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$crossbordermodel = $client->crossbordermodel();
+$crossbordermodel = $client->CrossBorderModel();
 $crossbordermodel->load(["id" => "example_id"]);
 
 // $crossbordermodel->dataGet() now returns the loaded crossbordermodel data

@@ -26,9 +26,9 @@ import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts'
 
 const client = new EnergyChartsSDK()
 
-// Load crossbordermodel data
-const crossbordermodel = await client.crossbordermodel.load({})
-console.log(crossbordermodel.data)
+// Load crossbordermodel data (returns a CrossBorderModel)
+const crossbordermodel = await client.CrossBorderModel().load()
+console.log(crossbordermodel)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -93,8 +93,8 @@ from energycharts_sdk import EnergyChartsSDK
 client = EnergyChartsSDK()
 
 
-# Load a specific crossbordermodel
-crossbordermodel = client.crossbordermodel.load({"id": "example_id"})
+# Load a specific crossbordermodel (returns the record, raises on error)
+crossbordermodel = client.CrossBorderModel().load({"id": "example_id"})
 print(crossbordermodel)
 ```
 
@@ -107,8 +107,8 @@ require_once 'energycharts_sdk.php';
 $client = new EnergyChartsSDK();
 
 
-// Load a specific crossbordermodel
-$crossbordermodel = $client->crossbordermodel()->load(["id" => "example_id"]);
+// Load a specific crossbordermodel (returns the bare record; throws on error)
+$crossbordermodel = $client->CrossBorderModel()->load(["id" => "example_id"]);
 print_r($crossbordermodel);
 ```
 
@@ -132,8 +132,8 @@ require_relative "EnergyCharts_sdk"
 client = EnergyChartsSDK.new
 
 
-# Load a specific crossbordermodel
-crossbordermodel = client.crossbordermodel.load({ "id" => "example_id" })
+# Load a specific crossbordermodel (returns the bare record; raises on error)
+crossbordermodel = client.CrossBorderModel.load({ "id" => "example_id" })
 puts crossbordermodel
 ```
 
@@ -146,7 +146,7 @@ local client = sdk.new()
 
 
 -- Load a specific crossbordermodel
-local crossbordermodel, err = client:crossbordermodel():load({ id = "example_id" })
+local crossbordermodel, err = client:CrossBorderModel():load({ id = "example_id" })
 print(crossbordermodel)
 ```
 
@@ -159,22 +159,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = EnergyChartsSDK.test()
-const result = await client.crossbordermodel.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const crossbordermodel = await client.CrossBorderModel().load({ id: 'test01' })
+// crossbordermodel is a bare CrossBorderModel populated with mock data
+console.log(crossbordermodel)
 ```
 
 ### Python
 
 ```python
 client = EnergyChartsSDK.test()
-result = client.crossbordermodel.load({"id": "test01"})
+crossbordermodel = client.CrossBorderModel().load({"id": "test01"})
+print(crossbordermodel)
 ```
 
 ### PHP
 
 ```php
-$client = EnergyChartsSDK::test();
-$result = $client->crossbordermodel()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = EnergyChartsSDK::test([
+    "entity" => ["crossbordermodel" => ["test01" => ["id" => "test01"]]],
+]);
+$crossbordermodel = $client->CrossBorderModel()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -189,15 +194,18 @@ result, err := client.CrossBorderModel(nil).Load(
 ### Ruby
 
 ```ruby
-client = EnergyChartsSDK.test
-result = client.crossbordermodel.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = EnergyChartsSDK.test({
+  "entity" => { "crossbordermodel" => { "test01" => { "id" => "test01" } } },
+})
+crossbordermodel = client.CrossBorderModel.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:crossbordermodel():load({ id = "test01" })
+local result, err = client:CrossBorderModel():load({ id = "test01" })
 ```
 
 ## How it works
@@ -245,6 +253,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

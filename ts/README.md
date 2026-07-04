@@ -30,11 +30,14 @@ const client = new EnergyChartsSDK()
 
 ### 3. Load a crossbordermodel
 
-```ts
-const result = await client.crossbordermodel.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const crossbordermodel = await client.CrossBorderModel().load({ id: 'example_id' })
+  console.log(crossbordermodel)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EnergyChartsSDK.test()
 
-const result = await client.crossbordermodel.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const crossbordermodel = await client.CrossBorderModel().load({ id: 'test01' })
+// crossbordermodel is a bare entity populated with mock response data
+console.log(crossbordermodel)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.crossbordermodel
+const entity = client.CrossBorderModel()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -178,7 +184,7 @@ new EnergyChartsSDK(options?: {
 | `CrossBorderModel(data?)` | `CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
 | `DailyAvgDict(data?)` | `DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
 | `Frequency(data?)` | `FrequencyEntity` | Create a Frequency entity instance. |
-| `InstalledModel(data?)` | `InstalledModelEntity` | Create a InstalledModel entity instance. |
+| `InstalledModel(data?)` | `InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price(data?)` | `PriceEntity` | Create a Price entity instance. |
 | `ProductionModel(data?)` | `ProductionModelEntity` | Create a ProductionModel entity instance. |
 | `PublicPowerForecast(data?)` | `PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
@@ -201,29 +207,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): EnergyChartsSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -394,7 +401,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `const cross_border_model = client.cross_border_model`
+Create an instance: `const cross_border_model = client.CrossBorderModel()`
 
 #### Operations
 
@@ -413,13 +420,13 @@ Create an instance: `const cross_border_model = client.cross_border_model`
 #### Example: Load
 
 ```ts
-const cross_border_model = await client.cross_border_model.load({ id: 'cross_border_model_id' })
+const cross_border_model = await client.CrossBorderModel().load({ id: 'cross_border_model_id' })
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `const daily_avg_dict = client.daily_avg_dict`
+Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
 
 #### Operations
 
@@ -438,13 +445,13 @@ Create an instance: `const daily_avg_dict = client.daily_avg_dict`
 #### Example: List
 
 ```ts
-const daily_avg_dicts = await client.daily_avg_dict.list()
+const daily_avg_dicts = await client.DailyAvgDict().list()
 ```
 
 
 ### Frequency
 
-Create an instance: `const frequency = client.frequency`
+Create an instance: `const frequency = client.Frequency()`
 
 #### Operations
 
@@ -463,13 +470,13 @@ Create an instance: `const frequency = client.frequency`
 #### Example: List
 
 ```ts
-const frequencys = await client.frequency.list()
+const frequencys = await client.Frequency().list()
 ```
 
 
 ### InstalledModel
 
-Create an instance: `const installed_model = client.installed_model`
+Create an instance: `const installed_model = client.InstalledModel()`
 
 #### Operations
 
@@ -489,13 +496,13 @@ Create an instance: `const installed_model = client.installed_model`
 #### Example: List
 
 ```ts
-const installed_models = await client.installed_model.list()
+const installed_models = await client.InstalledModel().list()
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `const price = client.Price()`
 
 #### Operations
 
@@ -516,13 +523,13 @@ Create an instance: `const price = client.price`
 #### Example: Load
 
 ```ts
-const price = await client.price.load({ id: 'price_id' })
+const price = await client.Price().load({ id: 'price_id' })
 ```
 
 
 ### ProductionModel
 
-Create an instance: `const production_model = client.production_model`
+Create an instance: `const production_model = client.ProductionModel()`
 
 #### Operations
 
@@ -541,13 +548,13 @@ Create an instance: `const production_model = client.production_model`
 #### Example: Load
 
 ```ts
-const production_model = await client.production_model.load({ id: 'production_model_id' })
+const production_model = await client.ProductionModel().load({ id: 'production_model_id' })
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `const public_power_forecast = client.public_power_forecast`
+Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
 
 #### Operations
 
@@ -568,13 +575,13 @@ Create an instance: `const public_power_forecast = client.public_power_forecast`
 #### Example: List
 
 ```ts
-const public_power_forecasts = await client.public_power_forecast.list()
+const public_power_forecasts = await client.PublicPowerForecast().list()
 ```
 
 
 ### RenShareModel
 
-Create an instance: `const ren_share_model = client.ren_share_model`
+Create an instance: `const ren_share_model = client.RenShareModel()`
 
 #### Operations
 
@@ -597,13 +604,13 @@ Create an instance: `const ren_share_model = client.ren_share_model`
 #### Example: List
 
 ```ts
-const ren_share_models = await client.ren_share_model.list()
+const ren_share_models = await client.RenShareModel().list()
 ```
 
 
 ### ShareModel
 
-Create an instance: `const share_model = client.share_model`
+Create an instance: `const share_model = client.ShareModel()`
 
 #### Operations
 
@@ -623,13 +630,13 @@ Create an instance: `const share_model = client.share_model`
 #### Example: Load
 
 ```ts
-const share_model = await client.share_model.load({ id: 'share_model_id' })
+const share_model = await client.ShareModel().load({ id: 'share_model_id' })
 ```
 
 
 ### TrafficModel
 
-Create an instance: `const traffic_model = client.traffic_model`
+Create an instance: `const traffic_model = client.TrafficModel()`
 
 #### Operations
 
@@ -650,7 +657,7 @@ Create an instance: `const traffic_model = client.traffic_model`
 #### Example: List
 
 ```ts
-const traffic_models = await client.traffic_model.list()
+const traffic_models = await client.TrafficModel().list()
 ```
 
 
@@ -721,7 +728,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const crossbordermodel = client.crossbordermodel
+const crossbordermodel = client.CrossBorderModel()
 await crossbordermodel.load({ id: "example_id" })
 
 // crossbordermodel.data() now returns the loaded crossbordermodel data

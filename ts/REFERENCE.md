@@ -217,7 +217,7 @@ Alias for `EnergyChartsSDK.test()`.
 ## CrossBorderModelEntity
 
 ```ts
-const cross_border_model = client.cross_border_model
+const cross_border_model = client.CrossBorderModel()
 ```
 
 ### Fields
@@ -235,7 +235,7 @@ const cross_border_model = client.cross_border_model
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.cross_border_model.load({ id: 'cross_border_model_id' })
+const result = await client.CrossBorderModel().load({ id: 'cross_border_model_id' })
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return a copy of the entity options.
 ## DailyAvgDictEntity
 
 ```ts
-const daily_avg_dict = client.daily_avg_dict
+const daily_avg_dict = client.DailyAvgDict()
 ```
 
 ### Fields
@@ -287,7 +287,7 @@ const daily_avg_dict = client.daily_avg_dict
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.daily_avg_dict.list()
+const results = await client.DailyAvgDict().list()
 ```
 
 ### Common Methods
@@ -321,7 +321,7 @@ Return a copy of the entity options.
 ## FrequencyEntity
 
 ```ts
-const frequency = client.frequency
+const frequency = client.Frequency()
 ```
 
 ### Fields
@@ -339,7 +339,7 @@ const frequency = client.frequency
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.frequency.list()
+const results = await client.Frequency().list()
 ```
 
 ### Common Methods
@@ -373,7 +373,7 @@ Return a copy of the entity options.
 ## InstalledModelEntity
 
 ```ts
-const installed_model = client.installed_model
+const installed_model = client.InstalledModel()
 ```
 
 ### Fields
@@ -392,7 +392,7 @@ const installed_model = client.installed_model
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.installed_model.list()
+const results = await client.InstalledModel().list()
 ```
 
 ### Common Methods
@@ -426,7 +426,7 @@ Return a copy of the entity options.
 ## PriceEntity
 
 ```ts
-const price = client.price
+const price = client.Price()
 ```
 
 ### Fields
@@ -446,7 +446,7 @@ const price = client.price
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.price.load({ id: 'price_id' })
+const result = await client.Price().load({ id: 'price_id' })
 ```
 
 ### Common Methods
@@ -480,7 +480,7 @@ Return a copy of the entity options.
 ## ProductionModelEntity
 
 ```ts
-const production_model = client.production_model
+const production_model = client.ProductionModel()
 ```
 
 ### Fields
@@ -498,7 +498,7 @@ const production_model = client.production_model
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.production_model.load({ id: 'production_model_id' })
+const result = await client.ProductionModel().load({ id: 'production_model_id' })
 ```
 
 ### Common Methods
@@ -532,7 +532,7 @@ Return a copy of the entity options.
 ## PublicPowerForecastEntity
 
 ```ts
-const public_power_forecast = client.public_power_forecast
+const public_power_forecast = client.PublicPowerForecast()
 ```
 
 ### Fields
@@ -552,7 +552,7 @@ const public_power_forecast = client.public_power_forecast
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.public_power_forecast.list()
+const results = await client.PublicPowerForecast().list()
 ```
 
 ### Common Methods
@@ -586,7 +586,7 @@ Return a copy of the entity options.
 ## RenShareModelEntity
 
 ```ts
-const ren_share_model = client.ren_share_model
+const ren_share_model = client.RenShareModel()
 ```
 
 ### Fields
@@ -608,7 +608,7 @@ const ren_share_model = client.ren_share_model
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ren_share_model.list()
+const results = await client.RenShareModel().list()
 ```
 
 ### Common Methods
@@ -642,7 +642,7 @@ Return a copy of the entity options.
 ## ShareModelEntity
 
 ```ts
-const share_model = client.share_model
+const share_model = client.ShareModel()
 ```
 
 ### Fields
@@ -661,7 +661,7 @@ const share_model = client.share_model
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.share_model.load({ id: 'share_model_id' })
+const result = await client.ShareModel().load({ id: 'share_model_id' })
 ```
 
 ### Common Methods
@@ -695,7 +695,7 @@ Return a copy of the entity options.
 ## TrafficModelEntity
 
 ```ts
-const traffic_model = client.traffic_model
+const traffic_model = client.TrafficModel()
 ```
 
 ### Fields
@@ -715,7 +715,7 @@ const traffic_model = client.traffic_model
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.traffic_model.list()
+const results = await client.TrafficModel().list()
 ```
 
 ### Common Methods

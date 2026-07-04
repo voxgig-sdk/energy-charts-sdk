@@ -122,7 +122,7 @@ same parameters as `direct()`. Raises on error.
 ## CrossBorderModelEntity
 
 ```ruby
-cross_border_model = client.cross_border_model
+cross_border_model = client.CrossBorderModel
 ```
 
 ### Fields
@@ -140,7 +140,7 @@ cross_border_model = client.cross_border_model
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.cross_border_model.load({ "id" => "cross_border_model_id" })
+result = client.CrossBorderModel.load({ "id" => "cross_border_model_id" })
 ```
 
 ### Common Methods
@@ -176,7 +176,7 @@ Return the entity name.
 ## DailyAvgDictEntity
 
 ```ruby
-daily_avg_dict = client.daily_avg_dict
+daily_avg_dict = client.DailyAvgDict
 ```
 
 ### Fields
@@ -194,7 +194,7 @@ daily_avg_dict = client.daily_avg_dict
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.daily_avg_dict.list(nil)
+results = client.DailyAvgDict.list(nil)
 ```
 
 ### Common Methods
@@ -230,7 +230,7 @@ Return the entity name.
 ## FrequencyEntity
 
 ```ruby
-frequency = client.frequency
+frequency = client.Frequency
 ```
 
 ### Fields
@@ -248,7 +248,7 @@ frequency = client.frequency
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.frequency.list(nil)
+results = client.Frequency.list(nil)
 ```
 
 ### Common Methods
@@ -284,7 +284,7 @@ Return the entity name.
 ## InstalledModelEntity
 
 ```ruby
-installed_model = client.installed_model
+installed_model = client.InstalledModel
 ```
 
 ### Fields
@@ -303,7 +303,7 @@ installed_model = client.installed_model
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.installed_model.list(nil)
+results = client.InstalledModel.list(nil)
 ```
 
 ### Common Methods
@@ -339,7 +339,7 @@ Return the entity name.
 ## PriceEntity
 
 ```ruby
-price = client.price
+price = client.Price
 ```
 
 ### Fields
@@ -359,7 +359,7 @@ price = client.price
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.price.load({ "id" => "price_id" })
+result = client.Price.load({ "id" => "price_id" })
 ```
 
 ### Common Methods
@@ -395,7 +395,7 @@ Return the entity name.
 ## ProductionModelEntity
 
 ```ruby
-production_model = client.production_model
+production_model = client.ProductionModel
 ```
 
 ### Fields
@@ -413,7 +413,7 @@ production_model = client.production_model
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.production_model.load({ "id" => "production_model_id" })
+result = client.ProductionModel.load({ "id" => "production_model_id" })
 ```
 
 ### Common Methods
@@ -449,7 +449,7 @@ Return the entity name.
 ## PublicPowerForecastEntity
 
 ```ruby
-public_power_forecast = client.public_power_forecast
+public_power_forecast = client.PublicPowerForecast
 ```
 
 ### Fields
@@ -469,7 +469,7 @@ public_power_forecast = client.public_power_forecast
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.public_power_forecast.list(nil)
+results = client.PublicPowerForecast.list(nil)
 ```
 
 ### Common Methods
@@ -505,7 +505,7 @@ Return the entity name.
 ## RenShareModelEntity
 
 ```ruby
-ren_share_model = client.ren_share_model
+ren_share_model = client.RenShareModel
 ```
 
 ### Fields
@@ -527,7 +527,7 @@ ren_share_model = client.ren_share_model
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.ren_share_model.list(nil)
+results = client.RenShareModel.list(nil)
 ```
 
 ### Common Methods
@@ -563,7 +563,7 @@ Return the entity name.
 ## ShareModelEntity
 
 ```ruby
-share_model = client.share_model
+share_model = client.ShareModel
 ```
 
 ### Fields
@@ -582,7 +582,7 @@ share_model = client.share_model
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.share_model.load({ "id" => "share_model_id" })
+result = client.ShareModel.load({ "id" => "share_model_id" })
 ```
 
 ### Common Methods
@@ -618,7 +618,7 @@ Return the entity name.
 ## TrafficModelEntity
 
 ```ruby
-traffic_model = client.traffic_model
+traffic_model = client.TrafficModel
 ```
 
 ### Fields
@@ -638,7 +638,7 @@ traffic_model = client.traffic_model
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.traffic_model.list(nil)
+results = client.TrafficModel.list(nil)
 ```
 
 ### Common Methods

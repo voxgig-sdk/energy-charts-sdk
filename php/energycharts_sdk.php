@@ -233,10 +233,10 @@ class EnergyChartsSDK
 
     private $_cross_border_model = null;
 
-    // Idiomatic facade: $client->cross_border_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias CrossBorderModel() (PHP method
-    // names are case-insensitive).
-    public function cross_border_model($data = null)
+    // Canonical facade: $client->CrossBorderModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cross_border_model()
+    // resolves here too.
+    public function CrossBorderModel($data = null)
     {
         require_once __DIR__ . '/entity/cross_border_model_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class EnergyChartsSDK
 
     private $_daily_avg_dict = null;
 
-    // Idiomatic facade: $client->daily_avg_dict()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DailyAvgDict() (PHP method
-    // names are case-insensitive).
-    public function daily_avg_dict($data = null)
+    // Canonical facade: $client->DailyAvgDict()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->daily_avg_dict()
+    // resolves here too.
+    public function DailyAvgDict($data = null)
     {
         require_once __DIR__ . '/entity/daily_avg_dict_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class EnergyChartsSDK
 
     private $_frequency = null;
 
-    // Idiomatic facade: $client->frequency()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Frequency() (PHP method
-    // names are case-insensitive).
-    public function frequency($data = null)
+    // Canonical facade: $client->Frequency()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->frequency()
+    // resolves here too.
+    public function Frequency($data = null)
     {
         require_once __DIR__ . '/entity/frequency_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class EnergyChartsSDK
 
     private $_installed_model = null;
 
-    // Idiomatic facade: $client->installed_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias InstalledModel() (PHP method
-    // names are case-insensitive).
-    public function installed_model($data = null)
+    // Canonical facade: $client->InstalledModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->installed_model()
+    // resolves here too.
+    public function InstalledModel($data = null)
     {
         require_once __DIR__ . '/entity/installed_model_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class EnergyChartsSDK
 
     private $_price = null;
 
-    // Idiomatic facade: $client->price()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Price() (PHP method
-    // names are case-insensitive).
-    public function price($data = null)
+    // Canonical facade: $client->Price()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->price()
+    // resolves here too.
+    public function Price($data = null)
     {
         require_once __DIR__ . '/entity/price_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class EnergyChartsSDK
 
     private $_production_model = null;
 
-    // Idiomatic facade: $client->production_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ProductionModel() (PHP method
-    // names are case-insensitive).
-    public function production_model($data = null)
+    // Canonical facade: $client->ProductionModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->production_model()
+    // resolves here too.
+    public function ProductionModel($data = null)
     {
         require_once __DIR__ . '/entity/production_model_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class EnergyChartsSDK
 
     private $_public_power_forecast = null;
 
-    // Idiomatic facade: $client->public_power_forecast()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PublicPowerForecast() (PHP method
-    // names are case-insensitive).
-    public function public_power_forecast($data = null)
+    // Canonical facade: $client->PublicPowerForecast()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->public_power_forecast()
+    // resolves here too.
+    public function PublicPowerForecast($data = null)
     {
         require_once __DIR__ . '/entity/public_power_forecast_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class EnergyChartsSDK
 
     private $_ren_share_model = null;
 
-    // Idiomatic facade: $client->ren_share_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RenShareModel() (PHP method
-    // names are case-insensitive).
-    public function ren_share_model($data = null)
+    // Canonical facade: $client->RenShareModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ren_share_model()
+    // resolves here too.
+    public function RenShareModel($data = null)
     {
         require_once __DIR__ . '/entity/ren_share_model_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class EnergyChartsSDK
 
     private $_share_model = null;
 
-    // Idiomatic facade: $client->share_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ShareModel() (PHP method
-    // names are case-insensitive).
-    public function share_model($data = null)
+    // Canonical facade: $client->ShareModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->share_model()
+    // resolves here too.
+    public function ShareModel($data = null)
     {
         require_once __DIR__ . '/entity/share_model_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class EnergyChartsSDK
 
     private $_traffic_model = null;
 
-    // Idiomatic facade: $client->traffic_model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias TrafficModel() (PHP method
-    // names are case-insensitive).
-    public function traffic_model($data = null)
+    // Canonical facade: $client->TrafficModel()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->traffic_model()
+    // resolves here too.
+    public function TrafficModel($data = null)
     {
         require_once __DIR__ . '/entity/traffic_model_entity.php';
         if ($data === null) {

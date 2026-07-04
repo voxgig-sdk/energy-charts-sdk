@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a crossbordermodel
 
 ```lua
-local result, err = client:crossbordermodel():load({ id = "example_id" })
+local crossbordermodel, err = client:CrossBorderModel():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(crossbordermodel)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:crossbordermodel():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:CrossBorderModel():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -164,7 +164,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CrossBorderModel` | `(data) -> CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
 | `DailyAvgDict` | `(data) -> DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
 | `Frequency` | `(data) -> FrequencyEntity` | Create a Frequency entity instance. |
-| `InstalledModel` | `(data) -> InstalledModelEntity` | Create a InstalledModel entity instance. |
+| `InstalledModel` | `(data) -> InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price` | `(data) -> PriceEntity` | Create a Price entity instance. |
 | `ProductionModel` | `(data) -> ProductionModelEntity` | Create a ProductionModel entity instance. |
 | `PublicPowerForecast` | `(data) -> PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
@@ -192,17 +192,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local cross_border_model, err = client:CrossBorderModel():load({ id = "example_id" })
+    if err then error(err) end
+    -- cross_border_model is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -345,7 +350,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `const cross_border_model = client.cross_border_model`
+Create an instance: `local cross_border_model = client:CrossBorderModel(nil)`
 
 #### Operations
 
@@ -363,14 +368,14 @@ Create an instance: `const cross_border_model = client.cross_border_model`
 
 #### Example: Load
 
-```ts
-const cross_border_model = await client.cross_border_model.load({ id: 'cross_border_model_id' })
+```lua
+local cross_border_model, err = client:CrossBorderModel():load({ id = "cross_border_model_id" })
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `const daily_avg_dict = client.daily_avg_dict`
+Create an instance: `local daily_avg_dict = client:DailyAvgDict(nil)`
 
 #### Operations
 
@@ -388,14 +393,14 @@ Create an instance: `const daily_avg_dict = client.daily_avg_dict`
 
 #### Example: List
 
-```ts
-const daily_avg_dicts = await client.daily_avg_dict.list()
+```lua
+local daily_avg_dicts, err = client:DailyAvgDict():list()
 ```
 
 
 ### Frequency
 
-Create an instance: `const frequency = client.frequency`
+Create an instance: `local frequency = client:Frequency(nil)`
 
 #### Operations
 
@@ -413,14 +418,14 @@ Create an instance: `const frequency = client.frequency`
 
 #### Example: List
 
-```ts
-const frequencys = await client.frequency.list()
+```lua
+local frequencys, err = client:Frequency():list()
 ```
 
 
 ### InstalledModel
 
-Create an instance: `const installed_model = client.installed_model`
+Create an instance: `local installed_model = client:InstalledModel(nil)`
 
 #### Operations
 
@@ -439,14 +444,14 @@ Create an instance: `const installed_model = client.installed_model`
 
 #### Example: List
 
-```ts
-const installed_models = await client.installed_model.list()
+```lua
+local installed_models, err = client:InstalledModel():list()
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.price`
+Create an instance: `local price = client:Price(nil)`
 
 #### Operations
 
@@ -466,14 +471,14 @@ Create an instance: `const price = client.price`
 
 #### Example: Load
 
-```ts
-const price = await client.price.load({ id: 'price_id' })
+```lua
+local price, err = client:Price():load({ id = "price_id" })
 ```
 
 
 ### ProductionModel
 
-Create an instance: `const production_model = client.production_model`
+Create an instance: `local production_model = client:ProductionModel(nil)`
 
 #### Operations
 
@@ -491,14 +496,14 @@ Create an instance: `const production_model = client.production_model`
 
 #### Example: Load
 
-```ts
-const production_model = await client.production_model.load({ id: 'production_model_id' })
+```lua
+local production_model, err = client:ProductionModel():load({ id = "production_model_id" })
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `const public_power_forecast = client.public_power_forecast`
+Create an instance: `local public_power_forecast = client:PublicPowerForecast(nil)`
 
 #### Operations
 
@@ -518,14 +523,14 @@ Create an instance: `const public_power_forecast = client.public_power_forecast`
 
 #### Example: List
 
-```ts
-const public_power_forecasts = await client.public_power_forecast.list()
+```lua
+local public_power_forecasts, err = client:PublicPowerForecast():list()
 ```
 
 
 ### RenShareModel
 
-Create an instance: `const ren_share_model = client.ren_share_model`
+Create an instance: `local ren_share_model = client:RenShareModel(nil)`
 
 #### Operations
 
@@ -547,14 +552,14 @@ Create an instance: `const ren_share_model = client.ren_share_model`
 
 #### Example: List
 
-```ts
-const ren_share_models = await client.ren_share_model.list()
+```lua
+local ren_share_models, err = client:RenShareModel():list()
 ```
 
 
 ### ShareModel
 
-Create an instance: `const share_model = client.share_model`
+Create an instance: `local share_model = client:ShareModel(nil)`
 
 #### Operations
 
@@ -573,14 +578,14 @@ Create an instance: `const share_model = client.share_model`
 
 #### Example: Load
 
-```ts
-const share_model = await client.share_model.load({ id: 'share_model_id' })
+```lua
+local share_model, err = client:ShareModel():load({ id = "share_model_id" })
 ```
 
 
 ### TrafficModel
 
-Create an instance: `const traffic_model = client.traffic_model`
+Create an instance: `local traffic_model = client:TrafficModel(nil)`
 
 #### Operations
 
@@ -600,8 +605,8 @@ Create an instance: `const traffic_model = client.traffic_model`
 
 #### Example: List
 
-```ts
-const traffic_models = await client.traffic_model.list()
+```lua
+local traffic_models, err = client:TrafficModel():list()
 ```
 
 
@@ -676,7 +681,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local crossbordermodel = client:crossbordermodel()
+local crossbordermodel = client:CrossBorderModel()
 crossbordermodel:load({ id = "example_id" })
 
 -- crossbordermodel:data_get() now returns the loaded crossbordermodel data

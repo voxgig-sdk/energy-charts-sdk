@@ -116,7 +116,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CrossBorderModelEntity
 
 ```python
-cross_border_model = client.cross_border_model
+cross_border_model = client.CrossBorderModel()
 ```
 
 ### Fields
@@ -134,7 +134,7 @@ cross_border_model = client.cross_border_model
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.cross_border_model.load({"id": "cross_border_model_id"})
+result = client.CrossBorderModel().load({"id": "cross_border_model_id"})
 ```
 
 ### Common Methods
@@ -169,7 +169,7 @@ Return the entity name.
 ## DailyAvgDictEntity
 
 ```python
-daily_avg_dict = client.daily_avg_dict
+daily_avg_dict = client.DailyAvgDict()
 ```
 
 ### Fields
@@ -187,7 +187,9 @@ daily_avg_dict = client.daily_avg_dict
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.daily_avg_dict.list({})
+results = client.DailyAvgDict().list({})
+for daily_avg_dict in results:
+    print(daily_avg_dict)
 ```
 
 ### Common Methods
@@ -222,7 +224,7 @@ Return the entity name.
 ## FrequencyEntity
 
 ```python
-frequency = client.frequency
+frequency = client.Frequency()
 ```
 
 ### Fields
@@ -240,7 +242,9 @@ frequency = client.frequency
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.frequency.list({})
+results = client.Frequency().list({})
+for frequency in results:
+    print(frequency)
 ```
 
 ### Common Methods
@@ -275,7 +279,7 @@ Return the entity name.
 ## InstalledModelEntity
 
 ```python
-installed_model = client.installed_model
+installed_model = client.InstalledModel()
 ```
 
 ### Fields
@@ -294,7 +298,9 @@ installed_model = client.installed_model
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.installed_model.list({})
+results = client.InstalledModel().list({})
+for installed_model in results:
+    print(installed_model)
 ```
 
 ### Common Methods
@@ -329,7 +335,7 @@ Return the entity name.
 ## PriceEntity
 
 ```python
-price = client.price
+price = client.Price()
 ```
 
 ### Fields
@@ -349,7 +355,7 @@ price = client.price
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.price.load({"id": "price_id"})
+result = client.Price().load({"id": "price_id"})
 ```
 
 ### Common Methods
@@ -384,7 +390,7 @@ Return the entity name.
 ## ProductionModelEntity
 
 ```python
-production_model = client.production_model
+production_model = client.ProductionModel()
 ```
 
 ### Fields
@@ -402,7 +408,7 @@ production_model = client.production_model
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.production_model.load({"id": "production_model_id"})
+result = client.ProductionModel().load({"id": "production_model_id"})
 ```
 
 ### Common Methods
@@ -437,7 +443,7 @@ Return the entity name.
 ## PublicPowerForecastEntity
 
 ```python
-public_power_forecast = client.public_power_forecast
+public_power_forecast = client.PublicPowerForecast()
 ```
 
 ### Fields
@@ -457,7 +463,9 @@ public_power_forecast = client.public_power_forecast
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.public_power_forecast.list({})
+results = client.PublicPowerForecast().list({})
+for public_power_forecast in results:
+    print(public_power_forecast)
 ```
 
 ### Common Methods
@@ -492,7 +500,7 @@ Return the entity name.
 ## RenShareModelEntity
 
 ```python
-ren_share_model = client.ren_share_model
+ren_share_model = client.RenShareModel()
 ```
 
 ### Fields
@@ -514,7 +522,9 @@ ren_share_model = client.ren_share_model
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.ren_share_model.list({})
+results = client.RenShareModel().list({})
+for ren_share_model in results:
+    print(ren_share_model)
 ```
 
 ### Common Methods
@@ -549,7 +559,7 @@ Return the entity name.
 ## ShareModelEntity
 
 ```python
-share_model = client.share_model
+share_model = client.ShareModel()
 ```
 
 ### Fields
@@ -568,7 +578,7 @@ share_model = client.share_model
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.share_model.load({"id": "share_model_id"})
+result = client.ShareModel().load({"id": "share_model_id"})
 ```
 
 ### Common Methods
@@ -603,7 +613,7 @@ Return the entity name.
 ## TrafficModelEntity
 
 ```python
-traffic_model = client.traffic_model
+traffic_model = client.TrafficModel()
 ```
 
 ### Fields
@@ -623,7 +633,9 @@ traffic_model = client.traffic_model
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.traffic_model.list({})
+results = client.TrafficModel().list({})
+for traffic_model in results:
+    print(traffic_model)
 ```
 
 ### Common Methods

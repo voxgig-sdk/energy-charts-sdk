@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/energy-charts-sdk/go=../energy-charts
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
-    "github.com/voxgig-sdk/energy-charts-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a crossbordermodel
-
-```go
-    result, err = client.CrossBorderModel(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single crossbordermodel — the value is the loaded record.
+    crossbordermodel, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(crossbordermodel)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.CrossBorderModel(nil).Load(
+crossbordermodel, err := client.CrossBorderModel(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(crossbordermodel) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -193,7 +190,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CrossBorderModel` | `(data map[string]any) EnergyChartsEntity` | Create a CrossBorderModel entity instance. |
 | `DailyAvgDict` | `(data map[string]any) EnergyChartsEntity` | Create a DailyAvgDict entity instance. |
 | `Frequency` | `(data map[string]any) EnergyChartsEntity` | Create a Frequency entity instance. |
-| `InstalledModel` | `(data map[string]any) EnergyChartsEntity` | Create a InstalledModel entity instance. |
+| `InstalledModel` | `(data map[string]any) EnergyChartsEntity` | Create an InstalledModel entity instance. |
 | `Price` | `(data map[string]any) EnergyChartsEntity` | Create a Price entity instance. |
 | `ProductionModel` | `(data map[string]any) EnergyChartsEntity` | Create a ProductionModel entity instance. |
 | `PublicPowerForecast` | `(data map[string]any) EnergyChartsEntity` | Create a PublicPowerForecast entity instance. |
@@ -219,17 +216,24 @@ All entities implement the `EnergyChartsEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    crossbordermodel, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // crossbordermodel is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -391,7 +395,11 @@ Create an instance: `cross_border_model := client.CrossBorderModel(nil)`
 #### Example: Load
 
 ```go
-result, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "cross_border_model_id"}, nil)
+cross_border_model, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "cross_border_model_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cross_border_model) // the loaded record
 ```
 
 
@@ -416,7 +424,11 @@ Create an instance: `daily_avg_dict := client.DailyAvgDict(nil)`
 #### Example: List
 
 ```go
-results, err := client.DailyAvgDict(nil).List(nil, nil)
+daily_avg_dicts, err := client.DailyAvgDict(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(daily_avg_dicts) // the array of records
 ```
 
 
@@ -441,7 +453,11 @@ Create an instance: `frequency := client.Frequency(nil)`
 #### Example: List
 
 ```go
-results, err := client.Frequency(nil).List(nil, nil)
+frequencys, err := client.Frequency(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(frequencys) // the array of records
 ```
 
 
@@ -467,7 +483,11 @@ Create an instance: `installed_model := client.InstalledModel(nil)`
 #### Example: List
 
 ```go
-results, err := client.InstalledModel(nil).List(nil, nil)
+installed_models, err := client.InstalledModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(installed_models) // the array of records
 ```
 
 
@@ -494,7 +514,11 @@ Create an instance: `price := client.Price(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Price(nil).Load(map[string]any{"id": "price_id"}, nil)
+price, err := client.Price(nil).Load(map[string]any{"id": "price_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(price) // the loaded record
 ```
 
 
@@ -519,7 +543,11 @@ Create an instance: `production_model := client.ProductionModel(nil)`
 #### Example: Load
 
 ```go
-result, err := client.ProductionModel(nil).Load(map[string]any{"id": "production_model_id"}, nil)
+production_model, err := client.ProductionModel(nil).Load(map[string]any{"id": "production_model_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(production_model) // the loaded record
 ```
 
 
@@ -546,7 +574,11 @@ Create an instance: `public_power_forecast := client.PublicPowerForecast(nil)`
 #### Example: List
 
 ```go
-results, err := client.PublicPowerForecast(nil).List(nil, nil)
+public_power_forecasts, err := client.PublicPowerForecast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(public_power_forecasts) // the array of records
 ```
 
 
@@ -575,7 +607,11 @@ Create an instance: `ren_share_model := client.RenShareModel(nil)`
 #### Example: List
 
 ```go
-results, err := client.RenShareModel(nil).List(nil, nil)
+ren_share_models, err := client.RenShareModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ren_share_models) // the array of records
 ```
 
 
@@ -601,7 +637,11 @@ Create an instance: `share_model := client.ShareModel(nil)`
 #### Example: Load
 
 ```go
-result, err := client.ShareModel(nil).Load(map[string]any{"id": "share_model_id"}, nil)
+share_model, err := client.ShareModel(nil).Load(map[string]any{"id": "share_model_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(share_model) // the loaded record
 ```
 
 
@@ -628,7 +668,11 @@ Create an instance: `traffic_model := client.TrafficModel(nil)`
 #### Example: List
 
 ```go
-results, err := client.TrafficModel(nil).List(nil, nil)
+traffic_models, err := client.TrafficModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(traffic_models) // the array of records
 ```
 
 

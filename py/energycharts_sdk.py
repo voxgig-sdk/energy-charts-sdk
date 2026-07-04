@@ -220,169 +220,69 @@ class EnergyChartsSDK:
         }
 
 
-    @property
-    def cross_border_model(self):
-        """Idiomatic facade: client.cross_border_model.list() / client.cross_border_model.load({"id": ...})."""
-        from entity.cross_border_model_entity import CrossBorderModelEntity
-        cached = getattr(self, "_cross_border_model", None)
-        if cached is None:
-            cached = CrossBorderModelEntity(self, None)
-            self._cross_border_model = cached
-        return cached
-
-    def CrossBorderModel(self, data=None):
-        # Deprecated: use client.cross_border_model instead.
+    def CrossBorderModel(self, data=None) -> "CrossBorderModelEntity":
+        """Entity factory: client.CrossBorderModel().list({}) / client.CrossBorderModel().load({"id": ...})."""
         from entity.cross_border_model_entity import CrossBorderModelEntity
         return CrossBorderModelEntity(self, data)
 
 
-    @property
-    def daily_avg_dict(self):
-        """Idiomatic facade: client.daily_avg_dict.list() / client.daily_avg_dict.load({"id": ...})."""
-        from entity.daily_avg_dict_entity import DailyAvgDictEntity
-        cached = getattr(self, "_daily_avg_dict", None)
-        if cached is None:
-            cached = DailyAvgDictEntity(self, None)
-            self._daily_avg_dict = cached
-        return cached
-
-    def DailyAvgDict(self, data=None):
-        # Deprecated: use client.daily_avg_dict instead.
+    def DailyAvgDict(self, data=None) -> "DailyAvgDictEntity":
+        """Entity factory: client.DailyAvgDict().list({}) / client.DailyAvgDict().load({"id": ...})."""
         from entity.daily_avg_dict_entity import DailyAvgDictEntity
         return DailyAvgDictEntity(self, data)
 
 
-    @property
-    def frequency(self):
-        """Idiomatic facade: client.frequency.list() / client.frequency.load({"id": ...})."""
-        from entity.frequency_entity import FrequencyEntity
-        cached = getattr(self, "_frequency", None)
-        if cached is None:
-            cached = FrequencyEntity(self, None)
-            self._frequency = cached
-        return cached
-
-    def Frequency(self, data=None):
-        # Deprecated: use client.frequency instead.
+    def Frequency(self, data=None) -> "FrequencyEntity":
+        """Entity factory: client.Frequency().list({}) / client.Frequency().load({"id": ...})."""
         from entity.frequency_entity import FrequencyEntity
         return FrequencyEntity(self, data)
 
 
-    @property
-    def installed_model(self):
-        """Idiomatic facade: client.installed_model.list() / client.installed_model.load({"id": ...})."""
-        from entity.installed_model_entity import InstalledModelEntity
-        cached = getattr(self, "_installed_model", None)
-        if cached is None:
-            cached = InstalledModelEntity(self, None)
-            self._installed_model = cached
-        return cached
-
-    def InstalledModel(self, data=None):
-        # Deprecated: use client.installed_model instead.
+    def InstalledModel(self, data=None) -> "InstalledModelEntity":
+        """Entity factory: client.InstalledModel().list({}) / client.InstalledModel().load({"id": ...})."""
         from entity.installed_model_entity import InstalledModelEntity
         return InstalledModelEntity(self, data)
 
 
-    @property
-    def price(self):
-        """Idiomatic facade: client.price.list() / client.price.load({"id": ...})."""
-        from entity.price_entity import PriceEntity
-        cached = getattr(self, "_price", None)
-        if cached is None:
-            cached = PriceEntity(self, None)
-            self._price = cached
-        return cached
-
-    def Price(self, data=None):
-        # Deprecated: use client.price instead.
+    def Price(self, data=None) -> "PriceEntity":
+        """Entity factory: client.Price().list({}) / client.Price().load({"id": ...})."""
         from entity.price_entity import PriceEntity
         return PriceEntity(self, data)
 
 
-    @property
-    def production_model(self):
-        """Idiomatic facade: client.production_model.list() / client.production_model.load({"id": ...})."""
-        from entity.production_model_entity import ProductionModelEntity
-        cached = getattr(self, "_production_model", None)
-        if cached is None:
-            cached = ProductionModelEntity(self, None)
-            self._production_model = cached
-        return cached
-
-    def ProductionModel(self, data=None):
-        # Deprecated: use client.production_model instead.
+    def ProductionModel(self, data=None) -> "ProductionModelEntity":
+        """Entity factory: client.ProductionModel().list({}) / client.ProductionModel().load({"id": ...})."""
         from entity.production_model_entity import ProductionModelEntity
         return ProductionModelEntity(self, data)
 
 
-    @property
-    def public_power_forecast(self):
-        """Idiomatic facade: client.public_power_forecast.list() / client.public_power_forecast.load({"id": ...})."""
-        from entity.public_power_forecast_entity import PublicPowerForecastEntity
-        cached = getattr(self, "_public_power_forecast", None)
-        if cached is None:
-            cached = PublicPowerForecastEntity(self, None)
-            self._public_power_forecast = cached
-        return cached
-
-    def PublicPowerForecast(self, data=None):
-        # Deprecated: use client.public_power_forecast instead.
+    def PublicPowerForecast(self, data=None) -> "PublicPowerForecastEntity":
+        """Entity factory: client.PublicPowerForecast().list({}) / client.PublicPowerForecast().load({"id": ...})."""
         from entity.public_power_forecast_entity import PublicPowerForecastEntity
         return PublicPowerForecastEntity(self, data)
 
 
-    @property
-    def ren_share_model(self):
-        """Idiomatic facade: client.ren_share_model.list() / client.ren_share_model.load({"id": ...})."""
-        from entity.ren_share_model_entity import RenShareModelEntity
-        cached = getattr(self, "_ren_share_model", None)
-        if cached is None:
-            cached = RenShareModelEntity(self, None)
-            self._ren_share_model = cached
-        return cached
-
-    def RenShareModel(self, data=None):
-        # Deprecated: use client.ren_share_model instead.
+    def RenShareModel(self, data=None) -> "RenShareModelEntity":
+        """Entity factory: client.RenShareModel().list({}) / client.RenShareModel().load({"id": ...})."""
         from entity.ren_share_model_entity import RenShareModelEntity
         return RenShareModelEntity(self, data)
 
 
-    @property
-    def share_model(self):
-        """Idiomatic facade: client.share_model.list() / client.share_model.load({"id": ...})."""
-        from entity.share_model_entity import ShareModelEntity
-        cached = getattr(self, "_share_model", None)
-        if cached is None:
-            cached = ShareModelEntity(self, None)
-            self._share_model = cached
-        return cached
-
-    def ShareModel(self, data=None):
-        # Deprecated: use client.share_model instead.
+    def ShareModel(self, data=None) -> "ShareModelEntity":
+        """Entity factory: client.ShareModel().list({}) / client.ShareModel().load({"id": ...})."""
         from entity.share_model_entity import ShareModelEntity
         return ShareModelEntity(self, data)
 
 
-    @property
-    def traffic_model(self):
-        """Idiomatic facade: client.traffic_model.list() / client.traffic_model.load({"id": ...})."""
-        from entity.traffic_model_entity import TrafficModelEntity
-        cached = getattr(self, "_traffic_model", None)
-        if cached is None:
-            cached = TrafficModelEntity(self, None)
-            self._traffic_model = cached
-        return cached
-
-    def TrafficModel(self, data=None):
-        # Deprecated: use client.traffic_model instead.
+    def TrafficModel(self, data=None) -> "TrafficModelEntity":
+        """Entity factory: client.TrafficModel().list({}) / client.TrafficModel().load({"id": ...})."""
         from entity.traffic_model_entity import TrafficModelEntity
         return TrafficModelEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "EnergyChartsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -402,3 +302,18 @@ class EnergyChartsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.cross_border_model_entity import CrossBorderModelEntity
+    from entity.daily_avg_dict_entity import DailyAvgDictEntity
+    from entity.frequency_entity import FrequencyEntity
+    from entity.installed_model_entity import InstalledModelEntity
+    from entity.price_entity import PriceEntity
+    from entity.production_model_entity import ProductionModelEntity
+    from entity.public_power_forecast_entity import PublicPowerForecastEntity
+    from entity.ren_share_model_entity import RenShareModelEntity
+    from entity.share_model_entity import ShareModelEntity
+    from entity.traffic_model_entity import TrafficModelEntity

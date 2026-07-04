@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:cross_border_model():list() / client:cross_border_model():load({ id = ... })
-function EnergyChartsSDK:cross_border_model(data)
+-- Idiomatic facade: client:CrossBorderModel():list() / client:CrossBorderModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:CrossBorderModel(data)
   local EntityMod = require("entity.cross_border_model_entity")
   if data == nil then
     if self._cross_border_model == nil then
@@ -256,15 +257,10 @@ function EnergyChartsSDK:cross_border_model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:cross_border_model() instead.
-function EnergyChartsSDK:CrossBorderModel(data)
-  local EntityMod = require("entity.cross_border_model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:daily_avg_dict():list() / client:daily_avg_dict():load({ id = ... })
-function EnergyChartsSDK:daily_avg_dict(data)
+-- Idiomatic facade: client:DailyAvgDict():list() / client:DailyAvgDict():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:DailyAvgDict(data)
   local EntityMod = require("entity.daily_avg_dict_entity")
   if data == nil then
     if self._daily_avg_dict == nil then
@@ -275,15 +271,10 @@ function EnergyChartsSDK:daily_avg_dict(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:daily_avg_dict() instead.
-function EnergyChartsSDK:DailyAvgDict(data)
-  local EntityMod = require("entity.daily_avg_dict_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:frequency():list() / client:frequency():load({ id = ... })
-function EnergyChartsSDK:frequency(data)
+-- Idiomatic facade: client:Frequency():list() / client:Frequency():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:Frequency(data)
   local EntityMod = require("entity.frequency_entity")
   if data == nil then
     if self._frequency == nil then
@@ -294,15 +285,10 @@ function EnergyChartsSDK:frequency(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:frequency() instead.
-function EnergyChartsSDK:Frequency(data)
-  local EntityMod = require("entity.frequency_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:installed_model():list() / client:installed_model():load({ id = ... })
-function EnergyChartsSDK:installed_model(data)
+-- Idiomatic facade: client:InstalledModel():list() / client:InstalledModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:InstalledModel(data)
   local EntityMod = require("entity.installed_model_entity")
   if data == nil then
     if self._installed_model == nil then
@@ -313,15 +299,10 @@ function EnergyChartsSDK:installed_model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:installed_model() instead.
-function EnergyChartsSDK:InstalledModel(data)
-  local EntityMod = require("entity.installed_model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:price():list() / client:price():load({ id = ... })
-function EnergyChartsSDK:price(data)
+-- Idiomatic facade: client:Price():list() / client:Price():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:Price(data)
   local EntityMod = require("entity.price_entity")
   if data == nil then
     if self._price == nil then
@@ -332,15 +313,10 @@ function EnergyChartsSDK:price(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:price() instead.
-function EnergyChartsSDK:Price(data)
-  local EntityMod = require("entity.price_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:production_model():list() / client:production_model():load({ id = ... })
-function EnergyChartsSDK:production_model(data)
+-- Idiomatic facade: client:ProductionModel():list() / client:ProductionModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:ProductionModel(data)
   local EntityMod = require("entity.production_model_entity")
   if data == nil then
     if self._production_model == nil then
@@ -351,15 +327,10 @@ function EnergyChartsSDK:production_model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:production_model() instead.
-function EnergyChartsSDK:ProductionModel(data)
-  local EntityMod = require("entity.production_model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:public_power_forecast():list() / client:public_power_forecast():load({ id = ... })
-function EnergyChartsSDK:public_power_forecast(data)
+-- Idiomatic facade: client:PublicPowerForecast():list() / client:PublicPowerForecast():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:PublicPowerForecast(data)
   local EntityMod = require("entity.public_power_forecast_entity")
   if data == nil then
     if self._public_power_forecast == nil then
@@ -370,15 +341,10 @@ function EnergyChartsSDK:public_power_forecast(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:public_power_forecast() instead.
-function EnergyChartsSDK:PublicPowerForecast(data)
-  local EntityMod = require("entity.public_power_forecast_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ren_share_model():list() / client:ren_share_model():load({ id = ... })
-function EnergyChartsSDK:ren_share_model(data)
+-- Idiomatic facade: client:RenShareModel():list() / client:RenShareModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:RenShareModel(data)
   local EntityMod = require("entity.ren_share_model_entity")
   if data == nil then
     if self._ren_share_model == nil then
@@ -389,15 +355,10 @@ function EnergyChartsSDK:ren_share_model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ren_share_model() instead.
-function EnergyChartsSDK:RenShareModel(data)
-  local EntityMod = require("entity.ren_share_model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:share_model():list() / client:share_model():load({ id = ... })
-function EnergyChartsSDK:share_model(data)
+-- Idiomatic facade: client:ShareModel():list() / client:ShareModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:ShareModel(data)
   local EntityMod = require("entity.share_model_entity")
   if data == nil then
     if self._share_model == nil then
@@ -408,15 +369,10 @@ function EnergyChartsSDK:share_model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:share_model() instead.
-function EnergyChartsSDK:ShareModel(data)
-  local EntityMod = require("entity.share_model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:traffic_model():list() / client:traffic_model():load({ id = ... })
-function EnergyChartsSDK:traffic_model(data)
+-- Idiomatic facade: client:TrafficModel():list() / client:TrafficModel():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:TrafficModel(data)
   local EntityMod = require("entity.traffic_model_entity")
   if data == nil then
     if self._traffic_model == nil then
@@ -424,12 +380,6 @@ function EnergyChartsSDK:traffic_model(data)
     end
     return self._traffic_model
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:traffic_model() instead.
-function EnergyChartsSDK:TrafficModel(data)
-  local EntityMod = require("entity.traffic_model_entity")
   return EntityMod.new(self, data)
 end
 

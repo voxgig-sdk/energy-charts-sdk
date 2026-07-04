@@ -4,105 +4,112 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class CrossBorderModel:
+class CrossBorderModelRequired(TypedDict):
     deprecated: bool
-    country: Optional[Any] = None
-    unix_second: Optional[Any] = None
 
 
-@dataclass
-class CrossBorderModelLoadMatch:
-    country: Optional[Any] = None
-    deprecated: Optional[bool] = None
-    unix_second: Optional[Any] = None
+class CrossBorderModel(CrossBorderModelRequired, total=False):
+    country: Any
+    unix_second: Any
 
 
-@dataclass
-class DailyAvgDict:
+class CrossBorderModelLoadMatch(TypedDict, total=False):
+    country: Any
+    deprecated: bool
+    unix_second: Any
+
+
+class DailyAvgDict(TypedDict):
     data: list
     day: list
     deprecated: bool
 
 
-@dataclass
-class DailyAvgDictListMatch:
-    data: Optional[list] = None
-    day: Optional[list] = None
-    deprecated: Optional[bool] = None
+class DailyAvgDictListMatch(TypedDict, total=False):
+    data: list
+    day: list
+    deprecated: bool
 
 
-@dataclass
-class Frequency:
+class FrequencyRequired(TypedDict):
     data: list
     deprecated: bool
-    unix_second: Optional[Any] = None
 
 
-@dataclass
-class FrequencyListMatch:
-    data: Optional[list] = None
-    deprecated: Optional[bool] = None
-    unix_second: Optional[Any] = None
+class Frequency(FrequencyRequired, total=False):
+    unix_second: Any
 
 
-@dataclass
-class InstalledModel:
+class FrequencyListMatch(TypedDict, total=False):
+    data: list
+    deprecated: bool
+    unix_second: Any
+
+
+class InstalledModelRequired(TypedDict):
     deprecated: bool
     last_update: Any
     time: list
-    production_type: Optional[Any] = None
 
 
-@dataclass
-class InstalledModelListMatch:
-    deprecated: Optional[bool] = None
-    last_update: Optional[Any] = None
-    production_type: Optional[Any] = None
-    time: Optional[list] = None
+class InstalledModel(InstalledModelRequired, total=False):
+    production_type: Any
 
 
-@dataclass
-class Price:
+class InstalledModelListMatch(TypedDict, total=False):
+    deprecated: bool
+    last_update: Any
+    production_type: Any
+    time: list
+
+
+class PriceRequired(TypedDict):
     deprecated: bool
     license_info: str
     unit: str
-    price: Optional[float] = None
-    unix_second: Optional[Any] = None
 
 
-@dataclass
-class PriceLoadMatch:
-    deprecated: Optional[bool] = None
-    license_info: Optional[str] = None
-    price: Optional[float] = None
-    unit: Optional[str] = None
-    unix_second: Optional[Any] = None
+class Price(PriceRequired, total=False):
+    price: float
+    unix_second: Any
 
 
-@dataclass
-class ProductionModel:
+class PriceLoadMatch(TypedDict, total=False):
     deprecated: bool
-    production_type: Optional[Any] = None
-    unix_second: Optional[Any] = None
+    license_info: str
+    price: float
+    unit: str
+    unix_second: Any
 
 
-@dataclass
-class ProductionModelLoadMatch:
-    deprecated: Optional[bool] = None
-    production_type: Optional[Any] = None
-    unix_second: Optional[Any] = None
+class ProductionModelRequired(TypedDict):
+    deprecated: bool
 
 
-@dataclass
-class PublicPowerForecast:
+class ProductionModel(ProductionModelRequired, total=False):
+    production_type: Any
+    unix_second: Any
+
+
+class ProductionModelLoadMatch(TypedDict, total=False):
+    deprecated: bool
+    production_type: Any
+    unix_second: Any
+
+
+class PublicPowerForecast(TypedDict):
     deprecated: bool
     forecast_type: str
     forecast_value: list
@@ -110,67 +117,68 @@ class PublicPowerForecast:
     unix_second: list
 
 
-@dataclass
-class PublicPowerForecastListMatch:
-    deprecated: Optional[bool] = None
-    forecast_type: Optional[str] = None
-    forecast_value: Optional[list] = None
-    production_type: Optional[str] = None
-    unix_second: Optional[list] = None
+class PublicPowerForecastListMatch(TypedDict, total=False):
+    deprecated: bool
+    forecast_type: str
+    forecast_value: list
+    production_type: str
+    unix_second: list
 
 
-@dataclass
-class RenShareModel:
+class RenShareModelRequired(TypedDict):
     deprecated: bool
     ren_share: list
     substitute: bool
     unix_second: list
-    solar_share: Optional[Any] = None
-    wind_offshore_share: Optional[Any] = None
-    wind_onshore_share: Optional[Any] = None
 
 
-@dataclass
-class RenShareModelListMatch:
-    deprecated: Optional[bool] = None
-    ren_share: Optional[list] = None
-    solar_share: Optional[Any] = None
-    substitute: Optional[bool] = None
-    unix_second: Optional[list] = None
-    wind_offshore_share: Optional[Any] = None
-    wind_onshore_share: Optional[Any] = None
+class RenShareModel(RenShareModelRequired, total=False):
+    solar_share: Any
+    wind_offshore_share: Any
+    wind_onshore_share: Any
 
 
-@dataclass
-class ShareModel:
+class RenShareModelListMatch(TypedDict, total=False):
     deprecated: bool
-    data: Optional[Any] = None
-    forecast: Optional[Any] = None
-    unix_second: Optional[Any] = None
+    ren_share: list
+    solar_share: Any
+    substitute: bool
+    unix_second: list
+    wind_offshore_share: Any
+    wind_onshore_share: Any
 
 
-@dataclass
-class ShareModelLoadMatch:
-    data: Optional[Any] = None
-    deprecated: Optional[bool] = None
-    forecast: Optional[Any] = None
-    unix_second: Optional[Any] = None
+class ShareModelRequired(TypedDict):
+    deprecated: bool
 
 
-@dataclass
-class TrafficModel:
+class ShareModel(ShareModelRequired, total=False):
+    data: Any
+    forecast: Any
+    unix_second: Any
+
+
+class ShareModelLoadMatch(TypedDict, total=False):
+    data: Any
+    deprecated: bool
+    forecast: Any
+    unix_second: Any
+
+
+class TrafficModelRequired(TypedDict):
     deprecated: bool
     share: list
     substitute: bool
     unix_second: list
-    signal: Optional[list] = None
 
 
-@dataclass
-class TrafficModelListMatch:
-    deprecated: Optional[bool] = None
-    share: Optional[list] = None
-    signal: Optional[list] = None
-    substitute: Optional[bool] = None
-    unix_second: Optional[list] = None
+class TrafficModel(TrafficModelRequired, total=False):
+    signal: list
 
+
+class TrafficModelListMatch(TypedDict, total=False):
+    deprecated: bool
+    share: list
+    signal: list
+    substitute: bool
+    unix_second: list
