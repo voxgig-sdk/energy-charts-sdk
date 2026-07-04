@@ -45,6 +45,7 @@ class TrafficModelEntity
     end
   end
 
+  # @return [TrafficModel, Hash] the current TrafficModel data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class TrafficModelEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of TrafficModel fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class TrafficModelEntity
   
 
   
+  # List TrafficModel items matching the given filter.
+  #
+  # @param reqmatch [TrafficModelListMatch, Hash, nil] match filter (any subset of TrafficModel fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<TrafficModel>, Array] the matching TrafficModel items; raises EnergyChartsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

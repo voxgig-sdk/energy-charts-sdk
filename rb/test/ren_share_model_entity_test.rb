@@ -43,8 +43,7 @@ class RenShareModelEntityTest < Minitest::Test
     ren_share_model_ref01_ent = client.RenShareModel(nil)
     ren_share_model_ref01_match = {}
 
-    ren_share_model_ref01_list_result, err = ren_share_model_ref01_ent.list(ren_share_model_ref01_match, nil)
-    assert_nil err
+    ren_share_model_ref01_list_result = ren_share_model_ref01_ent.list(ren_share_model_ref01_match, nil)
     assert ren_share_model_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def ren_share_model_basic_setup(extra)
     "ENERGYCHARTS_TEST_REN_SHARE_MODEL_ENTID" => idmap,
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
     "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def ren_share_model_basic_setup(extra)
   if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ENERGYCHARTS_APIKEY"],
       },
       extra || {},
     ])

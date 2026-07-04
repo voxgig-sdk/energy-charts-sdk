@@ -50,8 +50,7 @@ class PublicPowerForecastEntityTest extends TestCase
         $public_power_forecast_ref01_ent = $client->PublicPowerForecast(null);
         $public_power_forecast_ref01_match = [];
 
-        [$public_power_forecast_ref01_list_result, $err] = $public_power_forecast_ref01_ent->list($public_power_forecast_ref01_match, null);
-        $this->assertNull($err);
+        $public_power_forecast_ref01_list_result = $public_power_forecast_ref01_ent->list($public_power_forecast_ref01_match, null);
         $this->assertIsArray($public_power_forecast_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function public_power_forecast_basic_setup($extra)
         "ENERGYCHARTS_TEST_PUBLIC_POWER_FORECAST_ENTID" => $idmap,
         "ENERGYCHARTS_TEST_LIVE" => "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-        "ENERGYCHARTS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function public_power_forecast_basic_setup($extra)
     if ($env["ENERGYCHARTS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ENERGYCHARTS_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PriceLoadMatch
+---@param ctrl? table
+---@return Price
+---@return string? err
 function PriceEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

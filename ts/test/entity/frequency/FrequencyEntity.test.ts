@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'ENERGY_CHARTS_TEST_FREQUENCY_ENTID': idmap,
     'ENERGY_CHARTS_TEST_LIVE': 'FALSE',
     'ENERGY_CHARTS_TEST_EXPLAIN': 'FALSE',
-    'ENERGY_CHARTS_APIKEY': 'NONE',
   })
 
   idmap = env['ENERGY_CHARTS_TEST_FREQUENCY_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new EnergyChartsSDK(merge([
       {
-        apikey: env.ENERGY_CHARTS_APIKEY,
       },
       extra
     ]))

@@ -245,51 +245,81 @@ func (sdk *EnergyChartsSDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// CrossBorderModel returns a CrossBorderModel entity bound to this client.
+// Idiomatic usage: client.CrossBorderModel(nil).List(nil, nil) or
+// client.CrossBorderModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) CrossBorderModel(data map[string]any) EnergyChartsEntity {
 	return NewCrossBorderModelEntityFunc(sdk, data)
 }
 
 
+// DailyAvgDict returns a DailyAvgDict entity bound to this client.
+// Idiomatic usage: client.DailyAvgDict(nil).List(nil, nil) or
+// client.DailyAvgDict(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) DailyAvgDict(data map[string]any) EnergyChartsEntity {
 	return NewDailyAvgDictEntityFunc(sdk, data)
 }
 
 
+// Frequency returns a Frequency entity bound to this client.
+// Idiomatic usage: client.Frequency(nil).List(nil, nil) or
+// client.Frequency(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) Frequency(data map[string]any) EnergyChartsEntity {
 	return NewFrequencyEntityFunc(sdk, data)
 }
 
 
+// InstalledModel returns a InstalledModel entity bound to this client.
+// Idiomatic usage: client.InstalledModel(nil).List(nil, nil) or
+// client.InstalledModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) InstalledModel(data map[string]any) EnergyChartsEntity {
 	return NewInstalledModelEntityFunc(sdk, data)
 }
 
 
+// Price returns a Price entity bound to this client.
+// Idiomatic usage: client.Price(nil).List(nil, nil) or
+// client.Price(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) Price(data map[string]any) EnergyChartsEntity {
 	return NewPriceEntityFunc(sdk, data)
 }
 
 
+// ProductionModel returns a ProductionModel entity bound to this client.
+// Idiomatic usage: client.ProductionModel(nil).List(nil, nil) or
+// client.ProductionModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) ProductionModel(data map[string]any) EnergyChartsEntity {
 	return NewProductionModelEntityFunc(sdk, data)
 }
 
 
+// PublicPowerForecast returns a PublicPowerForecast entity bound to this client.
+// Idiomatic usage: client.PublicPowerForecast(nil).List(nil, nil) or
+// client.PublicPowerForecast(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) PublicPowerForecast(data map[string]any) EnergyChartsEntity {
 	return NewPublicPowerForecastEntityFunc(sdk, data)
 }
 
 
+// RenShareModel returns a RenShareModel entity bound to this client.
+// Idiomatic usage: client.RenShareModel(nil).List(nil, nil) or
+// client.RenShareModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) RenShareModel(data map[string]any) EnergyChartsEntity {
 	return NewRenShareModelEntityFunc(sdk, data)
 }
 
 
+// ShareModel returns a ShareModel entity bound to this client.
+// Idiomatic usage: client.ShareModel(nil).List(nil, nil) or
+// client.ShareModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) ShareModel(data map[string]any) EnergyChartsEntity {
 	return NewShareModelEntityFunc(sdk, data)
 }
 
 
+// TrafficModel returns a TrafficModel entity bound to this client.
+// Idiomatic usage: client.TrafficModel(nil).List(nil, nil) or
+// client.TrafficModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) TrafficModel(data map[string]any) EnergyChartsEntity {
 	return NewTrafficModelEntityFunc(sdk, data)
 }

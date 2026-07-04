@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -92,7 +91,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -106,11 +108,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -118,7 +121,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## CrossBorderModelEntity
 
 ```php
-$cross_border_model = $client->CrossBorderModel();
+$cross_border_model = $client->cross_border_model();
 ```
 
 ### Fields
@@ -131,12 +134,12 @@ $cross_border_model = $client->CrossBorderModel();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->CrossBorderModel()->load(["id" => "cross_border_model_id"]);
+$result = $client->cross_border_model()->load(["id" => "cross_border_model_id"]);
 ```
 
 ### Common Methods
@@ -172,7 +175,7 @@ Return the entity name.
 ## DailyAvgDictEntity
 
 ```php
-$daily_avg_dict = $client->DailyAvgDict();
+$daily_avg_dict = $client->daily_avg_dict();
 ```
 
 ### Fields
@@ -185,12 +188,12 @@ $daily_avg_dict = $client->DailyAvgDict();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->DailyAvgDict()->list([]);
+$results = $client->daily_avg_dict()->list([]);
 ```
 
 ### Common Methods
@@ -226,7 +229,7 @@ Return the entity name.
 ## FrequencyEntity
 
 ```php
-$frequency = $client->Frequency();
+$frequency = $client->frequency();
 ```
 
 ### Fields
@@ -239,12 +242,12 @@ $frequency = $client->Frequency();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Frequency()->list([]);
+$results = $client->frequency()->list([]);
 ```
 
 ### Common Methods
@@ -280,7 +283,7 @@ Return the entity name.
 ## InstalledModelEntity
 
 ```php
-$installed_model = $client->InstalledModel();
+$installed_model = $client->installed_model();
 ```
 
 ### Fields
@@ -294,12 +297,12 @@ $installed_model = $client->InstalledModel();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->InstalledModel()->list([]);
+$results = $client->installed_model()->list([]);
 ```
 
 ### Common Methods
@@ -335,7 +338,7 @@ Return the entity name.
 ## PriceEntity
 
 ```php
-$price = $client->Price();
+$price = $client->price();
 ```
 
 ### Fields
@@ -350,12 +353,12 @@ $price = $client->Price();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Price()->load(["id" => "price_id"]);
+$result = $client->price()->load(["id" => "price_id"]);
 ```
 
 ### Common Methods
@@ -391,7 +394,7 @@ Return the entity name.
 ## ProductionModelEntity
 
 ```php
-$production_model = $client->ProductionModel();
+$production_model = $client->production_model();
 ```
 
 ### Fields
@@ -404,12 +407,12 @@ $production_model = $client->ProductionModel();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->ProductionModel()->load(["id" => "production_model_id"]);
+$result = $client->production_model()->load(["id" => "production_model_id"]);
 ```
 
 ### Common Methods
@@ -445,7 +448,7 @@ Return the entity name.
 ## PublicPowerForecastEntity
 
 ```php
-$public_power_forecast = $client->PublicPowerForecast();
+$public_power_forecast = $client->public_power_forecast();
 ```
 
 ### Fields
@@ -460,12 +463,12 @@ $public_power_forecast = $client->PublicPowerForecast();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->PublicPowerForecast()->list([]);
+$results = $client->public_power_forecast()->list([]);
 ```
 
 ### Common Methods
@@ -501,7 +504,7 @@ Return the entity name.
 ## RenShareModelEntity
 
 ```php
-$ren_share_model = $client->RenShareModel();
+$ren_share_model = $client->ren_share_model();
 ```
 
 ### Fields
@@ -518,12 +521,12 @@ $ren_share_model = $client->RenShareModel();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->RenShareModel()->list([]);
+$results = $client->ren_share_model()->list([]);
 ```
 
 ### Common Methods
@@ -559,7 +562,7 @@ Return the entity name.
 ## ShareModelEntity
 
 ```php
-$share_model = $client->ShareModel();
+$share_model = $client->share_model();
 ```
 
 ### Fields
@@ -573,12 +576,12 @@ $share_model = $client->ShareModel();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->ShareModel()->load(["id" => "share_model_id"]);
+$result = $client->share_model()->load(["id" => "share_model_id"]);
 ```
 
 ### Common Methods
@@ -614,7 +617,7 @@ Return the entity name.
 ## TrafficModelEntity
 
 ```php
-$traffic_model = $client->TrafficModel();
+$traffic_model = $client->traffic_model();
 ```
 
 ### Fields
@@ -629,12 +632,12 @@ $traffic_model = $client->TrafficModel();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->TrafficModel()->list([]);
+$results = $client->traffic_model()->list([]);
 ```
 
 ### Common Methods

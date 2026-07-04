@@ -45,6 +45,7 @@ class InstalledModelEntity
     end
   end
 
+  # @return [InstalledModel, Hash] the current InstalledModel data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class InstalledModelEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of InstalledModel fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class InstalledModelEntity
   
 
   
+  # List InstalledModel items matching the given filter.
+  #
+  # @param reqmatch [InstalledModelListMatch, Hash, nil] match filter (any subset of InstalledModel fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<InstalledModel>, Array] the matching InstalledModel items; raises EnergyChartsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

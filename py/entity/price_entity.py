@@ -1,7 +1,13 @@
 # EnergyCharts SDK Price entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from energycharts_types import (
+    Price,
+    PriceLoadMatch,
+)
 
 
 class PriceEntity:
@@ -44,7 +50,7 @@ class PriceEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Price:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +59,12 @@ class PriceEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Price:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: PriceLoadMatch, ctrl=None) -> Price:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",

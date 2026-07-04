@@ -49,8 +49,7 @@ class ShareModelEntityTest extends TestCase
         // LOAD
         $share_model_ref01_ent = $client->ShareModel(null);
         $share_model_ref01_match_dt0 = [];
-        [$share_model_ref01_data_dt0_loaded, $err] = $share_model_ref01_ent->load($share_model_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $share_model_ref01_data_dt0_loaded = $share_model_ref01_ent->load($share_model_ref01_match_dt0, null);
         $this->assertNotNull($share_model_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function share_model_basic_setup($extra)
         "ENERGYCHARTS_TEST_SHARE_MODEL_ENTID" => $idmap,
         "ENERGYCHARTS_TEST_LIVE" => "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-        "ENERGYCHARTS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function share_model_basic_setup($extra)
     if ($env["ENERGYCHARTS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ENERGYCHARTS_APIKEY"],
             ],
             $extra ?? [],
         ]);

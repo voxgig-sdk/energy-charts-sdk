@@ -43,8 +43,7 @@ class DailyAvgDictEntityTest < Minitest::Test
     daily_avg_dict_ref01_ent = client.DailyAvgDict(nil)
     daily_avg_dict_ref01_match = {}
 
-    daily_avg_dict_ref01_list_result, err = daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match, nil)
-    assert_nil err
+    daily_avg_dict_ref01_list_result = daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match, nil)
     assert daily_avg_dict_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def daily_avg_dict_basic_setup(extra)
     "ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID" => idmap,
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
     "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def daily_avg_dict_basic_setup(extra)
   if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ENERGYCHARTS_APIKEY"],
       },
       extra || {},
     ])

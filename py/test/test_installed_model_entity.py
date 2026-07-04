@@ -50,8 +50,7 @@ class TestInstalledModelEntity:
         installed_model_ref01_ent = client.InstalledModel(None)
         installed_model_ref01_match = {}
 
-        installed_model_ref01_list_result, err = installed_model_ref01_ent.list(installed_model_ref01_match, None)
-        assert err is None
+        installed_model_ref01_list_result = installed_model_ref01_ent.list(installed_model_ref01_match, None)
         assert isinstance(installed_model_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _installed_model_basic_setup(extra):
         "ENERGYCHARTS_TEST_INSTALLED_MODEL_ENTID": idmap,
         "ENERGYCHARTS_TEST_LIVE": "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN": "FALSE",
-        "ENERGYCHARTS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _installed_model_basic_setup(extra):
     if env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ENERGYCHARTS_APIKEY"),
             },
             extra or {},
         ])

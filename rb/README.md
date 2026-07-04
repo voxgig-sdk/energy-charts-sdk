@@ -9,21 +9,10 @@ The Ruby SDK for the EnergyCharts API — an entity-oriented client using idioma
 
 
 ## Install
-```bash
-gem install voxgig-sdk-energy-charts
-```
+This package is not yet published to RubyGems. Install it from the
+GitHub release tag (`rb/vX.Y.Z`):
 
-Or add to your `Gemfile`:
-
-```ruby
-gem "voxgig-sdk-energy-charts"
-```
-
-Then run:
-
-```bash
-bundle install
-```
+- Releases: [https://github.com/voxgig-sdk/energy-charts-sdk/releases](https://github.com/voxgig-sdk/energy-charts-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -36,17 +25,18 @@ loading a specific record.
 ```ruby
 require_relative "EnergyCharts_sdk"
 
-client = EnergyChartsSDK.new({
-  "apikey" => ENV["ENERGY-CHARTS_APIKEY"],
-})
+client = EnergyChartsSDK.new
 ```
 
 ### 3. Load a crossbordermodel
 
 ```ruby
-result, err = client.CrossBorderModel().load({ "id" => "example_id" })
-raise err if err
-puts result
+begin
+  result = client.crossbordermodel.load({ "id" => "example_id" })
+  puts result
+rescue => err
+  warn "load failed: #{err}"
+end
 ```
 
 
@@ -57,32 +47,35 @@ puts result
 For endpoints not covered by entity methods:
 
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },
 })
-raise err if err
 
 if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
+else
+  warn result["err"]
 end
 ```
 
 ### Prepare a request without sending it
 
 ```ruby
-fetchdef, err = client.prepare({
-  "path" => "/api/resource/{id}",
-  "method" => "DELETE",
-  "params" => { "id" => "example" },
-})
-raise err if err
-
-puts fetchdef["url"]
-puts fetchdef["method"]
-puts fetchdef["headers"]
+begin
+  fetchdef = client.prepare({
+    "path" => "/api/resource/{id}",
+    "method" => "DELETE",
+    "params" => { "id" => "example" },
+  })
+  puts fetchdef["url"]
+  puts fetchdef["method"]
+  puts fetchdef["headers"]
+rescue => err
+  warn "prepare failed: #{err}"
+end
 ```
 
 ### Use test mode
@@ -92,7 +85,7 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = EnergyChartsSDK.test
 
-result, err = client.EnergyCharts().load({ "id" => "test01" })
+result = client.crossbordermodel.load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -123,8 +116,7 @@ client = EnergyChartsSDK.new({
 Create a `.env.local` file at the project root:
 
 ```
-ENERGY-CHARTS_TEST_LIVE=TRUE
-ENERGY-CHARTS_APIKEY=<your-key>
+ENERGY_CHARTS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -147,7 +139,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
@@ -169,8 +160,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | --- | --- | --- |
 | `options_map` | `() -> Hash` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> [Hash, err]` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> [Hash, err]` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `CrossBorderModel` | `(data) -> CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
 | `DailyAvgDict` | `(data) -> DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
 | `Frequency` | `(data) -> FrequencyEntity` | Create a Frequency entity instance. |
@@ -188,11 +179,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> [any, err]` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> [any, err]` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> [any, err]` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> [any, err]` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> [any, err]` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -202,8 +193,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[any, err]`. The first value is a
-`Hash` with these keys:
+Entity operations return the result data directly. On failure they
+raise a `EnergyChartsError` (a `StandardError` subclass), so wrap
+calls in `begin`/`rescue` where you need to handle errors.
+
+The `direct` escape hatch is the exception: it never raises and instead
+returns a result `Hash` with these keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -211,8 +206,7 @@ Entity operations return `[any, err]`. The first value is a
 | `status` | `Integer` | HTTP status code. |
 | `headers` | `Hash` | Response headers. |
 | `data` | `any` | Parsed JSON response body. |
-
-On error, `ok` is `false` and `err` contains the error value.
+| `err` | `Error` | Present when `ok` is `false`. |
 
 ### Entities
 
@@ -355,7 +349,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `const cross_border_model = client.CrossBorderModel()`
+Create an instance: `const cross_border_model = client.cross_border_model`
 
 #### Operations
 
@@ -374,13 +368,13 @@ Create an instance: `const cross_border_model = client.CrossBorderModel()`
 #### Example: Load
 
 ```ts
-const cross_border_model = await client.CrossBorderModel().load({ id: 'cross_border_model_id' })
+const cross_border_model = await client.cross_border_model.load({ id: 'cross_border_model_id' })
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
+Create an instance: `const daily_avg_dict = client.daily_avg_dict`
 
 #### Operations
 
@@ -399,13 +393,13 @@ Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
 #### Example: List
 
 ```ts
-const daily_avg_dicts = await client.DailyAvgDict().list()
+const daily_avg_dicts = await client.daily_avg_dict.list()
 ```
 
 
 ### Frequency
 
-Create an instance: `const frequency = client.Frequency()`
+Create an instance: `const frequency = client.frequency`
 
 #### Operations
 
@@ -424,13 +418,13 @@ Create an instance: `const frequency = client.Frequency()`
 #### Example: List
 
 ```ts
-const frequencys = await client.Frequency().list()
+const frequencys = await client.frequency.list()
 ```
 
 
 ### InstalledModel
 
-Create an instance: `const installed_model = client.InstalledModel()`
+Create an instance: `const installed_model = client.installed_model`
 
 #### Operations
 
@@ -450,13 +444,13 @@ Create an instance: `const installed_model = client.InstalledModel()`
 #### Example: List
 
 ```ts
-const installed_models = await client.InstalledModel().list()
+const installed_models = await client.installed_model.list()
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.Price()`
+Create an instance: `const price = client.price`
 
 #### Operations
 
@@ -477,13 +471,13 @@ Create an instance: `const price = client.Price()`
 #### Example: Load
 
 ```ts
-const price = await client.Price().load({ id: 'price_id' })
+const price = await client.price.load({ id: 'price_id' })
 ```
 
 
 ### ProductionModel
 
-Create an instance: `const production_model = client.ProductionModel()`
+Create an instance: `const production_model = client.production_model`
 
 #### Operations
 
@@ -502,13 +496,13 @@ Create an instance: `const production_model = client.ProductionModel()`
 #### Example: Load
 
 ```ts
-const production_model = await client.ProductionModel().load({ id: 'production_model_id' })
+const production_model = await client.production_model.load({ id: 'production_model_id' })
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
+Create an instance: `const public_power_forecast = client.public_power_forecast`
 
 #### Operations
 
@@ -529,13 +523,13 @@ Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
 #### Example: List
 
 ```ts
-const public_power_forecasts = await client.PublicPowerForecast().list()
+const public_power_forecasts = await client.public_power_forecast.list()
 ```
 
 
 ### RenShareModel
 
-Create an instance: `const ren_share_model = client.RenShareModel()`
+Create an instance: `const ren_share_model = client.ren_share_model`
 
 #### Operations
 
@@ -558,13 +552,13 @@ Create an instance: `const ren_share_model = client.RenShareModel()`
 #### Example: List
 
 ```ts
-const ren_share_models = await client.RenShareModel().list()
+const ren_share_models = await client.ren_share_model.list()
 ```
 
 
 ### ShareModel
 
-Create an instance: `const share_model = client.ShareModel()`
+Create an instance: `const share_model = client.share_model`
 
 #### Operations
 
@@ -584,13 +578,13 @@ Create an instance: `const share_model = client.ShareModel()`
 #### Example: Load
 
 ```ts
-const share_model = await client.ShareModel().load({ id: 'share_model_id' })
+const share_model = await client.share_model.load({ id: 'share_model_id' })
 ```
 
 
 ### TrafficModel
 
-Create an instance: `const traffic_model = client.TrafficModel()`
+Create an instance: `const traffic_model = client.traffic_model`
 
 #### Operations
 
@@ -611,7 +605,7 @@ Create an instance: `const traffic_model = client.TrafficModel()`
 #### Example: List
 
 ```ts
-const traffic_models = await client.TrafficModel().list()
+const traffic_models = await client.traffic_model.list()
 ```
 
 
@@ -686,11 +680,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-moon = client.Moon
-moon.load({ "planet_id" => "earth", "id" => "luna" })
+crossbordermodel = client.crossbordermodel
+crossbordermodel.load({ "id" => "example_id" })
 
-# moon.data_get now returns the loaded moon data
-# moon.match_get returns the last match criteria
+# crossbordermodel.data_get now returns the loaded crossbordermodel data
+# crossbordermodel.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DailyAvgDictListMatch
+---@param ctrl? table
+---@return DailyAvgDict[]
+---@return string? err
 function DailyAvgDictEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

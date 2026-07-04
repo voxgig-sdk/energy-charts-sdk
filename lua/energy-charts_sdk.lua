@@ -244,60 +244,190 @@ end
 
 
 
+-- Idiomatic facade: client:cross_border_model():list() / client:cross_border_model():load({ id = ... })
+function EnergyChartsSDK:cross_border_model(data)
+  local EntityMod = require("entity.cross_border_model_entity")
+  if data == nil then
+    if self._cross_border_model == nil then
+      self._cross_border_model = EntityMod.new(self, nil)
+    end
+    return self._cross_border_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cross_border_model() instead.
 function EnergyChartsSDK:CrossBorderModel(data)
   local EntityMod = require("entity.cross_border_model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:daily_avg_dict():list() / client:daily_avg_dict():load({ id = ... })
+function EnergyChartsSDK:daily_avg_dict(data)
+  local EntityMod = require("entity.daily_avg_dict_entity")
+  if data == nil then
+    if self._daily_avg_dict == nil then
+      self._daily_avg_dict = EntityMod.new(self, nil)
+    end
+    return self._daily_avg_dict
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:daily_avg_dict() instead.
 function EnergyChartsSDK:DailyAvgDict(data)
   local EntityMod = require("entity.daily_avg_dict_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:frequency():list() / client:frequency():load({ id = ... })
+function EnergyChartsSDK:frequency(data)
+  local EntityMod = require("entity.frequency_entity")
+  if data == nil then
+    if self._frequency == nil then
+      self._frequency = EntityMod.new(self, nil)
+    end
+    return self._frequency
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:frequency() instead.
 function EnergyChartsSDK:Frequency(data)
   local EntityMod = require("entity.frequency_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:installed_model():list() / client:installed_model():load({ id = ... })
+function EnergyChartsSDK:installed_model(data)
+  local EntityMod = require("entity.installed_model_entity")
+  if data == nil then
+    if self._installed_model == nil then
+      self._installed_model = EntityMod.new(self, nil)
+    end
+    return self._installed_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:installed_model() instead.
 function EnergyChartsSDK:InstalledModel(data)
   local EntityMod = require("entity.installed_model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:price():list() / client:price():load({ id = ... })
+function EnergyChartsSDK:price(data)
+  local EntityMod = require("entity.price_entity")
+  if data == nil then
+    if self._price == nil then
+      self._price = EntityMod.new(self, nil)
+    end
+    return self._price
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:price() instead.
 function EnergyChartsSDK:Price(data)
   local EntityMod = require("entity.price_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:production_model():list() / client:production_model():load({ id = ... })
+function EnergyChartsSDK:production_model(data)
+  local EntityMod = require("entity.production_model_entity")
+  if data == nil then
+    if self._production_model == nil then
+      self._production_model = EntityMod.new(self, nil)
+    end
+    return self._production_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:production_model() instead.
 function EnergyChartsSDK:ProductionModel(data)
   local EntityMod = require("entity.production_model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:public_power_forecast():list() / client:public_power_forecast():load({ id = ... })
+function EnergyChartsSDK:public_power_forecast(data)
+  local EntityMod = require("entity.public_power_forecast_entity")
+  if data == nil then
+    if self._public_power_forecast == nil then
+      self._public_power_forecast = EntityMod.new(self, nil)
+    end
+    return self._public_power_forecast
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:public_power_forecast() instead.
 function EnergyChartsSDK:PublicPowerForecast(data)
   local EntityMod = require("entity.public_power_forecast_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:ren_share_model():list() / client:ren_share_model():load({ id = ... })
+function EnergyChartsSDK:ren_share_model(data)
+  local EntityMod = require("entity.ren_share_model_entity")
+  if data == nil then
+    if self._ren_share_model == nil then
+      self._ren_share_model = EntityMod.new(self, nil)
+    end
+    return self._ren_share_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:ren_share_model() instead.
 function EnergyChartsSDK:RenShareModel(data)
   local EntityMod = require("entity.ren_share_model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:share_model():list() / client:share_model():load({ id = ... })
+function EnergyChartsSDK:share_model(data)
+  local EntityMod = require("entity.share_model_entity")
+  if data == nil then
+    if self._share_model == nil then
+      self._share_model = EntityMod.new(self, nil)
+    end
+    return self._share_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:share_model() instead.
 function EnergyChartsSDK:ShareModel(data)
   local EntityMod = require("entity.share_model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:traffic_model():list() / client:traffic_model():load({ id = ... })
+function EnergyChartsSDK:traffic_model(data)
+  local EntityMod = require("entity.traffic_model_entity")
+  if data == nil then
+    if self._traffic_model == nil then
+      self._traffic_model = EntityMod.new(self, nil)
+    end
+    return self._traffic_model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:traffic_model() instead.
 function EnergyChartsSDK:TrafficModel(data)
   local EntityMod = require("entity.traffic_model_entity")
   return EntityMod.new(self, data)

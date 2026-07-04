@@ -42,8 +42,7 @@ class ProductionModelEntityTest < Minitest::Test
     # LOAD
     production_model_ref01_ent = client.ProductionModel(nil)
     production_model_ref01_match_dt0 = {}
-    production_model_ref01_data_dt0_loaded, err = production_model_ref01_ent.load(production_model_ref01_match_dt0, nil)
-    assert_nil err
+    production_model_ref01_data_dt0_loaded = production_model_ref01_ent.load(production_model_ref01_match_dt0, nil)
     assert !production_model_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def production_model_basic_setup(extra)
     "ENERGYCHARTS_TEST_PRODUCTION_MODEL_ENTID" => idmap,
     "ENERGYCHARTS_TEST_LIVE" => "FALSE",
     "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-    "ENERGYCHARTS_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def production_model_basic_setup(extra)
   if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ENERGYCHARTS_APIKEY"],
       },
       extra || {},
     ])

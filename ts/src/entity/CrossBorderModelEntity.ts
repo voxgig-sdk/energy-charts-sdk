@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  CrossBorderModel,
+  CrossBorderModelLoadMatch,
+} from '../EnergyChartsTypes'
 
 // TODO: needs Entity superclass
-class CrossBorderModelEntity extends EnergyChartsEntityBase {
+class CrossBorderModelEntity extends EnergyChartsEntityBase<CrossBorderModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class CrossBorderModelEntity extends EnergyChartsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CrossBorderModelLoadMatch, ctrl?: Control): Promise<CrossBorderModel> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class CrossBorderModelEntity extends EnergyChartsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<CrossBorderModel> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

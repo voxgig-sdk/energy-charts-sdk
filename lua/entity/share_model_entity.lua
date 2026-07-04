@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ShareModelLoadMatch
+---@param ctrl? table
+---@return ShareModel
+---@return string? err
 function ShareModelEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

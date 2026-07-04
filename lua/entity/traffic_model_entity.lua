@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TrafficModelListMatch
+---@param ctrl? table
+---@return TrafficModel[]
+---@return string? err
 function TrafficModelEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

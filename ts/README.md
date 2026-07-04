@@ -9,9 +9,12 @@ The TypeScript SDK for the EnergyCharts API — a type-safe, entity-oriented cli
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/energy-charts
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/energy-charts-sdk/releases](https://github.com/voxgig-sdk/energy-charts-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { EnergyChartsSDK } from 'energy-charts'
+import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts'
 
-const client = new EnergyChartsSDK({
-  apikey: process.env.ENERGY-CHARTS_APIKEY,
-})
+const client = new EnergyChartsSDK()
 ```
 
 ### 3. Load a crossbordermodel
 
 ```ts
-const result = await client.CrossBorderModel().load({ id: 'example_id' })
+const result = await client.crossbordermodel.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EnergyChartsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.crossbordermodel.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new EnergyChartsSDK({ apikey: '...' })
+const client = new EnergyChartsSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.crossbordermodel
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new EnergyChartsSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new EnergyChartsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-ENERGY-CHARTS_TEST_LIVE=TRUE
-ENERGY-CHARTS_APIKEY=<your-key>
+ENERGY_CHARTS_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new EnergyChartsSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new EnergyChartsSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -397,7 +394,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `const cross_border_model = client.CrossBorderModel()`
+Create an instance: `const cross_border_model = client.cross_border_model`
 
 #### Operations
 
@@ -416,13 +413,13 @@ Create an instance: `const cross_border_model = client.CrossBorderModel()`
 #### Example: Load
 
 ```ts
-const cross_border_model = await client.CrossBorderModel().load({ id: 'cross_border_model_id' })
+const cross_border_model = await client.cross_border_model.load({ id: 'cross_border_model_id' })
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
+Create an instance: `const daily_avg_dict = client.daily_avg_dict`
 
 #### Operations
 
@@ -441,13 +438,13 @@ Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
 #### Example: List
 
 ```ts
-const daily_avg_dicts = await client.DailyAvgDict().list()
+const daily_avg_dicts = await client.daily_avg_dict.list()
 ```
 
 
 ### Frequency
 
-Create an instance: `const frequency = client.Frequency()`
+Create an instance: `const frequency = client.frequency`
 
 #### Operations
 
@@ -466,13 +463,13 @@ Create an instance: `const frequency = client.Frequency()`
 #### Example: List
 
 ```ts
-const frequencys = await client.Frequency().list()
+const frequencys = await client.frequency.list()
 ```
 
 
 ### InstalledModel
 
-Create an instance: `const installed_model = client.InstalledModel()`
+Create an instance: `const installed_model = client.installed_model`
 
 #### Operations
 
@@ -492,13 +489,13 @@ Create an instance: `const installed_model = client.InstalledModel()`
 #### Example: List
 
 ```ts
-const installed_models = await client.InstalledModel().list()
+const installed_models = await client.installed_model.list()
 ```
 
 
 ### Price
 
-Create an instance: `const price = client.Price()`
+Create an instance: `const price = client.price`
 
 #### Operations
 
@@ -519,13 +516,13 @@ Create an instance: `const price = client.Price()`
 #### Example: Load
 
 ```ts
-const price = await client.Price().load({ id: 'price_id' })
+const price = await client.price.load({ id: 'price_id' })
 ```
 
 
 ### ProductionModel
 
-Create an instance: `const production_model = client.ProductionModel()`
+Create an instance: `const production_model = client.production_model`
 
 #### Operations
 
@@ -544,13 +541,13 @@ Create an instance: `const production_model = client.ProductionModel()`
 #### Example: Load
 
 ```ts
-const production_model = await client.ProductionModel().load({ id: 'production_model_id' })
+const production_model = await client.production_model.load({ id: 'production_model_id' })
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
+Create an instance: `const public_power_forecast = client.public_power_forecast`
 
 #### Operations
 
@@ -571,13 +568,13 @@ Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
 #### Example: List
 
 ```ts
-const public_power_forecasts = await client.PublicPowerForecast().list()
+const public_power_forecasts = await client.public_power_forecast.list()
 ```
 
 
 ### RenShareModel
 
-Create an instance: `const ren_share_model = client.RenShareModel()`
+Create an instance: `const ren_share_model = client.ren_share_model`
 
 #### Operations
 
@@ -600,13 +597,13 @@ Create an instance: `const ren_share_model = client.RenShareModel()`
 #### Example: List
 
 ```ts
-const ren_share_models = await client.RenShareModel().list()
+const ren_share_models = await client.ren_share_model.list()
 ```
 
 
 ### ShareModel
 
-Create an instance: `const share_model = client.ShareModel()`
+Create an instance: `const share_model = client.share_model`
 
 #### Operations
 
@@ -626,13 +623,13 @@ Create an instance: `const share_model = client.ShareModel()`
 #### Example: Load
 
 ```ts
-const share_model = await client.ShareModel().load({ id: 'share_model_id' })
+const share_model = await client.share_model.load({ id: 'share_model_id' })
 ```
 
 
 ### TrafficModel
 
-Create an instance: `const traffic_model = client.TrafficModel()`
+Create an instance: `const traffic_model = client.traffic_model`
 
 #### Operations
 
@@ -653,7 +650,7 @@ Create an instance: `const traffic_model = client.TrafficModel()`
 #### Example: List
 
 ```ts
-const traffic_models = await client.TrafficModel().list()
+const traffic_models = await client.traffic_model.list()
 ```
 
 
@@ -714,7 +711,7 @@ energy-charts/
 Import the SDK from the package root:
 
 ```ts
-import { EnergyChartsSDK } from 'energy-charts'
+import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts'
 ```
 
 ### Entity state
@@ -724,11 +721,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const crossbordermodel = client.crossbordermodel
+await crossbordermodel.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// crossbordermodel.data() now returns the loaded crossbordermodel data
+// crossbordermodel.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

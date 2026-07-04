@@ -50,8 +50,7 @@ class TrafficModelEntityTest extends TestCase
         $traffic_model_ref01_ent = $client->TrafficModel(null);
         $traffic_model_ref01_match = [];
 
-        [$traffic_model_ref01_list_result, $err] = $traffic_model_ref01_ent->list($traffic_model_ref01_match, null);
-        $this->assertNull($err);
+        $traffic_model_ref01_list_result = $traffic_model_ref01_ent->list($traffic_model_ref01_match, null);
         $this->assertIsArray($traffic_model_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function traffic_model_basic_setup($extra)
         "ENERGYCHARTS_TEST_TRAFFIC_MODEL_ENTID" => $idmap,
         "ENERGYCHARTS_TEST_LIVE" => "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-        "ENERGYCHARTS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function traffic_model_basic_setup($extra)
     if ($env["ENERGYCHARTS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ENERGYCHARTS_APIKEY"],
             ],
             $extra ?? [],
         ]);

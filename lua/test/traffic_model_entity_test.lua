@@ -92,7 +92,6 @@ function traffic_model_basic_setup(extra)
     ["ENERGYCHARTS_TEST_TRAFFIC_MODEL_ENTID"] = idmap,
     ["ENERGYCHARTS_TEST_LIVE"] = "FALSE",
     ["ENERGYCHARTS_TEST_EXPLAIN"] = "FALSE",
-    ["ENERGYCHARTS_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function traffic_model_basic_setup(extra)
   if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["ENERGYCHARTS_APIKEY"],
       },
       extra or {},
     })

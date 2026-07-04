@@ -50,8 +50,7 @@ class FrequencyEntityTest extends TestCase
         $frequency_ref01_ent = $client->Frequency(null);
         $frequency_ref01_match = [];
 
-        [$frequency_ref01_list_result, $err] = $frequency_ref01_ent->list($frequency_ref01_match, null);
-        $this->assertNull($err);
+        $frequency_ref01_list_result = $frequency_ref01_ent->list($frequency_ref01_match, null);
         $this->assertIsArray($frequency_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function frequency_basic_setup($extra)
         "ENERGYCHARTS_TEST_FREQUENCY_ENTID" => $idmap,
         "ENERGYCHARTS_TEST_LIVE" => "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN" => "FALSE",
-        "ENERGYCHARTS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function frequency_basic_setup($extra)
     if ($env["ENERGYCHARTS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ENERGYCHARTS_APIKEY"],
             ],
             $extra ?? [],
         ]);

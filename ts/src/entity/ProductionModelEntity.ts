@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ProductionModel,
+  ProductionModelLoadMatch,
+} from '../EnergyChartsTypes'
 
 // TODO: needs Entity superclass
-class ProductionModelEntity extends EnergyChartsEntityBase {
+class ProductionModelEntity extends EnergyChartsEntityBase<ProductionModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ProductionModelEntity extends EnergyChartsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ProductionModelLoadMatch, ctrl?: Control): Promise<ProductionModel> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ProductionModelEntity extends EnergyChartsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ProductionModel> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -49,8 +49,7 @@ class TestCrossBorderModelEntity:
         # LOAD
         cross_border_model_ref01_ent = client.CrossBorderModel(None)
         cross_border_model_ref01_match_dt0 = {}
-        cross_border_model_ref01_data_dt0_loaded, err = cross_border_model_ref01_ent.load(cross_border_model_ref01_match_dt0, None)
-        assert err is None
+        cross_border_model_ref01_data_dt0_loaded = cross_border_model_ref01_ent.load(cross_border_model_ref01_match_dt0, None)
         assert cross_border_model_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _cross_border_model_basic_setup(extra):
         "ENERGYCHARTS_TEST_CROSS_BORDER_MODEL_ENTID": idmap,
         "ENERGYCHARTS_TEST_LIVE": "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN": "FALSE",
-        "ENERGYCHARTS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _cross_border_model_basic_setup(extra):
     if env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ENERGYCHARTS_APIKEY"),
             },
             extra or {},
         ])

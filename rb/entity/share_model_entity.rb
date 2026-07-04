@@ -45,6 +45,7 @@ class ShareModelEntity
     end
   end
 
+  # @return [ShareModel, Hash] the current ShareModel data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ShareModelEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ShareModel fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ShareModel.
+  #
+  # @param reqmatch [ShareModelLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ShareModel, Hash] the loaded ShareModel; raises EnergyChartsError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

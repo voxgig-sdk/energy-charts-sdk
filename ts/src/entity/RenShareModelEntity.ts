@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  RenShareModel,
+  RenShareModelListMatch,
+} from '../EnergyChartsTypes'
 
 // TODO: needs Entity superclass
-class RenShareModelEntity extends EnergyChartsEntityBase {
+class RenShareModelEntity extends EnergyChartsEntityBase<RenShareModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class RenShareModelEntity extends EnergyChartsEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: RenShareModelListMatch, ctrl?: Control): Promise<RenShareModel[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class RenShareModelEntity extends EnergyChartsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<RenShareModel[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

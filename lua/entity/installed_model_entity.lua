@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch InstalledModelListMatch
+---@param ctrl? table
+---@return InstalledModel[]
+---@return string? err
 function InstalledModelEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

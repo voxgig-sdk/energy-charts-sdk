@@ -50,8 +50,7 @@ class TestRenShareModelEntity:
         ren_share_model_ref01_ent = client.RenShareModel(None)
         ren_share_model_ref01_match = {}
 
-        ren_share_model_ref01_list_result, err = ren_share_model_ref01_ent.list(ren_share_model_ref01_match, None)
-        assert err is None
+        ren_share_model_ref01_list_result = ren_share_model_ref01_ent.list(ren_share_model_ref01_match, None)
         assert isinstance(ren_share_model_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _ren_share_model_basic_setup(extra):
         "ENERGYCHARTS_TEST_REN_SHARE_MODEL_ENTID": idmap,
         "ENERGYCHARTS_TEST_LIVE": "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN": "FALSE",
-        "ENERGYCHARTS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _ren_share_model_basic_setup(extra):
     if env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ENERGYCHARTS_APIKEY"),
             },
             extra or {},
         ])

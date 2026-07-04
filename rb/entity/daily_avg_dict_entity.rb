@@ -45,6 +45,7 @@ class DailyAvgDictEntity
     end
   end
 
+  # @return [DailyAvgDict, Hash] the current DailyAvgDict data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class DailyAvgDictEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of DailyAvgDict fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class DailyAvgDictEntity
   
 
   
+  # List DailyAvgDict items matching the given filter.
+  #
+  # @param reqmatch [DailyAvgDictListMatch, Hash, nil] match filter (any subset of DailyAvgDict fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<DailyAvgDict>, Array] the matching DailyAvgDict items; raises EnergyChartsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

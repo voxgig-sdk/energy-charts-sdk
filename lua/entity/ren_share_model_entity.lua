@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch RenShareModelListMatch
+---@param ctrl? table
+---@return RenShareModel[]
+---@return string? err
 function RenShareModelEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

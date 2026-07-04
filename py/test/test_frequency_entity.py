@@ -50,8 +50,7 @@ class TestFrequencyEntity:
         frequency_ref01_ent = client.Frequency(None)
         frequency_ref01_match = {}
 
-        frequency_ref01_list_result, err = frequency_ref01_ent.list(frequency_ref01_match, None)
-        assert err is None
+        frequency_ref01_list_result = frequency_ref01_ent.list(frequency_ref01_match, None)
         assert isinstance(frequency_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _frequency_basic_setup(extra):
         "ENERGYCHARTS_TEST_FREQUENCY_ENTID": idmap,
         "ENERGYCHARTS_TEST_LIVE": "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN": "FALSE",
-        "ENERGYCHARTS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _frequency_basic_setup(extra):
     if env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ENERGYCHARTS_APIKEY"),
             },
             extra or {},
         ])

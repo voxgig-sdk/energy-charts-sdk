@@ -11,6 +11,8 @@ import { RenShareModelEntity } from './entity/RenShareModelEntity'
 import { ShareModelEntity } from './entity/ShareModelEntity'
 import { TrafficModelEntity } from './entity/TrafficModelEntity'
 
+export type * from './EnergyChartsTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -211,60 +213,140 @@ class EnergyChartsSDK {
 
 
 
+  _cross_border_model?: CrossBorderModelEntity
+
+  // Idiomatic facade: `client.cross_border_model.list()` / `client.cross_border_model.load({ id })`.
+  get cross_border_model(): CrossBorderModelEntity {
+    return (this._cross_border_model ??= new CrossBorderModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cross_border_model` instead. */
   CrossBorderModel(data?: any) {
     const self = this
     return new CrossBorderModelEntity(self,data)
   }
 
 
+  _daily_avg_dict?: DailyAvgDictEntity
+
+  // Idiomatic facade: `client.daily_avg_dict.list()` / `client.daily_avg_dict.load({ id })`.
+  get daily_avg_dict(): DailyAvgDictEntity {
+    return (this._daily_avg_dict ??= new DailyAvgDictEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.daily_avg_dict` instead. */
   DailyAvgDict(data?: any) {
     const self = this
     return new DailyAvgDictEntity(self,data)
   }
 
 
+  _frequency?: FrequencyEntity
+
+  // Idiomatic facade: `client.frequency.list()` / `client.frequency.load({ id })`.
+  get frequency(): FrequencyEntity {
+    return (this._frequency ??= new FrequencyEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.frequency` instead. */
   Frequency(data?: any) {
     const self = this
     return new FrequencyEntity(self,data)
   }
 
 
+  _installed_model?: InstalledModelEntity
+
+  // Idiomatic facade: `client.installed_model.list()` / `client.installed_model.load({ id })`.
+  get installed_model(): InstalledModelEntity {
+    return (this._installed_model ??= new InstalledModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.installed_model` instead. */
   InstalledModel(data?: any) {
     const self = this
     return new InstalledModelEntity(self,data)
   }
 
 
+  _price?: PriceEntity
+
+  // Idiomatic facade: `client.price.list()` / `client.price.load({ id })`.
+  get price(): PriceEntity {
+    return (this._price ??= new PriceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.price` instead. */
   Price(data?: any) {
     const self = this
     return new PriceEntity(self,data)
   }
 
 
+  _production_model?: ProductionModelEntity
+
+  // Idiomatic facade: `client.production_model.list()` / `client.production_model.load({ id })`.
+  get production_model(): ProductionModelEntity {
+    return (this._production_model ??= new ProductionModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.production_model` instead. */
   ProductionModel(data?: any) {
     const self = this
     return new ProductionModelEntity(self,data)
   }
 
 
+  _public_power_forecast?: PublicPowerForecastEntity
+
+  // Idiomatic facade: `client.public_power_forecast.list()` / `client.public_power_forecast.load({ id })`.
+  get public_power_forecast(): PublicPowerForecastEntity {
+    return (this._public_power_forecast ??= new PublicPowerForecastEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.public_power_forecast` instead. */
   PublicPowerForecast(data?: any) {
     const self = this
     return new PublicPowerForecastEntity(self,data)
   }
 
 
+  _ren_share_model?: RenShareModelEntity
+
+  // Idiomatic facade: `client.ren_share_model.list()` / `client.ren_share_model.load({ id })`.
+  get ren_share_model(): RenShareModelEntity {
+    return (this._ren_share_model ??= new RenShareModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ren_share_model` instead. */
   RenShareModel(data?: any) {
     const self = this
     return new RenShareModelEntity(self,data)
   }
 
 
+  _share_model?: ShareModelEntity
+
+  // Idiomatic facade: `client.share_model.list()` / `client.share_model.load({ id })`.
+  get share_model(): ShareModelEntity {
+    return (this._share_model ??= new ShareModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.share_model` instead. */
   ShareModel(data?: any) {
     const self = this
     return new ShareModelEntity(self,data)
   }
 
 
+  _traffic_model?: TrafficModelEntity
+
+  // Idiomatic facade: `client.traffic_model.list()` / `client.traffic_model.load({ id })`.
+  get traffic_model(): TrafficModelEntity {
+    return (this._traffic_model ??= new TrafficModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.traffic_model` instead. */
   TrafficModel(data?: any) {
     const self = this
     return new TrafficModelEntity(self,data)

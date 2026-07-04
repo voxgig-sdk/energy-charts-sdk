@@ -50,8 +50,7 @@ class TestDailyAvgDictEntity:
         daily_avg_dict_ref01_ent = client.DailyAvgDict(None)
         daily_avg_dict_ref01_match = {}
 
-        daily_avg_dict_ref01_list_result, err = daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match, None)
-        assert err is None
+        daily_avg_dict_ref01_list_result = daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match, None)
         assert isinstance(daily_avg_dict_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _daily_avg_dict_basic_setup(extra):
         "ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID": idmap,
         "ENERGYCHARTS_TEST_LIVE": "FALSE",
         "ENERGYCHARTS_TEST_EXPLAIN": "FALSE",
-        "ENERGYCHARTS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _daily_avg_dict_basic_setup(extra):
     if env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ENERGYCHARTS_APIKEY"),
             },
             extra or {},
         ])

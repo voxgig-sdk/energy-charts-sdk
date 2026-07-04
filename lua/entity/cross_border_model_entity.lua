@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CrossBorderModelLoadMatch
+---@param ctrl? table
+---@return CrossBorderModel
+---@return string? err
 function CrossBorderModelEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

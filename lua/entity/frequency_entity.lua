@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch FrequencyListMatch
+---@param ctrl? table
+---@return Frequency[]
+---@return string? err
 function FrequencyEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  ShareModel,
+  ShareModelLoadMatch,
+} from '../EnergyChartsTypes'
 
 // TODO: needs Entity superclass
-class ShareModelEntity extends EnergyChartsEntityBase {
+class ShareModelEntity extends EnergyChartsEntityBase<ShareModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ShareModelEntity extends EnergyChartsEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ShareModelLoadMatch, ctrl?: Control): Promise<ShareModel> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ShareModelEntity extends EnergyChartsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<ShareModel> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -85,6 +85,27 @@ func (e *CrossBorderModelEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an CrossBorderModel; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CrossBorderModelEntity) DataTyped(data ...CrossBorderModel) CrossBorderModel {
+	if len(data) > 0 {
+		return typedFrom[CrossBorderModel](e.Data(asMap(data[0])))
+	}
+	return typedFrom[CrossBorderModel](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through CrossBorderModel (all fields
+// optional at the wire level).
+func (e *CrossBorderModelEntity) MatchTyped(match ...CrossBorderModel) CrossBorderModel {
+	if len(match) > 0 {
+		return typedFrom[CrossBorderModel](e.Match(asMap(match[0])))
+	}
+	return typedFrom[CrossBorderModel](e.Match())
+}
+
 
 func (e *CrossBorderModelEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *CrossBorderModelEntity) Load(reqmatch map[string]any, ctrl map[string]a
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CrossBorderModelLoadMatch and returns an CrossBorderModel. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CrossBorderModelEntity) LoadTyped(reqmatch CrossBorderModelLoadMatch, ctrl map[string]any) (CrossBorderModel, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return CrossBorderModel{}, err
+	}
+	return typedFrom[CrossBorderModel](res), nil
 }
 
 

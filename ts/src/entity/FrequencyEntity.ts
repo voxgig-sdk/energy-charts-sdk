@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Frequency,
+  FrequencyListMatch,
+} from '../EnergyChartsTypes'
 
 // TODO: needs Entity superclass
-class FrequencyEntity extends EnergyChartsEntityBase {
+class FrequencyEntity extends EnergyChartsEntityBase<Frequency> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class FrequencyEntity extends EnergyChartsEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: FrequencyListMatch, ctrl?: Control): Promise<Frequency[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class FrequencyEntity extends EnergyChartsEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Frequency[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

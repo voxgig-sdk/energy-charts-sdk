@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'EnergyCharts_types'
+
 
 class EnergyChartsSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class EnergyChartsSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class EnergyChartsSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue EnergyChartsError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = EnergyChartsHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class EnergyChartsSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,70 +198,140 @@ class EnergyChartsSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.cross_border_model.list / client.cross_border_model.load({ "id" => ... })
+  def cross_border_model
+    require_relative 'entity/cross_border_model_entity'
+    @cross_border_model ||= CrossBorderModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.cross_border_model instead.
   def CrossBorderModel(data = nil)
     require_relative 'entity/cross_border_model_entity'
     CrossBorderModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.daily_avg_dict.list / client.daily_avg_dict.load({ "id" => ... })
+  def daily_avg_dict
+    require_relative 'entity/daily_avg_dict_entity'
+    @daily_avg_dict ||= DailyAvgDictEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.daily_avg_dict instead.
   def DailyAvgDict(data = nil)
     require_relative 'entity/daily_avg_dict_entity'
     DailyAvgDictEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.frequency.list / client.frequency.load({ "id" => ... })
+  def frequency
+    require_relative 'entity/frequency_entity'
+    @frequency ||= FrequencyEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.frequency instead.
   def Frequency(data = nil)
     require_relative 'entity/frequency_entity'
     FrequencyEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.installed_model.list / client.installed_model.load({ "id" => ... })
+  def installed_model
+    require_relative 'entity/installed_model_entity'
+    @installed_model ||= InstalledModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.installed_model instead.
   def InstalledModel(data = nil)
     require_relative 'entity/installed_model_entity'
     InstalledModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.price.list / client.price.load({ "id" => ... })
+  def price
+    require_relative 'entity/price_entity'
+    @price ||= PriceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.price instead.
   def Price(data = nil)
     require_relative 'entity/price_entity'
     PriceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.production_model.list / client.production_model.load({ "id" => ... })
+  def production_model
+    require_relative 'entity/production_model_entity'
+    @production_model ||= ProductionModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.production_model instead.
   def ProductionModel(data = nil)
     require_relative 'entity/production_model_entity'
     ProductionModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.public_power_forecast.list / client.public_power_forecast.load({ "id" => ... })
+  def public_power_forecast
+    require_relative 'entity/public_power_forecast_entity'
+    @public_power_forecast ||= PublicPowerForecastEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.public_power_forecast instead.
   def PublicPowerForecast(data = nil)
     require_relative 'entity/public_power_forecast_entity'
     PublicPowerForecastEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.ren_share_model.list / client.ren_share_model.load({ "id" => ... })
+  def ren_share_model
+    require_relative 'entity/ren_share_model_entity'
+    @ren_share_model ||= RenShareModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.ren_share_model instead.
   def RenShareModel(data = nil)
     require_relative 'entity/ren_share_model_entity'
     RenShareModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.share_model.list / client.share_model.load({ "id" => ... })
+  def share_model
+    require_relative 'entity/share_model_entity'
+    @share_model ||= ShareModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.share_model instead.
   def ShareModel(data = nil)
     require_relative 'entity/share_model_entity'
     ShareModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.traffic_model.list / client.traffic_model.load({ "id" => ... })
+  def traffic_model
+    require_relative 'entity/traffic_model_entity'
+    @traffic_model ||= TrafficModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.traffic_model instead.
   def TrafficModel(data = nil)
     require_relative 'entity/traffic_model_entity'
     TrafficModelEntity.new(self, data)

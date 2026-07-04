@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -90,9 +89,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -106,14 +107,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -121,7 +122,7 @@ same parameters as `direct()`.
 ## CrossBorderModelEntity
 
 ```ruby
-cross_border_model = client.CrossBorderModel
+cross_border_model = client.cross_border_model
 ```
 
 ### Fields
@@ -134,12 +135,12 @@ cross_border_model = client.CrossBorderModel
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.CrossBorderModel.load({ "id" => "cross_border_model_id" })
+result = client.cross_border_model.load({ "id" => "cross_border_model_id" })
 ```
 
 ### Common Methods
@@ -175,7 +176,7 @@ Return the entity name.
 ## DailyAvgDictEntity
 
 ```ruby
-daily_avg_dict = client.DailyAvgDict
+daily_avg_dict = client.daily_avg_dict
 ```
 
 ### Fields
@@ -188,12 +189,12 @@ daily_avg_dict = client.DailyAvgDict
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.DailyAvgDict.list(nil)
+results = client.daily_avg_dict.list(nil)
 ```
 
 ### Common Methods
@@ -229,7 +230,7 @@ Return the entity name.
 ## FrequencyEntity
 
 ```ruby
-frequency = client.Frequency
+frequency = client.frequency
 ```
 
 ### Fields
@@ -242,12 +243,12 @@ frequency = client.Frequency
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Frequency.list(nil)
+results = client.frequency.list(nil)
 ```
 
 ### Common Methods
@@ -283,7 +284,7 @@ Return the entity name.
 ## InstalledModelEntity
 
 ```ruby
-installed_model = client.InstalledModel
+installed_model = client.installed_model
 ```
 
 ### Fields
@@ -297,12 +298,12 @@ installed_model = client.InstalledModel
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.InstalledModel.list(nil)
+results = client.installed_model.list(nil)
 ```
 
 ### Common Methods
@@ -338,7 +339,7 @@ Return the entity name.
 ## PriceEntity
 
 ```ruby
-price = client.Price
+price = client.price
 ```
 
 ### Fields
@@ -353,12 +354,12 @@ price = client.Price
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Price.load({ "id" => "price_id" })
+result = client.price.load({ "id" => "price_id" })
 ```
 
 ### Common Methods
@@ -394,7 +395,7 @@ Return the entity name.
 ## ProductionModelEntity
 
 ```ruby
-production_model = client.ProductionModel
+production_model = client.production_model
 ```
 
 ### Fields
@@ -407,12 +408,12 @@ production_model = client.ProductionModel
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.ProductionModel.load({ "id" => "production_model_id" })
+result = client.production_model.load({ "id" => "production_model_id" })
 ```
 
 ### Common Methods
@@ -448,7 +449,7 @@ Return the entity name.
 ## PublicPowerForecastEntity
 
 ```ruby
-public_power_forecast = client.PublicPowerForecast
+public_power_forecast = client.public_power_forecast
 ```
 
 ### Fields
@@ -463,12 +464,12 @@ public_power_forecast = client.PublicPowerForecast
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.PublicPowerForecast.list(nil)
+results = client.public_power_forecast.list(nil)
 ```
 
 ### Common Methods
@@ -504,7 +505,7 @@ Return the entity name.
 ## RenShareModelEntity
 
 ```ruby
-ren_share_model = client.RenShareModel
+ren_share_model = client.ren_share_model
 ```
 
 ### Fields
@@ -521,12 +522,12 @@ ren_share_model = client.RenShareModel
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.RenShareModel.list(nil)
+results = client.ren_share_model.list(nil)
 ```
 
 ### Common Methods
@@ -562,7 +563,7 @@ Return the entity name.
 ## ShareModelEntity
 
 ```ruby
-share_model = client.ShareModel
+share_model = client.share_model
 ```
 
 ### Fields
@@ -576,12 +577,12 @@ share_model = client.ShareModel
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.ShareModel.load({ "id" => "share_model_id" })
+result = client.share_model.load({ "id" => "share_model_id" })
 ```
 
 ### Common Methods
@@ -617,7 +618,7 @@ Return the entity name.
 ## TrafficModelEntity
 
 ```ruby
-traffic_model = client.TrafficModel
+traffic_model = client.traffic_model
 ```
 
 ### Fields
@@ -632,12 +633,12 @@ traffic_model = client.TrafficModel
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.TrafficModel.list(nil)
+results = client.traffic_model.list(nil)
 ```
 
 ### Common Methods

@@ -45,6 +45,7 @@ class RenShareModelEntity
     end
   end
 
+  # @return [RenShareModel, Hash] the current RenShareModel data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RenShareModelEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RenShareModel fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class RenShareModelEntity
   
 
   
+  # List RenShareModel items matching the given filter.
+  #
+  # @param reqmatch [RenShareModelListMatch, Hash, nil] match filter (any subset of RenShareModel fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<RenShareModel>, Array] the matching RenShareModel items; raises EnergyChartsError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

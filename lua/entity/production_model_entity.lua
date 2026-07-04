@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ProductionModelLoadMatch
+---@param ctrl? table
+---@return ProductionModel
+---@return string? err
 function ProductionModelEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

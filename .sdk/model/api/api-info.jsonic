@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Contact"
         url: "https://energy-charts.info/contact.html"
