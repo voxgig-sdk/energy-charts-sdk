@@ -15,8 +15,7 @@ type CrossBorderModel struct {
 	UnixSecond *any `json:"unix_second,omitempty"`
 }
 
-// CrossBorderModelLoadMatch mirrors the cross_border_model fields as an all-optional match
-// filter (Go analog of Partial<CrossBorderModel>).
+// CrossBorderModelLoadMatch is the typed request payload for CrossBorderModel.LoadTyped.
 type CrossBorderModelLoadMatch struct {
 	Country *any `json:"country,omitempty"`
 	Deprecated *bool `json:"deprecated,omitempty"`
@@ -30,8 +29,7 @@ type DailyAvgDict struct {
 	Deprecated bool `json:"deprecated"`
 }
 
-// DailyAvgDictListMatch mirrors the daily_avg_dict fields as an all-optional match
-// filter (Go analog of Partial<DailyAvgDict>).
+// DailyAvgDictListMatch is the typed request payload for DailyAvgDict.ListTyped.
 type DailyAvgDictListMatch struct {
 	Data *[]any `json:"data,omitempty"`
 	Day *[]any `json:"day,omitempty"`
@@ -45,8 +43,7 @@ type Frequency struct {
 	UnixSecond *any `json:"unix_second,omitempty"`
 }
 
-// FrequencyListMatch mirrors the frequency fields as an all-optional match
-// filter (Go analog of Partial<Frequency>).
+// FrequencyListMatch is the typed request payload for Frequency.ListTyped.
 type FrequencyListMatch struct {
 	Data *[]any `json:"data,omitempty"`
 	Deprecated *bool `json:"deprecated,omitempty"`
@@ -61,8 +58,7 @@ type InstalledModel struct {
 	Time []any `json:"time"`
 }
 
-// InstalledModelListMatch mirrors the installed_model fields as an all-optional match
-// filter (Go analog of Partial<InstalledModel>).
+// InstalledModelListMatch is the typed request payload for InstalledModel.ListTyped.
 type InstalledModelListMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	LastUpdate *any `json:"last_update,omitempty"`
@@ -79,8 +75,7 @@ type Price struct {
 	UnixSecond *any `json:"unix_second,omitempty"`
 }
 
-// PriceLoadMatch mirrors the price fields as an all-optional match
-// filter (Go analog of Partial<Price>).
+// PriceLoadMatch is the typed request payload for Price.LoadTyped.
 type PriceLoadMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	LicenseInfo *string `json:"license_info,omitempty"`
@@ -96,8 +91,7 @@ type ProductionModel struct {
 	UnixSecond *any `json:"unix_second,omitempty"`
 }
 
-// ProductionModelLoadMatch mirrors the production_model fields as an all-optional match
-// filter (Go analog of Partial<ProductionModel>).
+// ProductionModelLoadMatch is the typed request payload for ProductionModel.LoadTyped.
 type ProductionModelLoadMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	ProductionType *any `json:"production_type,omitempty"`
@@ -113,8 +107,7 @@ type PublicPowerForecast struct {
 	UnixSecond []any `json:"unix_second"`
 }
 
-// PublicPowerForecastListMatch mirrors the public_power_forecast fields as an all-optional match
-// filter (Go analog of Partial<PublicPowerForecast>).
+// PublicPowerForecastListMatch is the typed request payload for PublicPowerForecast.ListTyped.
 type PublicPowerForecastListMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	ForecastType *string `json:"forecast_type,omitempty"`
@@ -134,8 +127,7 @@ type RenShareModel struct {
 	WindOnshoreShare *any `json:"wind_onshore_share,omitempty"`
 }
 
-// RenShareModelListMatch mirrors the ren_share_model fields as an all-optional match
-// filter (Go analog of Partial<RenShareModel>).
+// RenShareModelListMatch is the typed request payload for RenShareModel.ListTyped.
 type RenShareModelListMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	RenShare *[]any `json:"ren_share,omitempty"`
@@ -154,8 +146,7 @@ type ShareModel struct {
 	UnixSecond *any `json:"unix_second,omitempty"`
 }
 
-// ShareModelLoadMatch mirrors the share_model fields as an all-optional match
-// filter (Go analog of Partial<ShareModel>).
+// ShareModelLoadMatch is the typed request payload for ShareModel.LoadTyped.
 type ShareModelLoadMatch struct {
 	Data *any `json:"data,omitempty"`
 	Deprecated *bool `json:"deprecated,omitempty"`
@@ -172,8 +163,7 @@ type TrafficModel struct {
 	UnixSecond []any `json:"unix_second"`
 }
 
-// TrafficModelListMatch mirrors the traffic_model fields as an all-optional match
-// filter (Go analog of Partial<TrafficModel>).
+// TrafficModelListMatch is the typed request payload for TrafficModel.ListTyped.
 type TrafficModelListMatch struct {
 	Deprecated *bool `json:"deprecated,omitempty"`
 	Share *[]any `json:"share,omitempty"`

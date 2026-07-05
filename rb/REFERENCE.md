@@ -8,7 +8,7 @@ Complete API reference for the EnergyCharts Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'energy-charts_sdk'
+require_relative 'EnergyCharts_sdk'
 
 client = EnergyChartsSDK.new(options)
 ```
@@ -129,9 +129,9 @@ cross_border_model = client.CrossBorderModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `Object` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `unix_second` | `Object` | No |  |
 
 ### Operations
 
@@ -140,7 +140,7 @@ cross_border_model = client.CrossBorderModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CrossBorderModel.load({ "id" => "cross_border_model_id" })
+result = client.CrossBorderModel.load()
 ```
 
 ### Common Methods
@@ -183,18 +183,18 @@ daily_avg_dict = client.DailyAvgDict
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `Array` | Yes |  |
+| `day` | `Array` | Yes |  |
+| `deprecated` | `Boolean` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.DailyAvgDict.list(nil)
+results = client.DailyAvgDict.list
 ```
 
 ### Common Methods
@@ -237,18 +237,18 @@ frequency = client.Frequency
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `Array` | Yes |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `unix_second` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Frequency.list(nil)
+results = client.Frequency.list
 ```
 
 ### Common Methods
@@ -291,19 +291,19 @@ installed_model = client.InstalledModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `last_update` | `Object` | Yes |  |
+| `production_type` | `Object` | No |  |
+| `time` | `Array` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.InstalledModel.list(nil)
+results = client.InstalledModel.list
 ```
 
 ### Common Methods
@@ -346,11 +346,11 @@ price = client.Price
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `license_info` | `String` | Yes |  |
+| `price` | `Float` | No |  |
+| `unit` | `String` | Yes |  |
+| `unix_second` | `Object` | No |  |
 
 ### Operations
 
@@ -359,7 +359,7 @@ price = client.Price
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Price.load({ "id" => "price_id" })
+result = client.Price.load()
 ```
 
 ### Common Methods
@@ -402,9 +402,9 @@ production_model = client.ProductionModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `production_type` | `Object` | No |  |
+| `unix_second` | `Object` | No |  |
 
 ### Operations
 
@@ -413,7 +413,7 @@ production_model = client.ProductionModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ProductionModel.load({ "id" => "production_model_id" })
+result = client.ProductionModel.load()
 ```
 
 ### Common Methods
@@ -456,20 +456,20 @@ public_power_forecast = client.PublicPowerForecast
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `forecast_type` | `String` | Yes |  |
+| `forecast_value` | `Array` | Yes |  |
+| `production_type` | `String` | Yes |  |
+| `unix_second` | `Array` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.PublicPowerForecast.list(nil)
+results = client.PublicPowerForecast.list
 ```
 
 ### Common Methods
@@ -512,22 +512,22 @@ ren_share_model = client.RenShareModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `ren_share` | `Array` | Yes |  |
+| `solar_share` | `Object` | No |  |
+| `substitute` | `Boolean` | Yes |  |
+| `unix_second` | `Array` | Yes |  |
+| `wind_offshore_share` | `Object` | No |  |
+| `wind_onshore_share` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.RenShareModel.list(nil)
+results = client.RenShareModel.list
 ```
 
 ### Common Methods
@@ -570,10 +570,10 @@ share_model = client.ShareModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `Object` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `forecast` | `Object` | No |  |
+| `unix_second` | `Object` | No |  |
 
 ### Operations
 
@@ -582,7 +582,7 @@ share_model = client.ShareModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ShareModel.load({ "id" => "share_model_id" })
+result = client.ShareModel.load()
 ```
 
 ### Common Methods
@@ -625,20 +625,20 @@ traffic_model = client.TrafficModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `share` | `Array` | Yes |  |
+| `signal` | `Array` | No |  |
+| `substitute` | `Boolean` | Yes |  |
+| `unix_second` | `Array` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.TrafficModel.list(nil)
+results = client.TrafficModel.list
 ```
 
 ### Common Methods

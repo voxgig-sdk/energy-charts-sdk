@@ -4,6 +4,11 @@
 
 The Python SDK for the EnergyCharts API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CrossBorderModel()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,10 +42,38 @@ client = EnergyChartsSDK()
 
 ```python
 try:
-    crossbordermodel = client.CrossBorderModel().load({"id": "example_id"})
+    crossbordermodel = client.CrossBorderModel().load()
     print(crossbordermodel)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    crossbordermodel = client.CrossBorderModel().load()
+    print(crossbordermodel)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -61,7 +94,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -87,7 +123,7 @@ Create a mock client for unit testing — no server required:
 client = EnergyChartsSDK.test()
 
 # Entity ops return the bare record and raise on error.
-crossbordermodel = client.CrossBorderModel().load({"id": "test01"})
+crossbordermodel = client.CrossBorderModel().load()
 # crossbordermodel contains the mock response record
 ```
 
@@ -183,9 +219,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -364,14 +397,14 @@ Create an instance: `cross_border_model = client.CrossBorderModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `country` | `Any` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `Any` |  |
 
 #### Example: Load
 
 ```python
-cross_border_model = client.CrossBorderModel().load({"id": "cross_border_model_id"})
+cross_border_model = client.CrossBorderModel().load()
 ```
 
 
@@ -383,20 +416,20 @@ Create an instance: `daily_avg_dict = client.DailyAvgDict()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `day` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
+| `data` | `list` |  |
+| `day` | `list` |  |
+| `deprecated` | `bool` |  |
 
 #### Example: List
 
 ```python
-daily_avg_dicts = client.DailyAvgDict().list({})
+daily_avg_dicts = client.DailyAvgDict().list()
 ```
 
 
@@ -408,20 +441,20 @@ Create an instance: `frequency = client.Frequency()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `list` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `Any` |  |
 
 #### Example: List
 
 ```python
-frequencys = client.Frequency().list({})
+frequencys = client.Frequency().list()
 ```
 
 
@@ -433,21 +466,21 @@ Create an instance: `installed_model = client.InstalledModel()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `last_update` | ``$ANY`` |  |
-| `production_type` | ``$ANY`` |  |
-| `time` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `last_update` | `Any` |  |
+| `production_type` | `Any` |  |
+| `time` | `list` |  |
 
 #### Example: List
 
 ```python
-installed_models = client.InstalledModel().list({})
+installed_models = client.InstalledModel().list()
 ```
 
 
@@ -465,16 +498,16 @@ Create an instance: `price = client.Price()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `license_info` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `unit` | ``$STRING`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `license_info` | `str` |  |
+| `price` | `float` |  |
+| `unit` | `str` |  |
+| `unix_second` | `Any` |  |
 
 #### Example: Load
 
 ```python
-price = client.Price().load({"id": "price_id"})
+price = client.Price().load()
 ```
 
 
@@ -492,14 +525,14 @@ Create an instance: `production_model = client.ProductionModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `production_type` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `production_type` | `Any` |  |
+| `unix_second` | `Any` |  |
 
 #### Example: Load
 
 ```python
-production_model = client.ProductionModel().load({"id": "production_model_id"})
+production_model = client.ProductionModel().load()
 ```
 
 
@@ -511,22 +544,22 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast_type` | ``$STRING`` |  |
-| `forecast_value` | ``$ARRAY`` |  |
-| `production_type` | ``$STRING`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `forecast_type` | `str` |  |
+| `forecast_value` | `list` |  |
+| `production_type` | `str` |  |
+| `unix_second` | `list` |  |
 
 #### Example: List
 
 ```python
-public_power_forecasts = client.PublicPowerForecast().list({})
+public_power_forecasts = client.PublicPowerForecast().list()
 ```
 
 
@@ -538,24 +571,24 @@ Create an instance: `ren_share_model = client.RenShareModel()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `ren_share` | ``$ARRAY`` |  |
-| `solar_share` | ``$ANY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
-| `wind_offshore_share` | ``$ANY`` |  |
-| `wind_onshore_share` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `ren_share` | `list` |  |
+| `solar_share` | `Any` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `list` |  |
+| `wind_offshore_share` | `Any` |  |
+| `wind_onshore_share` | `Any` |  |
 
 #### Example: List
 
 ```python
-ren_share_models = client.RenShareModel().list({})
+ren_share_models = client.RenShareModel().list()
 ```
 
 
@@ -573,15 +606,15 @@ Create an instance: `share_model = client.ShareModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `Any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `Any` |  |
+| `unix_second` | `Any` |  |
 
 #### Example: Load
 
 ```python
-share_model = client.ShareModel().load({"id": "share_model_id"})
+share_model = client.ShareModel().load()
 ```
 
 
@@ -593,31 +626,35 @@ Create an instance: `traffic_model = client.TrafficModel()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `share` | ``$ARRAY`` |  |
-| `signal` | ``$ARRAY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `share` | `list` |  |
+| `signal` | `list` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `list` |  |
 
 #### Example: List
 
 ```python
-traffic_models = client.TrafficModel().list({})
+traffic_models = client.TrafficModel().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -634,8 +671,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -683,9 +721,9 @@ stores the returned data and match criteria internally.
 
 ```python
 crossbordermodel = client.CrossBorderModel()
-crossbordermodel.load({"id": "example_id"})
+crossbordermodel.load()
 
-# crossbordermodel.data_get() now returns the loaded crossbordermodel data
+# crossbordermodel.data_get() now returns the crossbordermodel data from the last load
 # crossbordermodel.match_get() returns the last match criteria
 ```
 

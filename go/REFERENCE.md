@@ -133,9 +133,9 @@ cross_border_model := client.CrossBorderModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -144,7 +144,7 @@ cross_border_model := client.CrossBorderModel(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "cross_border_model_id"}, nil)
+result, err := client.CrossBorderModel(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -181,9 +181,9 @@ daily_avg_dict := client.DailyAvgDict(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `[]any` | Yes |  |
+| `day` | `[]any` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
 
 ### Operations
 
@@ -229,9 +229,9 @@ frequency := client.Frequency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `[]any` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -277,10 +277,10 @@ installed_model := client.InstalledModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `last_update` | `any` | Yes |  |
+| `production_type` | `any` | No |  |
+| `time` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -326,11 +326,11 @@ price := client.Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `license_info` | `string` | Yes |  |
+| `price` | `float64` | No |  |
+| `unit` | `string` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -339,7 +339,7 @@ price := client.Price(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Price(nil).Load(map[string]any{"id": "price_id"}, nil)
+result, err := client.Price(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -376,9 +376,9 @@ production_model := client.ProductionModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `production_type` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -387,7 +387,7 @@ production_model := client.ProductionModel(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ProductionModel(nil).Load(map[string]any{"id": "production_model_id"}, nil)
+result, err := client.ProductionModel(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -424,11 +424,11 @@ public_power_forecast := client.PublicPowerForecast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast_type` | `string` | Yes |  |
+| `forecast_value` | `[]any` | Yes |  |
+| `production_type` | `string` | Yes |  |
+| `unix_second` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -474,13 +474,13 @@ ren_share_model := client.RenShareModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `ren_share` | `[]any` | Yes |  |
+| `solar_share` | `any` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `[]any` | Yes |  |
+| `wind_offshore_share` | `any` | No |  |
+| `wind_onshore_share` | `any` | No |  |
 
 ### Operations
 
@@ -526,10 +526,10 @@ share_model := client.ShareModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -538,7 +538,7 @@ share_model := client.ShareModel(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ShareModel(nil).Load(map[string]any{"id": "share_model_id"}, nil)
+result, err := client.ShareModel(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -575,11 +575,11 @@ traffic_model := client.TrafficModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `share` | `[]any` | Yes |  |
+| `signal` | `[]any` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `[]any` | Yes |  |
 
 ### Operations
 

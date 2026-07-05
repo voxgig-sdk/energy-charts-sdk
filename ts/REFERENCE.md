@@ -224,9 +224,9 @@ const cross_border_model = client.CrossBorderModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -235,7 +235,7 @@ const cross_border_model = client.CrossBorderModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CrossBorderModel().load({ id: 'cross_border_model_id' })
+const result = await client.CrossBorderModel().load()
 ```
 
 ### Common Methods
@@ -276,9 +276,9 @@ const daily_avg_dict = client.DailyAvgDict()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `any[]` | Yes |  |
+| `day` | `any[]` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -328,9 +328,9 @@ const frequency = client.Frequency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `any[]` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -380,10 +380,10 @@ const installed_model = client.InstalledModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `last_update` | `any` | Yes |  |
+| `production_type` | `any` | No |  |
+| `time` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -433,11 +433,11 @@ const price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `license_info` | `string` | Yes |  |
+| `price` | `number` | No |  |
+| `unit` | `string` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -446,7 +446,7 @@ const price = client.Price()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Price().load({ id: 'price_id' })
+const result = await client.Price().load()
 ```
 
 ### Common Methods
@@ -487,9 +487,9 @@ const production_model = client.ProductionModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `production_type` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -498,7 +498,7 @@ const production_model = client.ProductionModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ProductionModel().load({ id: 'production_model_id' })
+const result = await client.ProductionModel().load()
 ```
 
 ### Common Methods
@@ -539,11 +539,11 @@ const public_power_forecast = client.PublicPowerForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast_type` | `string` | Yes |  |
+| `forecast_value` | `any[]` | Yes |  |
+| `production_type` | `string` | Yes |  |
+| `unix_second` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -593,13 +593,13 @@ const ren_share_model = client.RenShareModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `ren_share` | `any[]` | Yes |  |
+| `solar_share` | `any` | No |  |
+| `substitute` | `boolean` | Yes |  |
+| `unix_second` | `any[]` | Yes |  |
+| `wind_offshore_share` | `any` | No |  |
+| `wind_onshore_share` | `any` | No |  |
 
 ### Operations
 
@@ -649,10 +649,10 @@ const share_model = client.ShareModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -661,7 +661,7 @@ const share_model = client.ShareModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ShareModel().load({ id: 'share_model_id' })
+const result = await client.ShareModel().load()
 ```
 
 ### Common Methods
@@ -702,11 +702,11 @@ const traffic_model = client.TrafficModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `share` | `any[]` | Yes |  |
+| `signal` | `any[]` | No |  |
+| `substitute` | `boolean` | Yes |  |
+| `unix_second` | `any[]` | Yes |  |
 
 ### Operations
 

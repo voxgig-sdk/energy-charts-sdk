@@ -8,7 +8,7 @@ Complete API reference for the EnergyCharts PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/energy-charts_sdk.php';
+require_once __DIR__ . '/energycharts_sdk.php';
 
 $client = new EnergyChartsSDK($options);
 ```
@@ -81,11 +81,11 @@ Create a new `ShareModelEntity` instance. Pass `null` for no initial data.
 
 Create a new `TrafficModelEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): EnergyChartsUtility`
 
 Return a copy of the SDK utility object.
 
@@ -128,9 +128,9 @@ $cross_border_model = $client->CrossBorderModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `mixed` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `mixed` | No |  |
 
 ### Operations
 
@@ -139,24 +139,24 @@ $cross_border_model = $client->CrossBorderModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CrossBorderModel()->load(["id" => "cross_border_model_id"]);
+$result = $client->CrossBorderModel()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -165,7 +165,7 @@ Set the entity match criteria.
 Create a new `CrossBorderModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -182,35 +182,35 @@ $daily_avg_dict = $client->DailyAvgDict();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `array` | Yes |  |
+| `day` | `array` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->DailyAvgDict()->list([]);
+$results = $client->DailyAvgDict()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -219,7 +219,7 @@ Set the entity match criteria.
 Create a new `DailyAvgDictEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -236,35 +236,35 @@ $frequency = $client->Frequency();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `array` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `mixed` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Frequency()->list([]);
+$results = $client->Frequency()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -273,7 +273,7 @@ Set the entity match criteria.
 Create a new `FrequencyEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -290,36 +290,36 @@ $installed_model = $client->InstalledModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `last_update` | `mixed` | Yes |  |
+| `production_type` | `mixed` | No |  |
+| `time` | `array` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->InstalledModel()->list([]);
+$results = $client->InstalledModel()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -328,7 +328,7 @@ Set the entity match criteria.
 Create a new `InstalledModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -345,11 +345,11 @@ $price = $client->Price();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `license_info` | `string` | Yes |  |
+| `price` | `float` | No |  |
+| `unit` | `string` | Yes |  |
+| `unix_second` | `mixed` | No |  |
 
 ### Operations
 
@@ -358,24 +358,24 @@ $price = $client->Price();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Price()->load(["id" => "price_id"]);
+$result = $client->Price()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -384,7 +384,7 @@ Set the entity match criteria.
 Create a new `PriceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -401,9 +401,9 @@ $production_model = $client->ProductionModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `production_type` | `mixed` | No |  |
+| `unix_second` | `mixed` | No |  |
 
 ### Operations
 
@@ -412,24 +412,24 @@ $production_model = $client->ProductionModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ProductionModel()->load(["id" => "production_model_id"]);
+$result = $client->ProductionModel()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -438,7 +438,7 @@ Set the entity match criteria.
 Create a new `ProductionModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -455,37 +455,37 @@ $public_power_forecast = $client->PublicPowerForecast();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast_type` | `string` | Yes |  |
+| `forecast_value` | `array` | Yes |  |
+| `production_type` | `string` | Yes |  |
+| `unix_second` | `array` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->PublicPowerForecast()->list([]);
+$results = $client->PublicPowerForecast()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -494,7 +494,7 @@ Set the entity match criteria.
 Create a new `PublicPowerForecastEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -511,39 +511,39 @@ $ren_share_model = $client->RenShareModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `ren_share` | `array` | Yes |  |
+| `solar_share` | `mixed` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `array` | Yes |  |
+| `wind_offshore_share` | `mixed` | No |  |
+| `wind_onshore_share` | `mixed` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->RenShareModel()->list([]);
+$results = $client->RenShareModel()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -552,7 +552,7 @@ Set the entity match criteria.
 Create a new `RenShareModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -569,10 +569,10 @@ $share_model = $client->ShareModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `mixed` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `mixed` | No |  |
+| `unix_second` | `mixed` | No |  |
 
 ### Operations
 
@@ -581,24 +581,24 @@ $share_model = $client->ShareModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ShareModel()->load(["id" => "share_model_id"]);
+$result = $client->ShareModel()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -607,7 +607,7 @@ Set the entity match criteria.
 Create a new `ShareModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -624,37 +624,37 @@ $traffic_model = $client->TrafficModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `share` | `array` | Yes |  |
+| `signal` | `array` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `array` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->TrafficModel()->list([]);
+$results = $client->TrafficModel()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -663,7 +663,7 @@ Set the entity match criteria.
 Create a new `TrafficModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

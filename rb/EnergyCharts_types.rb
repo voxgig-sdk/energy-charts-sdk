@@ -25,7 +25,7 @@ CrossBorderModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CrossBorderModel#load (any subset of CrossBorderModel fields).
+# Request payload for CrossBorderModel#load.
 #
 # @!attribute [rw] country
 #   @return [Object, nil]
@@ -59,7 +59,7 @@ DailyAvgDict = Struct.new(
   keyword_init: true
 )
 
-# Match filter for DailyAvgDict#list (any subset of DailyAvgDict fields).
+# Request payload for DailyAvgDict#list.
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -93,7 +93,7 @@ Frequency = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Frequency#list (any subset of Frequency fields).
+# Request payload for Frequency#list.
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -131,7 +131,7 @@ InstalledModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for InstalledModel#list (any subset of InstalledModel fields).
+# Request payload for InstalledModel#list.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]
@@ -177,7 +177,7 @@ Price = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Price#load (any subset of Price fields).
+# Request payload for Price#load.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]
@@ -219,7 +219,7 @@ ProductionModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ProductionModel#load (any subset of ProductionModel fields).
+# Request payload for ProductionModel#load.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]
@@ -261,7 +261,7 @@ PublicPowerForecast = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PublicPowerForecast#list (any subset of PublicPowerForecast fields).
+# Request payload for PublicPowerForecast#list.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]
@@ -319,7 +319,7 @@ RenShareModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for RenShareModel#list (any subset of RenShareModel fields).
+# Request payload for RenShareModel#list.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]
@@ -373,7 +373,7 @@ ShareModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for ShareModel#load (any subset of ShareModel fields).
+# Request payload for ShareModel#load.
 #
 # @!attribute [rw] data
 #   @return [Object, nil]
@@ -419,7 +419,7 @@ TrafficModel = Struct.new(
   keyword_init: true
 )
 
-# Match filter for TrafficModel#list (any subset of TrafficModel fields).
+# Request payload for TrafficModel#list.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean, nil]

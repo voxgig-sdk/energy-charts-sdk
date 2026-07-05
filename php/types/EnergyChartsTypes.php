@@ -20,7 +20,7 @@ class CrossBorderModel
     public mixed $unix_second = null;
 }
 
-/** Match filter for CrossBorderModel#load (any subset of CrossBorderModel fields). */
+/** Request payload for CrossBorderModel#load. */
 class CrossBorderModelLoadMatch
 {
     public mixed $country = null;
@@ -36,7 +36,7 @@ class DailyAvgDict
     public bool $deprecated;
 }
 
-/** Match filter for DailyAvgDict#list (any subset of DailyAvgDict fields). */
+/** Request payload for DailyAvgDict#list. */
 class DailyAvgDictListMatch
 {
     public ?array $data = null;
@@ -52,7 +52,7 @@ class Frequency
     public mixed $unix_second = null;
 }
 
-/** Match filter for Frequency#list (any subset of Frequency fields). */
+/** Request payload for Frequency#list. */
 class FrequencyListMatch
 {
     public ?array $data = null;
@@ -69,7 +69,7 @@ class InstalledModel
     public array $time;
 }
 
-/** Match filter for InstalledModel#list (any subset of InstalledModel fields). */
+/** Request payload for InstalledModel#list. */
 class InstalledModelListMatch
 {
     public ?bool $deprecated = null;
@@ -88,7 +88,7 @@ class Price
     public mixed $unix_second = null;
 }
 
-/** Match filter for Price#load (any subset of Price fields). */
+/** Request payload for Price#load. */
 class PriceLoadMatch
 {
     public ?bool $deprecated = null;
@@ -106,7 +106,7 @@ class ProductionModel
     public mixed $unix_second = null;
 }
 
-/** Match filter for ProductionModel#load (any subset of ProductionModel fields). */
+/** Request payload for ProductionModel#load. */
 class ProductionModelLoadMatch
 {
     public ?bool $deprecated = null;
@@ -124,7 +124,7 @@ class PublicPowerForecast
     public array $unix_second;
 }
 
-/** Match filter for PublicPowerForecast#list (any subset of PublicPowerForecast fields). */
+/** Request payload for PublicPowerForecast#list. */
 class PublicPowerForecastListMatch
 {
     public ?bool $deprecated = null;
@@ -146,7 +146,7 @@ class RenShareModel
     public mixed $wind_onshore_share = null;
 }
 
-/** Match filter for RenShareModel#list (any subset of RenShareModel fields). */
+/** Request payload for RenShareModel#list. */
 class RenShareModelListMatch
 {
     public ?bool $deprecated = null;
@@ -167,7 +167,7 @@ class ShareModel
     public mixed $unix_second = null;
 }
 
-/** Match filter for ShareModel#load (any subset of ShareModel fields). */
+/** Request payload for ShareModel#load. */
 class ShareModelLoadMatch
 {
     public mixed $data = null;
@@ -186,7 +186,7 @@ class TrafficModel
     public array $unix_second;
 }
 
-/** Match filter for TrafficModel#list (any subset of TrafficModel fields). */
+/** Request payload for TrafficModel#list. */
 class TrafficModelListMatch
 {
     public ?bool $deprecated = null;

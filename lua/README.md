@@ -4,6 +4,8 @@
 
 The Lua SDK for the EnergyCharts API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:CrossBorderModel()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,9 +36,31 @@ local client = sdk.new()
 ### 3. Load a crossbordermodel
 
 ```lua
-local crossbordermodel, err = client:CrossBorderModel():load({ id = "example_id" })
+local crossbordermodel, err = client:CrossBorderModel():load()
 if err then error(err) end
 print(crossbordermodel)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local crossbordermodel, err = client:CrossBorderModel():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -82,8 +106,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CrossBorderModel():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:CrossBorderModel():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -180,9 +204,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -197,12 +218,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local cross_border_model, err = client:CrossBorderModel():load({ id = "example_id" })
+    local cross_border_model, err = client:CrossBorderModel():load()
     if err then error(err) end
     -- cross_border_model is the loaded record
 
@@ -362,14 +383,14 @@ Create an instance: `local cross_border_model = client:CrossBorderModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `country` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```lua
-local cross_border_model, err = client:CrossBorderModel():load({ id = "cross_border_model_id" })
+local cross_border_model, err = client:CrossBorderModel():load()
 ```
 
 
@@ -387,9 +408,9 @@ Create an instance: `local daily_avg_dict = client:DailyAvgDict(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `day` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
+| `data` | `table` |  |
+| `day` | `table` |  |
+| `deprecated` | `boolean` |  |
 
 #### Example: List
 
@@ -412,9 +433,9 @@ Create an instance: `local frequency = client:Frequency(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `table` |  |
+| `deprecated` | `boolean` |  |
+| `unix_second` | `any` |  |
 
 #### Example: List
 
@@ -437,10 +458,10 @@ Create an instance: `local installed_model = client:InstalledModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `last_update` | ``$ANY`` |  |
-| `production_type` | ``$ANY`` |  |
-| `time` | ``$ARRAY`` |  |
+| `deprecated` | `boolean` |  |
+| `last_update` | `any` |  |
+| `production_type` | `any` |  |
+| `time` | `table` |  |
 
 #### Example: List
 
@@ -463,16 +484,16 @@ Create an instance: `local price = client:Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `license_info` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `unit` | ``$STRING`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `boolean` |  |
+| `license_info` | `string` |  |
+| `price` | `number` |  |
+| `unit` | `string` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```lua
-local price, err = client:Price():load({ id = "price_id" })
+local price, err = client:Price():load()
 ```
 
 
@@ -490,14 +511,14 @@ Create an instance: `local production_model = client:ProductionModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `production_type` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `boolean` |  |
+| `production_type` | `any` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```lua
-local production_model, err = client:ProductionModel():load({ id = "production_model_id" })
+local production_model, err = client:ProductionModel():load()
 ```
 
 
@@ -515,11 +536,11 @@ Create an instance: `local public_power_forecast = client:PublicPowerForecast(ni
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast_type` | ``$STRING`` |  |
-| `forecast_value` | ``$ARRAY`` |  |
-| `production_type` | ``$STRING`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `boolean` |  |
+| `forecast_type` | `string` |  |
+| `forecast_value` | `table` |  |
+| `production_type` | `string` |  |
+| `unix_second` | `table` |  |
 
 #### Example: List
 
@@ -542,13 +563,13 @@ Create an instance: `local ren_share_model = client:RenShareModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `ren_share` | ``$ARRAY`` |  |
-| `solar_share` | ``$ANY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
-| `wind_offshore_share` | ``$ANY`` |  |
-| `wind_onshore_share` | ``$ANY`` |  |
+| `deprecated` | `boolean` |  |
+| `ren_share` | `table` |  |
+| `solar_share` | `any` |  |
+| `substitute` | `boolean` |  |
+| `unix_second` | `table` |  |
+| `wind_offshore_share` | `any` |  |
+| `wind_onshore_share` | `any` |  |
 
 #### Example: List
 
@@ -571,15 +592,15 @@ Create an instance: `local share_model = client:ShareModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `forecast` | `any` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```lua
-local share_model, err = client:ShareModel():load({ id = "share_model_id" })
+local share_model, err = client:ShareModel():load()
 ```
 
 
@@ -597,11 +618,11 @@ Create an instance: `local traffic_model = client:TrafficModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `share` | ``$ARRAY`` |  |
-| `signal` | ``$ARRAY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `boolean` |  |
+| `share` | `table` |  |
+| `signal` | `table` |  |
+| `substitute` | `boolean` |  |
+| `unix_second` | `table` |  |
 
 #### Example: List
 
@@ -610,12 +631,16 @@ local traffic_models, err = client:TrafficModel():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -632,8 +657,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -682,9 +708,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local crossbordermodel = client:CrossBorderModel()
-crossbordermodel:load({ id = "example_id" })
+crossbordermodel:load()
 
--- crossbordermodel:data_get() now returns the loaded crossbordermodel data
+-- crossbordermodel:data_get() now returns the crossbordermodel data from the last load
 -- crossbordermodel:match_get() returns the last match criteria
 ```
 

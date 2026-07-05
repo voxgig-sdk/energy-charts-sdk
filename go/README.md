@@ -4,6 +4,8 @@
 
 The Golang SDK for the EnergyCharts API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.CrossBorderModel(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -49,12 +51,41 @@ func main() {
     client := sdk.New()
 
     // Load a single crossbordermodel — the value is the loaded record.
-    crossbordermodel, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "example_id"}, nil)
+    crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(crossbordermodel)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = crossbordermodel
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -105,12 +136,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 crossbordermodel, err := client.CrossBorderModel(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(crossbordermodel) // the loaded mock data
+fmt.Println(crossbordermodel) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -206,9 +237,6 @@ All entities implement the `EnergyChartsEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -221,16 +249,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    crossbordermodel, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "example_id"}, nil)
+    crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // crossbordermodel is the loaded record
+    // crossbordermodel is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -388,14 +416,14 @@ Create an instance: `cross_border_model := client.CrossBorderModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `country` | `any` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```go
-cross_border_model, err := client.CrossBorderModel(nil).Load(map[string]any{"id": "cross_border_model_id"}, nil)
+cross_border_model, err := client.CrossBorderModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -417,9 +445,9 @@ Create an instance: `daily_avg_dict := client.DailyAvgDict(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `day` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
+| `data` | `[]any` |  |
+| `day` | `[]any` |  |
+| `deprecated` | `bool` |  |
 
 #### Example: List
 
@@ -446,9 +474,9 @@ Create an instance: `frequency := client.Frequency(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `[]any` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `any` |  |
 
 #### Example: List
 
@@ -475,10 +503,10 @@ Create an instance: `installed_model := client.InstalledModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `last_update` | ``$ANY`` |  |
-| `production_type` | ``$ANY`` |  |
-| `time` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `last_update` | `any` |  |
+| `production_type` | `any` |  |
+| `time` | `[]any` |  |
 
 #### Example: List
 
@@ -505,16 +533,16 @@ Create an instance: `price := client.Price(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `license_info` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `unit` | ``$STRING`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `license_info` | `string` |  |
+| `price` | `float64` |  |
+| `unit` | `string` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```go
-price, err := client.Price(nil).Load(map[string]any{"id": "price_id"}, nil)
+price, err := client.Price(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -536,14 +564,14 @@ Create an instance: `production_model := client.ProductionModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `production_type` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `production_type` | `any` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```go
-production_model, err := client.ProductionModel(nil).Load(map[string]any{"id": "production_model_id"}, nil)
+production_model, err := client.ProductionModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -565,11 +593,11 @@ Create an instance: `public_power_forecast := client.PublicPowerForecast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast_type` | ``$STRING`` |  |
-| `forecast_value` | ``$ARRAY`` |  |
-| `production_type` | ``$STRING`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `forecast_type` | `string` |  |
+| `forecast_value` | `[]any` |  |
+| `production_type` | `string` |  |
+| `unix_second` | `[]any` |  |
 
 #### Example: List
 
@@ -596,13 +624,13 @@ Create an instance: `ren_share_model := client.RenShareModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `ren_share` | ``$ARRAY`` |  |
-| `solar_share` | ``$ANY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
-| `wind_offshore_share` | ``$ANY`` |  |
-| `wind_onshore_share` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `ren_share` | `[]any` |  |
+| `solar_share` | `any` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `[]any` |  |
+| `wind_offshore_share` | `any` |  |
+| `wind_onshore_share` | `any` |  |
 
 #### Example: List
 
@@ -629,15 +657,15 @@ Create an instance: `share_model := client.ShareModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `any` |  |
+| `unix_second` | `any` |  |
 
 #### Example: Load
 
 ```go
-share_model, err := client.ShareModel(nil).Load(map[string]any{"id": "share_model_id"}, nil)
+share_model, err := client.ShareModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -659,11 +687,11 @@ Create an instance: `traffic_model := client.TrafficModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `share` | ``$ARRAY`` |  |
-| `signal` | ``$ARRAY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `share` | `[]any` |  |
+| `signal` | `[]any` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `[]any` |  |
 
 #### Example: List
 
@@ -676,12 +704,16 @@ fmt.Println(traffic_models) // the array of records
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -698,9 +730,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -746,9 +778,9 @@ stores the returned data and match criteria internally.
 
 ```go
 crossbordermodel := client.CrossBorderModel(nil)
-crossbordermodel.Load(map[string]any{"id": "example_id"}, nil)
+crossbordermodel.Load(nil, nil)
 
-// crossbordermodel.Data() now returns the loaded crossbordermodel data
+// crossbordermodel.Data() now returns the crossbordermodel data from the last load
 // crossbordermodel.Match() returns the last match criteria
 ```
 

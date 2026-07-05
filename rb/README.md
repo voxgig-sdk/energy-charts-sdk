@@ -4,6 +4,8 @@
 
 The Ruby SDK for the EnergyCharts API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CrossBorderModel` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -33,11 +35,38 @@ client = EnergyChartsSDK.new
 ```ruby
 begin
   # load returns the bare CrossBorderModel record (raises on error).
-  crossbordermodel = client.CrossBorderModel.load({ "id" => "example_id" })
+  crossbordermodel = client.CrossBorderModel.load()
   puts crossbordermodel
 rescue => err
   warn "load failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  crossbordermodel = client.CrossBorderModel.load()
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -58,7 +87,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -81,16 +112,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = EnergyChartsSDK.test({
-  "entity" => { "crossbordermodel" => { "test01" => { "id" => "test01" } } },
-})
+client = EnergyChartsSDK.test
 
-# load returns the bare mock record (raises on error).
-crossbordermodel = client.CrossBorderModel.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+crossbordermodel = client.CrossBorderModel.load()
 puts crossbordermodel
 ```
 
@@ -185,10 +213,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -366,15 +391,15 @@ Create an instance: `cross_border_model = client.CrossBorderModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `country` | `Object` |  |
+| `deprecated` | `Boolean` |  |
+| `unix_second` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare CrossBorderModel record (raises on error).
-cross_border_model = client.CrossBorderModel.load({ "id" => "cross_border_model_id" })
+cross_border_model = client.CrossBorderModel.load()
 ```
 
 
@@ -392,9 +417,9 @@ Create an instance: `daily_avg_dict = client.DailyAvgDict`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `day` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
+| `data` | `Array` |  |
+| `day` | `Array` |  |
+| `deprecated` | `Boolean` |  |
 
 #### Example: List
 
@@ -418,9 +443,9 @@ Create an instance: `frequency = client.Frequency`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `Array` |  |
+| `deprecated` | `Boolean` |  |
+| `unix_second` | `Object` |  |
 
 #### Example: List
 
@@ -444,10 +469,10 @@ Create an instance: `installed_model = client.InstalledModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `last_update` | ``$ANY`` |  |
-| `production_type` | ``$ANY`` |  |
-| `time` | ``$ARRAY`` |  |
+| `deprecated` | `Boolean` |  |
+| `last_update` | `Object` |  |
+| `production_type` | `Object` |  |
+| `time` | `Array` |  |
 
 #### Example: List
 
@@ -471,17 +496,17 @@ Create an instance: `price = client.Price`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `license_info` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `unit` | ``$STRING`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `Boolean` |  |
+| `license_info` | `String` |  |
+| `price` | `Float` |  |
+| `unit` | `String` |  |
+| `unix_second` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare Price record (raises on error).
-price = client.Price.load({ "id" => "price_id" })
+price = client.Price.load()
 ```
 
 
@@ -499,15 +524,15 @@ Create an instance: `production_model = client.ProductionModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `production_type` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `Boolean` |  |
+| `production_type` | `Object` |  |
+| `unix_second` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare ProductionModel record (raises on error).
-production_model = client.ProductionModel.load({ "id" => "production_model_id" })
+production_model = client.ProductionModel.load()
 ```
 
 
@@ -525,11 +550,11 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast_type` | ``$STRING`` |  |
-| `forecast_value` | ``$ARRAY`` |  |
-| `production_type` | ``$STRING`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `Boolean` |  |
+| `forecast_type` | `String` |  |
+| `forecast_value` | `Array` |  |
+| `production_type` | `String` |  |
+| `unix_second` | `Array` |  |
 
 #### Example: List
 
@@ -553,13 +578,13 @@ Create an instance: `ren_share_model = client.RenShareModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `ren_share` | ``$ARRAY`` |  |
-| `solar_share` | ``$ANY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
-| `wind_offshore_share` | ``$ANY`` |  |
-| `wind_onshore_share` | ``$ANY`` |  |
+| `deprecated` | `Boolean` |  |
+| `ren_share` | `Array` |  |
+| `solar_share` | `Object` |  |
+| `substitute` | `Boolean` |  |
+| `unix_second` | `Array` |  |
+| `wind_offshore_share` | `Object` |  |
+| `wind_onshore_share` | `Object` |  |
 
 #### Example: List
 
@@ -583,16 +608,16 @@ Create an instance: `share_model = client.ShareModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `Object` |  |
+| `deprecated` | `Boolean` |  |
+| `forecast` | `Object` |  |
+| `unix_second` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare ShareModel record (raises on error).
-share_model = client.ShareModel.load({ "id" => "share_model_id" })
+share_model = client.ShareModel.load()
 ```
 
 
@@ -610,11 +635,11 @@ Create an instance: `traffic_model = client.TrafficModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `share` | ``$ARRAY`` |  |
-| `signal` | ``$ARRAY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `Boolean` |  |
+| `share` | `Array` |  |
+| `signal` | `Array` |  |
+| `substitute` | `Boolean` |  |
+| `unix_second` | `Array` |  |
 
 #### Example: List
 
@@ -624,12 +649,16 @@ traffic_models = client.TrafficModel.list
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -646,8 +675,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -696,9 +726,9 @@ stores the returned data and match criteria internally.
 
 ```ruby
 crossbordermodel = client.CrossBorderModel
-crossbordermodel.load({ "id" => "example_id" })
+crossbordermodel.load()
 
-# crossbordermodel.data_get now returns the loaded crossbordermodel data
+# crossbordermodel.data_get now returns the crossbordermodel data from the last load
 # crossbordermodel.match_get returns the last match criteria
 ```
 

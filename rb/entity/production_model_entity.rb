@@ -67,10 +67,12 @@ class ProductionModelEntity
   
   # Load a single ProductionModel.
   #
-  # @param reqmatch [ProductionModelLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [ProductionModelLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.ProductionModel.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [ProductionModel, Hash] the loaded ProductionModel; raises EnergyChartsError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

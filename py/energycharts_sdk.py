@@ -221,61 +221,61 @@ class EnergyChartsSDK:
 
 
     def CrossBorderModel(self, data=None) -> "CrossBorderModelEntity":
-        """Entity factory: client.CrossBorderModel().list({}) / client.CrossBorderModel().load({"id": ...})."""
+        """Entity factory: client.CrossBorderModel().list() / client.CrossBorderModel().load({"id": ...})."""
         from entity.cross_border_model_entity import CrossBorderModelEntity
         return CrossBorderModelEntity(self, data)
 
 
     def DailyAvgDict(self, data=None) -> "DailyAvgDictEntity":
-        """Entity factory: client.DailyAvgDict().list({}) / client.DailyAvgDict().load({"id": ...})."""
+        """Entity factory: client.DailyAvgDict().list() / client.DailyAvgDict().load({"id": ...})."""
         from entity.daily_avg_dict_entity import DailyAvgDictEntity
         return DailyAvgDictEntity(self, data)
 
 
     def Frequency(self, data=None) -> "FrequencyEntity":
-        """Entity factory: client.Frequency().list({}) / client.Frequency().load({"id": ...})."""
+        """Entity factory: client.Frequency().list() / client.Frequency().load({"id": ...})."""
         from entity.frequency_entity import FrequencyEntity
         return FrequencyEntity(self, data)
 
 
     def InstalledModel(self, data=None) -> "InstalledModelEntity":
-        """Entity factory: client.InstalledModel().list({}) / client.InstalledModel().load({"id": ...})."""
+        """Entity factory: client.InstalledModel().list() / client.InstalledModel().load({"id": ...})."""
         from entity.installed_model_entity import InstalledModelEntity
         return InstalledModelEntity(self, data)
 
 
     def Price(self, data=None) -> "PriceEntity":
-        """Entity factory: client.Price().list({}) / client.Price().load({"id": ...})."""
+        """Entity factory: client.Price().list() / client.Price().load({"id": ...})."""
         from entity.price_entity import PriceEntity
         return PriceEntity(self, data)
 
 
     def ProductionModel(self, data=None) -> "ProductionModelEntity":
-        """Entity factory: client.ProductionModel().list({}) / client.ProductionModel().load({"id": ...})."""
+        """Entity factory: client.ProductionModel().list() / client.ProductionModel().load({"id": ...})."""
         from entity.production_model_entity import ProductionModelEntity
         return ProductionModelEntity(self, data)
 
 
     def PublicPowerForecast(self, data=None) -> "PublicPowerForecastEntity":
-        """Entity factory: client.PublicPowerForecast().list({}) / client.PublicPowerForecast().load({"id": ...})."""
+        """Entity factory: client.PublicPowerForecast().list() / client.PublicPowerForecast().load({"id": ...})."""
         from entity.public_power_forecast_entity import PublicPowerForecastEntity
         return PublicPowerForecastEntity(self, data)
 
 
     def RenShareModel(self, data=None) -> "RenShareModelEntity":
-        """Entity factory: client.RenShareModel().list({}) / client.RenShareModel().load({"id": ...})."""
+        """Entity factory: client.RenShareModel().list() / client.RenShareModel().load({"id": ...})."""
         from entity.ren_share_model_entity import RenShareModelEntity
         return RenShareModelEntity(self, data)
 
 
     def ShareModel(self, data=None) -> "ShareModelEntity":
-        """Entity factory: client.ShareModel().list({}) / client.ShareModel().load({"id": ...})."""
+        """Entity factory: client.ShareModel().list() / client.ShareModel().load({"id": ...})."""
         from entity.share_model_entity import ShareModelEntity
         return ShareModelEntity(self, data)
 
 
     def TrafficModel(self, data=None) -> "TrafficModelEntity":
-        """Entity factory: client.TrafficModel().list({}) / client.TrafficModel().load({"id": ...})."""
+        """Entity factory: client.TrafficModel().list() / client.TrafficModel().load({"id": ...})."""
         from entity.traffic_model_entity import TrafficModelEntity
         return TrafficModelEntity(self, data)
 

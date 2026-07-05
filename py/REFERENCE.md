@@ -8,7 +8,7 @@ Complete API reference for the EnergyCharts Python SDK.
 ### Constructor
 
 ```python
-from energy-charts_sdk import EnergyChartsSDK
+from energycharts_sdk import EnergyChartsSDK
 
 client = EnergyChartsSDK(options)
 ```
@@ -123,9 +123,9 @@ cross_border_model = client.CrossBorderModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `Any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `Any` | No |  |
 
 ### Operations
 
@@ -134,7 +134,7 @@ cross_border_model = client.CrossBorderModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CrossBorderModel().load({"id": "cross_border_model_id"})
+result = client.CrossBorderModel().load()
 ```
 
 ### Common Methods
@@ -176,18 +176,18 @@ daily_avg_dict = client.DailyAvgDict()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `list` | Yes |  |
+| `day` | `list` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.DailyAvgDict().list({})
+results = client.DailyAvgDict().list()
 for daily_avg_dict in results:
     print(daily_avg_dict)
 ```
@@ -231,18 +231,18 @@ frequency = client.Frequency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `list` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `unix_second` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Frequency().list({})
+results = client.Frequency().list()
 for frequency in results:
     print(frequency)
 ```
@@ -286,19 +286,19 @@ installed_model = client.InstalledModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `last_update` | `Any` | Yes |  |
+| `production_type` | `Any` | No |  |
+| `time` | `list` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.InstalledModel().list({})
+results = client.InstalledModel().list()
 for installed_model in results:
     print(installed_model)
 ```
@@ -342,11 +342,11 @@ price = client.Price()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `license_info` | `str` | Yes |  |
+| `price` | `float` | No |  |
+| `unit` | `str` | Yes |  |
+| `unix_second` | `Any` | No |  |
 
 ### Operations
 
@@ -355,7 +355,7 @@ price = client.Price()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Price().load({"id": "price_id"})
+result = client.Price().load()
 ```
 
 ### Common Methods
@@ -397,9 +397,9 @@ production_model = client.ProductionModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `production_type` | `Any` | No |  |
+| `unix_second` | `Any` | No |  |
 
 ### Operations
 
@@ -408,7 +408,7 @@ production_model = client.ProductionModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ProductionModel().load({"id": "production_model_id"})
+result = client.ProductionModel().load()
 ```
 
 ### Common Methods
@@ -450,20 +450,20 @@ public_power_forecast = client.PublicPowerForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast_type` | `str` | Yes |  |
+| `forecast_value` | `list` | Yes |  |
+| `production_type` | `str` | Yes |  |
+| `unix_second` | `list` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.PublicPowerForecast().list({})
+results = client.PublicPowerForecast().list()
 for public_power_forecast in results:
     print(public_power_forecast)
 ```
@@ -507,22 +507,22 @@ ren_share_model = client.RenShareModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `ren_share` | `list` | Yes |  |
+| `solar_share` | `Any` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `list` | Yes |  |
+| `wind_offshore_share` | `Any` | No |  |
+| `wind_onshore_share` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.RenShareModel().list({})
+results = client.RenShareModel().list()
 for ren_share_model in results:
     print(ren_share_model)
 ```
@@ -566,10 +566,10 @@ share_model = client.ShareModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `Any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `Any` | No |  |
+| `unix_second` | `Any` | No |  |
 
 ### Operations
 
@@ -578,7 +578,7 @@ share_model = client.ShareModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ShareModel().load({"id": "share_model_id"})
+result = client.ShareModel().load()
 ```
 
 ### Common Methods
@@ -620,20 +620,20 @@ traffic_model = client.TrafficModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `bool` | Yes |  |
+| `share` | `list` | Yes |  |
+| `signal` | `list` | No |  |
+| `substitute` | `bool` | Yes |  |
+| `unix_second` | `list` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.TrafficModel().list({})
+results = client.TrafficModel().list()
 for traffic_model in results:
     print(traffic_model)
 ```

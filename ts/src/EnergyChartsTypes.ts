@@ -11,7 +11,11 @@ export interface CrossBorderModel {
   unix_second?: any
 }
 
-export type CrossBorderModelLoadMatch = Partial<CrossBorderModel>
+export interface CrossBorderModelLoadMatch {
+  country?: any
+  deprecated?: boolean
+  unix_second?: any
+}
 
 export interface DailyAvgDict {
   data: any[]
@@ -19,7 +23,11 @@ export interface DailyAvgDict {
   deprecated: boolean
 }
 
-export type DailyAvgDictListMatch = Partial<DailyAvgDict>
+export interface DailyAvgDictListMatch {
+  data?: any[]
+  day?: any[]
+  deprecated?: boolean
+}
 
 export interface Frequency {
   data: any[]
@@ -27,7 +35,11 @@ export interface Frequency {
   unix_second?: any
 }
 
-export type FrequencyListMatch = Partial<Frequency>
+export interface FrequencyListMatch {
+  data?: any[]
+  deprecated?: boolean
+  unix_second?: any
+}
 
 export interface InstalledModel {
   deprecated: boolean
@@ -36,7 +48,12 @@ export interface InstalledModel {
   time: any[]
 }
 
-export type InstalledModelListMatch = Partial<InstalledModel>
+export interface InstalledModelListMatch {
+  deprecated?: boolean
+  last_update?: any
+  production_type?: any
+  time?: any[]
+}
 
 export interface Price {
   deprecated: boolean
@@ -46,7 +63,13 @@ export interface Price {
   unix_second?: any
 }
 
-export type PriceLoadMatch = Partial<Price>
+export interface PriceLoadMatch {
+  deprecated?: boolean
+  license_info?: string
+  price?: number
+  unit?: string
+  unix_second?: any
+}
 
 export interface ProductionModel {
   deprecated: boolean
@@ -54,7 +77,11 @@ export interface ProductionModel {
   unix_second?: any
 }
 
-export type ProductionModelLoadMatch = Partial<ProductionModel>
+export interface ProductionModelLoadMatch {
+  deprecated?: boolean
+  production_type?: any
+  unix_second?: any
+}
 
 export interface PublicPowerForecast {
   deprecated: boolean
@@ -64,7 +91,13 @@ export interface PublicPowerForecast {
   unix_second: any[]
 }
 
-export type PublicPowerForecastListMatch = Partial<PublicPowerForecast>
+export interface PublicPowerForecastListMatch {
+  deprecated?: boolean
+  forecast_type?: string
+  forecast_value?: any[]
+  production_type?: string
+  unix_second?: any[]
+}
 
 export interface RenShareModel {
   deprecated: boolean
@@ -76,7 +109,15 @@ export interface RenShareModel {
   wind_onshore_share?: any
 }
 
-export type RenShareModelListMatch = Partial<RenShareModel>
+export interface RenShareModelListMatch {
+  deprecated?: boolean
+  ren_share?: any[]
+  solar_share?: any
+  substitute?: boolean
+  unix_second?: any[]
+  wind_offshore_share?: any
+  wind_onshore_share?: any
+}
 
 export interface ShareModel {
   data?: any
@@ -85,7 +126,12 @@ export interface ShareModel {
   unix_second?: any
 }
 
-export type ShareModelLoadMatch = Partial<ShareModel>
+export interface ShareModelLoadMatch {
+  data?: any
+  deprecated?: boolean
+  forecast?: any
+  unix_second?: any
+}
 
 export interface TrafficModel {
   deprecated: boolean
@@ -95,5 +141,11 @@ export interface TrafficModel {
   unix_second: any[]
 }
 
-export type TrafficModelListMatch = Partial<TrafficModel>
+export interface TrafficModelListMatch {
+  deprecated?: boolean
+  share?: any[]
+  signal?: any[]
+  substitute?: boolean
+  unix_second?: any[]
+}
 

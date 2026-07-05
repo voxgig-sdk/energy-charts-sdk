@@ -4,6 +4,8 @@
 
 The PHP SDK for the EnergyCharts API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->CrossBorderModel()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,10 +36,41 @@ $client = new EnergyChartsSDK();
 ```php
 try {
     // load() returns the bare CrossBorderModel record (throws on error).
-    $crossbordermodel = $client->CrossBorderModel()->load(["id" => "example_id"]);
+    $crossbordermodel = $client->CrossBorderModel()->load();
     print_r($crossbordermodel);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $crossbordermodel = $client->CrossBorderModel()->load();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -61,7 +94,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -82,16 +118,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = EnergyChartsSDK::test([
-    "entity" => ["crossbordermodel" => ["test01" => ["id" => "test01"]]],
-]);
+$client = EnergyChartsSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$crossbordermodel = $client->CrossBorderModel()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$crossbordermodel = $client->CrossBorderModel()->load();
 print_r($crossbordermodel);
 ```
 
@@ -189,10 +222,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -371,15 +401,15 @@ Create an instance: `$cross_border_model = $client->CrossBorderModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `country` | `mixed` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `mixed` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare CrossBorderModel record (throws on error).
-$cross_border_model = $client->CrossBorderModel()->load(["id" => "cross_border_model_id"]);
+$cross_border_model = $client->CrossBorderModel()->load();
 ```
 
 
@@ -397,9 +427,9 @@ Create an instance: `$daily_avg_dict = $client->DailyAvgDict();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `day` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
+| `data` | `array` |  |
+| `day` | `array` |  |
+| `deprecated` | `bool` |  |
 
 #### Example: List
 
@@ -423,9 +453,9 @@ Create an instance: `$frequency = $client->Frequency();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ARRAY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `array` |  |
+| `deprecated` | `bool` |  |
+| `unix_second` | `mixed` |  |
 
 #### Example: List
 
@@ -449,10 +479,10 @@ Create an instance: `$installed_model = $client->InstalledModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `last_update` | ``$ANY`` |  |
-| `production_type` | ``$ANY`` |  |
-| `time` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `last_update` | `mixed` |  |
+| `production_type` | `mixed` |  |
+| `time` | `array` |  |
 
 #### Example: List
 
@@ -476,17 +506,17 @@ Create an instance: `$price = $client->Price();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `license_info` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `unit` | ``$STRING`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `license_info` | `string` |  |
+| `price` | `float` |  |
+| `unit` | `string` |  |
+| `unix_second` | `mixed` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Price record (throws on error).
-$price = $client->Price()->load(["id" => "price_id"]);
+$price = $client->Price()->load();
 ```
 
 
@@ -504,15 +534,15 @@ Create an instance: `$production_model = $client->ProductionModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `production_type` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `production_type` | `mixed` |  |
+| `unix_second` | `mixed` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare ProductionModel record (throws on error).
-$production_model = $client->ProductionModel()->load(["id" => "production_model_id"]);
+$production_model = $client->ProductionModel()->load();
 ```
 
 
@@ -530,11 +560,11 @@ Create an instance: `$public_power_forecast = $client->PublicPowerForecast();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast_type` | ``$STRING`` |  |
-| `forecast_value` | ``$ARRAY`` |  |
-| `production_type` | ``$STRING`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `forecast_type` | `string` |  |
+| `forecast_value` | `array` |  |
+| `production_type` | `string` |  |
+| `unix_second` | `array` |  |
 
 #### Example: List
 
@@ -558,13 +588,13 @@ Create an instance: `$ren_share_model = $client->RenShareModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `ren_share` | ``$ARRAY`` |  |
-| `solar_share` | ``$ANY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
-| `wind_offshore_share` | ``$ANY`` |  |
-| `wind_onshore_share` | ``$ANY`` |  |
+| `deprecated` | `bool` |  |
+| `ren_share` | `array` |  |
+| `solar_share` | `mixed` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `array` |  |
+| `wind_offshore_share` | `mixed` |  |
+| `wind_onshore_share` | `mixed` |  |
 
 #### Example: List
 
@@ -588,16 +618,16 @@ Create an instance: `$share_model = $client->ShareModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$ANY`` |  |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `forecast` | ``$ANY`` |  |
-| `unix_second` | ``$ANY`` |  |
+| `data` | `mixed` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `mixed` |  |
+| `unix_second` | `mixed` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare ShareModel record (throws on error).
-$share_model = $client->ShareModel()->load(["id" => "share_model_id"]);
+$share_model = $client->ShareModel()->load();
 ```
 
 
@@ -615,11 +645,11 @@ Create an instance: `$traffic_model = $client->TrafficModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` |  |
-| `share` | ``$ARRAY`` |  |
-| `signal` | ``$ARRAY`` |  |
-| `substitute` | ``$BOOLEAN`` |  |
-| `unix_second` | ``$ARRAY`` |  |
+| `deprecated` | `bool` |  |
+| `share` | `array` |  |
+| `signal` | `array` |  |
+| `substitute` | `bool` |  |
+| `unix_second` | `array` |  |
 
 #### Example: List
 
@@ -629,12 +659,16 @@ $traffic_models = $client->TrafficModel()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -651,8 +685,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -701,10 +736,10 @@ stores the returned data and match criteria internally.
 
 ```php
 $crossbordermodel = $client->CrossBorderModel();
-$crossbordermodel->load(["id" => "example_id"]);
+$crossbordermodel->load();
 
-// $crossbordermodel->dataGet() now returns the loaded crossbordermodel data
-// $crossbordermodel->matchGet() returns the last match criteria
+// $crossbordermodel->data_get() now returns the crossbordermodel data from the last load
+// $crossbordermodel->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

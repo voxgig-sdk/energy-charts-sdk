@@ -126,9 +126,9 @@ local cross_border_model = client:CrossBorderModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `country` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -137,7 +137,7 @@ local cross_border_model = client:CrossBorderModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CrossBorderModel():load({ id = "cross_border_model_id" })
+local result, err = client:CrossBorderModel():load()
 ```
 
 ### Common Methods
@@ -180,9 +180,9 @@ local daily_avg_dict = client:DailyAvgDict(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `day` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
+| `data` | `table` | Yes |  |
+| `day` | `table` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
 
 ### Operations
 
@@ -234,9 +234,9 @@ local frequency = client:Frequency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | Yes |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `table` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -288,10 +288,10 @@ local installed_model = client:InstalledModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `last_update` | ``$ANY`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `time` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `last_update` | `any` | Yes |  |
+| `production_type` | `any` | No |  |
+| `time` | `table` | Yes |  |
 
 ### Operations
 
@@ -343,11 +343,11 @@ local price = client:Price(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `license_info` | ``$STRING`` | Yes |  |
-| `price` | ``$NUMBER`` | No |  |
-| `unit` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `license_info` | `string` | Yes |  |
+| `price` | `number` | No |  |
+| `unit` | `string` | Yes |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -356,7 +356,7 @@ local price = client:Price(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Price():load({ id = "price_id" })
+local result, err = client:Price():load()
 ```
 
 ### Common Methods
@@ -399,9 +399,9 @@ local production_model = client:ProductionModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `production_type` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `production_type` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -410,7 +410,7 @@ local production_model = client:ProductionModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ProductionModel():load({ id = "production_model_id" })
+local result, err = client:ProductionModel():load()
 ```
 
 ### Common Methods
@@ -453,11 +453,11 @@ local public_power_forecast = client:PublicPowerForecast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast_type` | ``$STRING`` | Yes |  |
-| `forecast_value` | ``$ARRAY`` | Yes |  |
-| `production_type` | ``$STRING`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast_type` | `string` | Yes |  |
+| `forecast_value` | `table` | Yes |  |
+| `production_type` | `string` | Yes |  |
+| `unix_second` | `table` | Yes |  |
 
 ### Operations
 
@@ -509,13 +509,13 @@ local ren_share_model = client:RenShareModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `ren_share` | ``$ARRAY`` | Yes |  |
-| `solar_share` | ``$ANY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
-| `wind_offshore_share` | ``$ANY`` | No |  |
-| `wind_onshore_share` | ``$ANY`` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `ren_share` | `table` | Yes |  |
+| `solar_share` | `any` | No |  |
+| `substitute` | `boolean` | Yes |  |
+| `unix_second` | `table` | Yes |  |
+| `wind_offshore_share` | `any` | No |  |
+| `wind_onshore_share` | `any` | No |  |
 
 ### Operations
 
@@ -567,10 +567,10 @@ local share_model = client:ShareModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ANY`` | No |  |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `forecast` | ``$ANY`` | No |  |
-| `unix_second` | ``$ANY`` | No |  |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_second` | `any` | No |  |
 
 ### Operations
 
@@ -579,7 +579,7 @@ local share_model = client:ShareModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ShareModel():load({ id = "share_model_id" })
+local result, err = client:ShareModel():load()
 ```
 
 ### Common Methods
@@ -622,11 +622,11 @@ local traffic_model = client:TrafficModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `deprecated` | ``$BOOLEAN`` | Yes |  |
-| `share` | ``$ARRAY`` | Yes |  |
-| `signal` | ``$ARRAY`` | No |  |
-| `substitute` | ``$BOOLEAN`` | Yes |  |
-| `unix_second` | ``$ARRAY`` | Yes |  |
+| `deprecated` | `boolean` | Yes |  |
+| `share` | `table` | Yes |  |
+| `signal` | `table` | No |  |
+| `substitute` | `boolean` | Yes |  |
+| `unix_second` | `table` | Yes |  |
 
 ### Operations
 
