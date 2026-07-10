@@ -232,10 +232,10 @@ main: {
           url: "https://api.energy-charts.info"
         }
       ]
+      summary: "<h4>Timestamp Format Options</h4> <p>When specifying timestamps, you can choose from the following three formats:</p> <ol> <li><strong>ISO 8601 Format</strong>: <ul> <li>This format includes the full date and time, with an optional timezon…"
       termsOfService: "https://energy-charts.info/data-protection.html"
       title: "Energy-Charts API"
       version: "1.5"
+      website: "https://energy-charts.info"
     }
   }
-}
-

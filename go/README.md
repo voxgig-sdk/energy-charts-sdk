@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single crossbordermodel — the value is the loaded record.
-    crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
+    // Load a single crossBorderModel — the value is the loaded record.
+    crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(crossbordermodel)
+    fmt.Println(crossBorderModel)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-crossbordermodel, err := client.CrossBorderModel(nil).Load(
+crossBorderModel, err := client.CrossBorderModel(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(crossbordermodel) // the returned mock data
+fmt.Println(crossBorderModel) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -256,9 +256,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
+    crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // crossbordermodel is the returned record
+    // crossBorderModel is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -404,7 +404,7 @@ API path: `/signal`
 
 ### CrossBorderModel
 
-Create an instance: `cross_border_model := client.CrossBorderModel(nil)`
+Create an instance: `crossBorderModel := client.CrossBorderModel(nil)`
 
 #### Operations
 
@@ -423,17 +423,17 @@ Create an instance: `cross_border_model := client.CrossBorderModel(nil)`
 #### Example: Load
 
 ```go
-cross_border_model, err := client.CrossBorderModel(nil).Load(nil, nil)
+crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cross_border_model) // the loaded record
+fmt.Println(crossBorderModel) // the loaded record
 ```
 
 
 ### DailyAvgDict
 
-Create an instance: `daily_avg_dict := client.DailyAvgDict(nil)`
+Create an instance: `dailyAvgDict := client.DailyAvgDict(nil)`
 
 #### Operations
 
@@ -452,11 +452,11 @@ Create an instance: `daily_avg_dict := client.DailyAvgDict(nil)`
 #### Example: List
 
 ```go
-daily_avg_dicts, err := client.DailyAvgDict(nil).List(nil, nil)
+dailyAvgDicts, err := client.DailyAvgDict(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(daily_avg_dicts) // the array of records
+fmt.Println(dailyAvgDicts) // the array of records
 ```
 
 
@@ -491,7 +491,7 @@ fmt.Println(frequencys) // the array of records
 
 ### InstalledModel
 
-Create an instance: `installed_model := client.InstalledModel(nil)`
+Create an instance: `installedModel := client.InstalledModel(nil)`
 
 #### Operations
 
@@ -511,11 +511,11 @@ Create an instance: `installed_model := client.InstalledModel(nil)`
 #### Example: List
 
 ```go
-installed_models, err := client.InstalledModel(nil).List(nil, nil)
+installedModels, err := client.InstalledModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(installed_models) // the array of records
+fmt.Println(installedModels) // the array of records
 ```
 
 
@@ -552,7 +552,7 @@ fmt.Println(price) // the loaded record
 
 ### ProductionModel
 
-Create an instance: `production_model := client.ProductionModel(nil)`
+Create an instance: `productionModel := client.ProductionModel(nil)`
 
 #### Operations
 
@@ -571,17 +571,17 @@ Create an instance: `production_model := client.ProductionModel(nil)`
 #### Example: Load
 
 ```go
-production_model, err := client.ProductionModel(nil).Load(nil, nil)
+productionModel, err := client.ProductionModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(production_model) // the loaded record
+fmt.Println(productionModel) // the loaded record
 ```
 
 
 ### PublicPowerForecast
 
-Create an instance: `public_power_forecast := client.PublicPowerForecast(nil)`
+Create an instance: `publicPowerForecast := client.PublicPowerForecast(nil)`
 
 #### Operations
 
@@ -602,17 +602,17 @@ Create an instance: `public_power_forecast := client.PublicPowerForecast(nil)`
 #### Example: List
 
 ```go
-public_power_forecasts, err := client.PublicPowerForecast(nil).List(nil, nil)
+publicPowerForecasts, err := client.PublicPowerForecast(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(public_power_forecasts) // the array of records
+fmt.Println(publicPowerForecasts) // the array of records
 ```
 
 
 ### RenShareModel
 
-Create an instance: `ren_share_model := client.RenShareModel(nil)`
+Create an instance: `renShareModel := client.RenShareModel(nil)`
 
 #### Operations
 
@@ -635,17 +635,17 @@ Create an instance: `ren_share_model := client.RenShareModel(nil)`
 #### Example: List
 
 ```go
-ren_share_models, err := client.RenShareModel(nil).List(nil, nil)
+renShareModels, err := client.RenShareModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(ren_share_models) // the array of records
+fmt.Println(renShareModels) // the array of records
 ```
 
 
 ### ShareModel
 
-Create an instance: `share_model := client.ShareModel(nil)`
+Create an instance: `shareModel := client.ShareModel(nil)`
 
 #### Operations
 
@@ -665,17 +665,17 @@ Create an instance: `share_model := client.ShareModel(nil)`
 #### Example: Load
 
 ```go
-share_model, err := client.ShareModel(nil).Load(nil, nil)
+shareModel, err := client.ShareModel(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(share_model) // the loaded record
+fmt.Println(shareModel) // the loaded record
 ```
 
 
 ### TrafficModel
 
-Create an instance: `traffic_model := client.TrafficModel(nil)`
+Create an instance: `trafficModel := client.TrafficModel(nil)`
 
 #### Operations
 
@@ -696,11 +696,11 @@ Create an instance: `traffic_model := client.TrafficModel(nil)`
 #### Example: List
 
 ```go
-traffic_models, err := client.TrafficModel(nil).List(nil, nil)
+trafficModels, err := client.TrafficModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(traffic_models) // the array of records
+fmt.Println(trafficModels) // the array of records
 ```
 
 

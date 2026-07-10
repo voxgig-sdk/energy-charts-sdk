@@ -126,7 +126,8 @@ same parameters as `Direct()`.
 ## CrossBorderModelEntity
 
 ```go
-cross_border_model := client.CrossBorderModel(nil)
+crossBorderModel := client.CrossBorderModel(nil)
+fmt.Println(crossBorderModel.GetName()) // "cross_border_model"
 ```
 
 ### Fields
@@ -145,6 +146,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.CrossBorderModel(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -174,7 +179,8 @@ Return the entity name.
 ## DailyAvgDictEntity
 
 ```go
-daily_avg_dict := client.DailyAvgDict(nil)
+dailyAvgDict := client.DailyAvgDict(nil)
+fmt.Println(dailyAvgDict.GetName()) // "daily_avg_dict"
 ```
 
 ### Fields
@@ -193,6 +199,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.DailyAvgDict(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -223,6 +233,7 @@ Return the entity name.
 
 ```go
 frequency := client.Frequency(nil)
+fmt.Println(frequency.GetName()) // "frequency"
 ```
 
 ### Fields
@@ -241,6 +252,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Frequency(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -270,7 +285,8 @@ Return the entity name.
 ## InstalledModelEntity
 
 ```go
-installed_model := client.InstalledModel(nil)
+installedModel := client.InstalledModel(nil)
+fmt.Println(installedModel.GetName()) // "installed_model"
 ```
 
 ### Fields
@@ -290,6 +306,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.InstalledModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -320,6 +340,7 @@ Return the entity name.
 
 ```go
 price := client.Price(nil)
+fmt.Println(price.GetName()) // "price"
 ```
 
 ### Fields
@@ -340,6 +361,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Price(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -369,7 +394,8 @@ Return the entity name.
 ## ProductionModelEntity
 
 ```go
-production_model := client.ProductionModel(nil)
+productionModel := client.ProductionModel(nil)
+fmt.Println(productionModel.GetName()) // "production_model"
 ```
 
 ### Fields
@@ -388,6 +414,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.ProductionModel(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -417,7 +447,8 @@ Return the entity name.
 ## PublicPowerForecastEntity
 
 ```go
-public_power_forecast := client.PublicPowerForecast(nil)
+publicPowerForecast := client.PublicPowerForecast(nil)
+fmt.Println(publicPowerForecast.GetName()) // "public_power_forecast"
 ```
 
 ### Fields
@@ -438,6 +469,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.PublicPowerForecast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -467,7 +502,8 @@ Return the entity name.
 ## RenShareModelEntity
 
 ```go
-ren_share_model := client.RenShareModel(nil)
+renShareModel := client.RenShareModel(nil)
+fmt.Println(renShareModel.GetName()) // "ren_share_model"
 ```
 
 ### Fields
@@ -490,6 +526,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.RenShareModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -519,7 +559,8 @@ Return the entity name.
 ## ShareModelEntity
 
 ```go
-share_model := client.ShareModel(nil)
+shareModel := client.ShareModel(nil)
+fmt.Println(shareModel.GetName()) // "share_model"
 ```
 
 ### Fields
@@ -539,6 +580,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.ShareModel(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -568,7 +613,8 @@ Return the entity name.
 ## TrafficModelEntity
 
 ```go
-traffic_model := client.TrafficModel(nil)
+trafficModel := client.TrafficModel(nil)
+fmt.Println(trafficModel.GetName()) // "traffic_model"
 ```
 
 ### Fields
@@ -589,6 +635,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.TrafficModel(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

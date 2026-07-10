@@ -1,0 +1,12 @@
+# Entity Models
+
+@"cross_border_model.aontu"
+@"daily_avg_dict.aontu"
+@"frequency.aontu"
+@"installed_model.aontu"
+@"price.aontu"
+@"production_model.aontu"
+@"public_power_forecast.aontu"
+@"ren_share_model.aontu"
+@"share_model.aontu"
+@"traffic_model.aontu"
