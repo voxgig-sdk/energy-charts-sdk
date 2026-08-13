@@ -21,7 +21,7 @@ main: kit: entity: share_model: {
       type: "`$ANY`"
     }
     {
-      name: "unix_second"
+      name: "unix_seconds"
       req: false
       type: "`$ANY`"
     }

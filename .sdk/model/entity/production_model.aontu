@@ -11,12 +11,12 @@ main: kit: entity: production_model: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "production_type"
+      name: "production_types"
       req: false
       type: "`$ANY`"
     }
     {
-      name: "unix_second"
+      name: "unix_seconds"
       req: false
       type: "`$ANY`"
     }

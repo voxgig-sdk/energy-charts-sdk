@@ -35,7 +35,7 @@ $client = new EnergyChartsSDK();
 
 ```php
 try {
-    // load() returns the bare CrossBorderModel record (throws on error).
+    // load() returns the ENTITY — call data_get() for the CrossBorderModel record (throws on error).
     $crossbordermodel = $client->CrossBorderModel()->load();
     print_r($crossbordermodel);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $crossbordermodel = $client->CrossBorderModel()->load();
+    $installedmodels = $client->InstalledModel()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = EnergyChartsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$crossbordermodel = $client->CrossBorderModel()->load();
-print_r($crossbordermodel);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$installedmodel = $client->InstalledModel()->list();
+print_r($installedmodel);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +233,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -254,9 +255,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
+| `countries` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -267,7 +268,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `day` |  |
+| `days` |  |
 | `deprecated` |  |
 
 Operations: List.
@@ -280,7 +281,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `data` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -292,7 +293,7 @@ API path: `/frequency`
 | --- | --- |
 | `deprecated` |  |
 | `last_update` |  |
-| `production_type` |  |
+| `production_types` |  |
 | `time` |  |
 
 Operations: List.
@@ -307,7 +308,7 @@ API path: `/installed_power`
 | `license_info` |  |
 | `price` |  |
 | `unit` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -318,8 +319,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `deprecated` |  |
-| `production_type` |  |
-| `unix_second` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -331,9 +332,9 @@ API path: `/public_power`
 | --- | --- |
 | `deprecated` |  |
 | `forecast_type` |  |
-| `forecast_value` |  |
+| `forecast_values` |  |
 | `production_type` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -347,7 +348,7 @@ API path: `/public_power_forecast`
 | `ren_share` |  |
 | `solar_share` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 | `wind_offshore_share` |  |
 | `wind_onshore_share` |  |
 
@@ -362,7 +363,7 @@ API path: `/ren_share_forecast`
 | `data` |  |
 | `deprecated` |  |
 | `forecast` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -376,7 +377,7 @@ API path: `/solar_share`
 | `share` |  |
 | `signal` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -401,14 +402,14 @@ Create an instance: `$cross_border_model = $client->CrossBorderModel();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `mixed` |  |
+| `countries` | `mixed` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare CrossBorderModel record (throws on error).
+// load() returns the ENTITY — call data_get() for the CrossBorderModel record (throws on error).
 $cross_border_model = $client->CrossBorderModel()->load();
 ```
 
@@ -428,7 +429,7 @@ Create an instance: `$daily_avg_dict = $client->DailyAvgDict();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `array` |  |
-| `day` | `array` |  |
+| `days` | `array` |  |
 | `deprecated` | `bool` |  |
 
 #### Example: List
@@ -455,7 +456,7 @@ Create an instance: `$frequency = $client->Frequency();`
 | --- | --- | --- |
 | `data` | `array` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
 
 #### Example: List
 
@@ -481,7 +482,7 @@ Create an instance: `$installed_model = $client->InstalledModel();`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `last_update` | `mixed` |  |
-| `production_type` | `mixed` |  |
+| `production_types` | `mixed` |  |
 | `time` | `array` |  |
 
 #### Example: List
@@ -510,12 +511,12 @@ Create an instance: `$price = $client->Price();`
 | `license_info` | `string` |  |
 | `price` | `float` |  |
 | `unit` | `string` |  |
-| `unix_second` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Price record (throws on error).
+// load() returns the ENTITY — call data_get() for the Price record (throws on error).
 $price = $client->Price()->load();
 ```
 
@@ -535,13 +536,13 @@ Create an instance: `$production_model = $client->ProductionModel();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
-| `production_type` | `mixed` |  |
-| `unix_second` | `mixed` |  |
+| `production_types` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ProductionModel record (throws on error).
+// load() returns the ENTITY — call data_get() for the ProductionModel record (throws on error).
 $production_model = $client->ProductionModel()->load();
 ```
 
@@ -562,9 +563,9 @@ Create an instance: `$public_power_forecast = $client->PublicPowerForecast();`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `forecast_type` | `string` |  |
-| `forecast_value` | `array` |  |
+| `forecast_values` | `array` |  |
 | `production_type` | `string` |  |
-| `unix_second` | `array` |  |
+| `unix_seconds` | `array` |  |
 
 #### Example: List
 
@@ -592,7 +593,7 @@ Create an instance: `$ren_share_model = $client->RenShareModel();`
 | `ren_share` | `array` |  |
 | `solar_share` | `mixed` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `array` |  |
+| `unix_seconds` | `array` |  |
 | `wind_offshore_share` | `mixed` |  |
 | `wind_onshore_share` | `mixed` |  |
 
@@ -621,12 +622,12 @@ Create an instance: `$share_model = $client->ShareModel();`
 | `data` | `mixed` |  |
 | `deprecated` | `bool` |  |
 | `forecast` | `mixed` |  |
-| `unix_second` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ShareModel record (throws on error).
+// load() returns the ENTITY — call data_get() for the ShareModel record (throws on error).
 $share_model = $client->ShareModel()->load();
 ```
 
@@ -649,7 +650,7 @@ Create an instance: `$traffic_model = $client->TrafficModel();`
 | `share` | `array` |  |
 | `signal` | `array` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `array` |  |
+| `unix_seconds` | `array` |  |
 
 #### Example: List
 
@@ -731,15 +732,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$crossbordermodel = $client->CrossBorderModel();
-$crossbordermodel->load();
+$installedmodel = $client->InstalledModel();
+$installedmodel->list();
 
-// $crossbordermodel->data_get() now returns the crossbordermodel data from the last load
-// $crossbordermodel->match_get() returns the last match criteria
+// $installedmodel->data_get() now returns the installedmodel data from the last list
+// $installedmodel->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

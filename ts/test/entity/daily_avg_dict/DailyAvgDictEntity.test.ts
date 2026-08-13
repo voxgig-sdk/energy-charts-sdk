@@ -26,8 +26,8 @@ import {
 describe('DailyAvgDictEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ENERGYCHARTS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ENERGYCHARTS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ENERGY_CHARTS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ENERGY_CHARTS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EnergyChartsSDK.test()
@@ -63,7 +63,7 @@ describe('DailyAvgDictEntity', async () => {
     const daily_avg_dict_ref01_ent = client.DailyAvgDict()
     const daily_avg_dict_ref01_match: any = {}
 
-    const daily_avg_dict_ref01_list = await daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match)
+    const daily_avg_dict_ref01_list = (await daily_avg_dict_ref01_ent.list(daily_avg_dict_ref01_match)).map((e: any) => e.data())
 
 
   })

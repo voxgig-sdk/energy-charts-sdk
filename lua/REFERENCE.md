@@ -126,9 +126,9 @@ local cross_border_model = client:CrossBorderModel(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `any` | No |  |
+| `countries` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -181,7 +181,7 @@ local daily_avg_dict = client:DailyAvgDict(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `table` | Yes |  |
-| `day` | `table` | Yes |  |
+| `days` | `table` | Yes |  |
 | `deprecated` | `boolean` | Yes |  |
 
 ### Operations
@@ -236,7 +236,7 @@ local frequency = client:Frequency(nil)
 | --- | --- | --- | --- |
 | `data` | `table` | Yes |  |
 | `deprecated` | `boolean` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -290,7 +290,7 @@ local installed_model = client:InstalledModel(nil)
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `last_update` | `any` | Yes |  |
-| `production_type` | `any` | No |  |
+| `production_types` | `any` | No |  |
 | `time` | `table` | Yes |  |
 
 ### Operations
@@ -347,7 +347,7 @@ local price = client:Price(nil)
 | `license_info` | `string` | Yes |  |
 | `price` | `number` | No |  |
 | `unit` | `string` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -400,8 +400,8 @@ local production_model = client:ProductionModel(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
-| `production_type` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -455,9 +455,9 @@ local public_power_forecast = client:PublicPowerForecast(nil)
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `forecast_type` | `string` | Yes |  |
-| `forecast_value` | `table` | Yes |  |
+| `forecast_values` | `table` | Yes |  |
 | `production_type` | `string` | Yes |  |
-| `unix_second` | `table` | Yes |  |
+| `unix_seconds` | `table` | Yes |  |
 
 ### Operations
 
@@ -513,7 +513,7 @@ local ren_share_model = client:RenShareModel(nil)
 | `ren_share` | `table` | Yes |  |
 | `solar_share` | `any` | No |  |
 | `substitute` | `boolean` | Yes |  |
-| `unix_second` | `table` | Yes |  |
+| `unix_seconds` | `table` | Yes |  |
 | `wind_offshore_share` | `any` | No |  |
 | `wind_onshore_share` | `any` | No |  |
 
@@ -570,7 +570,7 @@ local share_model = client:ShareModel(nil)
 | `data` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
 | `forecast` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -626,7 +626,7 @@ local traffic_model = client:TrafficModel(nil)
 | `share` | `table` | Yes |  |
 | `signal` | `table` | No |  |
 | `substitute` | `boolean` | Yes |  |
-| `unix_second` | `table` | Yes |  |
+| `unix_seconds` | `table` | Yes |  |
 
 ### Operations
 

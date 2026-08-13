@@ -26,8 +26,8 @@ import {
 describe('ShareModelEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ENERGYCHARTS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ENERGYCHARTS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ENERGY_CHARTS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ENERGY_CHARTS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EnergyChartsSDK.test()
@@ -62,7 +62,7 @@ describe('ShareModelEntity', async () => {
     // LOAD
     const share_model_ref01_ent = client.ShareModel()
     const share_model_ref01_match_dt0: any = {}
-    const share_model_ref01_data_dt0 = await share_model_ref01_ent.load(share_model_ref01_match_dt0)
+    const share_model_ref01_data_dt0 = (await share_model_ref01_ent.load(share_model_ref01_match_dt0)).data()
     assert(null != share_model_ref01_data_dt0)
 
 

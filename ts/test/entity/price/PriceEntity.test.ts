@@ -26,8 +26,8 @@ import {
 describe('PriceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ENERGYCHARTS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ENERGYCHARTS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ENERGY_CHARTS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ENERGY_CHARTS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EnergyChartsSDK.test()
@@ -62,7 +62,7 @@ describe('PriceEntity', async () => {
     // LOAD
     const price_ref01_ent = client.Price()
     const price_ref01_match_dt0: any = {}
-    const price_ref01_data_dt0 = await price_ref01_ent.load(price_ref01_match_dt0)
+    const price_ref01_data_dt0 = (await price_ref01_ent.load(price_ref01_match_dt0)).data()
     assert(null != price_ref01_data_dt0)
 
 

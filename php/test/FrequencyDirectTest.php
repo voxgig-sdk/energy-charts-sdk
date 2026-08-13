@@ -66,11 +66,11 @@ function frequency_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "ENERGYCHARTS_TEST_FREQUENCY_ENTID" => [],
-        "ENERGYCHARTS_TEST_LIVE" => "FALSE",
+        "ENERGY_CHARTS_TEST_FREQUENCY_ENTID" => [],
+        "ENERGY_CHARTS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["ENERGYCHARTS_TEST_LIVE"] === "TRUE";
+    $live = $env["ENERGY_CHARTS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

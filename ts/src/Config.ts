@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'EnergyCharts',
   }
 
 
@@ -83,7 +83,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "country",
+          "name": "countries",
           "req": false,
           "type": "`$ANY`",
           "index$": 0
@@ -97,7 +97,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": false,
           "type": "`$ANY`",
           "index$": 2
@@ -142,6 +142,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/cbet",
               "parts": [
@@ -193,6 +194,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/cbpf",
               "parts": [
@@ -230,7 +232,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "day",
+          "name": "days",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 1
@@ -273,6 +275,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ren_share_daily_avg",
               "parts": [
@@ -314,6 +317,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/solar_share_daily_avg",
               "parts": [
@@ -355,6 +359,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/wind_offshore_share_daily_avg",
               "parts": [
@@ -396,6 +401,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/wind_onshore_share_daily_avg",
               "parts": [
@@ -439,7 +445,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": false,
           "type": "`$ANY`",
           "index$": 2
@@ -484,6 +490,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/frequency",
               "parts": [
@@ -528,7 +535,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "production_type",
+          "name": "production_types",
           "req": false,
           "type": "`$ANY`",
           "index$": 2
@@ -580,6 +587,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/installed_power",
               "parts": [
@@ -638,7 +646,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": false,
           "type": "`$ANY`",
           "index$": 4
@@ -683,6 +691,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/price",
               "parts": [
@@ -720,14 +729,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "production_type",
+          "name": "production_types",
           "req": false,
           "type": "`$ANY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": false,
           "type": "`$ANY`",
           "index$": 2
@@ -781,6 +790,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/public_power",
               "parts": [
@@ -833,6 +843,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/total_power",
               "parts": [
@@ -877,7 +888,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "forecast_value",
+          "name": "forecast_values",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 2
@@ -891,7 +902,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 4
@@ -954,6 +965,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/public_power_forecast",
               "parts": [
@@ -1014,7 +1026,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 4
@@ -1055,6 +1067,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ren_share_forecast",
               "parts": [
@@ -1104,7 +1117,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": false,
           "type": "`$ANY`",
           "index$": 3
@@ -1131,6 +1144,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/solar_share",
               "parts": [
@@ -1162,6 +1176,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/wind_offshore_share",
               "parts": [
@@ -1193,6 +1208,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/wind_onshore_share",
               "parts": [
@@ -1249,7 +1265,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "unix_second",
+          "name": "unix_seconds",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 4
@@ -1285,6 +1301,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/signal",
               "parts": [

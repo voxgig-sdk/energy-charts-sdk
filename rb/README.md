@@ -34,7 +34,7 @@ client = EnergyChartsSDK.new
 
 ```ruby
 begin
-  # load returns the bare CrossBorderModel record (raises on error).
+  # load returns the ENTITY — call data_get for the CrossBorderModel record (raises on error).
   crossbordermodel = client.CrossBorderModel.load()
   puts crossbordermodel
 rescue => err
@@ -49,9 +49,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  crossbordermodel = client.CrossBorderModel.load()
+  installedmodels = client.InstalledModel.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -117,9 +117,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = EnergyChartsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-crossbordermodel = client.CrossBorderModel.load()
-puts crossbordermodel
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+installedmodel = client.InstalledModel.list()
+puts installedmodel
 ```
 
 ### Use a custom fetch function
@@ -244,9 +245,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
+| `countries` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -257,7 +258,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `day` |  |
+| `days` |  |
 | `deprecated` |  |
 
 Operations: List.
@@ -270,7 +271,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `data` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -282,7 +283,7 @@ API path: `/frequency`
 | --- | --- |
 | `deprecated` |  |
 | `last_update` |  |
-| `production_type` |  |
+| `production_types` |  |
 | `time` |  |
 
 Operations: List.
@@ -297,7 +298,7 @@ API path: `/installed_power`
 | `license_info` |  |
 | `price` |  |
 | `unit` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -308,8 +309,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `deprecated` |  |
-| `production_type` |  |
-| `unix_second` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -321,9 +322,9 @@ API path: `/public_power`
 | --- | --- |
 | `deprecated` |  |
 | `forecast_type` |  |
-| `forecast_value` |  |
+| `forecast_values` |  |
 | `production_type` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -337,7 +338,7 @@ API path: `/public_power_forecast`
 | `ren_share` |  |
 | `solar_share` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 | `wind_offshore_share` |  |
 | `wind_onshore_share` |  |
 
@@ -352,7 +353,7 @@ API path: `/ren_share_forecast`
 | `data` |  |
 | `deprecated` |  |
 | `forecast` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -366,7 +367,7 @@ API path: `/solar_share`
 | `share` |  |
 | `signal` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -391,14 +392,14 @@ Create an instance: `cross_border_model = client.CrossBorderModel`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `Object` |  |
+| `countries` | `Object` |  |
 | `deprecated` | `Boolean` |  |
-| `unix_second` | `Object` |  |
+| `unix_seconds` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare CrossBorderModel record (raises on error).
+# load returns the ENTITY — call data_get for the CrossBorderModel record (raises on error).
 cross_border_model = client.CrossBorderModel.load()
 ```
 
@@ -418,7 +419,7 @@ Create an instance: `daily_avg_dict = client.DailyAvgDict`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Array` |  |
-| `day` | `Array` |  |
+| `days` | `Array` |  |
 | `deprecated` | `Boolean` |  |
 
 #### Example: List
@@ -445,7 +446,7 @@ Create an instance: `frequency = client.Frequency`
 | --- | --- | --- |
 | `data` | `Array` |  |
 | `deprecated` | `Boolean` |  |
-| `unix_second` | `Object` |  |
+| `unix_seconds` | `Object` |  |
 
 #### Example: List
 
@@ -471,7 +472,7 @@ Create an instance: `installed_model = client.InstalledModel`
 | --- | --- | --- |
 | `deprecated` | `Boolean` |  |
 | `last_update` | `Object` |  |
-| `production_type` | `Object` |  |
+| `production_types` | `Object` |  |
 | `time` | `Array` |  |
 
 #### Example: List
@@ -500,12 +501,12 @@ Create an instance: `price = client.Price`
 | `license_info` | `String` |  |
 | `price` | `Float` |  |
 | `unit` | `String` |  |
-| `unix_second` | `Object` |  |
+| `unix_seconds` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Price record (raises on error).
+# load returns the ENTITY — call data_get for the Price record (raises on error).
 price = client.Price.load()
 ```
 
@@ -525,13 +526,13 @@ Create an instance: `production_model = client.ProductionModel`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `Boolean` |  |
-| `production_type` | `Object` |  |
-| `unix_second` | `Object` |  |
+| `production_types` | `Object` |  |
+| `unix_seconds` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ProductionModel record (raises on error).
+# load returns the ENTITY — call data_get for the ProductionModel record (raises on error).
 production_model = client.ProductionModel.load()
 ```
 
@@ -552,9 +553,9 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast`
 | --- | --- | --- |
 | `deprecated` | `Boolean` |  |
 | `forecast_type` | `String` |  |
-| `forecast_value` | `Array` |  |
+| `forecast_values` | `Array` |  |
 | `production_type` | `String` |  |
-| `unix_second` | `Array` |  |
+| `unix_seconds` | `Array` |  |
 
 #### Example: List
 
@@ -582,7 +583,7 @@ Create an instance: `ren_share_model = client.RenShareModel`
 | `ren_share` | `Array` |  |
 | `solar_share` | `Object` |  |
 | `substitute` | `Boolean` |  |
-| `unix_second` | `Array` |  |
+| `unix_seconds` | `Array` |  |
 | `wind_offshore_share` | `Object` |  |
 | `wind_onshore_share` | `Object` |  |
 
@@ -611,12 +612,12 @@ Create an instance: `share_model = client.ShareModel`
 | `data` | `Object` |  |
 | `deprecated` | `Boolean` |  |
 | `forecast` | `Object` |  |
-| `unix_second` | `Object` |  |
+| `unix_seconds` | `Object` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ShareModel record (raises on error).
+# load returns the ENTITY — call data_get for the ShareModel record (raises on error).
 share_model = client.ShareModel.load()
 ```
 
@@ -639,7 +640,7 @@ Create an instance: `traffic_model = client.TrafficModel`
 | `share` | `Array` |  |
 | `signal` | `Array` |  |
 | `substitute` | `Boolean` |  |
-| `unix_second` | `Array` |  |
+| `unix_seconds` | `Array` |  |
 
 #### Example: List
 
@@ -721,15 +722,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-crossbordermodel = client.CrossBorderModel
-crossbordermodel.load()
+installedmodel = client.InstalledModel
+installedmodel.list()
 
-# crossbordermodel.data_get now returns the crossbordermodel data from the last load
-# crossbordermodel.match_get returns the last match criteria
+# installedmodel.data_get now returns the installedmodel data from the last list
+# installedmodel.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

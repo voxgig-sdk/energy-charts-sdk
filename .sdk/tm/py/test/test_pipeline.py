@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import EnergyChartsSDK
-from core.error import EnergyChartsError
-from core.result import EnergyChartsResult
-from core.response import EnergyChartsResponse
-from core.spec import EnergyChartsSpec
-from feature.base_feature import EnergyChartsBaseFeature
+from projectname_sdk.core.error import EnergyChartsError
+from projectname_sdk.core.result import EnergyChartsResult
+from projectname_sdk.core.response import EnergyChartsResponse
+from projectname_sdk.core.spec import EnergyChartsSpec
+from projectname_sdk.feature.base_feature import EnergyChartsBaseFeature
 
 
 def _client():

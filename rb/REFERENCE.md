@@ -129,9 +129,9 @@ cross_border_model = client.CrossBorderModel
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `Object` | No |  |
+| `countries` | `Object` | No |  |
 | `deprecated` | `Boolean` | Yes |  |
-| `unix_second` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
@@ -184,7 +184,7 @@ daily_avg_dict = client.DailyAvgDict
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `Array` | Yes |  |
-| `day` | `Array` | Yes |  |
+| `days` | `Array` | Yes |  |
 | `deprecated` | `Boolean` | Yes |  |
 
 ### Operations
@@ -239,7 +239,7 @@ frequency = client.Frequency
 | --- | --- | --- | --- |
 | `data` | `Array` | Yes |  |
 | `deprecated` | `Boolean` | Yes |  |
-| `unix_second` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
@@ -293,7 +293,7 @@ installed_model = client.InstalledModel
 | --- | --- | --- | --- |
 | `deprecated` | `Boolean` | Yes |  |
 | `last_update` | `Object` | Yes |  |
-| `production_type` | `Object` | No |  |
+| `production_types` | `Object` | No |  |
 | `time` | `Array` | Yes |  |
 
 ### Operations
@@ -350,7 +350,7 @@ price = client.Price
 | `license_info` | `String` | Yes |  |
 | `price` | `Float` | No |  |
 | `unit` | `String` | Yes |  |
-| `unix_second` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
@@ -403,8 +403,8 @@ production_model = client.ProductionModel
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `Boolean` | Yes |  |
-| `production_type` | `Object` | No |  |
-| `unix_second` | `Object` | No |  |
+| `production_types` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
@@ -458,9 +458,9 @@ public_power_forecast = client.PublicPowerForecast
 | --- | --- | --- | --- |
 | `deprecated` | `Boolean` | Yes |  |
 | `forecast_type` | `String` | Yes |  |
-| `forecast_value` | `Array` | Yes |  |
+| `forecast_values` | `Array` | Yes |  |
 | `production_type` | `String` | Yes |  |
-| `unix_second` | `Array` | Yes |  |
+| `unix_seconds` | `Array` | Yes |  |
 
 ### Operations
 
@@ -516,7 +516,7 @@ ren_share_model = client.RenShareModel
 | `ren_share` | `Array` | Yes |  |
 | `solar_share` | `Object` | No |  |
 | `substitute` | `Boolean` | Yes |  |
-| `unix_second` | `Array` | Yes |  |
+| `unix_seconds` | `Array` | Yes |  |
 | `wind_offshore_share` | `Object` | No |  |
 | `wind_onshore_share` | `Object` | No |  |
 
@@ -573,7 +573,7 @@ share_model = client.ShareModel
 | `data` | `Object` | No |  |
 | `deprecated` | `Boolean` | Yes |  |
 | `forecast` | `Object` | No |  |
-| `unix_second` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
@@ -629,7 +629,7 @@ traffic_model = client.TrafficModel
 | `share` | `Array` | Yes |  |
 | `signal` | `Array` | No |  |
 | `substitute` | `Boolean` | Yes |  |
-| `unix_second` | `Array` | Yes |  |
+| `unix_seconds` | `Array` | Yes |  |
 
 ### Operations
 

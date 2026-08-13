@@ -59,11 +59,11 @@ def price_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "ENERGYCHARTS_TEST_PRICE_ENTID" => {},
-    "ENERGYCHARTS_TEST_LIVE" => "FALSE",
+    "ENERGY_CHARTS_TEST_PRICE_ENTID" => {},
+    "ENERGY_CHARTS_TEST_LIVE" => "FALSE",
   })
 
-  live = env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
+  live = env["ENERGY_CHARTS_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = EnergyChartsSDK.test()
-const crossbordermodel = await client.CrossBorderModel().load()
-// crossbordermodel is a bare CrossBorderModel populated with mock data
-console.log(crossbordermodel)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = EnergyChartsSDK.test({
+  entity: {
+    installed_model: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const installedmodels = await client.InstalledModel().list()
+// installedmodels is an array of InstalledModel entities, populated with mock data
+// — call installedmodels[0].data() for the record itself
+console.log(installedmodels)
 ```
 
 ### Python
 
 ```python
 client = EnergyChartsSDK.test()
-crossbordermodel = client.CrossBorderModel().load()
-print(crossbordermodel)
+installedmodels = client.InstalledModel().list()
+print(installedmodels)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(crossbordermodel)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = EnergyChartsSDK::test([
-    "entity" => ["crossbordermodel" => ["test01" => []]],
+    "entity" => ["installedmodel" => ["test01" => []]],
 ]);
-$crossbordermodel = $client->CrossBorderModel()->load();
+$installedmodels = $client->InstalledModel()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.CrossBorderModel(nil).Load(
+result, err := client.InstalledModel(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.CrossBorderModel(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = EnergyChartsSDK.test({
-  "entity" => { "crossbordermodel" => { "test01" => {} } },
+  "entity" => { "installedmodel" => { "test01" => {} } },
 })
-crossbordermodel = client.CrossBorderModel.load()
+installedmodels = client.InstalledModel.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:CrossBorderModel():load()
+local results, err = client:InstalledModel():list()
 ```
 
 ## Packages
@@ -191,7 +200,7 @@ require_once 'energycharts_sdk.php';
 $client = new EnergyChartsSDK();
 
 
-// Load a specific crossbordermodel (returns the bare record; throws on error)
+// Load a specific crossbordermodel (returns the ENTITY; call data_get() for the record; throws on error)
 $crossbordermodel = $client->CrossBorderModel()->load();
 print_r($crossbordermodel);
 ```
@@ -219,7 +228,7 @@ require_relative "EnergyCharts_sdk"
 client = EnergyChartsSDK.new
 
 
-# Load a specific crossbordermodel (returns the bare record; raises on error)
+# Load a specific crossbordermodel (returns the ENTITY; call data_get for the record)
 crossbordermodel = client.CrossBorderModel.load()
 puts crossbordermodel
 ```
@@ -353,6 +362,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://energy-charts.info/contact.html](https://energy-charts.info/contact.html)
 

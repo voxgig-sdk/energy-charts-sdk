@@ -26,8 +26,8 @@ import {
 describe('PublicPowerForecastEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ENERGYCHARTS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ENERGYCHARTS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ENERGY_CHARTS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ENERGY_CHARTS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EnergyChartsSDK.test()
@@ -63,7 +63,7 @@ describe('PublicPowerForecastEntity', async () => {
     const public_power_forecast_ref01_ent = client.PublicPowerForecast()
     const public_power_forecast_ref01_match: any = {}
 
-    const public_power_forecast_ref01_list = await public_power_forecast_ref01_ent.list(public_power_forecast_ref01_match)
+    const public_power_forecast_ref01_list = (await public_power_forecast_ref01_ent.list(public_power_forecast_ref01_match)).map((e: any) => e.data())
 
 
   })

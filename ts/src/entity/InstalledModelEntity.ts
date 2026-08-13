@@ -37,7 +37,7 @@ class InstalledModelEntity extends EnergyChartsEntityBase<InstalledModel> {
 
 
 
-  async list(this: any, reqmatch?: InstalledModelListMatch, ctrl?: Control): Promise<InstalledModel[]> {
+  async list(this: any, reqmatch?: InstalledModelListMatch, ctrl?: Control): Promise<InstalledModelEntity[]> {
 
     const utility = this._utility
 

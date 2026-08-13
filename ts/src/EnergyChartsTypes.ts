@@ -6,52 +6,52 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface CrossBorderModel {
-  country?: any
+  countries?: any
   deprecated: boolean
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface CrossBorderModelLoadMatch {
-  country?: any
+  countries?: any
   deprecated?: boolean
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface DailyAvgDict {
   data: any[]
-  day: any[]
+  days: any[]
   deprecated: boolean
 }
 
 export interface DailyAvgDictListMatch {
   data?: any[]
-  day?: any[]
+  days?: any[]
   deprecated?: boolean
 }
 
 export interface Frequency {
   data: any[]
   deprecated: boolean
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface FrequencyListMatch {
   data?: any[]
   deprecated?: boolean
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface InstalledModel {
   deprecated: boolean
   last_update: any
-  production_type?: any
+  production_types?: any
   time: any[]
 }
 
 export interface InstalledModelListMatch {
   deprecated?: boolean
   last_update?: any
-  production_type?: any
+  production_types?: any
   time?: any[]
 }
 
@@ -60,7 +60,7 @@ export interface Price {
   license_info: string
   price?: number
   unit: string
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface PriceLoadMatch {
@@ -68,35 +68,35 @@ export interface PriceLoadMatch {
   license_info?: string
   price?: number
   unit?: string
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface ProductionModel {
   deprecated: boolean
-  production_type?: any
-  unix_second?: any
+  production_types?: any
+  unix_seconds?: any
 }
 
 export interface ProductionModelLoadMatch {
   deprecated?: boolean
-  production_type?: any
-  unix_second?: any
+  production_types?: any
+  unix_seconds?: any
 }
 
 export interface PublicPowerForecast {
   deprecated: boolean
   forecast_type: string
-  forecast_value: any[]
+  forecast_values: any[]
   production_type: string
-  unix_second: any[]
+  unix_seconds: any[]
 }
 
 export interface PublicPowerForecastListMatch {
   deprecated?: boolean
   forecast_type?: string
-  forecast_value?: any[]
+  forecast_values?: any[]
   production_type?: string
-  unix_second?: any[]
+  unix_seconds?: any[]
 }
 
 export interface RenShareModel {
@@ -104,7 +104,7 @@ export interface RenShareModel {
   ren_share: any[]
   solar_share?: any
   substitute: boolean
-  unix_second: any[]
+  unix_seconds: any[]
   wind_offshore_share?: any
   wind_onshore_share?: any
 }
@@ -114,7 +114,7 @@ export interface RenShareModelListMatch {
   ren_share?: any[]
   solar_share?: any
   substitute?: boolean
-  unix_second?: any[]
+  unix_seconds?: any[]
   wind_offshore_share?: any
   wind_onshore_share?: any
 }
@@ -123,14 +123,14 @@ export interface ShareModel {
   data?: any
   deprecated: boolean
   forecast?: any
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface ShareModelLoadMatch {
   data?: any
   deprecated?: boolean
   forecast?: any
-  unix_second?: any
+  unix_seconds?: any
 }
 
 export interface TrafficModel {
@@ -138,7 +138,7 @@ export interface TrafficModel {
   share: any[]
   signal?: any[]
   substitute: boolean
-  unix_second: any[]
+  unix_seconds: any[]
 }
 
 export interface TrafficModelListMatch {
@@ -146,6 +146,6 @@ export interface TrafficModelListMatch {
   share?: any[]
   signal?: any[]
   substitute?: boolean
-  unix_second?: any[]
+  unix_seconds?: any[]
 }
 

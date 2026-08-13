@@ -37,7 +37,7 @@ class FrequencyEntity extends EnergyChartsEntityBase<Frequency> {
 
 
 
-  async list(this: any, reqmatch?: FrequencyListMatch, ctrl?: Control): Promise<Frequency[]> {
+  async list(this: any, reqmatch?: FrequencyListMatch, ctrl?: Control): Promise<FrequencyEntity[]> {
 
     const utility = this._utility
 

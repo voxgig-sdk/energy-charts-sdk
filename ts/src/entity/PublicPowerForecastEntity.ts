@@ -37,7 +37,7 @@ class PublicPowerForecastEntity extends EnergyChartsEntityBase<PublicPowerForeca
 
 
 
-  async list(this: any, reqmatch?: PublicPowerForecastListMatch, ctrl?: Control): Promise<PublicPowerForecast[]> {
+  async list(this: any, reqmatch?: PublicPowerForecastListMatch, ctrl?: Control): Promise<PublicPowerForecastEntity[]> {
 
     const utility = this._utility
 

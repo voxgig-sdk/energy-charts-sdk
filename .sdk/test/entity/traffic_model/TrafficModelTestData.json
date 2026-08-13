@@ -6,21 +6,21 @@
         "share": [],
         "signal": [],
         "substitute": false,
-        "unix_second": []
+        "unix_seconds": []
       },
       "TRAFFIC_MODEL01": {
         "deprecated": true,
         "share": [],
         "signal": [],
         "substitute": false,
-        "unix_second": []
+        "unix_seconds": []
       },
       "TRAFFIC_MODEL02": {
         "deprecated": true,
         "share": [],
         "signal": [],
         "substitute": false,
-        "unix_second": []
+        "unix_seconds": []
       }
     }
   },
@@ -31,7 +31,7 @@
         "share": [],
         "signal": [],
         "substitute": false,
-        "unix_second": []
+        "unix_seconds": []
       }
     }
   }

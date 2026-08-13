@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# EnergyCharts SDK exists test
 
 import pytest
 from energycharts_sdk import EnergyChartsSDK

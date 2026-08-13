@@ -92,7 +92,7 @@ func TestDailyAvgDictEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set ENERGY_CHARTS_TEST_DAILY_AVG_DICT_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -160,21 +160,21 @@ func daily_avg_dictBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID")
+	entidEnvRaw := os.Getenv("ENERGY_CHARTS_TEST_DAILY_AVG_DICT_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID": idmap,
-		"ENERGYCHARTS_TEST_LIVE":      "FALSE",
-		"ENERGYCHARTS_TEST_EXPLAIN":   "FALSE",
+		"ENERGY_CHARTS_TEST_DAILY_AVG_DICT_ENTID": idmap,
+		"ENERGY_CHARTS_TEST_LIVE":      "FALSE",
+		"ENERGY_CHARTS_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["ENERGYCHARTS_TEST_DAILY_AVG_DICT_ENTID"])
+	idmapResolved := core.ToMapAny(env["ENERGY_CHARTS_TEST_DAILY_AVG_DICT_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["ENERGYCHARTS_TEST_LIVE"] == "TRUE" {
+	if env["ENERGY_CHARTS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -183,13 +183,13 @@ func daily_avg_dictBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewEnergyChartsSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
+	live := env["ENERGY_CHARTS_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["ENERGYCHARTS_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["ENERGY_CHARTS_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -6,7 +6,7 @@ main: kit: entity: cross_border_model: {
 
   fields: [
     {
-      name: "country"
+      name: "countries"
       req: false
       type: "`$ANY`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: cross_border_model: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "unix_second"
+      name: "unix_seconds"
       req: false
       type: "`$ANY`"
     }

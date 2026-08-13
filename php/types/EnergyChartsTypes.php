@@ -15,24 +15,24 @@ declare(strict_types=1);
 /** CrossBorderModel entity data model. */
 class CrossBorderModel
 {
-    public mixed $country = null;
+    public mixed $countries = null;
     public bool $deprecated;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** Request payload for CrossBorderModel#load. */
 class CrossBorderModelLoadMatch
 {
-    public mixed $country = null;
+    public mixed $countries = null;
     public ?bool $deprecated = null;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** DailyAvgDict entity data model. */
 class DailyAvgDict
 {
     public array $data;
-    public array $day;
+    public array $days;
     public bool $deprecated;
 }
 
@@ -40,7 +40,7 @@ class DailyAvgDict
 class DailyAvgDictListMatch
 {
     public ?array $data = null;
-    public ?array $day = null;
+    public ?array $days = null;
     public ?bool $deprecated = null;
 }
 
@@ -49,7 +49,7 @@ class Frequency
 {
     public array $data;
     public bool $deprecated;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** Request payload for Frequency#list. */
@@ -57,7 +57,7 @@ class FrequencyListMatch
 {
     public ?array $data = null;
     public ?bool $deprecated = null;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** InstalledModel entity data model. */
@@ -65,7 +65,7 @@ class InstalledModel
 {
     public bool $deprecated;
     public mixed $last_update;
-    public mixed $production_type = null;
+    public mixed $production_types = null;
     public array $time;
 }
 
@@ -74,7 +74,7 @@ class InstalledModelListMatch
 {
     public ?bool $deprecated = null;
     public mixed $last_update = null;
-    public mixed $production_type = null;
+    public mixed $production_types = null;
     public ?array $time = null;
 }
 
@@ -85,7 +85,7 @@ class Price
     public string $license_info;
     public ?float $price = null;
     public string $unit;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** Request payload for Price#load. */
@@ -95,23 +95,23 @@ class PriceLoadMatch
     public ?string $license_info = null;
     public ?float $price = null;
     public ?string $unit = null;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** ProductionModel entity data model. */
 class ProductionModel
 {
     public bool $deprecated;
-    public mixed $production_type = null;
-    public mixed $unix_second = null;
+    public mixed $production_types = null;
+    public mixed $unix_seconds = null;
 }
 
 /** Request payload for ProductionModel#load. */
 class ProductionModelLoadMatch
 {
     public ?bool $deprecated = null;
-    public mixed $production_type = null;
-    public mixed $unix_second = null;
+    public mixed $production_types = null;
+    public mixed $unix_seconds = null;
 }
 
 /** PublicPowerForecast entity data model. */
@@ -119,9 +119,9 @@ class PublicPowerForecast
 {
     public bool $deprecated;
     public string $forecast_type;
-    public array $forecast_value;
+    public array $forecast_values;
     public string $production_type;
-    public array $unix_second;
+    public array $unix_seconds;
 }
 
 /** Request payload for PublicPowerForecast#list. */
@@ -129,9 +129,9 @@ class PublicPowerForecastListMatch
 {
     public ?bool $deprecated = null;
     public ?string $forecast_type = null;
-    public ?array $forecast_value = null;
+    public ?array $forecast_values = null;
     public ?string $production_type = null;
-    public ?array $unix_second = null;
+    public ?array $unix_seconds = null;
 }
 
 /** RenShareModel entity data model. */
@@ -141,7 +141,7 @@ class RenShareModel
     public array $ren_share;
     public mixed $solar_share = null;
     public bool $substitute;
-    public array $unix_second;
+    public array $unix_seconds;
     public mixed $wind_offshore_share = null;
     public mixed $wind_onshore_share = null;
 }
@@ -153,7 +153,7 @@ class RenShareModelListMatch
     public ?array $ren_share = null;
     public mixed $solar_share = null;
     public ?bool $substitute = null;
-    public ?array $unix_second = null;
+    public ?array $unix_seconds = null;
     public mixed $wind_offshore_share = null;
     public mixed $wind_onshore_share = null;
 }
@@ -164,7 +164,7 @@ class ShareModel
     public mixed $data = null;
     public bool $deprecated;
     public mixed $forecast = null;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** Request payload for ShareModel#load. */
@@ -173,7 +173,7 @@ class ShareModelLoadMatch
     public mixed $data = null;
     public ?bool $deprecated = null;
     public mixed $forecast = null;
-    public mixed $unix_second = null;
+    public mixed $unix_seconds = null;
 }
 
 /** TrafficModel entity data model. */
@@ -183,7 +183,7 @@ class TrafficModel
     public array $share;
     public ?array $signal = null;
     public bool $substitute;
-    public array $unix_second;
+    public array $unix_seconds;
 }
 
 /** Request payload for TrafficModel#list. */
@@ -193,6 +193,6 @@ class TrafficModelListMatch
     public ?array $share = null;
     public ?array $signal = null;
     public ?bool $substitute = null;
-    public ?array $unix_second = null;
+    public ?array $unix_seconds = null;
 }
 

@@ -26,7 +26,7 @@ main: kit: entity: price: {
       type: "`$STRING`"
     }
     {
-      name: "unix_second"
+      name: "unix_seconds"
       req: false
       type: "`$ANY`"
     }

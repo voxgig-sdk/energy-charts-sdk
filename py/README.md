@@ -38,7 +38,7 @@ client = EnergyChartsSDK()
 
 ### 3. Load a crossbordermodel
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,10 +55,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    crossbordermodel = client.CrossBorderModel().load()
-    print(crossbordermodel)
+    installedmodels = client.InstalledModel().list()
+    print(installedmodels)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = EnergyChartsSDK.test()
 
-# Entity ops return the bare record and raise on error.
-crossbordermodel = client.CrossBorderModel().load()
-# crossbordermodel contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+installedmodel = client.InstalledModel().list()
+# installedmodel contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -250,9 +251,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
+| `countries` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -263,7 +264,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `day` |  |
+| `days` |  |
 | `deprecated` |  |
 
 Operations: List.
@@ -276,7 +277,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `data` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -288,7 +289,7 @@ API path: `/frequency`
 | --- | --- |
 | `deprecated` |  |
 | `last_update` |  |
-| `production_type` |  |
+| `production_types` |  |
 | `time` |  |
 
 Operations: List.
@@ -303,7 +304,7 @@ API path: `/installed_power`
 | `license_info` |  |
 | `price` |  |
 | `unit` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -314,8 +315,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `deprecated` |  |
-| `production_type` |  |
-| `unix_second` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -327,9 +328,9 @@ API path: `/public_power`
 | --- | --- |
 | `deprecated` |  |
 | `forecast_type` |  |
-| `forecast_value` |  |
+| `forecast_values` |  |
 | `production_type` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -343,7 +344,7 @@ API path: `/public_power_forecast`
 | `ren_share` |  |
 | `solar_share` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 | `wind_offshore_share` |  |
 | `wind_onshore_share` |  |
 
@@ -358,7 +359,7 @@ API path: `/ren_share_forecast`
 | `data` |  |
 | `deprecated` |  |
 | `forecast` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -372,7 +373,7 @@ API path: `/solar_share`
 | `share` |  |
 | `signal` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -397,9 +398,9 @@ Create an instance: `cross_border_model = client.CrossBorderModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `Any` |  |
+| `countries` | `Any` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `Any` |  |
+| `unix_seconds` | `Any` |  |
 
 #### Example: Load
 
@@ -423,7 +424,7 @@ Create an instance: `daily_avg_dict = client.DailyAvgDict()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `list` |  |
-| `day` | `list` |  |
+| `days` | `list` |  |
 | `deprecated` | `bool` |  |
 
 #### Example: List
@@ -449,7 +450,7 @@ Create an instance: `frequency = client.Frequency()`
 | --- | --- | --- |
 | `data` | `list` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `Any` |  |
+| `unix_seconds` | `Any` |  |
 
 #### Example: List
 
@@ -474,7 +475,7 @@ Create an instance: `installed_model = client.InstalledModel()`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `last_update` | `Any` |  |
-| `production_type` | `Any` |  |
+| `production_types` | `Any` |  |
 | `time` | `list` |  |
 
 #### Example: List
@@ -502,7 +503,7 @@ Create an instance: `price = client.Price()`
 | `license_info` | `str` |  |
 | `price` | `float` |  |
 | `unit` | `str` |  |
-| `unix_second` | `Any` |  |
+| `unix_seconds` | `Any` |  |
 
 #### Example: Load
 
@@ -526,8 +527,8 @@ Create an instance: `production_model = client.ProductionModel()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
-| `production_type` | `Any` |  |
-| `unix_second` | `Any` |  |
+| `production_types` | `Any` |  |
+| `unix_seconds` | `Any` |  |
 
 #### Example: Load
 
@@ -552,9 +553,9 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast()`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `forecast_type` | `str` |  |
-| `forecast_value` | `list` |  |
+| `forecast_values` | `list` |  |
 | `production_type` | `str` |  |
-| `unix_second` | `list` |  |
+| `unix_seconds` | `list` |  |
 
 #### Example: List
 
@@ -581,7 +582,7 @@ Create an instance: `ren_share_model = client.RenShareModel()`
 | `ren_share` | `list` |  |
 | `solar_share` | `Any` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `list` |  |
+| `unix_seconds` | `list` |  |
 | `wind_offshore_share` | `Any` |  |
 | `wind_onshore_share` | `Any` |  |
 
@@ -609,7 +610,7 @@ Create an instance: `share_model = client.ShareModel()`
 | `data` | `Any` |  |
 | `deprecated` | `bool` |  |
 | `forecast` | `Any` |  |
-| `unix_second` | `Any` |  |
+| `unix_seconds` | `Any` |  |
 
 #### Example: Load
 
@@ -636,7 +637,7 @@ Create an instance: `traffic_model = client.TrafficModel()`
 | `share` | `list` |  |
 | `signal` | `list` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `list` |  |
+| `unix_seconds` | `list` |  |
 
 #### Example: List
 
@@ -716,15 +717,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-crossbordermodel = client.CrossBorderModel()
-crossbordermodel.load()
+installedmodel = client.InstalledModel()
+installedmodel.list()
 
-# crossbordermodel.data_get() now returns the crossbordermodel data from the last load
-# crossbordermodel.match_get() returns the last match criteria
+# installedmodel.data_get() now returns the installedmodel data from the last list
+# installedmodel.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

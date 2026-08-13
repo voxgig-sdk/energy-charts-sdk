@@ -35,7 +35,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "country",
+						"name": "countries",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 0,
@@ -49,7 +49,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 2,
@@ -94,6 +94,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/cbet",
 								"parts": []any{
@@ -145,6 +146,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/cbpf",
 								"parts": []any{
@@ -164,7 +166,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -182,7 +183,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "day",
+						"name": "days",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 1,
@@ -225,6 +226,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/ren_share_daily_avg",
 								"parts": []any{
@@ -266,6 +268,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/solar_share_daily_avg",
 								"parts": []any{
@@ -307,6 +310,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_offshore_share_daily_avg",
 								"parts": []any{
@@ -348,6 +352,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_onshore_share_daily_avg",
 								"parts": []any{
@@ -366,7 +371,6 @@ func MakeConfig() map[string]any {
 								"index$": 3,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -391,7 +395,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 2,
@@ -436,6 +440,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/frequency",
 								"parts": []any{
@@ -455,7 +460,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -480,7 +484,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "production_type",
+						"name": "production_types",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 2,
@@ -532,6 +536,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/installed_power",
 								"parts": []any{
@@ -551,7 +556,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -590,7 +594,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 4,
@@ -635,6 +639,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/price",
 								"parts": []any{
@@ -654,7 +659,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -672,14 +676,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "production_type",
+						"name": "production_types",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 2,
@@ -733,6 +737,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power",
 								"parts": []any{
@@ -785,6 +790,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/total_power",
 								"parts": []any{
@@ -804,7 +810,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -829,7 +834,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "forecast_value",
+						"name": "forecast_values",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 2,
@@ -843,7 +848,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -906,6 +911,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power_forecast",
 								"parts": []any{
@@ -927,7 +933,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -966,7 +971,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -1007,6 +1012,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/ren_share_forecast",
 								"parts": []any{
@@ -1024,7 +1030,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -1056,7 +1061,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": false,
 						"type": "`$ANY`",
 						"index$": 3,
@@ -1083,6 +1088,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/solar_share",
 								"parts": []any{
@@ -1114,6 +1120,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_offshore_share",
 								"parts": []any{
@@ -1145,6 +1152,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_onshore_share",
 								"parts": []any{
@@ -1162,7 +1170,6 @@ func MakeConfig() map[string]any {
 								"index$": 2,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -1201,7 +1208,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "unix_second",
+						"name": "unix_seconds",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -1237,6 +1244,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/signal",
 								"parts": []any{
@@ -1255,7 +1263,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

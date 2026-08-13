@@ -128,9 +128,9 @@ $cross_border_model = $client->CrossBorderModel();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `mixed` | No |  |
+| `countries` | `mixed` | No |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
@@ -183,7 +183,7 @@ $daily_avg_dict = $client->DailyAvgDict();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `array` | Yes |  |
-| `day` | `array` | Yes |  |
+| `days` | `array` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
 
 ### Operations
@@ -238,7 +238,7 @@ $frequency = $client->Frequency();
 | --- | --- | --- | --- |
 | `data` | `array` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
@@ -292,7 +292,7 @@ $installed_model = $client->InstalledModel();
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `last_update` | `mixed` | Yes |  |
-| `production_type` | `mixed` | No |  |
+| `production_types` | `mixed` | No |  |
 | `time` | `array` | Yes |  |
 
 ### Operations
@@ -349,7 +349,7 @@ $price = $client->Price();
 | `license_info` | `string` | Yes |  |
 | `price` | `float` | No |  |
 | `unit` | `string` | Yes |  |
-| `unix_second` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
@@ -402,8 +402,8 @@ $production_model = $client->ProductionModel();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
-| `production_type` | `mixed` | No |  |
-| `unix_second` | `mixed` | No |  |
+| `production_types` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
@@ -457,9 +457,9 @@ $public_power_forecast = $client->PublicPowerForecast();
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `forecast_type` | `string` | Yes |  |
-| `forecast_value` | `array` | Yes |  |
+| `forecast_values` | `array` | Yes |  |
 | `production_type` | `string` | Yes |  |
-| `unix_second` | `array` | Yes |  |
+| `unix_seconds` | `array` | Yes |  |
 
 ### Operations
 
@@ -515,7 +515,7 @@ $ren_share_model = $client->RenShareModel();
 | `ren_share` | `array` | Yes |  |
 | `solar_share` | `mixed` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `array` | Yes |  |
+| `unix_seconds` | `array` | Yes |  |
 | `wind_offshore_share` | `mixed` | No |  |
 | `wind_onshore_share` | `mixed` | No |  |
 
@@ -572,7 +572,7 @@ $share_model = $client->ShareModel();
 | `data` | `mixed` | No |  |
 | `deprecated` | `bool` | Yes |  |
 | `forecast` | `mixed` | No |  |
-| `unix_second` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
@@ -628,7 +628,7 @@ $traffic_model = $client->TrafficModel();
 | `share` | `array` | Yes |  |
 | `signal` | `array` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `array` | Yes |  |
+| `unix_seconds` | `array` | Yes |  |
 
 ### Operations
 

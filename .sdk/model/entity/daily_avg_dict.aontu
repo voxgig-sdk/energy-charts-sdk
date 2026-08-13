@@ -11,7 +11,7 @@ main: kit: entity: daily_avg_dict: {
       type: "`$ARRAY`"
     }
     {
-      name: "day"
+      name: "days"
       req: true
       type: "`$ARRAY`"
     }

@@ -155,8 +155,29 @@ class EnergyChartsSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('EnergyChartsSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -217,73 +238,147 @@ class EnergyChartsSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('EnergyChartsSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('EnergyChartsSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.CrossBorderModel().list()` / `client.CrossBorderModel().load({ id })`.
-  CrossBorderModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CrossBorderModel(entopts?: Record<string, any>) {
     const self = this
-    return new CrossBorderModelEntity(self,data)
+    return new CrossBorderModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.DailyAvgDict().list()` / `client.DailyAvgDict().load({ id })`.
-  DailyAvgDict(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DailyAvgDict(entopts?: Record<string, any>) {
     const self = this
-    return new DailyAvgDictEntity(self,data)
+    return new DailyAvgDictEntity(self, entopts)
   }
 
 
   // Entity access: `client.Frequency().list()` / `client.Frequency().load({ id })`.
-  Frequency(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Frequency(entopts?: Record<string, any>) {
     const self = this
-    return new FrequencyEntity(self,data)
+    return new FrequencyEntity(self, entopts)
   }
 
 
   // Entity access: `client.InstalledModel().list()` / `client.InstalledModel().load({ id })`.
-  InstalledModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  InstalledModel(entopts?: Record<string, any>) {
     const self = this
-    return new InstalledModelEntity(self,data)
+    return new InstalledModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.Price().list()` / `client.Price().load({ id })`.
-  Price(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Price(entopts?: Record<string, any>) {
     const self = this
-    return new PriceEntity(self,data)
+    return new PriceEntity(self, entopts)
   }
 
 
   // Entity access: `client.ProductionModel().list()` / `client.ProductionModel().load({ id })`.
-  ProductionModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ProductionModel(entopts?: Record<string, any>) {
     const self = this
-    return new ProductionModelEntity(self,data)
+    return new ProductionModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.PublicPowerForecast().list()` / `client.PublicPowerForecast().load({ id })`.
-  PublicPowerForecast(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PublicPowerForecast(entopts?: Record<string, any>) {
     const self = this
-    return new PublicPowerForecastEntity(self,data)
+    return new PublicPowerForecastEntity(self, entopts)
   }
 
 
   // Entity access: `client.RenShareModel().list()` / `client.RenShareModel().load({ id })`.
-  RenShareModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RenShareModel(entopts?: Record<string, any>) {
     const self = this
-    return new RenShareModelEntity(self,data)
+    return new RenShareModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.ShareModel().list()` / `client.ShareModel().load({ id })`.
-  ShareModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  ShareModel(entopts?: Record<string, any>) {
     const self = this
-    return new ShareModelEntity(self,data)
+    return new ShareModelEntity(self, entopts)
   }
 
 
   // Entity access: `client.TrafficModel().list()` / `client.TrafficModel().load({ id })`.
-  TrafficModel(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  TrafficModel(entopts?: Record<string, any>) {
     const self = this
-    return new TrafficModelEntity(self,data)
+    return new TrafficModelEntity(self, entopts)
   }
 
 

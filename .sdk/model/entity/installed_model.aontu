@@ -16,7 +16,7 @@ main: kit: entity: installed_model: {
       type: "`$ANY`"
     }
     {
-      name: "production_type"
+      name: "production_types"
       req: false
       type: "`$ANY`"
     }

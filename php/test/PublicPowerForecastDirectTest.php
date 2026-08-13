@@ -66,11 +66,11 @@ function public_power_forecast_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "ENERGYCHARTS_TEST_PUBLIC_POWER_FORECAST_ENTID" => [],
-        "ENERGYCHARTS_TEST_LIVE" => "FALSE",
+        "ENERGY_CHARTS_TEST_PUBLIC_POWER_FORECAST_ENTID" => [],
+        "ENERGY_CHARTS_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["ENERGYCHARTS_TEST_LIVE"] === "TRUE";
+    $live = $env["ENERGY_CHARTS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

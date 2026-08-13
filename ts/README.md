@@ -53,10 +53,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const crossbordermodel = await client.CrossBorderModel().load()
-  console.log(crossbordermodel)
+  const installedmodels = await client.InstalledModel().list()
+  console.log(installedmodels)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EnergyChartsSDK.test()
 
-const crossbordermodel = await client.CrossBorderModel().load()
-// crossbordermodel is a bare entity populated with mock response data
-console.log(crossbordermodel)
+const installedmodel = await client.InstalledModel().list()
+// installedmodel is the entity, populated with mock response data
+// — call installedmodel.data() for the record itself
+console.log(installedmodel)
 ```
 
 You can also use the instance method:
@@ -137,10 +138,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.CrossBorderModel()
+const entity = client.InstalledModel()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -296,9 +297,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
+| `countries` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: load.
 
@@ -309,7 +310,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `day` |  |
+| `days` |  |
 | `deprecated` |  |
 
 Operations: list.
@@ -322,7 +323,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `data` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: list.
 
@@ -334,7 +335,7 @@ API path: `/frequency`
 | --- | --- |
 | `deprecated` |  |
 | `last_update` |  |
-| `production_type` |  |
+| `production_types` |  |
 | `time` |  |
 
 Operations: list.
@@ -349,7 +350,7 @@ API path: `/installed_power`
 | `license_info` |  |
 | `price` |  |
 | `unit` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: load.
 
@@ -360,8 +361,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `deprecated` |  |
-| `production_type` |  |
-| `unix_second` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
 
 Operations: load.
 
@@ -373,9 +374,9 @@ API path: `/public_power`
 | --- | --- |
 | `deprecated` |  |
 | `forecast_type` |  |
-| `forecast_value` |  |
+| `forecast_values` |  |
 | `production_type` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: list.
 
@@ -389,7 +390,7 @@ API path: `/public_power_forecast`
 | `ren_share` |  |
 | `solar_share` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 | `wind_offshore_share` |  |
 | `wind_onshore_share` |  |
 
@@ -404,7 +405,7 @@ API path: `/ren_share_forecast`
 | `data` |  |
 | `deprecated` |  |
 | `forecast` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: load.
 
@@ -418,7 +419,7 @@ API path: `/solar_share`
 | `share` |  |
 | `signal` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: list.
 
@@ -443,9 +444,9 @@ Create an instance: `const cross_border_model = client.CrossBorderModel()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `any` |  |
+| `countries` | `any` |  |
 | `deprecated` | `boolean` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -469,7 +470,7 @@ Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `any[]` |  |
-| `day` | `any[]` |  |
+| `days` | `any[]` |  |
 | `deprecated` | `boolean` |  |
 
 #### Example: List
@@ -495,7 +496,7 @@ Create an instance: `const frequency = client.Frequency()`
 | --- | --- | --- |
 | `data` | `any[]` |  |
 | `deprecated` | `boolean` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: List
 
@@ -520,7 +521,7 @@ Create an instance: `const installed_model = client.InstalledModel()`
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `last_update` | `any` |  |
-| `production_type` | `any` |  |
+| `production_types` | `any` |  |
 | `time` | `any[]` |  |
 
 #### Example: List
@@ -548,7 +549,7 @@ Create an instance: `const price = client.Price()`
 | `license_info` | `string` |  |
 | `price` | `number` |  |
 | `unit` | `string` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -572,8 +573,8 @@ Create an instance: `const production_model = client.ProductionModel()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
-| `production_type` | `any` |  |
-| `unix_second` | `any` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -598,9 +599,9 @@ Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `forecast_type` | `string` |  |
-| `forecast_value` | `any[]` |  |
+| `forecast_values` | `any[]` |  |
 | `production_type` | `string` |  |
-| `unix_second` | `any[]` |  |
+| `unix_seconds` | `any[]` |  |
 
 #### Example: List
 
@@ -627,7 +628,7 @@ Create an instance: `const ren_share_model = client.RenShareModel()`
 | `ren_share` | `any[]` |  |
 | `solar_share` | `any` |  |
 | `substitute` | `boolean` |  |
-| `unix_second` | `any[]` |  |
+| `unix_seconds` | `any[]` |  |
 | `wind_offshore_share` | `any` |  |
 | `wind_onshore_share` | `any` |  |
 
@@ -655,7 +656,7 @@ Create an instance: `const share_model = client.ShareModel()`
 | `data` | `any` |  |
 | `deprecated` | `boolean` |  |
 | `forecast` | `any` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -682,7 +683,7 @@ Create an instance: `const traffic_model = client.TrafficModel()`
 | `share` | `any[]` |  |
 | `signal` | `any[]` |  |
 | `substitute` | `boolean` |  |
-| `unix_second` | `any[]` |  |
+| `unix_seconds` | `any[]` |  |
 
 #### Example: List
 
@@ -755,16 +756,16 @@ import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const crossbordermodel = client.CrossBorderModel()
-await crossbordermodel.load()
+const installedmodel = client.InstalledModel()
+await installedmodel.list()
 
-// crossbordermodel.data() now returns the crossbordermodel data from the last `load`
-// crossbordermodel.match() returns the last match criteria
+// installedmodel.data() now returns the installedmodel data from the last `list`
+// installedmodel.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

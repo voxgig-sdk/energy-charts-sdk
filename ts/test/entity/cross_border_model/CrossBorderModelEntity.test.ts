@@ -26,8 +26,8 @@ import {
 describe('CrossBorderModelEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when ENERGYCHARTS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('ENERGYCHARTS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when ENERGY_CHARTS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('ENERGY_CHARTS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = EnergyChartsSDK.test()
@@ -62,7 +62,7 @@ describe('CrossBorderModelEntity', async () => {
     // LOAD
     const cross_border_model_ref01_ent = client.CrossBorderModel()
     const cross_border_model_ref01_match_dt0: any = {}
-    const cross_border_model_ref01_data_dt0 = await cross_border_model_ref01_ent.load(cross_border_model_ref01_match_dt0)
+    const cross_border_model_ref01_data_dt0 = (await cross_border_model_ref01_ent.load(cross_border_model_ref01_match_dt0)).data()
     assert(null != cross_border_model_ref01_data_dt0)
 
 

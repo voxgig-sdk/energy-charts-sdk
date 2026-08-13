@@ -41,7 +41,7 @@ class EnergyChartsConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'country',
+              'name' => 'countries',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 0,
@@ -55,7 +55,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 2,
@@ -100,6 +100,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cbet',
                   'parts' => [
@@ -151,6 +152,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cbpf',
                   'parts' => [
@@ -188,7 +190,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'day',
+              'name' => 'days',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 1,
@@ -231,6 +233,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ren_share_daily_avg',
                   'parts' => [
@@ -272,6 +275,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/solar_share_daily_avg',
                   'parts' => [
@@ -313,6 +317,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_offshore_share_daily_avg',
                   'parts' => [
@@ -354,6 +359,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_onshore_share_daily_avg',
                   'parts' => [
@@ -397,7 +403,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 2,
@@ -442,6 +448,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/frequency',
                   'parts' => [
@@ -486,7 +493,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'production_type',
+              'name' => 'production_types',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 2,
@@ -538,6 +545,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/installed_power',
                   'parts' => [
@@ -596,7 +604,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 4,
@@ -641,6 +649,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/price',
                   'parts' => [
@@ -678,14 +687,14 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'production_type',
+              'name' => 'production_types',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 2,
@@ -739,6 +748,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public_power',
                   'parts' => [
@@ -791,6 +801,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/total_power',
                   'parts' => [
@@ -835,7 +846,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'forecast_value',
+              'name' => 'forecast_values',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 2,
@@ -849,7 +860,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -912,6 +923,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public_power_forecast',
                   'parts' => [
@@ -972,7 +984,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -1013,6 +1025,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ren_share_forecast',
                   'parts' => [
@@ -1062,7 +1075,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => false,
               'type' => '`$ANY`',
               'index$' => 3,
@@ -1089,6 +1102,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/solar_share',
                   'parts' => [
@@ -1120,6 +1134,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_offshore_share',
                   'parts' => [
@@ -1151,6 +1166,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_onshore_share',
                   'parts' => [
@@ -1207,7 +1223,7 @@ class EnergyChartsConfig
             ],
             [
               'active' => true,
-              'name' => 'unix_second',
+              'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -1243,6 +1259,7 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/signal',
                   'parts' => [

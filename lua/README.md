@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local crossbordermodel, err = client:CrossBorderModel():load()
+local installedmodels, err = client:InstalledModel():list()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CrossBorderModel():load()
+local result, err = client:InstalledModel():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -236,9 +236,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `country` |  |
+| `countries` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -249,7 +249,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `day` |  |
+| `days` |  |
 | `deprecated` |  |
 
 Operations: List.
@@ -262,7 +262,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `data` |  |
 | `deprecated` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -274,7 +274,7 @@ API path: `/frequency`
 | --- | --- |
 | `deprecated` |  |
 | `last_update` |  |
-| `production_type` |  |
+| `production_types` |  |
 | `time` |  |
 
 Operations: List.
@@ -289,7 +289,7 @@ API path: `/installed_power`
 | `license_info` |  |
 | `price` |  |
 | `unit` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -300,8 +300,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `deprecated` |  |
-| `production_type` |  |
-| `unix_second` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -313,9 +313,9 @@ API path: `/public_power`
 | --- | --- |
 | `deprecated` |  |
 | `forecast_type` |  |
-| `forecast_value` |  |
+| `forecast_values` |  |
 | `production_type` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -329,7 +329,7 @@ API path: `/public_power_forecast`
 | `ren_share` |  |
 | `solar_share` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 | `wind_offshore_share` |  |
 | `wind_onshore_share` |  |
 
@@ -344,7 +344,7 @@ API path: `/ren_share_forecast`
 | `data` |  |
 | `deprecated` |  |
 | `forecast` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: Load.
 
@@ -358,7 +358,7 @@ API path: `/solar_share`
 | `share` |  |
 | `signal` |  |
 | `substitute` |  |
-| `unix_second` |  |
+| `unix_seconds` |  |
 
 Operations: List.
 
@@ -383,9 +383,9 @@ Create an instance: `local cross_border_model = client:CrossBorderModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `any` |  |
+| `countries` | `any` |  |
 | `deprecated` | `boolean` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -409,7 +409,7 @@ Create an instance: `local daily_avg_dict = client:DailyAvgDict(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `table` |  |
-| `day` | `table` |  |
+| `days` | `table` |  |
 | `deprecated` | `boolean` |  |
 
 #### Example: List
@@ -435,7 +435,7 @@ Create an instance: `local frequency = client:Frequency(nil)`
 | --- | --- | --- |
 | `data` | `table` |  |
 | `deprecated` | `boolean` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: List
 
@@ -460,7 +460,7 @@ Create an instance: `local installed_model = client:InstalledModel(nil)`
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `last_update` | `any` |  |
-| `production_type` | `any` |  |
+| `production_types` | `any` |  |
 | `time` | `table` |  |
 
 #### Example: List
@@ -488,7 +488,7 @@ Create an instance: `local price = client:Price(nil)`
 | `license_info` | `string` |  |
 | `price` | `number` |  |
 | `unit` | `string` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -512,8 +512,8 @@ Create an instance: `local production_model = client:ProductionModel(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
-| `production_type` | `any` |  |
-| `unix_second` | `any` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -538,9 +538,9 @@ Create an instance: `local public_power_forecast = client:PublicPowerForecast(ni
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `forecast_type` | `string` |  |
-| `forecast_value` | `table` |  |
+| `forecast_values` | `table` |  |
 | `production_type` | `string` |  |
-| `unix_second` | `table` |  |
+| `unix_seconds` | `table` |  |
 
 #### Example: List
 
@@ -567,7 +567,7 @@ Create an instance: `local ren_share_model = client:RenShareModel(nil)`
 | `ren_share` | `table` |  |
 | `solar_share` | `any` |  |
 | `substitute` | `boolean` |  |
-| `unix_second` | `table` |  |
+| `unix_seconds` | `table` |  |
 | `wind_offshore_share` | `any` |  |
 | `wind_onshore_share` | `any` |  |
 
@@ -595,7 +595,7 @@ Create an instance: `local share_model = client:ShareModel(nil)`
 | `data` | `any` |  |
 | `deprecated` | `boolean` |  |
 | `forecast` | `any` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -622,7 +622,7 @@ Create an instance: `local traffic_model = client:TrafficModel(nil)`
 | `share` | `table` |  |
 | `signal` | `table` |  |
 | `substitute` | `boolean` |  |
-| `unix_second` | `table` |  |
+| `unix_seconds` | `table` |  |
 
 #### Example: List
 
@@ -703,15 +703,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local crossbordermodel = client:CrossBorderModel()
-crossbordermodel:load()
+local installedmodel = client:InstalledModel()
+installedmodel:list()
 
--- crossbordermodel:data_get() now returns the crossbordermodel data from the last load
--- crossbordermodel:match_get() returns the last match criteria
+-- installedmodel:data_get() now returns the installedmodel data from the last list
+-- installedmodel:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

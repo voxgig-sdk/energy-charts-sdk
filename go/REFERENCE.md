@@ -134,9 +134,9 @@ fmt.Println(crossBorderModel.GetName()) // "cross_border_model"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `any` | No |  |
+| `countries` | `any` | No |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -188,7 +188,7 @@ fmt.Println(dailyAvgDict.GetName()) // "daily_avg_dict"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | Yes |  |
-| `day` | `[]any` | Yes |  |
+| `days` | `[]any` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
 
 ### Operations
@@ -242,7 +242,7 @@ fmt.Println(frequency.GetName()) // "frequency"
 | --- | --- | --- | --- |
 | `data` | `[]any` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -295,7 +295,7 @@ fmt.Println(installedModel.GetName()) // "installed_model"
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `last_update` | `any` | Yes |  |
-| `production_type` | `any` | No |  |
+| `production_types` | `any` | No |  |
 | `time` | `[]any` | Yes |  |
 
 ### Operations
@@ -351,7 +351,7 @@ fmt.Println(price.GetName()) // "price"
 | `license_info` | `string` | Yes |  |
 | `price` | `float64` | No |  |
 | `unit` | `string` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -403,8 +403,8 @@ fmt.Println(productionModel.GetName()) // "production_model"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
-| `production_type` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -457,9 +457,9 @@ fmt.Println(publicPowerForecast.GetName()) // "public_power_forecast"
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `forecast_type` | `string` | Yes |  |
-| `forecast_value` | `[]any` | Yes |  |
+| `forecast_values` | `[]any` | Yes |  |
 | `production_type` | `string` | Yes |  |
-| `unix_second` | `[]any` | Yes |  |
+| `unix_seconds` | `[]any` | Yes |  |
 
 ### Operations
 
@@ -514,7 +514,7 @@ fmt.Println(renShareModel.GetName()) // "ren_share_model"
 | `ren_share` | `[]any` | Yes |  |
 | `solar_share` | `any` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `[]any` | Yes |  |
+| `unix_seconds` | `[]any` | Yes |  |
 | `wind_offshore_share` | `any` | No |  |
 | `wind_onshore_share` | `any` | No |  |
 
@@ -570,7 +570,7 @@ fmt.Println(shareModel.GetName()) // "share_model"
 | `data` | `any` | No |  |
 | `deprecated` | `bool` | Yes |  |
 | `forecast` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -625,7 +625,7 @@ fmt.Println(trafficModel.GetName()) // "traffic_model"
 | `share` | `[]any` | Yes |  |
 | `signal` | `[]any` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `[]any` | Yes |  |
+| `unix_seconds` | `[]any` | Yes |  |
 
 ### Operations
 

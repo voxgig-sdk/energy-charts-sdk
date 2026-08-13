@@ -224,9 +224,9 @@ const cross_border_model = client.CrossBorderModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `any` | No |  |
+| `countries` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -277,7 +277,7 @@ const daily_avg_dict = client.DailyAvgDict()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `any[]` | Yes |  |
-| `day` | `any[]` | Yes |  |
+| `days` | `any[]` | Yes |  |
 | `deprecated` | `boolean` | Yes |  |
 
 ### Operations
@@ -330,7 +330,7 @@ const frequency = client.Frequency()
 | --- | --- | --- | --- |
 | `data` | `any[]` | Yes |  |
 | `deprecated` | `boolean` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -382,7 +382,7 @@ const installed_model = client.InstalledModel()
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `last_update` | `any` | Yes |  |
-| `production_type` | `any` | No |  |
+| `production_types` | `any` | No |  |
 | `time` | `any[]` | Yes |  |
 
 ### Operations
@@ -437,7 +437,7 @@ const price = client.Price()
 | `license_info` | `string` | Yes |  |
 | `price` | `number` | No |  |
 | `unit` | `string` | Yes |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -488,8 +488,8 @@ const production_model = client.ProductionModel()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
-| `production_type` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -541,9 +541,9 @@ const public_power_forecast = client.PublicPowerForecast()
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `forecast_type` | `string` | Yes |  |
-| `forecast_value` | `any[]` | Yes |  |
+| `forecast_values` | `any[]` | Yes |  |
 | `production_type` | `string` | Yes |  |
-| `unix_second` | `any[]` | Yes |  |
+| `unix_seconds` | `any[]` | Yes |  |
 
 ### Operations
 
@@ -597,7 +597,7 @@ const ren_share_model = client.RenShareModel()
 | `ren_share` | `any[]` | Yes |  |
 | `solar_share` | `any` | No |  |
 | `substitute` | `boolean` | Yes |  |
-| `unix_second` | `any[]` | Yes |  |
+| `unix_seconds` | `any[]` | Yes |  |
 | `wind_offshore_share` | `any` | No |  |
 | `wind_onshore_share` | `any` | No |  |
 
@@ -652,7 +652,7 @@ const share_model = client.ShareModel()
 | `data` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
 | `forecast` | `any` | No |  |
-| `unix_second` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
@@ -706,7 +706,7 @@ const traffic_model = client.TrafficModel()
 | `share` | `any[]` | Yes |  |
 | `signal` | `any[]` | No |  |
 | `substitute` | `boolean` | Yes |  |
-| `unix_second` | `any[]` | Yes |  |
+| `unix_seconds` | `any[]` | Yes |  |
 
 ### Operations
 

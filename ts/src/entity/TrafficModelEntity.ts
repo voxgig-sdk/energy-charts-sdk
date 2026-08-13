@@ -37,7 +37,7 @@ class TrafficModelEntity extends EnergyChartsEntityBase<TrafficModel> {
 
 
 
-  async list(this: any, reqmatch?: TrafficModelListMatch, ctrl?: Control): Promise<TrafficModel[]> {
+  async list(this: any, reqmatch?: TrafficModelListMatch, ctrl?: Control): Promise<TrafficModelEntity[]> {
 
     const utility = this._utility
 

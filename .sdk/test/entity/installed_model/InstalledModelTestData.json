@@ -4,19 +4,19 @@
       "INSTALLED_MODEL00": {
         "deprecated": true,
         "last_update": "s29",
-        "production_type": "s2a",
+        "production_types": "s2a",
         "time": []
       },
       "INSTALLED_MODEL01": {
         "deprecated": true,
         "last_update": "s51",
-        "production_type": "s52",
+        "production_types": "s52",
         "time": []
       },
       "INSTALLED_MODEL02": {
         "deprecated": true,
         "last_update": "s79",
-        "production_type": "s7a",
+        "production_types": "s7a",
         "time": []
       }
     }
@@ -26,7 +26,7 @@
       "installed_model_ref01": {
         "deprecated": true,
         "last_update": "sa1",
-        "production_type": "sa2",
+        "production_types": "sa2",
         "time": []
       }
     }

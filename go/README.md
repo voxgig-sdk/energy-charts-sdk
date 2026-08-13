@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-crossbordermodel, err := client.CrossBorderModel(nil).Load(nil, nil)
+installedmodels, err := client.InstalledModel(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = crossbordermodel
+_ = installedmodels
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-crossBorderModel, err := client.CrossBorderModel(nil).Load(
+installedModel, err := client.InstalledModel(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(crossBorderModel) // the returned mock data
+fmt.Println(installedModel) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -269,9 +269,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"country"` |  |
+| `"countries"` |  |
 | `"deprecated"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: Load.
 
@@ -282,7 +282,7 @@ API path: `/cbet`
 | Field | Description |
 | --- | --- |
 | `"data"` |  |
-| `"day"` |  |
+| `"days"` |  |
 | `"deprecated"` |  |
 
 Operations: List.
@@ -295,7 +295,7 @@ API path: `/ren_share_daily_avg`
 | --- | --- |
 | `"data"` |  |
 | `"deprecated"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: List.
 
@@ -307,7 +307,7 @@ API path: `/frequency`
 | --- | --- |
 | `"deprecated"` |  |
 | `"last_update"` |  |
-| `"production_type"` |  |
+| `"production_types"` |  |
 | `"time"` |  |
 
 Operations: List.
@@ -322,7 +322,7 @@ API path: `/installed_power`
 | `"license_info"` |  |
 | `"price"` |  |
 | `"unit"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: Load.
 
@@ -333,8 +333,8 @@ API path: `/price`
 | Field | Description |
 | --- | --- |
 | `"deprecated"` |  |
-| `"production_type"` |  |
-| `"unix_second"` |  |
+| `"production_types"` |  |
+| `"unix_seconds"` |  |
 
 Operations: Load.
 
@@ -346,9 +346,9 @@ API path: `/public_power`
 | --- | --- |
 | `"deprecated"` |  |
 | `"forecast_type"` |  |
-| `"forecast_value"` |  |
+| `"forecast_values"` |  |
 | `"production_type"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: List.
 
@@ -362,7 +362,7 @@ API path: `/public_power_forecast`
 | `"ren_share"` |  |
 | `"solar_share"` |  |
 | `"substitute"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 | `"wind_offshore_share"` |  |
 | `"wind_onshore_share"` |  |
 
@@ -377,7 +377,7 @@ API path: `/ren_share_forecast`
 | `"data"` |  |
 | `"deprecated"` |  |
 | `"forecast"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: Load.
 
@@ -391,7 +391,7 @@ API path: `/solar_share`
 | `"share"` |  |
 | `"signal"` |  |
 | `"substitute"` |  |
-| `"unix_second"` |  |
+| `"unix_seconds"` |  |
 
 Operations: List.
 
@@ -416,9 +416,9 @@ Create an instance: `crossBorderModel := client.CrossBorderModel(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `any` |  |
+| `countries` | `any` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -446,7 +446,7 @@ Create an instance: `dailyAvgDict := client.DailyAvgDict(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `[]any` |  |
-| `day` | `[]any` |  |
+| `days` | `[]any` |  |
 | `deprecated` | `bool` |  |
 
 #### Example: List
@@ -476,7 +476,7 @@ Create an instance: `frequency := client.Frequency(nil)`
 | --- | --- | --- |
 | `data` | `[]any` |  |
 | `deprecated` | `bool` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: List
 
@@ -505,7 +505,7 @@ Create an instance: `installedModel := client.InstalledModel(nil)`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `last_update` | `any` |  |
-| `production_type` | `any` |  |
+| `production_types` | `any` |  |
 | `time` | `[]any` |  |
 
 #### Example: List
@@ -537,7 +537,7 @@ Create an instance: `price := client.Price(nil)`
 | `license_info` | `string` |  |
 | `price` | `float64` |  |
 | `unit` | `string` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -565,8 +565,8 @@ Create an instance: `productionModel := client.ProductionModel(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
-| `production_type` | `any` |  |
-| `unix_second` | `any` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -595,9 +595,9 @@ Create an instance: `publicPowerForecast := client.PublicPowerForecast(nil)`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `forecast_type` | `string` |  |
-| `forecast_value` | `[]any` |  |
+| `forecast_values` | `[]any` |  |
 | `production_type` | `string` |  |
-| `unix_second` | `[]any` |  |
+| `unix_seconds` | `[]any` |  |
 
 #### Example: List
 
@@ -628,7 +628,7 @@ Create an instance: `renShareModel := client.RenShareModel(nil)`
 | `ren_share` | `[]any` |  |
 | `solar_share` | `any` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `[]any` |  |
+| `unix_seconds` | `[]any` |  |
 | `wind_offshore_share` | `any` |  |
 | `wind_onshore_share` | `any` |  |
 
@@ -660,7 +660,7 @@ Create an instance: `shareModel := client.ShareModel(nil)`
 | `data` | `any` |  |
 | `deprecated` | `bool` |  |
 | `forecast` | `any` |  |
-| `unix_second` | `any` |  |
+| `unix_seconds` | `any` |  |
 
 #### Example: Load
 
@@ -691,7 +691,7 @@ Create an instance: `trafficModel := client.TrafficModel(nil)`
 | `share` | `[]any` |  |
 | `signal` | `[]any` |  |
 | `substitute` | `bool` |  |
-| `unix_second` | `[]any` |  |
+| `unix_seconds` | `[]any` |  |
 
 #### Example: List
 
@@ -773,15 +773,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-crossbordermodel := client.CrossBorderModel(nil)
-crossbordermodel.Load(nil, nil)
+installedmodel := client.InstalledModel(nil)
+installedmodel.List(nil, nil)
 
-// crossbordermodel.Data() now returns the crossbordermodel data from the last load
-// crossbordermodel.Match() returns the last match criteria
+// installedmodel.Data() now returns the installedmodel data from the last list
+// installedmodel.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

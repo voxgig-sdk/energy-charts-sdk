@@ -123,9 +123,9 @@ cross_border_model = client.CrossBorderModel()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `Any` | No |  |
+| `countries` | `Any` | No |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
@@ -177,7 +177,7 @@ daily_avg_dict = client.DailyAvgDict()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `list` | Yes |  |
-| `day` | `list` | Yes |  |
+| `days` | `list` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
 
 ### Operations
@@ -233,7 +233,7 @@ frequency = client.Frequency()
 | --- | --- | --- | --- |
 | `data` | `list` | Yes |  |
 | `deprecated` | `bool` | Yes |  |
-| `unix_second` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
@@ -288,7 +288,7 @@ installed_model = client.InstalledModel()
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `last_update` | `Any` | Yes |  |
-| `production_type` | `Any` | No |  |
+| `production_types` | `Any` | No |  |
 | `time` | `list` | Yes |  |
 
 ### Operations
@@ -346,7 +346,7 @@ price = client.Price()
 | `license_info` | `str` | Yes |  |
 | `price` | `float` | No |  |
 | `unit` | `str` | Yes |  |
-| `unix_second` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
@@ -398,8 +398,8 @@ production_model = client.ProductionModel()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
-| `production_type` | `Any` | No |  |
-| `unix_second` | `Any` | No |  |
+| `production_types` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
@@ -452,9 +452,9 @@ public_power_forecast = client.PublicPowerForecast()
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `forecast_type` | `str` | Yes |  |
-| `forecast_value` | `list` | Yes |  |
+| `forecast_values` | `list` | Yes |  |
 | `production_type` | `str` | Yes |  |
-| `unix_second` | `list` | Yes |  |
+| `unix_seconds` | `list` | Yes |  |
 
 ### Operations
 
@@ -511,7 +511,7 @@ ren_share_model = client.RenShareModel()
 | `ren_share` | `list` | Yes |  |
 | `solar_share` | `Any` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `list` | Yes |  |
+| `unix_seconds` | `list` | Yes |  |
 | `wind_offshore_share` | `Any` | No |  |
 | `wind_onshore_share` | `Any` | No |  |
 
@@ -569,7 +569,7 @@ share_model = client.ShareModel()
 | `data` | `Any` | No |  |
 | `deprecated` | `bool` | Yes |  |
 | `forecast` | `Any` | No |  |
-| `unix_second` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
@@ -624,7 +624,7 @@ traffic_model = client.TrafficModel()
 | `share` | `list` | Yes |  |
 | `signal` | `list` | No |  |
 | `substitute` | `bool` | Yes |  |
-| `unix_second` | `list` | Yes |  |
+| `unix_seconds` | `list` | Yes |  |
 
 ### Operations
 

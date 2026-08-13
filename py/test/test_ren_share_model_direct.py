@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from energycharts_sdk.utility.voxgig_struct import voxgig_struct as vs
 from energycharts_sdk import EnergyChartsSDK
-from core import helpers
+from energycharts_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _ren_share_model_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "ENERGYCHARTS_TEST_REN_SHARE_MODEL_ENTID": {},
-        "ENERGYCHARTS_TEST_LIVE": "FALSE",
+        "ENERGY_CHARTS_TEST_REN_SHARE_MODEL_ENTID": {},
+        "ENERGY_CHARTS_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("ENERGYCHARTS_TEST_LIVE") == "TRUE"
+    live = env.get("ENERGY_CHARTS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

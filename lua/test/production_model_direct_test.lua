@@ -60,11 +60,11 @@ function production_model_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["ENERGYCHARTS_TEST_PRODUCTION_MODEL_ENTID"] = {},
-    ["ENERGYCHARTS_TEST_LIVE"] = "FALSE",
+    ["ENERGY_CHARTS_TEST_PRODUCTION_MODEL_ENTID"] = {},
+    ["ENERGY_CHARTS_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["ENERGYCHARTS_TEST_LIVE"] == "TRUE"
+  local live = env["ENERGY_CHARTS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

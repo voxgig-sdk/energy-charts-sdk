@@ -26,7 +26,7 @@ main: kit: entity: traffic_model: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "unix_second"
+      name: "unix_seconds"
       req: true
       type: "`$ARRAY`"
     }

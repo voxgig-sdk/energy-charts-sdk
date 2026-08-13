@@ -4,17 +4,17 @@
       "FREQUENCY00": {
         "data": [],
         "deprecated": false,
-        "unix_second": "s20"
+        "unix_seconds": "s20"
       },
       "FREQUENCY01": {
         "data": [],
         "deprecated": false,
-        "unix_second": "s3e"
+        "unix_seconds": "s3e"
       },
       "FREQUENCY02": {
         "data": [],
         "deprecated": false,
-        "unix_second": "s5c"
+        "unix_seconds": "s5c"
       }
     }
   },
@@ -23,7 +23,7 @@
       "frequency_ref01": {
         "data": [],
         "deprecated": false,
-        "unix_second": "s7a"
+        "unix_seconds": "s7a"
       }
     }
   }

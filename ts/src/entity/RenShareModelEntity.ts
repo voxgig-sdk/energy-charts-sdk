@@ -37,7 +37,7 @@ class RenShareModelEntity extends EnergyChartsEntityBase<RenShareModel> {
 
 
 
-  async list(this: any, reqmatch?: RenShareModelListMatch, ctrl?: Control): Promise<RenShareModel[]> {
+  async list(this: any, reqmatch?: RenShareModelListMatch, ctrl?: Control): Promise<RenShareModelEntity[]> {
 
     const utility = this._utility
 

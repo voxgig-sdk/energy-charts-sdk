@@ -37,7 +37,7 @@ class DailyAvgDictEntity extends EnergyChartsEntityBase<DailyAvgDict> {
 
 
 
-  async list(this: any, reqmatch?: DailyAvgDictListMatch, ctrl?: Control): Promise<DailyAvgDict[]> {
+  async list(this: any, reqmatch?: DailyAvgDictListMatch, ctrl?: Control): Promise<DailyAvgDictEntity[]> {
 
     const utility = this._utility
 
