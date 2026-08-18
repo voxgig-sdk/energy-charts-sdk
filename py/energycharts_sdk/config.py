@@ -1,7 +1,30 @@
 # EnergyCharts SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "EnergyCharts",
@@ -35,25 +58,17 @@ def make_config():
       "cross_border_model": {
         "fields": [
           {
-            "active": True,
             "name": "countries",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "unix_seconds",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
         ],
         "name": "cross_border_model",
@@ -63,34 +78,27 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -112,37 +120,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -164,10 +164,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -177,25 +175,19 @@ def make_config():
       "daily_avg_dict": {
         "fields": [
           {
-            "active": True,
             "name": "data",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "days",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 2,
           },
         ],
         "name": "daily_avg_dict",
@@ -205,25 +197,20 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": -1,
                       "kind": "query",
                       "name": "year",
                       "orig": "year",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -244,28 +231,22 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": -1,
                       "kind": "query",
                       "name": "year",
                       "orig": "year",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -286,28 +267,22 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": -1,
                       "kind": "query",
                       "name": "year",
                       "orig": "year",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -328,28 +303,22 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 2,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": -1,
                       "kind": "query",
                       "name": "year",
                       "orig": "year",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                   ],
@@ -370,10 +339,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 3,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -383,25 +350,18 @@ def make_config():
       "frequency": {
         "fields": [
           {
-            "active": True,
             "name": "data",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "unix_seconds",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
         ],
         "name": "frequency",
@@ -411,34 +371,27 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "DE-Freiburg",
                       "kind": "query",
                       "name": "region",
                       "orig": "region",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -460,10 +413,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -473,32 +424,23 @@ def make_config():
       "installed_model": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "last_update",
             "req": True,
             "type": "`$ANY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "production_types",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "time",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 3,
           },
         ],
         "name": "installed_model",
@@ -508,34 +450,27 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": False,
                       "kind": "query",
                       "name": "installation_decommission",
                       "orig": "installation_decommission",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                     {
-                      "active": True,
                       "example": "yearly",
                       "kind": "query",
                       "name": "time_step",
                       "orig": "time_step",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -557,10 +492,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -570,39 +503,27 @@ def make_config():
       "price": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "license_info",
             "req": True,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "price",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "unit",
             "req": True,
             "type": "`$STRING`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "unix_seconds",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 4,
           },
         ],
         "name": "price",
@@ -612,34 +533,27 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "DE-LU",
                       "kind": "query",
                       "name": "bzn",
                       "orig": "bzn",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -661,10 +575,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.price`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -674,25 +586,17 @@ def make_config():
       "production_model": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "production_types",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "unix_seconds",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
         ],
         "name": "production_model",
@@ -702,43 +606,34 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "subtype",
                       "orig": "subtype",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -761,37 +656,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -813,10 +700,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -826,39 +711,29 @@ def make_config():
       "public_power_forecast": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "forecast_type",
             "req": True,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "forecast_values",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "production_type",
             "req": True,
             "type": "`$STRING`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "unix_seconds",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 4,
           },
         ],
         "name": "public_power_forecast",
@@ -868,52 +743,41 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "end",
                       "orig": "end",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "current",
                       "kind": "query",
                       "name": "forecast_type",
                       "orig": "forecast_type",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "solar",
                       "kind": "query",
                       "name": "production_type",
                       "orig": "production_type",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "start",
                       "orig": "start",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -937,10 +801,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -950,53 +812,36 @@ def make_config():
       "ren_share_model": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "ren_share",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "solar_share",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "substitute",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "unix_seconds",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "wind_offshore_share",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "wind_onshore_share",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 6,
           },
         ],
         "name": "ren_share_model",
@@ -1006,16 +851,13 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -1035,10 +877,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -1048,32 +888,21 @@ def make_config():
       "share_model": {
         "fields": [
           {
-            "active": True,
             "name": "data",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "forecast",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "unix_seconds",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 3,
           },
         ],
         "name": "share_model",
@@ -1083,16 +912,13 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -1112,19 +938,15 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -1144,19 +966,15 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 1,
               },
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -1176,10 +994,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 2,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -1189,39 +1005,28 @@ def make_config():
       "traffic_model": {
         "fields": [
           {
-            "active": True,
             "name": "deprecated",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "share",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "signal",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "substitute",
             "req": True,
             "type": "`$BOOLEAN`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "unix_seconds",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 4,
           },
         ],
         "name": "traffic_model",
@@ -1231,25 +1036,20 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "de",
                       "kind": "query",
                       "name": "country",
                       "orig": "country",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "",
                       "kind": "query",
                       "name": "postal_code",
                       "orig": "postal_code",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -1270,10 +1070,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {

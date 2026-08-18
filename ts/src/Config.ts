@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.energy-charts.info',
+    base: "https://api.energy-charts.info",
 
     headers: {
       "content-type": "application/json"
@@ -82,25 +82,17 @@ class Config {
     "cross_border_model": {
       "fields": [
         {
-          "active": true,
           "name": "countries",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         }
       ],
       "name": "cross_border_model",
@@ -110,34 +102,27 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -158,38 +143,30 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -210,11 +187,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -224,25 +199,19 @@ class Config {
     "daily_avg_dict": {
       "fields": [
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "days",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         }
       ],
       "name": "daily_avg_dict",
@@ -252,25 +221,20 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": -1,
                     "kind": "query",
                     "name": "year",
                     "orig": "year",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -290,29 +254,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": -1,
                     "kind": "query",
                     "name": "year",
                     "orig": "year",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -332,29 +290,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": -1,
                     "kind": "query",
                     "name": "year",
                     "orig": "year",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -374,29 +326,23 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": -1,
                     "kind": "query",
                     "name": "year",
                     "orig": "year",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   }
                 ]
@@ -416,11 +362,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 3
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -430,25 +374,18 @@ class Config {
     "frequency": {
       "fields": [
         {
-          "active": true,
           "name": "data",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         }
       ],
       "name": "frequency",
@@ -458,34 +395,27 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "DE-Freiburg",
                     "kind": "query",
                     "name": "region",
                     "orig": "region",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -506,11 +436,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -520,32 +448,23 @@ class Config {
     "installed_model": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "last_update",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "production_types",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "time",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 3
+          "type": "`$ARRAY`"
         }
       ],
       "name": "installed_model",
@@ -555,34 +474,27 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": false,
                     "kind": "query",
                     "name": "installation_decommission",
                     "orig": "installation_decommission",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "example": "yearly",
                     "kind": "query",
                     "name": "time_step",
                     "orig": "time_step",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -603,11 +515,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -617,39 +527,27 @@ class Config {
     "price": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "license_info",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "price",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "unit",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 4
+          "type": "`$ANY`"
         }
       ],
       "name": "price",
@@ -659,34 +557,27 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "DE-LU",
                     "kind": "query",
                     "name": "bzn",
                     "orig": "bzn",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -707,11 +598,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.price`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -721,25 +610,17 @@ class Config {
     "production_model": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "production_types",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 1
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         }
       ],
       "name": "production_model",
@@ -749,43 +630,34 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "subtype",
                     "orig": "subtype",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -807,38 +679,30 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -859,11 +723,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -873,39 +735,29 @@ class Config {
     "public_power_forecast": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "forecast_type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "forecast_values",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "production_type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         }
       ],
       "name": "public_power_forecast",
@@ -915,52 +767,41 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "end",
                     "orig": "end",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "current",
                     "kind": "query",
                     "name": "forecast_type",
                     "orig": "forecast_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "solar",
                     "kind": "query",
                     "name": "production_type",
                     "orig": "production_type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -983,11 +824,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -997,53 +836,36 @@ class Config {
     "ren_share_model": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "ren_share",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "solar_share",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "substitute",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 3
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "wind_offshore_share",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "wind_onshore_share",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 6
+          "type": "`$ANY`"
         }
       ],
       "name": "ren_share_model",
@@ -1053,16 +875,13 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1081,11 +900,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -1095,32 +912,21 @@ class Config {
     "share_model": {
       "fields": [
         {
-          "active": true,
           "name": "data",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 0
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "forecast",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 2
+          "type": "`$ANY`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
-          "req": false,
-          "type": "`$ANY`",
-          "index$": 3
+          "type": "`$ANY`"
         }
       ],
       "name": "share_model",
@@ -1130,16 +936,13 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1158,20 +961,16 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1190,20 +989,16 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 1
+              }
             },
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1222,11 +1017,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 2
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -1236,39 +1029,28 @@ class Config {
     "traffic_model": {
       "fields": [
         {
-          "active": true,
           "name": "deprecated",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "share",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "signal",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "substitute",
           "req": true,
-          "type": "`$BOOLEAN`",
-          "index$": 3
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "unix_seconds",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         }
       ],
       "name": "traffic_model",
@@ -1278,25 +1060,20 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "de",
                     "kind": "query",
                     "name": "country",
                     "orig": "country",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "",
                     "kind": "query",
                     "name": "postal_code",
                     "orig": "postal_code",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -1316,11 +1093,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

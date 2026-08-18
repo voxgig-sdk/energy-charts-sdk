@@ -40,7 +40,7 @@ class EnergyChartsSDK
         $utility = new EnergyChartsUtility();
         $this->_utility = $utility;
 
-        $config = EnergyChartsConfig::make_config();
+        $config = EnergyChartsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

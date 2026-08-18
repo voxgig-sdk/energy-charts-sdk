@@ -28,7 +28,7 @@ class EnergyChartsSDK
     utility = EnergyChartsUtility.new
     @_utility = utility
 
-    config = EnergyChartsConfig.make_config
+    config = EnergyChartsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

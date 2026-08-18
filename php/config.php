@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class EnergyChartsConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -40,25 +63,17 @@ class EnergyChartsConfig
         'cross_border_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'countries',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'cross_border_model',
@@ -68,34 +83,27 @@ class EnergyChartsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -117,37 +125,29 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -169,10 +169,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -182,25 +180,19 @@ class EnergyChartsConfig
         'daily_avg_dict' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'days',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 2,
             ],
           ],
           'name' => 'daily_avg_dict',
@@ -210,25 +202,20 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => -1,
                         'kind' => 'query',
                         'name' => 'year',
                         'orig' => 'year',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -249,28 +236,22 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => -1,
                         'kind' => 'query',
                         'name' => 'year',
                         'orig' => 'year',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -291,28 +272,22 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => -1,
                         'kind' => 'query',
                         'name' => 'year',
                         'orig' => 'year',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -333,28 +308,22 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => -1,
                         'kind' => 'query',
                         'name' => 'year',
                         'orig' => 'year',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -375,10 +344,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 3,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -388,25 +355,18 @@ class EnergyChartsConfig
         'frequency' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'frequency',
@@ -416,34 +376,27 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'DE-Freiburg',
                         'kind' => 'query',
                         'name' => 'region',
                         'orig' => 'region',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -465,10 +418,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -478,32 +429,23 @@ class EnergyChartsConfig
         'installed_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'last_update',
               'req' => true,
               'type' => '`$ANY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'production_types',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'time',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
           ],
           'name' => 'installed_model',
@@ -513,34 +455,27 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => false,
                         'kind' => 'query',
                         'name' => 'installation_decommission',
                         'orig' => 'installation_decommission',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'yearly',
                         'kind' => 'query',
                         'name' => 'time_step',
                         'orig' => 'time_step',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -562,10 +497,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -575,39 +508,27 @@ class EnergyChartsConfig
         'price' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'license_info',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'price',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'unit',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 4,
             ],
           ],
           'name' => 'price',
@@ -617,34 +538,27 @@ class EnergyChartsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'DE-LU',
                         'kind' => 'query',
                         'name' => 'bzn',
                         'orig' => 'bzn',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -666,10 +580,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body.price`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -679,25 +591,17 @@ class EnergyChartsConfig
         'production_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'production_types',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
           ],
           'name' => 'production_model',
@@ -707,43 +611,34 @@ class EnergyChartsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'subtype',
                         'orig' => 'subtype',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -766,37 +661,29 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -818,10 +705,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -831,39 +716,29 @@ class EnergyChartsConfig
         'public_power_forecast' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'forecast_type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'forecast_values',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'production_type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
           ],
           'name' => 'public_power_forecast',
@@ -873,52 +748,41 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'end',
                         'orig' => 'end',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'current',
                         'kind' => 'query',
                         'name' => 'forecast_type',
                         'orig' => 'forecast_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'solar',
                         'kind' => 'query',
                         'name' => 'production_type',
                         'orig' => 'production_type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'start',
                         'orig' => 'start',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -942,10 +806,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -955,53 +817,36 @@ class EnergyChartsConfig
         'ren_share_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ren_share',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'solar_share',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'substitute',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'wind_offshore_share',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'wind_onshore_share',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 6,
             ],
           ],
           'name' => 'ren_share_model',
@@ -1011,16 +856,13 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1040,10 +882,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -1053,32 +893,21 @@ class EnergyChartsConfig
         'share_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'data',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'forecast',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
-              'req' => false,
               'type' => '`$ANY`',
-              'index$' => 3,
             ],
           ],
           'name' => 'share_model',
@@ -1088,16 +917,13 @@ class EnergyChartsConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1117,19 +943,15 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1149,19 +971,15 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1181,10 +999,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -1194,39 +1010,28 @@ class EnergyChartsConfig
         'traffic_model' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'deprecated',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'share',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'signal',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'substitute',
               'req' => true,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'unix_seconds',
               'req' => true,
               'type' => '`$ARRAY`',
-              'index$' => 4,
             ],
           ],
           'name' => 'traffic_model',
@@ -1236,25 +1041,20 @@ class EnergyChartsConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'de',
                         'kind' => 'query',
                         'name' => 'country',
                         'orig' => 'country',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '',
                         'kind' => 'query',
                         'name' => 'postal_code',
                         'orig' => 'postal_code',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -1275,10 +1075,8 @@ class EnergyChartsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
