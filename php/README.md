@@ -267,8 +267,8 @@ API path: `/cbet`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `days` |  |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
 | `deprecated` |  |
 
 Operations: List.
@@ -375,7 +375,7 @@ API path: `/solar_share`
 | --- | --- |
 | `deprecated` |  |
 | `share` |  |
-| `signal` |  |
+| `signal` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` |  |
 | `unix_seconds` |  |
 
@@ -428,8 +428,8 @@ Create an instance: `$daily_avg_dict = $client->DailyAvgDict();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `days` | `array` |  |
+| `data` | `array` | List of average daily values |
+| `days` | `array` | List of days in the format dd.mm.yyyy |
 | `deprecated` | `bool` |  |
 
 #### Example: List
@@ -648,7 +648,7 @@ Create an instance: `$traffic_model = $client->TrafficModel();`
 | --- | --- | --- |
 | `deprecated` | `bool` |  |
 | `share` | `array` |  |
-| `signal` | `array` |  |
+| `signal` | `array` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `bool` |  |
 | `unix_seconds` | `array` |  |
 

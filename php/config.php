@@ -33,6 +33,9 @@ class EnergyChartsConfig
         return [
             "main" => [
                 "name" => "EnergyCharts",
+                "slug" => "energy-charts",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -182,11 +185,13 @@ class EnergyChartsConfig
             [
               'name' => 'data',
               'req' => true,
+              'short' => 'List of average daily values',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'days',
               'req' => true,
+              'short' => 'List of days in the format dd.mm.yyyy',
               'type' => '`$ARRAY`',
             ],
             [
@@ -1021,6 +1026,7 @@ class EnergyChartsConfig
             ],
             [
               'name' => 'signal',
+              'short' => '0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)',
               'type' => '`$ARRAY`',
             ],
             [

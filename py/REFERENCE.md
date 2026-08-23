@@ -176,8 +176,8 @@ daily_avg_dict = client.DailyAvgDict()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `list` | Yes |  |
-| `days` | `list` | Yes |  |
+| `data` | `list` | Yes | List of average daily values |
+| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
 | `deprecated` | `bool` | Yes |  |
 
 ### Operations
@@ -622,7 +622,7 @@ traffic_model = client.TrafficModel()
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `share` | `list` | Yes |  |
-| `signal` | `list` | No |  |
+| `signal` | `list` | No | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `bool` | Yes |  |
 | `unix_seconds` | `list` | Yes |  |
 

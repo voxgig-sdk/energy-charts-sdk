@@ -19,6 +19,9 @@ module EnergyChartsConfig
     {
       "main" => {
         "name" => "EnergyCharts",
+        "slug" => "energy-charts",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -168,11 +171,13 @@ module EnergyChartsConfig
             {
               "name" => "data",
               "req" => true,
+              "short" => "List of average daily values",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "days",
               "req" => true,
+              "short" => "List of days in the format dd.mm.yyyy",
               "type" => "`$ARRAY`",
             },
             {
@@ -1007,6 +1012,7 @@ module EnergyChartsConfig
             },
             {
               "name" => "signal",
+              "short" => "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
               "type" => "`$ARRAY`",
             },
             {

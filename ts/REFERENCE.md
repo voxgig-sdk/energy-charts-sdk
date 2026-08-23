@@ -276,8 +276,8 @@ const daily_avg_dict = client.DailyAvgDict()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any[]` | Yes |  |
-| `days` | `any[]` | Yes |  |
+| `data` | `any[]` | Yes | List of average daily values |
+| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
 | `deprecated` | `boolean` | Yes |  |
 
 ### Operations
@@ -704,7 +704,7 @@ const traffic_model = client.TrafficModel()
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `share` | `any[]` | Yes |  |
-| `signal` | `any[]` | No |  |
+| `signal` | `any[]` | No | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `boolean` | Yes |  |
 | `unix_seconds` | `any[]` | Yes |  |
 

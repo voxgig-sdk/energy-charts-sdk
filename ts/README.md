@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -309,8 +309,8 @@ API path: `/cbet`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `days` |  |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
 | `deprecated` |  |
 
 Operations: list.
@@ -417,7 +417,7 @@ API path: `/solar_share`
 | --- | --- |
 | `deprecated` |  |
 | `share` |  |
-| `signal` |  |
+| `signal` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` |  |
 | `unix_seconds` |  |
 
@@ -469,8 +469,8 @@ Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any[]` |  |
-| `days` | `any[]` |  |
+| `data` | `any[]` | List of average daily values |
+| `days` | `any[]` | List of days in the format dd.mm.yyyy |
 | `deprecated` | `boolean` |  |
 
 #### Example: List
@@ -681,7 +681,7 @@ Create an instance: `const traffic_model = client.TrafficModel()`
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `share` | `any[]` |  |
-| `signal` | `any[]` |  |
+| `signal` | `any[]` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `boolean` |  |
 | `unix_seconds` | `any[]` |  |
 

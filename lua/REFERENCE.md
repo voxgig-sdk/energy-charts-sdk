@@ -180,8 +180,8 @@ local daily_avg_dict = client:DailyAvgDict(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
-| `days` | `table` | Yes |  |
+| `data` | `table` | Yes | List of average daily values |
+| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
 | `deprecated` | `boolean` | Yes |  |
 
 ### Operations
@@ -624,7 +624,7 @@ local traffic_model = client:TrafficModel(nil)
 | --- | --- | --- | --- |
 | `deprecated` | `boolean` | Yes |  |
 | `share` | `table` | Yes |  |
-| `signal` | `table` | No |  |
+| `signal` | `table` | No | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `boolean` | Yes |  |
 | `unix_seconds` | `table` | Yes |  |
 

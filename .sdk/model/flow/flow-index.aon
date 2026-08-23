@@ -1,0 +1,12 @@
+# Flows
+
+@"BasicCrossBorderModelFlow.aon"
+@"BasicDailyAvgDictFlow.aon"
+@"BasicFrequencyFlow.aon"
+@"BasicInstalledModelFlow.aon"
+@"BasicPriceFlow.aon"
+@"BasicProductionModelFlow.aon"
+@"BasicPublicPowerForecastFlow.aon"
+@"BasicRenShareModelFlow.aon"
+@"BasicShareModelFlow.aon"
+@"BasicTrafficModelFlow.aon"

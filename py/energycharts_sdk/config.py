@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "EnergyCharts",
+            "slug": "energy-charts",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -177,11 +180,13 @@ def make_config():
           {
             "name": "data",
             "req": True,
+            "short": "List of average daily values",
             "type": "`$ARRAY`",
           },
           {
             "name": "days",
             "req": True,
+            "short": "List of days in the format dd.mm.yyyy",
             "type": "`$ARRAY`",
           },
           {
@@ -1016,6 +1021,7 @@ def make_config():
           },
           {
             "name": "signal",
+            "short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
             "type": "`$ARRAY`",
           },
           {

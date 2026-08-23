@@ -248,8 +248,8 @@ API path: `/cbet`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `days` |  |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
 | `deprecated` |  |
 
 Operations: List.
@@ -356,7 +356,7 @@ API path: `/solar_share`
 | --- | --- |
 | `deprecated` |  |
 | `share` |  |
-| `signal` |  |
+| `signal` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` |  |
 | `unix_seconds` |  |
 
@@ -408,8 +408,8 @@ Create an instance: `local daily_avg_dict = client:DailyAvgDict(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `days` | `table` |  |
+| `data` | `table` | List of average daily values |
+| `days` | `table` | List of days in the format dd.mm.yyyy |
 | `deprecated` | `boolean` |  |
 
 #### Example: List
@@ -620,7 +620,7 @@ Create an instance: `local traffic_model = client:TrafficModel(nil)`
 | --- | --- | --- |
 | `deprecated` | `boolean` |  |
 | `share` | `table` |  |
-| `signal` | `table` |  |
+| `signal` | `table` | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `boolean` |  |
 | `unix_seconds` | `table` |  |
 

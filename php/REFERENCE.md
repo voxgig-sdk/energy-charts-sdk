@@ -182,8 +182,8 @@ $daily_avg_dict = $client->DailyAvgDict();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
-| `days` | `array` | Yes |  |
+| `data` | `array` | Yes | List of average daily values |
+| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
 | `deprecated` | `bool` | Yes |  |
 
 ### Operations
@@ -626,7 +626,7 @@ $traffic_model = $client->TrafficModel();
 | --- | --- | --- | --- |
 | `deprecated` | `bool` | Yes |  |
 | `share` | `array` | Yes |  |
-| `signal` | `array` | No |  |
+| `signal` | `array` | No | 0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share) |
 | `substitute` | `bool` | Yes |  |
 | `unix_seconds` | `array` | Yes |  |
 

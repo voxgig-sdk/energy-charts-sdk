@@ -8,11 +8,13 @@ main: kit: entity: daily_avg_dict: {
     {
       name: "data"
       req: true
+      short: "List of average daily values"
       type: "`$ARRAY`"
     }
     {
       name: "days"
       req: true
+      short: "List of days in the format dd.mm.yyyy"
       type: "`$ARRAY`"
     }
     {
