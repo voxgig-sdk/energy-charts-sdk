@@ -26,9 +26,9 @@ class CrossBorderModel(CrossBorderModelRequired, total=False):
 
 
 class CrossBorderModelLoadMatch(TypedDict, total=False):
-    countries: Any
-    deprecated: bool
-    unix_seconds: Any
+    country: str
+    end: str
+    start: str
 
 
 class DailyAvgDict(TypedDict):
@@ -38,9 +38,8 @@ class DailyAvgDict(TypedDict):
 
 
 class DailyAvgDictListMatch(TypedDict, total=False):
-    data: list
-    days: list
-    deprecated: bool
+    country: str
+    year: int
 
 
 class FrequencyRequired(TypedDict):
@@ -53,9 +52,9 @@ class Frequency(FrequencyRequired, total=False):
 
 
 class FrequencyListMatch(TypedDict, total=False):
-    data: list
-    deprecated: bool
-    unix_seconds: Any
+    end: str
+    region: str
+    start: str
 
 
 class InstalledModelRequired(TypedDict):
@@ -69,10 +68,9 @@ class InstalledModel(InstalledModelRequired, total=False):
 
 
 class InstalledModelListMatch(TypedDict, total=False):
-    deprecated: bool
-    last_update: Any
-    production_types: Any
-    time: list
+    country: str
+    installation_decommission: bool
+    time_step: str
 
 
 class PriceRequired(TypedDict):
@@ -87,11 +85,9 @@ class Price(PriceRequired, total=False):
 
 
 class PriceLoadMatch(TypedDict, total=False):
-    deprecated: bool
-    license_info: str
-    price: float
-    unit: str
-    unix_seconds: Any
+    bzn: str
+    end: str
+    start: str
 
 
 class ProductionModelRequired(TypedDict):
@@ -104,9 +100,10 @@ class ProductionModel(ProductionModelRequired, total=False):
 
 
 class ProductionModelLoadMatch(TypedDict, total=False):
-    deprecated: bool
-    production_types: Any
-    unix_seconds: Any
+    country: str
+    end: str
+    start: str
+    subtype: str
 
 
 class PublicPowerForecast(TypedDict):
@@ -118,11 +115,11 @@ class PublicPowerForecast(TypedDict):
 
 
 class PublicPowerForecastListMatch(TypedDict, total=False):
-    deprecated: bool
+    country: str
+    end: str
     forecast_type: str
-    forecast_values: list
     production_type: str
-    unix_seconds: list
+    start: str
 
 
 class RenShareModelRequired(TypedDict):
@@ -139,13 +136,7 @@ class RenShareModel(RenShareModelRequired, total=False):
 
 
 class RenShareModelListMatch(TypedDict, total=False):
-    deprecated: bool
-    ren_share: list
-    solar_share: Any
-    substitute: bool
-    unix_seconds: list
-    wind_offshore_share: Any
-    wind_onshore_share: Any
+    country: str
 
 
 class ShareModelRequired(TypedDict):
@@ -159,10 +150,7 @@ class ShareModel(ShareModelRequired, total=False):
 
 
 class ShareModelLoadMatch(TypedDict, total=False):
-    data: Any
-    deprecated: bool
-    forecast: Any
-    unix_seconds: Any
+    country: str
 
 
 class TrafficModelRequired(TypedDict):
@@ -177,8 +165,5 @@ class TrafficModel(TrafficModelRequired, total=False):
 
 
 class TrafficModelListMatch(TypedDict, total=False):
-    deprecated: bool
-    share: list
-    signal: list
-    substitute: bool
-    unix_seconds: list
+    country: str
+    postal_code: str

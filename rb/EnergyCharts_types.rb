@@ -27,18 +27,18 @@ CrossBorderModel = Struct.new(
 
 # Request payload for CrossBorderModel#load.
 #
-# @!attribute [rw] countries
-#   @return [Object, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] end
+#   @return [String, nil]
 #
-# @!attribute [rw] unix_seconds
-#   @return [Object, nil]
+# @!attribute [rw] start
+#   @return [String, nil]
 CrossBorderModelLoadMatch = Struct.new(
-  :countries,
-  :deprecated,
-  :unix_seconds,
+  :country,
+  :end,
+  :start,
   keyword_init: true
 )
 
@@ -61,18 +61,14 @@ DailyAvgDict = Struct.new(
 
 # Request payload for DailyAvgDict#list.
 #
-# @!attribute [rw] data
-#   @return [Array, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 #
-# @!attribute [rw] days
-#   @return [Array, nil]
-#
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] year
+#   @return [Integer, nil]
 DailyAvgDictListMatch = Struct.new(
-  :data,
-  :days,
-  :deprecated,
+  :country,
+  :year,
   keyword_init: true
 )
 
@@ -95,18 +91,18 @@ Frequency = Struct.new(
 
 # Request payload for Frequency#list.
 #
-# @!attribute [rw] data
-#   @return [Array, nil]
+# @!attribute [rw] end
+#   @return [String, nil]
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] region
+#   @return [String, nil]
 #
-# @!attribute [rw] unix_seconds
-#   @return [Object, nil]
+# @!attribute [rw] start
+#   @return [String, nil]
 FrequencyListMatch = Struct.new(
-  :data,
-  :deprecated,
-  :unix_seconds,
+  :end,
+  :region,
+  :start,
   keyword_init: true
 )
 
@@ -133,22 +129,18 @@ InstalledModel = Struct.new(
 
 # Request payload for InstalledModel#list.
 #
-# @!attribute [rw] deprecated
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] installation_decommission
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] last_update
-#   @return [Object, nil]
-#
-# @!attribute [rw] production_types
-#   @return [Object, nil]
-#
-# @!attribute [rw] time
-#   @return [Array, nil]
+# @!attribute [rw] time_step
+#   @return [String, nil]
 InstalledModelListMatch = Struct.new(
-  :deprecated,
-  :last_update,
-  :production_types,
-  :time,
+  :country,
+  :installation_decommission,
+  :time_step,
   keyword_init: true
 )
 
@@ -179,26 +171,18 @@ Price = Struct.new(
 
 # Request payload for Price#load.
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] license_info
+# @!attribute [rw] bzn
 #   @return [String, nil]
 #
-# @!attribute [rw] price
-#   @return [Float, nil]
-#
-# @!attribute [rw] unit
+# @!attribute [rw] end
 #   @return [String, nil]
 #
-# @!attribute [rw] unix_seconds
-#   @return [Object, nil]
+# @!attribute [rw] start
+#   @return [String, nil]
 PriceLoadMatch = Struct.new(
-  :deprecated,
-  :license_info,
-  :price,
-  :unit,
-  :unix_seconds,
+  :bzn,
+  :end,
+  :start,
   keyword_init: true
 )
 
@@ -221,18 +205,22 @@ ProductionModel = Struct.new(
 
 # Request payload for ProductionModel#load.
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 #
-# @!attribute [rw] production_types
-#   @return [Object, nil]
+# @!attribute [rw] end
+#   @return [String, nil]
 #
-# @!attribute [rw] unix_seconds
-#   @return [Object, nil]
+# @!attribute [rw] start
+#   @return [String, nil]
+#
+# @!attribute [rw] subtype
+#   @return [String, nil]
 ProductionModelLoadMatch = Struct.new(
-  :deprecated,
-  :production_types,
-  :unix_seconds,
+  :country,
+  :end,
+  :start,
+  :subtype,
   keyword_init: true
 )
 
@@ -263,26 +251,26 @@ PublicPowerForecast = Struct.new(
 
 # Request payload for PublicPowerForecast#list.
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
 #
 # @!attribute [rw] forecast_type
 #   @return [String, nil]
 #
-# @!attribute [rw] forecast_values
-#   @return [Array, nil]
-#
 # @!attribute [rw] production_type
 #   @return [String, nil]
 #
-# @!attribute [rw] unix_seconds
-#   @return [Array, nil]
+# @!attribute [rw] start
+#   @return [String, nil]
 PublicPowerForecastListMatch = Struct.new(
-  :deprecated,
+  :country,
+  :end,
   :forecast_type,
-  :forecast_values,
   :production_type,
-  :unix_seconds,
+  :start,
   keyword_init: true
 )
 
@@ -321,34 +309,10 @@ RenShareModel = Struct.new(
 
 # Request payload for RenShareModel#list.
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] ren_share
-#   @return [Array, nil]
-#
-# @!attribute [rw] solar_share
-#   @return [Object, nil]
-#
-# @!attribute [rw] substitute
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] unix_seconds
-#   @return [Array, nil]
-#
-# @!attribute [rw] wind_offshore_share
-#   @return [Object, nil]
-#
-# @!attribute [rw] wind_onshore_share
-#   @return [Object, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 RenShareModelListMatch = Struct.new(
-  :deprecated,
-  :ren_share,
-  :solar_share,
-  :substitute,
-  :unix_seconds,
-  :wind_offshore_share,
-  :wind_onshore_share,
+  :country,
   keyword_init: true
 )
 
@@ -375,22 +339,10 @@ ShareModel = Struct.new(
 
 # Request payload for ShareModel#load.
 #
-# @!attribute [rw] data
-#   @return [Object, nil]
-#
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] forecast
-#   @return [Object, nil]
-#
-# @!attribute [rw] unix_seconds
-#   @return [Object, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 ShareModelLoadMatch = Struct.new(
-  :data,
-  :deprecated,
-  :forecast,
-  :unix_seconds,
+  :country,
   keyword_init: true
 )
 
@@ -421,26 +373,14 @@ TrafficModel = Struct.new(
 
 # Request payload for TrafficModel#list.
 #
-# @!attribute [rw] deprecated
-#   @return [Boolean, nil]
+# @!attribute [rw] country
+#   @return [String, nil]
 #
-# @!attribute [rw] share
-#   @return [Array, nil]
-#
-# @!attribute [rw] signal
-#   @return [Array, nil]
-#
-# @!attribute [rw] substitute
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] unix_seconds
-#   @return [Array, nil]
+# @!attribute [rw] postal_code
+#   @return [String, nil]
 TrafficModelListMatch = Struct.new(
-  :deprecated,
-  :share,
-  :signal,
-  :substitute,
-  :unix_seconds,
+  :country,
+  :postal_code,
   keyword_init: true
 )
 

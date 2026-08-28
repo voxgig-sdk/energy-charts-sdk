@@ -12,9 +12,9 @@
 ---@field unix_seconds? any
 
 ---@class CrossBorderModelLoadMatch
----@field countries? any
----@field deprecated? boolean
----@field unix_seconds? any
+---@field country? string
+---@field end? string
+---@field start? string
 
 ---@class DailyAvgDict
 ---@field data table
@@ -22,9 +22,8 @@
 ---@field deprecated boolean
 
 ---@class DailyAvgDictListMatch
----@field data? table
----@field days? table
----@field deprecated? boolean
+---@field country? string
+---@field year? number
 
 ---@class Frequency
 ---@field data table
@@ -32,9 +31,9 @@
 ---@field unix_seconds? any
 
 ---@class FrequencyListMatch
----@field data? table
----@field deprecated? boolean
----@field unix_seconds? any
+---@field end? string
+---@field region? string
+---@field start? string
 
 ---@class InstalledModel
 ---@field deprecated boolean
@@ -43,10 +42,9 @@
 ---@field time table
 
 ---@class InstalledModelListMatch
----@field deprecated? boolean
----@field last_update? any
----@field production_types? any
----@field time? table
+---@field country? string
+---@field installation_decommission? boolean
+---@field time_step? string
 
 ---@class Price
 ---@field deprecated boolean
@@ -56,11 +54,9 @@
 ---@field unix_seconds? any
 
 ---@class PriceLoadMatch
----@field deprecated? boolean
----@field license_info? string
----@field price? number
----@field unit? string
----@field unix_seconds? any
+---@field bzn? string
+---@field end? string
+---@field start? string
 
 ---@class ProductionModel
 ---@field deprecated boolean
@@ -68,9 +64,10 @@
 ---@field unix_seconds? any
 
 ---@class ProductionModelLoadMatch
----@field deprecated? boolean
----@field production_types? any
----@field unix_seconds? any
+---@field country? string
+---@field end? string
+---@field start? string
+---@field subtype? string
 
 ---@class PublicPowerForecast
 ---@field deprecated boolean
@@ -80,11 +77,11 @@
 ---@field unix_seconds table
 
 ---@class PublicPowerForecastListMatch
----@field deprecated? boolean
+---@field country? string
+---@field end? string
 ---@field forecast_type? string
----@field forecast_values? table
 ---@field production_type? string
----@field unix_seconds? table
+---@field start? string
 
 ---@class RenShareModel
 ---@field deprecated boolean
@@ -96,13 +93,7 @@
 ---@field wind_onshore_share? any
 
 ---@class RenShareModelListMatch
----@field deprecated? boolean
----@field ren_share? table
----@field solar_share? any
----@field substitute? boolean
----@field unix_seconds? table
----@field wind_offshore_share? any
----@field wind_onshore_share? any
+---@field country? string
 
 ---@class ShareModel
 ---@field data? any
@@ -111,10 +102,7 @@
 ---@field unix_seconds? any
 
 ---@class ShareModelLoadMatch
----@field data? any
----@field deprecated? boolean
----@field forecast? any
----@field unix_seconds? any
+---@field country? string
 
 ---@class TrafficModel
 ---@field deprecated boolean
@@ -124,11 +112,8 @@
 ---@field unix_seconds table
 
 ---@class TrafficModelListMatch
----@field deprecated? boolean
----@field share? table
----@field signal? table
----@field substitute? boolean
----@field unix_seconds? table
+---@field country? string
+---@field postal_code? string
 
 local M = {}
 

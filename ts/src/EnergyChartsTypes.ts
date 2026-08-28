@@ -12,9 +12,9 @@ export interface CrossBorderModel {
 }
 
 export interface CrossBorderModelLoadMatch {
-  countries?: any
-  deprecated?: boolean
-  unix_seconds?: any
+  country?: string
+  end?: string
+  start?: string
 }
 
 export interface DailyAvgDict {
@@ -24,9 +24,8 @@ export interface DailyAvgDict {
 }
 
 export interface DailyAvgDictListMatch {
-  data?: any[]
-  days?: any[]
-  deprecated?: boolean
+  country?: string
+  year?: number
 }
 
 export interface Frequency {
@@ -36,9 +35,9 @@ export interface Frequency {
 }
 
 export interface FrequencyListMatch {
-  data?: any[]
-  deprecated?: boolean
-  unix_seconds?: any
+  end?: string
+  region?: string
+  start?: string
 }
 
 export interface InstalledModel {
@@ -49,10 +48,9 @@ export interface InstalledModel {
 }
 
 export interface InstalledModelListMatch {
-  deprecated?: boolean
-  last_update?: any
-  production_types?: any
-  time?: any[]
+  country?: string
+  installation_decommission?: boolean
+  time_step?: string
 }
 
 export interface Price {
@@ -64,11 +62,9 @@ export interface Price {
 }
 
 export interface PriceLoadMatch {
-  deprecated?: boolean
-  license_info?: string
-  price?: number
-  unit?: string
-  unix_seconds?: any
+  bzn?: string
+  end?: string
+  start?: string
 }
 
 export interface ProductionModel {
@@ -78,9 +74,10 @@ export interface ProductionModel {
 }
 
 export interface ProductionModelLoadMatch {
-  deprecated?: boolean
-  production_types?: any
-  unix_seconds?: any
+  country?: string
+  end?: string
+  start?: string
+  subtype?: string
 }
 
 export interface PublicPowerForecast {
@@ -92,11 +89,11 @@ export interface PublicPowerForecast {
 }
 
 export interface PublicPowerForecastListMatch {
-  deprecated?: boolean
+  country?: string
+  end?: string
   forecast_type?: string
-  forecast_values?: any[]
   production_type?: string
-  unix_seconds?: any[]
+  start?: string
 }
 
 export interface RenShareModel {
@@ -110,13 +107,7 @@ export interface RenShareModel {
 }
 
 export interface RenShareModelListMatch {
-  deprecated?: boolean
-  ren_share?: any[]
-  solar_share?: any
-  substitute?: boolean
-  unix_seconds?: any[]
-  wind_offshore_share?: any
-  wind_onshore_share?: any
+  country?: string
 }
 
 export interface ShareModel {
@@ -127,10 +118,7 @@ export interface ShareModel {
 }
 
 export interface ShareModelLoadMatch {
-  data?: any
-  deprecated?: boolean
-  forecast?: any
-  unix_seconds?: any
+  country?: string
 }
 
 export interface TrafficModel {
@@ -142,10 +130,7 @@ export interface TrafficModel {
 }
 
 export interface TrafficModelListMatch {
-  deprecated?: boolean
-  share?: any[]
-  signal?: any[]
-  substitute?: boolean
-  unix_seconds?: any[]
+  country?: string
+  postal_code?: string
 }
 

@@ -23,9 +23,9 @@ class CrossBorderModel
 /** Request payload for CrossBorderModel#load. */
 class CrossBorderModelLoadMatch
 {
-    public mixed $countries = null;
-    public ?bool $deprecated = null;
-    public mixed $unix_seconds = null;
+    public ?string $country = null;
+    public ?string $end = null;
+    public ?string $start = null;
 }
 
 /** DailyAvgDict entity data model. */
@@ -39,9 +39,8 @@ class DailyAvgDict
 /** Request payload for DailyAvgDict#list. */
 class DailyAvgDictListMatch
 {
-    public ?array $data = null;
-    public ?array $days = null;
-    public ?bool $deprecated = null;
+    public ?string $country = null;
+    public ?int $year = null;
 }
 
 /** Frequency entity data model. */
@@ -55,9 +54,9 @@ class Frequency
 /** Request payload for Frequency#list. */
 class FrequencyListMatch
 {
-    public ?array $data = null;
-    public ?bool $deprecated = null;
-    public mixed $unix_seconds = null;
+    public ?string $end = null;
+    public ?string $region = null;
+    public ?string $start = null;
 }
 
 /** InstalledModel entity data model. */
@@ -72,10 +71,9 @@ class InstalledModel
 /** Request payload for InstalledModel#list. */
 class InstalledModelListMatch
 {
-    public ?bool $deprecated = null;
-    public mixed $last_update = null;
-    public mixed $production_types = null;
-    public ?array $time = null;
+    public ?string $country = null;
+    public ?bool $installation_decommission = null;
+    public ?string $time_step = null;
 }
 
 /** Price entity data model. */
@@ -91,11 +89,9 @@ class Price
 /** Request payload for Price#load. */
 class PriceLoadMatch
 {
-    public ?bool $deprecated = null;
-    public ?string $license_info = null;
-    public ?float $price = null;
-    public ?string $unit = null;
-    public mixed $unix_seconds = null;
+    public ?string $bzn = null;
+    public ?string $end = null;
+    public ?string $start = null;
 }
 
 /** ProductionModel entity data model. */
@@ -109,9 +105,10 @@ class ProductionModel
 /** Request payload for ProductionModel#load. */
 class ProductionModelLoadMatch
 {
-    public ?bool $deprecated = null;
-    public mixed $production_types = null;
-    public mixed $unix_seconds = null;
+    public ?string $country = null;
+    public ?string $end = null;
+    public ?string $start = null;
+    public ?string $subtype = null;
 }
 
 /** PublicPowerForecast entity data model. */
@@ -127,11 +124,11 @@ class PublicPowerForecast
 /** Request payload for PublicPowerForecast#list. */
 class PublicPowerForecastListMatch
 {
-    public ?bool $deprecated = null;
+    public ?string $country = null;
+    public ?string $end = null;
     public ?string $forecast_type = null;
-    public ?array $forecast_values = null;
     public ?string $production_type = null;
-    public ?array $unix_seconds = null;
+    public ?string $start = null;
 }
 
 /** RenShareModel entity data model. */
@@ -149,13 +146,7 @@ class RenShareModel
 /** Request payload for RenShareModel#list. */
 class RenShareModelListMatch
 {
-    public ?bool $deprecated = null;
-    public ?array $ren_share = null;
-    public mixed $solar_share = null;
-    public ?bool $substitute = null;
-    public ?array $unix_seconds = null;
-    public mixed $wind_offshore_share = null;
-    public mixed $wind_onshore_share = null;
+    public ?string $country = null;
 }
 
 /** ShareModel entity data model. */
@@ -170,10 +161,7 @@ class ShareModel
 /** Request payload for ShareModel#load. */
 class ShareModelLoadMatch
 {
-    public mixed $data = null;
-    public ?bool $deprecated = null;
-    public mixed $forecast = null;
-    public mixed $unix_seconds = null;
+    public ?string $country = null;
 }
 
 /** TrafficModel entity data model. */
@@ -189,10 +177,7 @@ class TrafficModel
 /** Request payload for TrafficModel#list. */
 class TrafficModelListMatch
 {
-    public ?bool $deprecated = null;
-    public ?array $share = null;
-    public ?array $signal = null;
-    public ?bool $substitute = null;
-    public ?array $unix_seconds = null;
+    public ?string $country = null;
+    public ?string $postal_code = null;
 }
 
