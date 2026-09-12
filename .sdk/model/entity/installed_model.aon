@@ -63,8 +63,10 @@ main: kit: entity: installed_model: {
           }
           method: "GET"
           orig: "/installed_power"
-          parts: [
-            "installed_power"
+          segments: [
+            {
+              lit: "installed_power"
+            }
           ]
           select: {
             exist: [

@@ -62,8 +62,10 @@ main: kit: entity: ren_share_model: {
           }
           method: "GET"
           orig: "/ren_share_forecast"
-          parts: [
-            "ren_share_forecast"
+          segments: [
+            {
+              lit: "ren_share_forecast"
+            }
           ]
           select: {
             exist: [

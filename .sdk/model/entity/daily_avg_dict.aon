@@ -52,8 +52,10 @@ main: kit: entity: daily_avg_dict: {
           }
           method: "GET"
           orig: "/ren_share_daily_avg"
-          parts: [
-            "ren_share_daily_avg"
+          segments: [
+            {
+              lit: "ren_share_daily_avg"
+            }
           ]
           select: {
             exist: [
@@ -89,8 +91,10 @@ main: kit: entity: daily_avg_dict: {
           }
           method: "GET"
           orig: "/solar_share_daily_avg"
-          parts: [
-            "solar_share_daily_avg"
+          segments: [
+            {
+              lit: "solar_share_daily_avg"
+            }
           ]
           select: {
             exist: [
@@ -126,8 +130,10 @@ main: kit: entity: daily_avg_dict: {
           }
           method: "GET"
           orig: "/wind_offshore_share_daily_avg"
-          parts: [
-            "wind_offshore_share_daily_avg"
+          segments: [
+            {
+              lit: "wind_offshore_share_daily_avg"
+            }
           ]
           select: {
             exist: [
@@ -163,8 +169,10 @@ main: kit: entity: daily_avg_dict: {
           }
           method: "GET"
           orig: "/wind_onshore_share_daily_avg"
-          parts: [
-            "wind_onshore_share_daily_avg"
+          segments: [
+            {
+              lit: "wind_onshore_share_daily_avg"
+            }
           ]
           select: {
             exist: [

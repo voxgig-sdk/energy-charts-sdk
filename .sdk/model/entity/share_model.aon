@@ -47,8 +47,10 @@ main: kit: entity: share_model: {
           }
           method: "GET"
           orig: "/solar_share"
-          parts: [
-            "solar_share"
+          segments: [
+            {
+              lit: "solar_share"
+            }
           ]
           select: {
             exist: [
@@ -75,8 +77,10 @@ main: kit: entity: share_model: {
           }
           method: "GET"
           orig: "/wind_offshore_share"
-          parts: [
-            "wind_offshore_share"
+          segments: [
+            {
+              lit: "wind_offshore_share"
+            }
           ]
           select: {
             exist: [
@@ -103,8 +107,10 @@ main: kit: entity: share_model: {
           }
           method: "GET"
           orig: "/wind_onshore_share"
-          parts: [
-            "wind_onshore_share"
+          segments: [
+            {
+              lit: "wind_onshore_share"
+            }
           ]
           select: {
             exist: [

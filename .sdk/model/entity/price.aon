@@ -68,8 +68,10 @@ main: kit: entity: price: {
           }
           method: "GET"
           orig: "/price"
-          parts: [
-            "price"
+          segments: [
+            {
+              lit: "price"
+            }
           ]
           select: {
             exist: [

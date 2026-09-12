@@ -1,6 +1,14 @@
 # EnergyCharts SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -110,8 +118,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cbet",
-                "parts": [
-                  "cbet",
+                "segments": [
+                  {
+                    "lit": "cbet",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -124,6 +134,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cbet",
+                ],
               },
               {
                 "args": {
@@ -154,8 +167,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cbpf",
-                "parts": [
-                  "cbpf",
+                "segments": [
+                  {
+                    "lit": "cbpf",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -168,6 +183,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cbpf",
+                ],
               },
             ],
           },
@@ -224,8 +242,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ren_share_daily_avg",
-                "parts": [
-                  "ren_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "ren_share_daily_avg",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -237,6 +257,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "ren_share_daily_avg",
+                ],
               },
               {
                 "args": {
@@ -260,8 +283,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/solar_share_daily_avg",
-                "parts": [
-                  "solar_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "solar_share_daily_avg",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -273,6 +298,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "solar_share_daily_avg",
+                ],
               },
               {
                 "args": {
@@ -296,8 +324,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/wind_offshore_share_daily_avg",
-                "parts": [
-                  "wind_offshore_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "wind_offshore_share_daily_avg",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -309,6 +339,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "wind_offshore_share_daily_avg",
+                ],
               },
               {
                 "args": {
@@ -332,8 +365,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/wind_onshore_share_daily_avg",
-                "parts": [
-                  "wind_onshore_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "wind_onshore_share_daily_avg",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -345,6 +380,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "wind_onshore_share_daily_avg",
+                ],
               },
             ],
           },
@@ -405,8 +443,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/frequency",
-                "parts": [
-                  "frequency",
+                "segments": [
+                  {
+                    "lit": "frequency",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -419,6 +459,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "frequency",
+                ],
               },
             ],
           },
@@ -484,8 +527,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/installed_power",
-                "parts": [
-                  "installed_power",
+                "segments": [
+                  {
+                    "lit": "installed_power",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -498,6 +543,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "installed_power",
+                ],
               },
             ],
           },
@@ -567,8 +615,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/price",
-                "parts": [
-                  "price",
+                "segments": [
+                  {
+                    "lit": "price",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -581,6 +631,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.price`",
                 },
+                "parts": [
+                  "price",
+                ],
               },
             ],
           },
@@ -647,8 +700,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/public_power",
-                "parts": [
-                  "public_power",
+                "segments": [
+                  {
+                    "lit": "public_power",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -662,6 +717,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "public_power",
+                ],
               },
               {
                 "args": {
@@ -692,8 +750,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/total_power",
-                "parts": [
-                  "total_power",
+                "segments": [
+                  {
+                    "lit": "total_power",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -706,6 +766,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "total_power",
+                ],
               },
             ],
           },
@@ -791,8 +854,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/public_power_forecast",
-                "parts": [
-                  "public_power_forecast",
+                "segments": [
+                  {
+                    "lit": "public_power_forecast",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -807,6 +872,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "public_power_forecast",
+                ],
               },
             ],
           },
@@ -871,8 +939,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ren_share_forecast",
-                "parts": [
-                  "ren_share_forecast",
+                "segments": [
+                  {
+                    "lit": "ren_share_forecast",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -883,6 +953,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "ren_share_forecast",
+                ],
               },
             ],
           },
@@ -932,8 +1005,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/solar_share",
-                "parts": [
-                  "solar_share",
+                "segments": [
+                  {
+                    "lit": "solar_share",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -944,6 +1019,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "solar_share",
+                ],
               },
               {
                 "args": {
@@ -960,8 +1038,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/wind_offshore_share",
-                "parts": [
-                  "wind_offshore_share",
+                "segments": [
+                  {
+                    "lit": "wind_offshore_share",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -972,6 +1052,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "wind_offshore_share",
+                ],
               },
               {
                 "args": {
@@ -988,8 +1071,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/wind_onshore_share",
-                "parts": [
-                  "wind_onshore_share",
+                "segments": [
+                  {
+                    "lit": "wind_onshore_share",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1000,6 +1085,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "wind_onshore_share",
+                ],
               },
             ],
           },
@@ -1064,8 +1152,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/signal",
-                "parts": [
-                  "signal",
+                "segments": [
+                  {
+                    "lit": "signal",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -1077,6 +1167,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "signal",
+                ],
               },
             ],
           },

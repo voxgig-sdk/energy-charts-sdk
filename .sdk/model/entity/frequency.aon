@@ -58,8 +58,10 @@ main: kit: entity: frequency: {
           }
           method: "GET"
           orig: "/frequency"
-          parts: [
-            "frequency"
+          segments: [
+            {
+              lit: "frequency"
+            }
           ]
           select: {
             exist: [

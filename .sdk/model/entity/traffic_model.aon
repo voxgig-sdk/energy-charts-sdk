@@ -61,8 +61,10 @@ main: kit: entity: traffic_model: {
           }
           method: "GET"
           orig: "/signal"
-          parts: [
-            "signal"
+          segments: [
+            {
+              lit: "signal"
+            }
           ]
           select: {
             exist: [

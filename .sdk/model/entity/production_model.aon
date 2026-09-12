@@ -66,8 +66,10 @@ main: kit: entity: production_model: {
           }
           method: "GET"
           orig: "/public_power"
-          parts: [
-            "public_power"
+          segments: [
+            {
+              lit: "public_power"
+            }
           ]
           select: {
             exist: [
@@ -113,8 +115,10 @@ main: kit: entity: production_model: {
           }
           method: "GET"
           orig: "/total_power"
-          parts: [
-            "total_power"
+          segments: [
+            {
+              lit: "total_power"
+            }
           ]
           select: {
             exist: [

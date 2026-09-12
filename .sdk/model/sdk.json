@@ -93,8 +93,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cbet",
-                  "parts": [
-                    "cbet"
+                  "segments": [
+                    {
+                      "lit": "cbet"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -144,8 +146,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/cbpf",
-                  "parts": [
-                    "cbpf"
+                  "segments": [
+                    {
+                      "lit": "cbpf"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -226,8 +230,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ren_share_daily_avg",
-                  "parts": [
-                    "ren_share_daily_avg"
+                  "segments": [
+                    {
+                      "lit": "ren_share_daily_avg"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -267,8 +273,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/solar_share_daily_avg",
-                  "parts": [
-                    "solar_share_daily_avg"
+                  "segments": [
+                    {
+                      "lit": "solar_share_daily_avg"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -308,8 +316,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/wind_offshore_share_daily_avg",
-                  "parts": [
-                    "wind_offshore_share_daily_avg"
+                  "segments": [
+                    {
+                      "lit": "wind_offshore_share_daily_avg"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -349,8 +359,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/wind_onshore_share_daily_avg",
-                  "parts": [
-                    "wind_onshore_share_daily_avg"
+                  "segments": [
+                    {
+                      "lit": "wind_onshore_share_daily_avg"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -437,8 +449,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/frequency",
-                  "parts": [
-                    "frequency"
+                  "segments": [
+                    {
+                      "lit": "frequency"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -532,8 +546,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/installed_power",
-                  "parts": [
-                    "installed_power"
+                  "segments": [
+                    {
+                      "lit": "installed_power"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -633,8 +649,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/price",
-                  "parts": [
-                    "price"
+                  "segments": [
+                    {
+                      "lit": "price"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -731,8 +749,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/public_power",
-                  "parts": [
-                    "public_power"
+                  "segments": [
+                    {
+                      "lit": "public_power"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -783,8 +803,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/total_power",
-                  "parts": [
-                    "total_power"
+                  "segments": [
+                    {
+                      "lit": "total_power"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -902,8 +924,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/public_power_forecast",
-                  "parts": [
-                    "public_power_forecast"
+                  "segments": [
+                    {
+                      "lit": "public_power_forecast"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -999,8 +1023,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/ren_share_forecast",
-                  "parts": [
-                    "ren_share_forecast"
+                  "segments": [
+                    {
+                      "lit": "ren_share_forecast"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1074,8 +1100,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/solar_share",
-                  "parts": [
-                    "solar_share"
+                  "segments": [
+                    {
+                      "lit": "solar_share"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1105,8 +1133,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/wind_offshore_share",
-                  "parts": [
-                    "wind_offshore_share"
+                  "segments": [
+                    {
+                      "lit": "wind_offshore_share"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1136,8 +1166,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/wind_onshore_share",
-                  "parts": [
-                    "wind_onshore_share"
+                  "segments": [
+                    {
+                      "lit": "wind_onshore_share"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1227,8 +1259,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/signal",
-                  "parts": [
-                    "signal"
+                  "segments": [
+                    {
+                      "lit": "signal"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1313,8 +1347,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1687,6 +1724,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1712,6 +1752,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1763,6 +1807,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1787,6 +1832,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1838,6 +1884,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1862,6 +1909,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1902,6 +1950,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1927,6 +1978,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1961,6 +2015,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1986,6 +2043,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2026,6 +2086,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2051,6 +2114,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2096,6 +2162,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2121,6 +2190,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2138,11 +2210,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2171,6 +2238,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2195,6 +2265,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

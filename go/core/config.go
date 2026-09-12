@@ -93,8 +93,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cbet",
-								"parts": []any{
-									"cbet",
+								"segments": []any{
+									map[string]any{
+										"lit": "cbet",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -106,6 +108,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cbet",
 								},
 							},
 							map[string]any{
@@ -137,8 +142,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cbpf",
-								"parts": []any{
-									"cbpf",
+								"segments": []any{
+									map[string]any{
+										"lit": "cbpf",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -150,6 +157,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cbpf",
 								},
 							},
 						},
@@ -207,8 +217,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ren_share_daily_avg",
-								"parts": []any{
-									"ren_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "ren_share_daily_avg",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -219,6 +231,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"ren_share_daily_avg",
 								},
 							},
 							map[string]any{
@@ -243,8 +258,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/solar_share_daily_avg",
-								"parts": []any{
-									"solar_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "solar_share_daily_avg",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -255,6 +272,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"solar_share_daily_avg",
 								},
 							},
 							map[string]any{
@@ -279,8 +299,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_offshore_share_daily_avg",
-								"parts": []any{
-									"wind_offshore_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_offshore_share_daily_avg",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -291,6 +313,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"wind_offshore_share_daily_avg",
 								},
 							},
 							map[string]any{
@@ -315,8 +340,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_onshore_share_daily_avg",
-								"parts": []any{
-									"wind_onshore_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_onshore_share_daily_avg",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -327,6 +354,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"wind_onshore_share_daily_avg",
 								},
 							},
 						},
@@ -388,8 +418,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/frequency",
-								"parts": []any{
-									"frequency",
+								"segments": []any{
+									map[string]any{
+										"lit": "frequency",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -401,6 +433,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"frequency",
 								},
 							},
 						},
@@ -467,8 +502,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/installed_power",
-								"parts": []any{
-									"installed_power",
+								"segments": []any{
+									map[string]any{
+										"lit": "installed_power",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -480,6 +517,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"installed_power",
 								},
 							},
 						},
@@ -550,8 +590,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/price",
-								"parts": []any{
-									"price",
+								"segments": []any{
+									map[string]any{
+										"lit": "price",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -563,6 +605,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.price`",
+								},
+								"parts": []any{
+									"price",
 								},
 							},
 						},
@@ -630,8 +675,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power",
-								"parts": []any{
-									"public_power",
+								"segments": []any{
+									map[string]any{
+										"lit": "public_power",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -644,6 +691,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"public_power",
 								},
 							},
 							map[string]any{
@@ -675,8 +725,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/total_power",
-								"parts": []any{
-									"total_power",
+								"segments": []any{
+									map[string]any{
+										"lit": "total_power",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -688,6 +740,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"total_power",
 								},
 							},
 						},
@@ -774,8 +829,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power_forecast",
-								"parts": []any{
-									"public_power_forecast",
+								"segments": []any{
+									map[string]any{
+										"lit": "public_power_forecast",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -789,6 +846,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"public_power_forecast",
 								},
 							},
 						},
@@ -854,8 +914,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ren_share_forecast",
-								"parts": []any{
-									"ren_share_forecast",
+								"segments": []any{
+									map[string]any{
+										"lit": "ren_share_forecast",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -865,6 +927,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"ren_share_forecast",
 								},
 							},
 						},
@@ -915,8 +980,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/solar_share",
-								"parts": []any{
-									"solar_share",
+								"segments": []any{
+									map[string]any{
+										"lit": "solar_share",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -926,6 +993,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"solar_share",
 								},
 							},
 							map[string]any{
@@ -943,8 +1013,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_offshore_share",
-								"parts": []any{
-									"wind_offshore_share",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_offshore_share",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -954,6 +1026,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"wind_offshore_share",
 								},
 							},
 							map[string]any{
@@ -971,8 +1046,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/wind_onshore_share",
-								"parts": []any{
-									"wind_onshore_share",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_onshore_share",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -982,6 +1059,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"wind_onshore_share",
 								},
 							},
 						},
@@ -1047,8 +1127,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/signal",
-								"parts": []any{
-									"signal",
+								"segments": []any{
+									map[string]any{
+										"lit": "signal",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1060,6 +1142,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"signal",
+								},
 							},
 						},
 					},
@@ -1070,6 +1155,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

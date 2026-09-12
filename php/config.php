@@ -115,8 +115,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cbet',
-                  'parts' => [
-                    'cbet',
+                  'segments' => [
+                    [
+                      'lit' => 'cbet',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -128,6 +130,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cbet',
                   ],
                 ],
                 [
@@ -159,8 +164,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cbpf',
-                  'parts' => [
-                    'cbpf',
+                  'segments' => [
+                    [
+                      'lit' => 'cbpf',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -172,6 +179,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cbpf',
                   ],
                 ],
               ],
@@ -229,8 +239,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ren_share_daily_avg',
-                  'parts' => [
-                    'ren_share_daily_avg',
+                  'segments' => [
+                    [
+                      'lit' => 'ren_share_daily_avg',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -241,6 +253,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'ren_share_daily_avg',
                   ],
                 ],
                 [
@@ -265,8 +280,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/solar_share_daily_avg',
-                  'parts' => [
-                    'solar_share_daily_avg',
+                  'segments' => [
+                    [
+                      'lit' => 'solar_share_daily_avg',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -277,6 +294,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'solar_share_daily_avg',
                   ],
                 ],
                 [
@@ -301,8 +321,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_offshore_share_daily_avg',
-                  'parts' => [
-                    'wind_offshore_share_daily_avg',
+                  'segments' => [
+                    [
+                      'lit' => 'wind_offshore_share_daily_avg',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -313,6 +335,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'wind_offshore_share_daily_avg',
                   ],
                 ],
                 [
@@ -337,8 +362,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_onshore_share_daily_avg',
-                  'parts' => [
-                    'wind_onshore_share_daily_avg',
+                  'segments' => [
+                    [
+                      'lit' => 'wind_onshore_share_daily_avg',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -349,6 +376,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'wind_onshore_share_daily_avg',
                   ],
                 ],
               ],
@@ -410,8 +440,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/frequency',
-                  'parts' => [
-                    'frequency',
+                  'segments' => [
+                    [
+                      'lit' => 'frequency',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -423,6 +455,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'frequency',
                   ],
                 ],
               ],
@@ -489,8 +524,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/installed_power',
-                  'parts' => [
-                    'installed_power',
+                  'segments' => [
+                    [
+                      'lit' => 'installed_power',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -502,6 +539,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'installed_power',
                   ],
                 ],
               ],
@@ -572,8 +612,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/price',
-                  'parts' => [
-                    'price',
+                  'segments' => [
+                    [
+                      'lit' => 'price',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -585,6 +627,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.price`',
+                  ],
+                  'parts' => [
+                    'price',
                   ],
                 ],
               ],
@@ -652,8 +697,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public_power',
-                  'parts' => [
-                    'public_power',
+                  'segments' => [
+                    [
+                      'lit' => 'public_power',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -666,6 +713,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'public_power',
                   ],
                 ],
                 [
@@ -697,8 +747,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/total_power',
-                  'parts' => [
-                    'total_power',
+                  'segments' => [
+                    [
+                      'lit' => 'total_power',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -710,6 +762,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'total_power',
                   ],
                 ],
               ],
@@ -796,8 +851,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public_power_forecast',
-                  'parts' => [
-                    'public_power_forecast',
+                  'segments' => [
+                    [
+                      'lit' => 'public_power_forecast',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -811,6 +868,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'public_power_forecast',
                   ],
                 ],
               ],
@@ -876,8 +936,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ren_share_forecast',
-                  'parts' => [
-                    'ren_share_forecast',
+                  'segments' => [
+                    [
+                      'lit' => 'ren_share_forecast',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -887,6 +949,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'ren_share_forecast',
                   ],
                 ],
               ],
@@ -937,8 +1002,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/solar_share',
-                  'parts' => [
-                    'solar_share',
+                  'segments' => [
+                    [
+                      'lit' => 'solar_share',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -948,6 +1015,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'solar_share',
                   ],
                 ],
                 [
@@ -965,8 +1035,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_offshore_share',
-                  'parts' => [
-                    'wind_offshore_share',
+                  'segments' => [
+                    [
+                      'lit' => 'wind_offshore_share',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -976,6 +1048,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'wind_offshore_share',
                   ],
                 ],
                 [
@@ -993,8 +1068,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/wind_onshore_share',
-                  'parts' => [
-                    'wind_onshore_share',
+                  'segments' => [
+                    [
+                      'lit' => 'wind_onshore_share',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1004,6 +1081,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'wind_onshore_share',
                   ],
                 ],
               ],
@@ -1069,8 +1149,10 @@ class EnergyChartsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/signal',
-                  'parts' => [
-                    'signal',
+                  'segments' => [
+                    [
+                      'lit' => 'signal',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1081,6 +1163,9 @@ class EnergyChartsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'signal',
                   ],
                 ],
               ],

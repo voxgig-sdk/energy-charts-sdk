@@ -58,8 +58,10 @@ main: kit: entity: cross_border_model: {
           }
           method: "GET"
           orig: "/cbet"
-          parts: [
-            "cbet"
+          segments: [
+            {
+              lit: "cbet"
+            }
           ]
           select: {
             exist: [
@@ -104,8 +106,10 @@ main: kit: entity: cross_border_model: {
           }
           method: "GET"
           orig: "/cbpf"
-          parts: [
-            "cbpf"
+          segments: [
+            {
+              lit: "cbpf"
+            }
           ]
           select: {
             exist: [
