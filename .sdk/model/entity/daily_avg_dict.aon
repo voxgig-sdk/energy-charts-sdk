@@ -50,6 +50,12 @@ main: kit: entity: daily_avg_dict: {
               }
             ]
           }
+          contract: {
+            id: "GET /ren_share_daily_avg"
+            json: "{\"operationId\":\"ren_share_daily_avg_ren_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/ren_share_daily_avg"
           segments: [
@@ -88,6 +94,12 @@ main: kit: entity: daily_avg_dict: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /solar_share_daily_avg"
+            json: "{\"operationId\":\"solar_share_daily_avg_solar_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/solar_share_daily_avg"
@@ -128,6 +140,12 @@ main: kit: entity: daily_avg_dict: {
               }
             ]
           }
+          contract: {
+            id: "GET /wind_offshore_share_daily_avg"
+            json: "{\"operationId\":\"wind_offshore_share_daily_avg_wind_offshore_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/wind_offshore_share_daily_avg"
           segments: [
@@ -166,6 +184,12 @@ main: kit: entity: daily_avg_dict: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /wind_onshore_share_daily_avg"
+            json: "{\"operationId\":\"wind_onshore_share_daily_avg_wind_onshore_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/wind_onshore_share_daily_avg"

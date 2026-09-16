@@ -4,7 +4,10 @@ declare(strict_types=1);
 // EnergyCharts SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class EnergyChartsFeatures
@@ -14,8 +17,14 @@ class EnergyChartsFeatures
         switch ($name) {
             case "base":
                 return new EnergyChartsBaseFeature();
+            case "ratelimit":
+                return new EnergyChartsRatelimitFeature();
+            case "retry":
+                return new EnergyChartsRetryFeature();
             case "test":
                 return new EnergyChartsTestFeature();
+            case "timeout":
+                return new EnergyChartsTimeoutFeature();
             default:
                 return new EnergyChartsBaseFeature();
         }
@@ -31,7 +40,10 @@ class EnergyChartsFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

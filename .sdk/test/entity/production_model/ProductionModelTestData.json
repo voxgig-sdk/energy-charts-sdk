@@ -29,5 +29,347 @@
         "unix_seconds": "s7a"
       }
     }
+  },
+  "requests": {
+    "GET /public_power": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "public_power_public_power_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "default": "de",
+              "title": "Country",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Start",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "End",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "subtype",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Subtype",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deprecated": {
+                      "title": "Deprecated",
+                      "type": "boolean"
+                    },
+                    "production_types": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "title": "Data",
+                                "type": "array"
+                              },
+                              "name": {
+                                "title": "Name",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "data"
+                            ],
+                            "title": "NamedData",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Production Types"
+                    },
+                    "unix_seconds": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Unix Seconds"
+                    }
+                  },
+                  "required": [
+                    "deprecated"
+                  ],
+                  "title": "ProductionModel",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "items": {
+                        "properties": {
+                          "loc": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            "title": "Location",
+                            "type": "array"
+                          },
+                          "msg": {
+                            "title": "Message",
+                            "type": "string"
+                          },
+                          "type": {
+                            "title": "Error Type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "title": "ValidationError",
+                        "type": "object"
+                      },
+                      "title": "Detail",
+                      "type": "array"
+                    }
+                  },
+                  "title": "HTTPValidationError",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /total_power": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "total_power_total_power_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "default": "de",
+              "title": "Country",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Start",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "End",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deprecated": {
+                      "title": "Deprecated",
+                      "type": "boolean"
+                    },
+                    "production_types": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "title": "Data",
+                                "type": "array"
+                              },
+                              "name": {
+                                "title": "Name",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "data"
+                            ],
+                            "title": "NamedData",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Production Types"
+                    },
+                    "unix_seconds": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Unix Seconds"
+                    }
+                  },
+                  "required": [
+                    "deprecated"
+                  ],
+                  "title": "ProductionModel",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "items": {
+                        "properties": {
+                          "loc": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            "title": "Location",
+                            "type": "array"
+                          },
+                          "msg": {
+                            "title": "Message",
+                            "type": "string"
+                          },
+                          "type": {
+                            "title": "Error Type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "title": "ValidationError",
+                        "type": "object"
+                      },
+                      "title": "Detail",
+                      "type": "array"
+                    }
+                  },
+                  "title": "HTTPValidationError",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

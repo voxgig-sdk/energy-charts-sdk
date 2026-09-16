@@ -1,12 +1,18 @@
 # EnergyCharts SDK feature factory
 
 from energycharts_sdk.feature.base_feature import EnergyChartsBaseFeature
+from energycharts_sdk.feature.ratelimit_feature import EnergyChartsRatelimitFeature
+from energycharts_sdk.feature.retry_feature import EnergyChartsRetryFeature
 from energycharts_sdk.feature.test_feature import EnergyChartsTestFeature
+from energycharts_sdk.feature.timeout_feature import EnergyChartsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: EnergyChartsBaseFeature(),
+    "ratelimit": lambda: EnergyChartsRatelimitFeature(),
+    "retry": lambda: EnergyChartsRetryFeature(),
     "test": lambda: EnergyChartsTestFeature(),
+    "timeout": lambda: EnergyChartsTimeoutFeature(),
 }
 
 

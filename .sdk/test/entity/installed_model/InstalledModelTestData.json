@@ -30,5 +30,178 @@
         "time": []
       }
     }
+  },
+  "requests": {
+    "GET /installed_power": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "installed_power_installed_power_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "default": "de",
+              "title": "Country",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "time_step",
+            "required": false,
+            "schema": {
+              "default": "yearly",
+              "title": "Time Step",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "installation_decommission",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Installation Decommission",
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deprecated": {
+                      "title": "Deprecated",
+                      "type": "boolean"
+                    },
+                    "last_update": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Last Update"
+                    },
+                    "production_types": {
+                      "anyOf": [
+                        {
+                          "items": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "null"
+                                    }
+                                  ]
+                                },
+                                "title": "Data",
+                                "type": "array"
+                              },
+                              "name": {
+                                "title": "Name",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "data"
+                            ],
+                            "title": "NamedData",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Production Types"
+                    },
+                    "time": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "title": "Time",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "time",
+                    "last_update",
+                    "deprecated"
+                  ],
+                  "title": "InstalledModel",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "items": {
+                        "properties": {
+                          "loc": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            "title": "Location",
+                            "type": "array"
+                          },
+                          "msg": {
+                            "title": "Message",
+                            "type": "string"
+                          },
+                          "type": {
+                            "title": "Error Type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "title": "ValidationError",
+                        "type": "object"
+                      },
+                      "title": "Detail",
+                      "type": "array"
+                    }
+                  },
+                  "title": "HTTPValidationError",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

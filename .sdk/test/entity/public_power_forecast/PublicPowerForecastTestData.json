@@ -34,5 +34,172 @@
         "unix_seconds": []
       }
     }
+  },
+  "requests": {
+    "GET /public_power_forecast": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "public_power_forecast_public_power_forecast_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "schema": {
+              "default": "de",
+              "title": "Country",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "production_type",
+            "required": false,
+            "schema": {
+              "default": "solar",
+              "title": "Production Type",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "forecast_type",
+            "required": false,
+            "schema": {
+              "default": "current",
+              "title": "Forecast Type",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Start",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "End",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "deprecated": {
+                      "title": "Deprecated",
+                      "type": "boolean"
+                    },
+                    "forecast_type": {
+                      "title": "Forecast Type",
+                      "type": "string"
+                    },
+                    "forecast_values": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "title": "Forecast Values",
+                      "type": "array"
+                    },
+                    "production_type": {
+                      "title": "Production Type",
+                      "type": "string"
+                    },
+                    "unix_seconds": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "title": "Unix Seconds",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "unix_seconds",
+                    "forecast_values",
+                    "production_type",
+                    "forecast_type",
+                    "deprecated"
+                  ],
+                  "title": "PublicPowerForecastModel",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "detail": {
+                      "items": {
+                        "properties": {
+                          "loc": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "string"
+                                },
+                                {
+                                  "type": "integer"
+                                }
+                              ]
+                            },
+                            "title": "Location",
+                            "type": "array"
+                          },
+                          "msg": {
+                            "title": "Message",
+                            "type": "string"
+                          },
+                          "type": {
+                            "title": "Error Type",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "loc",
+                          "msg",
+                          "type"
+                        ],
+                        "title": "ValidationError",
+                        "type": "object"
+                      },
+                      "title": "Detail",
+                      "type": "array"
+                    }
+                  },
+                  "title": "HTTPValidationError",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

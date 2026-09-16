@@ -59,6 +59,12 @@ main: kit: entity: traffic_model: {
               }
             ]
           }
+          contract: {
+            id: "GET /signal"
+            json: "{\"operationId\":\"traffic_signal_signal_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"postal_code\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Postal Code\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"share\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Share\",\"type\":\"array\"},\"signal\":{\"description\":\"\\n    0: Red (low renewable share)\\n    1: Yellow (average renewable share)\\n    2: Green (high renewable share)\\n    \",\"items\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"title\":\"Signal\",\"type\":\"array\"},\"substitute\":{\"title\":\"Substitute\",\"type\":\"boolean\"},\"unix_seconds\":{\"items\":{\"type\":\"integer\"},\"title\":\"Unix Seconds\",\"type\":\"array\"}},\"required\":[\"unix_seconds\",\"share\",\"substitute\",\"deprecated\"],\"title\":\"TrafficModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/signal"
           segments: [
