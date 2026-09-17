@@ -105,12 +105,12 @@ local results, err = client:InstalledModel():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/energy-charts-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/releases) |
-| Python | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/releases) |
-| PHP | `voxgig-sdk/energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/releases) |
+| TypeScript | `@voxgig-sdk/energy-charts-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/tags) |
+| Python | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/tags) |
+| PHP | `voxgig-sdk/energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/energy-charts-sdk/go` | `go get github.com/voxgig-sdk/energy-charts-sdk/go@latest` |
-| Ruby | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/releases) |
-| Lua | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/releases) |
+| Ruby | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/tags) |
+| Lua | `voxgig-sdk-energy-charts` | publish pending — [install from git tag](https://github.com/voxgig-sdk/energy-charts-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/energy-charts-sdk/go-cli` | `go install github.com/voxgig-sdk/energy-charts-sdk/go-cli/cmd/energy-charts@latest` |
 | Go MCP server | `github.com/voxgig-sdk/energy-charts-sdk/go-mcp` | `go get github.com/voxgig-sdk/energy-charts-sdk/go-mcp@latest` |
 

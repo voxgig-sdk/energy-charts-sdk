@@ -127,36 +127,36 @@ class Config {
 
     entity: {
       
-      cross_border_model: {
-      },
-
-      daily_avg_dict: {
-      },
-
-      frequency: {
-      },
-
-      installed_model: {
-      },
-
-      price: {
-      },
-
-      production_model: {
-      },
-
-      public_power_forecast: {
-      },
-
-      ren_share_model: {
-      },
-
-      share_model: {
-      },
-
-      traffic_model: {
-      },
-
+        cross_border_model: {
+        },
+  
+        daily_avg_dict: {
+        },
+  
+        frequency: {
+        },
+  
+        installed_model: {
+        },
+  
+        price: {
+        },
+  
+        production_model: {
+        },
+  
+        public_power_forecast: {
+        },
+  
+        ren_share_model: {
+        },
+  
+        share_model: {
+        },
+  
+        traffic_model: {
+        },
+  
     }
   }
 
