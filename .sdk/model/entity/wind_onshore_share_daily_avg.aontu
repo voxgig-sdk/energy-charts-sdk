@@ -1,0 +1,85 @@
+# Entity: wind_onshore_share_daily_avg
+
+main: kit: entity: wind_onshore_share_daily_avg: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      sh: "List of average daily values"
+      t: "`$ARRAY`"
+    }
+    days: {
+      h: "Days"
+      n: "days"
+      r: true
+      sh: "List of days in the format dd.mm.yyyy"
+      t: "`$ARRAY`"
+    }
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "wind_onshore_share_daily_avg"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /wind_onshore_share_daily_avg"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: -1
+                k: "query"
+                n: "year"
+                or: "year"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/wind_onshore_share_daily_avg"
+          q: {
+            exist: [
+              "country"
+              "year"
+            ]
+          }
+          s: [
+            {
+              lit: "wind_onshore_share_daily_avg"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

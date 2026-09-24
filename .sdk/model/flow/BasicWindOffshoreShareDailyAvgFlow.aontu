@@ -1,0 +1,22 @@
+# BasicWindOffshoreShareDailyAvgFlow
+
+main: kit: flow: BasicWindOffshoreShareDailyAvgFlow:
+{
+  entity: "wind_offshore_share_daily_avg",
+  kind: "basic",
+  name: "BasicWindOffshoreShareDailyAvgFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "wind_offshore_share_daily_avg_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWindOffshoreShareDailyAvgFlow"
+}

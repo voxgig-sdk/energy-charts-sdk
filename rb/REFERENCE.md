@@ -41,13 +41,13 @@ client = EnergyChartsSDK.test
 
 ### Instance Methods
 
-#### `CrossBorderModel(data = nil)`
+#### `Cbet(data = nil)`
 
-Create a new `CrossBorderModel` entity instance. Pass `nil` for no initial data.
+Create a new `Cbet` entity instance. Pass `nil` for no initial data.
 
-#### `DailyAvgDict(data = nil)`
+#### `Cbpf(data = nil)`
 
-Create a new `DailyAvgDict` entity instance. Pass `nil` for no initial data.
+Create a new `Cbpf` entity instance. Pass `nil` for no initial data.
 
 #### `Frequency(data = nil)`
 
@@ -61,25 +61,53 @@ Create a new `InstalledModel` entity instance. Pass `nil` for no initial data.
 
 Create a new `Price` entity instance. Pass `nil` for no initial data.
 
-#### `ProductionModel(data = nil)`
+#### `PublicPower(data = nil)`
 
-Create a new `ProductionModel` entity instance. Pass `nil` for no initial data.
+Create a new `PublicPower` entity instance. Pass `nil` for no initial data.
 
 #### `PublicPowerForecast(data = nil)`
 
 Create a new `PublicPowerForecast` entity instance. Pass `nil` for no initial data.
 
+#### `RenShareDailyAvg(data = nil)`
+
+Create a new `RenShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
 #### `RenShareModel(data = nil)`
 
 Create a new `RenShareModel` entity instance. Pass `nil` for no initial data.
 
-#### `ShareModel(data = nil)`
+#### `SolarShare(data = nil)`
 
-Create a new `ShareModel` entity instance. Pass `nil` for no initial data.
+Create a new `SolarShare` entity instance. Pass `nil` for no initial data.
+
+#### `SolarShareDailyAvg(data = nil)`
+
+Create a new `SolarShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `TotalPower(data = nil)`
+
+Create a new `TotalPower` entity instance. Pass `nil` for no initial data.
 
 #### `TrafficModel(data = nil)`
 
 Create a new `TrafficModel` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShare(data = nil)`
+
+Create a new `WindOffshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShareDailyAvg(data = nil)`
+
+Create a new `WindOffshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShare(data = nil)`
+
+Create a new `WindOnshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShareDailyAvg(data = nil)`
+
+Create a new `WindOnshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
 
 #### `options_map -> Hash`
 
@@ -119,10 +147,10 @@ same parameters as `direct()`. Raises on error.
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```ruby
-cross_border_model = client.CrossBorderModel
+cbet = client.Cbet
 ```
 
 ### Fields
@@ -140,7 +168,7 @@ cross_border_model = client.CrossBorderModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CrossBorderModel.load()
+result = client.Cbet.load()
 ```
 
 ### Common Methods
@@ -163,7 +191,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `CrossBorderModelEntity` instance with the same client and
+Create a new `CbetEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -173,28 +201,28 @@ Return the entity name.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```ruby
-daily_avg_dict = client.DailyAvgDict
+cbpf = client.Cbpf
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Array` | Yes | List of average daily values |
-| `days` | `Array` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `Object` | No |  |
 | `deprecated` | `Boolean` | Yes |  |
+| `unix_seconds` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-results = client.DailyAvgDict.list
+result = client.Cbpf.load()
 ```
 
 ### Common Methods
@@ -217,7 +245,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `DailyAvgDictEntity` instance with the same client and
+Create a new `CbpfEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -392,10 +420,10 @@ Return the entity name.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```ruby
-production_model = client.ProductionModel
+public_power = client.PublicPower
 ```
 
 ### Fields
@@ -413,7 +441,7 @@ production_model = client.ProductionModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ProductionModel.load()
+result = client.PublicPower.load()
 ```
 
 ### Common Methods
@@ -436,7 +464,7 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `ProductionModelEntity` instance with the same client and
+Create a new `PublicPowerEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -493,6 +521,60 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `PublicPowerForecastEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```ruby
+ren_share_daily_avg = client.RenShareDailyAvg
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Array` | Yes | List of average daily values |
+| `days` | `Array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `Boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.RenShareDailyAvg.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `RenShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -560,10 +642,10 @@ Return the entity name.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```ruby
-share_model = client.ShareModel
+solar_share = client.SolarShare
 ```
 
 ### Fields
@@ -582,7 +664,7 @@ share_model = client.ShareModel
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ShareModel.load()
+result = client.SolarShare.load()
 ```
 
 ### Common Methods
@@ -605,7 +687,115 @@ Set the entity match criteria.
 
 #### `make -> Entity`
 
-Create a new `ShareModelEntity` instance with the same client and
+Create a new `SolarShareEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```ruby
+solar_share_daily_avg = client.SolarShareDailyAvg
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Array` | Yes | List of average daily values |
+| `days` | `Array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `Boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.SolarShareDailyAvg.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## TotalPowerEntity
+
+```ruby
+total_power = client.TotalPower
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `Boolean` | Yes |  |
+| `production_types` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl = nil) -> result`
+
+Load a single entity matching the given criteria. Raises on error.
+
+```ruby
+result = client.TotalPower.load()
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `TotalPowerEntity` instance with the same client and
 options.
 
 #### `get_name -> String`
@@ -662,6 +852,224 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `TrafficModelEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```ruby
+wind_offshore_share = client.WindOffshoreShare
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Object` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `forecast` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl = nil) -> result`
+
+Load a single entity matching the given criteria. Raises on error.
+
+```ruby
+result = client.WindOffshoreShare.load()
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `WindOffshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```ruby
+wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Array` | Yes | List of average daily values |
+| `days` | `Array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `Boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.WindOffshoreShareDailyAvg.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```ruby
+wind_onshore_share = client.WindOnshoreShare
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Object` | No |  |
+| `deprecated` | `Boolean` | Yes |  |
+| `forecast` | `Object` | No |  |
+| `unix_seconds` | `Object` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl = nil) -> result`
+
+Load a single entity matching the given criteria. Raises on error.
+
+```ruby
+result = client.WindOnshoreShare.load()
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `WindOnshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```ruby
+wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Array` | Yes | List of average daily values |
+| `days` | `Array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `Boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+
+```ruby
+results = client.WindOnshoreShareDailyAvg.list
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

@@ -4,7 +4,7 @@
 
 The Python SDK for the EnergyCharts API — an entity-oriented client following Pythonic conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CrossBorderModel()` — each
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Cbet()` — each
 carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
 paths and query strings. You work with named resources and verbs, which
 keeps the cognitive load low.
@@ -36,14 +36,14 @@ from energycharts_sdk import EnergyChartsSDK
 client = EnergyChartsSDK()
 ```
 
-### 3. Load a crossbordermodel
+### 3. Load a cbet
 
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    crossbordermodel = client.CrossBorderModel().load()
-    print(crossbordermodel)
+    cbet = client.Cbet().load()
+    print(cbet)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -55,10 +55,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    installedmodels = client.InstalledModel().list()
-    print(installedmodels)
+    publicpower = client.PublicPower().load()
+    print(publicpower)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -124,8 +124,8 @@ client = EnergyChartsSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-installedmodel = client.InstalledModel().list()
-# installedmodel contains the mock response record
+publicpower = client.PublicPower().load()
+# publicpower contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -201,16 +201,23 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `CrossBorderModel` | `(data) -> CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
-| `DailyAvgDict` | `(data) -> DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
+| `Cbet` | `(data) -> CbetEntity` | Create a Cbet entity instance. |
+| `Cbpf` | `(data) -> CbpfEntity` | Create a Cbpf entity instance. |
 | `Frequency` | `(data) -> FrequencyEntity` | Create a Frequency entity instance. |
 | `InstalledModel` | `(data) -> InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price` | `(data) -> PriceEntity` | Create a Price entity instance. |
-| `ProductionModel` | `(data) -> ProductionModelEntity` | Create a ProductionModel entity instance. |
+| `PublicPower` | `(data) -> PublicPowerEntity` | Create a PublicPower entity instance. |
 | `PublicPowerForecast` | `(data) -> PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
+| `RenShareDailyAvg` | `(data) -> RenShareDailyAvgEntity` | Create a RenShareDailyAvg entity instance. |
 | `RenShareModel` | `(data) -> RenShareModelEntity` | Create a RenShareModel entity instance. |
-| `ShareModel` | `(data) -> ShareModelEntity` | Create a ShareModel entity instance. |
+| `SolarShare` | `(data) -> SolarShareEntity` | Create a SolarShare entity instance. |
+| `SolarShareDailyAvg` | `(data) -> SolarShareDailyAvgEntity` | Create a SolarShareDailyAvg entity instance. |
+| `TotalPower` | `(data) -> TotalPowerEntity` | Create a TotalPower entity instance. |
 | `TrafficModel` | `(data) -> TrafficModelEntity` | Create a TrafficModel entity instance. |
+| `WindOffshoreShare` | `(data) -> WindOffshoreShareEntity` | Create a WindOffshoreShare entity instance. |
+| `WindOffshoreShareDailyAvg` | `(data) -> WindOffshoreShareDailyAvgEntity` | Create a WindOffshoreShareDailyAvg entity instance. |
+| `WindOnshoreShare` | `(data) -> WindOnshoreShareEntity` | Create a WindOnshoreShare entity instance. |
+| `WindOnshoreShareDailyAvg` | `(data) -> WindOnshoreShareDailyAvgEntity` | Create a WindOnshoreShareDailyAvg entity instance. |
 
 ### Entity interface
 
@@ -247,7 +254,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 ### Entities
 
-#### CrossBorderModel
+#### Cbet
 
 | Field | Description |
 | --- | --- |
@@ -259,17 +266,17 @@ Operations: Load.
 
 API path: `/cbet`
 
-#### DailyAvgDict
+#### Cbpf
 
 | Field | Description |
 | --- | --- |
-| `data` | List of average daily values |
-| `days` | List of days in the format dd.mm.yyyy |
+| `countries` |  |
 | `deprecated` |  |
+| `unix_seconds` |  |
 
-Operations: List.
+Operations: Load.
 
-API path: `/ren_share_daily_avg`
+API path: `/cbpf`
 
 #### Frequency
 
@@ -310,7 +317,7 @@ Operations: Load.
 
 API path: `/price`
 
-#### ProductionModel
+#### PublicPower
 
 | Field | Description |
 | --- | --- |
@@ -336,6 +343,18 @@ Operations: List.
 
 API path: `/public_power_forecast`
 
+#### RenShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/ren_share_daily_avg`
+
 #### RenShareModel
 
 | Field | Description |
@@ -352,7 +371,7 @@ Operations: List.
 
 API path: `/ren_share_forecast`
 
-#### ShareModel
+#### SolarShare
 
 | Field | Description |
 | --- | --- |
@@ -364,6 +383,30 @@ API path: `/ren_share_forecast`
 Operations: Load.
 
 API path: `/solar_share`
+
+#### SolarShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/solar_share_daily_avg`
+
+#### TotalPower
+
+| Field | Description |
+| --- | --- |
+| `deprecated` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/total_power`
 
 #### TrafficModel
 
@@ -379,14 +422,64 @@ Operations: List.
 
 API path: `/signal`
 
+#### WindOffshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_offshore_share`
+
+#### WindOffshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_offshore_share_daily_avg`
+
+#### WindOnshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_onshore_share`
+
+#### WindOnshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_onshore_share_daily_avg`
+
 
 
 ## Entities
 
 
-### CrossBorderModel
+### Cbet
 
-Create an instance: `cross_border_model = client.CrossBorderModel()`
+Create an instance: `cbet = client.Cbet()`
 
 #### Operations
 
@@ -405,32 +498,32 @@ Create an instance: `cross_border_model = client.CrossBorderModel()`
 #### Example: Load
 
 ```python
-cross_border_model = client.CrossBorderModel().load()
+cbet = client.Cbet().load()
 ```
 
 
-### DailyAvgDict
+### Cbpf
 
-Create an instance: `daily_avg_dict = client.DailyAvgDict()`
+Create an instance: `cbpf = client.Cbpf()`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
+| `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `list` | List of average daily values |
-| `days` | `list` | List of days in the format dd.mm.yyyy |
+| `countries` | `Any` |  |
 | `deprecated` | `bool` |  |
+| `unix_seconds` | `Any` |  |
 
-#### Example: List
+#### Example: Load
 
 ```python
-daily_avg_dicts = client.DailyAvgDict().list()
+cbpf = client.Cbpf().load()
 ```
 
 
@@ -512,9 +605,9 @@ price = client.Price().load()
 ```
 
 
-### ProductionModel
+### PublicPower
 
-Create an instance: `production_model = client.ProductionModel()`
+Create an instance: `public_power = client.PublicPower()`
 
 #### Operations
 
@@ -533,7 +626,7 @@ Create an instance: `production_model = client.ProductionModel()`
 #### Example: Load
 
 ```python
-production_model = client.ProductionModel().load()
+public_power = client.PublicPower().load()
 ```
 
 
@@ -561,6 +654,31 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast()`
 
 ```python
 public_power_forecasts = client.PublicPowerForecast().list()
+```
+
+
+### RenShareDailyAvg
+
+Create an instance: `ren_share_daily_avg = client.RenShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `list` | List of average daily values |
+| `days` | `list` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```python
+ren_share_daily_avgs = client.RenShareDailyAvg().list()
 ```
 
 
@@ -593,9 +711,9 @@ ren_share_models = client.RenShareModel().list()
 ```
 
 
-### ShareModel
+### SolarShare
 
-Create an instance: `share_model = client.ShareModel()`
+Create an instance: `solar_share = client.SolarShare()`
 
 #### Operations
 
@@ -615,7 +733,57 @@ Create an instance: `share_model = client.ShareModel()`
 #### Example: Load
 
 ```python
-share_model = client.ShareModel().load()
+solar_share = client.SolarShare().load()
+```
+
+
+### SolarShareDailyAvg
+
+Create an instance: `solar_share_daily_avg = client.SolarShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `list` | List of average daily values |
+| `days` | `list` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```python
+solar_share_daily_avgs = client.SolarShareDailyAvg().list()
+```
+
+
+### TotalPower
+
+Create an instance: `total_power = client.TotalPower()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `deprecated` | `bool` |  |
+| `production_types` | `Any` |  |
+| `unix_seconds` | `Any` |  |
+
+#### Example: Load
+
+```python
+total_power = client.TotalPower().load()
 ```
 
 
@@ -643,6 +811,108 @@ Create an instance: `traffic_model = client.TrafficModel()`
 
 ```python
 traffic_models = client.TrafficModel().list()
+```
+
+
+### WindOffshoreShare
+
+Create an instance: `wind_offshore_share = client.WindOffshoreShare()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `Any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `Any` |  |
+| `unix_seconds` | `Any` |  |
+
+#### Example: Load
+
+```python
+wind_offshore_share = client.WindOffshoreShare().load()
+```
+
+
+### WindOffshoreShareDailyAvg
+
+Create an instance: `wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `list` | List of average daily values |
+| `days` | `list` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```python
+wind_offshore_share_daily_avgs = client.WindOffshoreShareDailyAvg().list()
+```
+
+
+### WindOnshoreShare
+
+Create an instance: `wind_onshore_share = client.WindOnshoreShare()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `Any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `Any` |  |
+| `unix_seconds` | `Any` |  |
+
+#### Example: Load
+
+```python
+wind_onshore_share = client.WindOnshoreShare().load()
+```
+
+
+### WindOnshoreShareDailyAvg
+
+Create an instance: `wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `list` | List of average daily values |
+| `days` | `list` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```python
+wind_onshore_share_daily_avgs = client.WindOnshoreShareDailyAvg().list()
 ```
 
 ## Features
@@ -802,15 +1072,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-installedmodel = client.InstalledModel()
-installedmodel.list()
+publicpower = client.PublicPower()
+publicpower.load()
 
-# installedmodel.data_get() now returns the installedmodel data from the last list
-# installedmodel.match_get() returns the last match criteria
+# publicpower.data_get() now returns the publicpower data from the last load
+# publicpower.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

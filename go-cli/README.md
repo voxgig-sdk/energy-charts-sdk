@@ -19,15 +19,15 @@ make build
 export ENERGY_CHARTS_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./energy-charts-cli load 1 cross_border_model            # {id:1} shorthand
-./energy-charts-cli load '{id:1}' cross_border_model       # explicit match map
+./energy-charts-cli load 1 cbet            # {id:1} shorthand
+./energy-charts-cli load '{id:1}' cbet       # explicit match map
 
 # 5. Override the API base URL for a single call
-ENERGY_CHARTS_BASE=https://api.example.com ./energy-charts-cli load 1 cross_border_model
+ENERGY_CHARTS_BASE=https://api.example.com ./energy-charts-cli load 1 cbet
 
 # 6. No arguments -> interactive REPL
 ./energy-charts-cli
-energy-charts> load 1 cross_border_model
+energy-charts> load 1 cbet
 energy-charts> /quit
 ```
 
@@ -53,7 +53,7 @@ energy-charts> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/energy-charts-cli load 1 cross_border_model
+   ./dist/*/energy-charts-cli load 1 cbet
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -66,8 +66,8 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### Load a single record
 
 ```sh
-./energy-charts-cli load 1 cross_border_model          # scalar shorthand for {id:1}
-./energy-charts-cli load '{id:1}' cross_border_model     # explicit match map
+./energy-charts-cli load 1 cbet          # scalar shorthand for {id:1}
+./energy-charts-cli load '{id:1}' cbet     # explicit match map
 ```
 
 The query is either a **scalar** (`1`, treated as `{id:1}`) or a **match map**
@@ -80,7 +80,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export ENERGY_CHARTS_APIKEY=sk_live_xxx            # API key
 export ENERGY_CHARTS_BASE=https://api.example.com  # optional: override the API base URL
-./energy-charts-cli load 1 cross_border_model
+./energy-charts-cli load 1 cbet
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -92,7 +92,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./energy-charts-cli
-energy-charts> load 1 cross_border_model
+energy-charts> load 1 cbet
 energy-charts> /help
 energy-charts> /quit
 ```
@@ -107,7 +107,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 10 entities.
+below — this SDK exposes 17 entities.
 
 ## Reference
 
@@ -120,7 +120,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `list`   | `list <entity>` · `list <query> <entity>`     | First page of records          |
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `cross_border_model`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `cbet`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -161,9 +161,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 10 entities this SDK exposes (any is valid as `<entity>`):
+The 17 entities this SDK exposes (any is valid as `<entity>`):
 
-cross_border_model daily_avg_dict frequency installed_model price production_model public_power_forecast ren_share_model share_model traffic_model
+cbet cbpf frequency installed_model price public_power public_power_forecast ren_share_daily_avg ren_share_model solar_share solar_share_daily_avg total_power traffic_model wind_offshore_share wind_offshore_share_daily_avg wind_onshore_share wind_onshore_share_daily_avg
 
 ## Explanation
 

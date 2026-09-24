@@ -47,13 +47,13 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `CrossBorderModel(data map[string]any) EnergyChartsEntity`
+#### `Cbet(data map[string]any) EnergyChartsEntity`
 
-Create a new `CrossBorderModel` entity instance. Pass `nil` for no initial data.
+Create a new `Cbet` entity instance. Pass `nil` for no initial data.
 
-#### `DailyAvgDict(data map[string]any) EnergyChartsEntity`
+#### `Cbpf(data map[string]any) EnergyChartsEntity`
 
-Create a new `DailyAvgDict` entity instance. Pass `nil` for no initial data.
+Create a new `Cbpf` entity instance. Pass `nil` for no initial data.
 
 #### `Frequency(data map[string]any) EnergyChartsEntity`
 
@@ -67,25 +67,53 @@ Create a new `InstalledModel` entity instance. Pass `nil` for no initial data.
 
 Create a new `Price` entity instance. Pass `nil` for no initial data.
 
-#### `ProductionModel(data map[string]any) EnergyChartsEntity`
+#### `PublicPower(data map[string]any) EnergyChartsEntity`
 
-Create a new `ProductionModel` entity instance. Pass `nil` for no initial data.
+Create a new `PublicPower` entity instance. Pass `nil` for no initial data.
 
 #### `PublicPowerForecast(data map[string]any) EnergyChartsEntity`
 
 Create a new `PublicPowerForecast` entity instance. Pass `nil` for no initial data.
 
+#### `RenShareDailyAvg(data map[string]any) EnergyChartsEntity`
+
+Create a new `RenShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
 #### `RenShareModel(data map[string]any) EnergyChartsEntity`
 
 Create a new `RenShareModel` entity instance. Pass `nil` for no initial data.
 
-#### `ShareModel(data map[string]any) EnergyChartsEntity`
+#### `SolarShare(data map[string]any) EnergyChartsEntity`
 
-Create a new `ShareModel` entity instance. Pass `nil` for no initial data.
+Create a new `SolarShare` entity instance. Pass `nil` for no initial data.
+
+#### `SolarShareDailyAvg(data map[string]any) EnergyChartsEntity`
+
+Create a new `SolarShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `TotalPower(data map[string]any) EnergyChartsEntity`
+
+Create a new `TotalPower` entity instance. Pass `nil` for no initial data.
 
 #### `TrafficModel(data map[string]any) EnergyChartsEntity`
 
 Create a new `TrafficModel` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShare(data map[string]any) EnergyChartsEntity`
+
+Create a new `WindOffshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShareDailyAvg(data map[string]any) EnergyChartsEntity`
+
+Create a new `WindOffshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShare(data map[string]any) EnergyChartsEntity`
+
+Create a new `WindOnshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShareDailyAvg(data map[string]any) EnergyChartsEntity`
+
+Create a new `WindOnshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
 
 #### `OptionsMap() map[string]any`
 
@@ -123,11 +151,11 @@ same parameters as `Direct()`.
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```go
-crossBorderModel := client.CrossBorderModel(nil)
-fmt.Println(crossBorderModel.GetName()) // "cross_border_model"
+cbet := client.Cbet(nil)
+fmt.Println(cbet.GetName()) // "cbet"
 ```
 
 ### Fields
@@ -145,7 +173,7 @@ fmt.Println(crossBorderModel.GetName()) // "cross_border_model"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CrossBorderModel(nil).Load(nil, nil)
+result, err := client.Cbet(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -166,7 +194,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `CrossBorderModelEntity` instance with the same client and
+Create a new `CbetEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -176,33 +204,33 @@ Return the entity name.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```go
-dailyAvgDict := client.DailyAvgDict(nil)
-fmt.Println(dailyAvgDict.GetName()) // "daily_avg_dict"
+cbpf := client.Cbpf(nil)
+fmt.Println(cbpf.GetName()) // "cbpf"
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `[]any` | Yes | List of average daily values |
-| `days` | `[]any` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `any` | No |  |
 | `deprecated` | `bool` | Yes |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns an array.
+Load a single entity matching the given criteria.
 
 ```go
-results, err := client.DailyAvgDict(nil).List(nil, nil)
+result, err := client.Cbpf(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(results)
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -219,7 +247,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `DailyAvgDictEntity` instance with the same client and
+Create a new `CbpfEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -391,11 +419,11 @@ Return the entity name.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```go
-productionModel := client.ProductionModel(nil)
-fmt.Println(productionModel.GetName()) // "production_model"
+publicPower := client.PublicPower(nil)
+fmt.Println(publicPower.GetName()) // "public_power"
 ```
 
 ### Fields
@@ -413,7 +441,7 @@ fmt.Println(productionModel.GetName()) // "production_model"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ProductionModel(nil).Load(nil, nil)
+result, err := client.PublicPower(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -434,7 +462,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ProductionModelEntity` instance with the same client and
+Create a new `PublicPowerEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -490,6 +518,59 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `PublicPowerForecastEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```go
+renShareDailyAvg := client.RenShareDailyAvg(nil)
+fmt.Println(renShareDailyAvg.GetName()) // "ren_share_daily_avg"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `[]any` | Yes | List of average daily values |
+| `days` | `[]any` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.RenShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `RenShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -556,11 +637,11 @@ Return the entity name.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```go
-shareModel := client.ShareModel(nil)
-fmt.Println(shareModel.GetName()) // "share_model"
+solarShare := client.SolarShare(nil)
+fmt.Println(solarShare.GetName()) // "solar_share"
 ```
 
 ### Fields
@@ -579,7 +660,7 @@ fmt.Println(shareModel.GetName()) // "share_model"
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ShareModel(nil).Load(nil, nil)
+result, err := client.SolarShare(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -600,7 +681,113 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ShareModelEntity` instance with the same client and
+Create a new `SolarShareEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```go
+solarShareDailyAvg := client.SolarShareDailyAvg(nil)
+fmt.Println(solarShareDailyAvg.GetName()) // "solar_share_daily_avg"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `[]any` | Yes | List of average daily values |
+| `days` | `[]any` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.SolarShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## TotalPowerEntity
+
+```go
+totalPower := client.TotalPower(nil)
+fmt.Println(totalPower.GetName()) // "total_power"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `bool` | Yes |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.TotalPower(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `TotalPowerEntity` instance with the same client and
 options.
 
 #### `GetName() string`
@@ -656,6 +843,220 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `TrafficModelEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```go
+windOffshoreShare := client.WindOffshoreShare(nil)
+fmt.Println(windOffshoreShare.GetName()) // "wind_offshore_share"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.WindOffshoreShare(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `WindOffshoreShareEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```go
+windOffshoreShareDailyAvg := client.WindOffshoreShareDailyAvg(nil)
+fmt.Println(windOffshoreShareDailyAvg.GetName()) // "wind_offshore_share_daily_avg"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `[]any` | Yes | List of average daily values |
+| `days` | `[]any` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.WindOffshoreShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```go
+windOnshoreShare := client.WindOnshoreShare(nil)
+fmt.Println(windOnshoreShare.GetName()) // "wind_onshore_share"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.WindOnshoreShare(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `WindOnshoreShareEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```go
+windOnshoreShareDailyAvg := client.WindOnshoreShareDailyAvg(nil)
+fmt.Println(windOnshoreShareDailyAvg.GetName()) // "wind_onshore_share_daily_avg"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `[]any` | Yes | List of average daily values |
+| `days` | `[]any` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns an array.
+
+```go
+results, err := client.WindOnshoreShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `GetName() string`

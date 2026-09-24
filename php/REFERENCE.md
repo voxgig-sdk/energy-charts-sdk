@@ -41,13 +41,13 @@ $client = EnergyChartsSDK::test();
 
 ### Instance Methods
 
-#### `CrossBorderModel($data = null)`
+#### `Cbet($data = null)`
 
-Create a new `CrossBorderModelEntity` instance. Pass `null` for no initial data.
+Create a new `CbetEntity` instance. Pass `null` for no initial data.
 
-#### `DailyAvgDict($data = null)`
+#### `Cbpf($data = null)`
 
-Create a new `DailyAvgDictEntity` instance. Pass `null` for no initial data.
+Create a new `CbpfEntity` instance. Pass `null` for no initial data.
 
 #### `Frequency($data = null)`
 
@@ -61,25 +61,53 @@ Create a new `InstalledModelEntity` instance. Pass `null` for no initial data.
 
 Create a new `PriceEntity` instance. Pass `null` for no initial data.
 
-#### `ProductionModel($data = null)`
+#### `PublicPower($data = null)`
 
-Create a new `ProductionModelEntity` instance. Pass `null` for no initial data.
+Create a new `PublicPowerEntity` instance. Pass `null` for no initial data.
 
 #### `PublicPowerForecast($data = null)`
 
 Create a new `PublicPowerForecastEntity` instance. Pass `null` for no initial data.
 
+#### `RenShareDailyAvg($data = null)`
+
+Create a new `RenShareDailyAvgEntity` instance. Pass `null` for no initial data.
+
 #### `RenShareModel($data = null)`
 
 Create a new `RenShareModelEntity` instance. Pass `null` for no initial data.
 
-#### `ShareModel($data = null)`
+#### `SolarShare($data = null)`
 
-Create a new `ShareModelEntity` instance. Pass `null` for no initial data.
+Create a new `SolarShareEntity` instance. Pass `null` for no initial data.
+
+#### `SolarShareDailyAvg($data = null)`
+
+Create a new `SolarShareDailyAvgEntity` instance. Pass `null` for no initial data.
+
+#### `TotalPower($data = null)`
+
+Create a new `TotalPowerEntity` instance. Pass `null` for no initial data.
 
 #### `TrafficModel($data = null)`
 
 Create a new `TrafficModelEntity` instance. Pass `null` for no initial data.
+
+#### `WindOffshoreShare($data = null)`
+
+Create a new `WindOffshoreShareEntity` instance. Pass `null` for no initial data.
+
+#### `WindOffshoreShareDailyAvg($data = null)`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance. Pass `null` for no initial data.
+
+#### `WindOnshoreShare($data = null)`
+
+Create a new `WindOnshoreShareEntity` instance. Pass `null` for no initial data.
+
+#### `WindOnshoreShareDailyAvg($data = null)`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance. Pass `null` for no initial data.
 
 #### `options_map(): array`
 
@@ -118,10 +146,10 @@ Prepare a fetch definition without sending the request. Returns the
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```php
-$cross_border_model = $client->CrossBorderModel();
+$cbet = $client->Cbet();
 ```
 
 ### Fields
@@ -139,7 +167,7 @@ $cross_border_model = $client->CrossBorderModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->CrossBorderModel()->load();
+$result = $client->Cbet()->load();
 ```
 
 ### Common Methods
@@ -160,9 +188,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): CrossBorderModelEntity`
+#### `make(): CbetEntity`
 
-Create a new `CrossBorderModelEntity` instance with the same client and
+Create a new `CbetEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -172,28 +200,28 @@ Return the entity name.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```php
-$daily_avg_dict = $client->DailyAvgDict();
+$cbpf = $client->Cbpf();
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes | List of average daily values |
-| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `mixed` | No |  |
 | `deprecated` | `bool` | Yes |  |
+| `unix_seconds` | `mixed` | No |  |
 
 ### Operations
 
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$results = $client->DailyAvgDict()->list();
+$result = $client->Cbpf()->load();
 ```
 
 ### Common Methods
@@ -214,9 +242,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): DailyAvgDictEntity`
+#### `make(): CbpfEntity`
 
-Create a new `DailyAvgDictEntity` instance with the same client and
+Create a new `CbpfEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -391,10 +419,10 @@ Return the entity name.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```php
-$production_model = $client->ProductionModel();
+$public_power = $client->PublicPower();
 ```
 
 ### Fields
@@ -412,7 +440,7 @@ $production_model = $client->ProductionModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ProductionModel()->load();
+$result = $client->PublicPower()->load();
 ```
 
 ### Common Methods
@@ -433,9 +461,9 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): ProductionModelEntity`
+#### `make(): PublicPowerEntity`
 
-Create a new `ProductionModelEntity` instance with the same client and
+Create a new `PublicPowerEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -492,6 +520,60 @@ Set the entity match criteria.
 #### `make(): PublicPowerForecastEntity`
 
 Create a new `PublicPowerForecastEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```php
+$ren_share_daily_avg = $client->RenShareDailyAvg();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `array` | Yes | List of average daily values |
+| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->RenShareDailyAvg()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): RenShareDailyAvgEntity`
+
+Create a new `RenShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -559,10 +641,10 @@ Return the entity name.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```php
-$share_model = $client->ShareModel();
+$solar_share = $client->SolarShare();
 ```
 
 ### Fields
@@ -581,7 +663,7 @@ $share_model = $client->ShareModel();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ShareModel()->load();
+$result = $client->SolarShare()->load();
 ```
 
 ### Common Methods
@@ -602,9 +684,117 @@ Get the entity match criteria.
 
 Set the entity match criteria.
 
-#### `make(): ShareModelEntity`
+#### `make(): SolarShareEntity`
 
-Create a new `ShareModelEntity` instance with the same client and
+Create a new `SolarShareEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```php
+$solar_share_daily_avg = $client->SolarShareDailyAvg();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `array` | Yes | List of average daily values |
+| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->SolarShareDailyAvg()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): SolarShareDailyAvgEntity`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## TotalPowerEntity
+
+```php
+$total_power = $client->TotalPower();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `bool` | Yes |  |
+| `production_types` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->TotalPower()->load();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): TotalPowerEntity`
+
+Create a new `TotalPowerEntity` instance with the same client and
 options.
 
 #### `get_name(): string`
@@ -661,6 +851,224 @@ Set the entity match criteria.
 #### `make(): TrafficModelEntity`
 
 Create a new `TrafficModelEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```php
+$wind_offshore_share = $client->WindOffshoreShare();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `mixed` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->WindOffshoreShare()->load();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): WindOffshoreShareEntity`
+
+Create a new `WindOffshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```php
+$wind_offshore_share_daily_avg = $client->WindOffshoreShareDailyAvg();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `array` | Yes | List of average daily values |
+| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->WindOffshoreShareDailyAvg()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): WindOffshoreShareDailyAvgEntity`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```php
+$wind_onshore_share = $client->WindOnshoreShare();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `mixed` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `mixed` | No |  |
+| `unix_seconds` | `mixed` | No |  |
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
+
+Load a single entity matching the given criteria. Throws on error.
+
+```php
+$result = $client->WindOnshoreShare()->load();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): WindOnshoreShareEntity`
+
+Create a new `WindOnshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name(): string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```php
+$wind_onshore_share_daily_avg = $client->WindOnshoreShareDailyAvg();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `array` | Yes | List of average daily values |
+| `days` | `array` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
+
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+
+```php
+$results = $client->WindOnshoreShareDailyAvg()->list();
+```
+
+### Common Methods
+
+#### `data_get(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set($data): void`
+
+Set the entity data.
+
+#### `match_get(): array`
+
+Get the entity match criteria.
+
+#### `match_set($match): void`
+
+Set the entity match criteria.
+
+#### `make(): WindOnshoreShareDailyAvgEntity`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

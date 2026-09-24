@@ -19,7 +19,6 @@ import type {
   TrafficModelListMatch,
 } from '../EnergyChartsTypes'
 
-// TODO: needs Entity superclass
 class TrafficModelEntity extends EnergyChartsEntityBase<TrafficModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {

@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "cbpf": {
+      "CBPF00": {
+        "countries": "s1e",
+        "deprecated": false,
+        "unix_seconds": "s20",
+        "id": "CBPF00"
+      },
+      "CBPF01": {
+        "countries": "s3c",
+        "deprecated": false,
+        "unix_seconds": "s3e",
+        "id": "CBPF01"
+      },
+      "CBPF02": {
+        "countries": "s5a",
+        "deprecated": false,
+        "unix_seconds": "s5c",
+        "id": "CBPF02"
+      }
+    }
+  },
+  "new": {
+    "cbpf": {
+      "cbpf_ref01": {
+        "countries": "s78",
+        "deprecated": false,
+        "unix_seconds": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /cbpf": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

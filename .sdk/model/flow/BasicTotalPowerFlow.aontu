@@ -1,0 +1,28 @@
+# BasicTotalPowerFlow
+
+main: kit: flow: BasicTotalPowerFlow:
+{
+  entity: "total_power",
+  kind: "basic",
+  name: "BasicTotalPowerFlow",
+  step: [
+    {
+      i: {
+        ref: "total_power_ref01",
+        srcdatavar: "total_power_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-total_power_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTotalPowerFlow"
+}

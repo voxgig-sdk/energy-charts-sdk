@@ -19,7 +19,6 @@ import type {
   PublicPowerForecastListMatch,
 } from '../EnergyChartsTypes'
 
-// TODO: needs Entity superclass
 class PublicPowerForecastEntity extends EnergyChartsEntityBase<PublicPowerForecast> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {

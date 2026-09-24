@@ -1,0 +1,28 @@
+# BasicSolarShareFlow
+
+main: kit: flow: BasicSolarShareFlow:
+{
+  entity: "solar_share",
+  kind: "basic",
+  name: "BasicSolarShareFlow",
+  step: [
+    {
+      i: {
+        ref: "solar_share_ref01",
+        srcdatavar: "solar_share_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-solar_share_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSolarShareFlow"
+}

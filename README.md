@@ -14,20 +14,20 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **10 semantic entities** that you
+This SDK exposes the API as **17 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`):
 
 ```ts
 const client = new EnergyChartsSDK()
-const crossbordermodel = await client.CrossBorderModel().load()
+const cbet = await client.Cbet().load()
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -46,23 +46,23 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = EnergyChartsSDK.test({
   entity: {
-    installed_model: {
+    public_power: {
       test01: { id: 'test01' },
     },
   },
 })
-const installedmodels = await client.InstalledModel().list()
-// installedmodels is an array of InstalledModel entities, populated with mock data
-// — call installedmodels[0].data() for the record itself
-console.log(installedmodels)
+const publicpower = await client.PublicPower().load()
+// publicpower is the PublicPower entity, populated with mock data
+// — call publicpower.data() for the record itself
+console.log(publicpower)
 ```
 
 ### Python
 
 ```python
 client = EnergyChartsSDK.test()
-installedmodels = client.InstalledModel().list()
-print(installedmodels)
+publicpower = client.PublicPower().load()
+print(publicpower)
 ```
 
 ### PHP
@@ -70,16 +70,16 @@ print(installedmodels)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = EnergyChartsSDK::test([
-    "entity" => ["installedmodel" => ["test01" => []]],
+    "entity" => ["publicpower" => ["test01" => []]],
 ]);
-$installedmodels = $client->InstalledModel()->list();
+$publicpower = $client->PublicPower()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.InstalledModel(nil).List(
+result, err := client.PublicPower(nil).Load(
     nil, nil,
 )
 ```
@@ -89,16 +89,16 @@ result, err := client.InstalledModel(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = EnergyChartsSDK.test({
-  "entity" => { "installedmodel" => { "test01" => {} } },
+  "entity" => { "publicpower" => { "test01" => {} } },
 })
-installedmodels = client.InstalledModel.list()
+publicpower = client.PublicPower.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:InstalledModel():list()
+local result, err = client:PublicPower():load()
 ```
 
 ## Packages
@@ -123,9 +123,9 @@ import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts-sdk'
 
 const client = new EnergyChartsSDK()
 
-// Load crossbordermodel data (returns a CrossBorderModel)
-const crossbordermodel = await client.CrossBorderModel().load()
-console.log(crossbordermodel)
+// Load cbet data (returns a Cbet)
+const cbet = await client.Cbet().load()
+console.log(cbet)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -162,20 +162,27 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 10 entities:
+The API exposes 17 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **CrossBorderModel** | The CrossBorderModel entity (load). | `/cbet` |
-| **DailyAvgDict** | The DailyAvgDict entity (list). | `/ren_share_daily_avg` |
+| **Cbet** | The Cbet entity (load). | `/cbet` |
+| **Cbpf** | The Cbpf entity (load). | `/cbpf` |
 | **Frequency** | The Frequency entity (list). | `/frequency` |
 | **InstalledModel** | The InstalledModel entity (list). | `/installed_power` |
 | **Price** | The Price entity (load). | `/price` |
-| **ProductionModel** | The ProductionModel entity (load). | `/public_power` |
+| **PublicPower** | The PublicPower entity (load). | `/public_power` |
 | **PublicPowerForecast** | The PublicPowerForecast entity (list). | `/public_power_forecast` |
+| **RenShareDailyAvg** | The RenShareDailyAvg entity (list). | `/ren_share_daily_avg` |
 | **RenShareModel** | The RenShareModel entity (list). | `/ren_share_forecast` |
-| **ShareModel** | The ShareModel entity (load). | `/solar_share` |
+| **SolarShare** | The SolarShare entity (load). | `/solar_share` |
+| **SolarShareDailyAvg** | The SolarShareDailyAvg entity (list). | `/solar_share_daily_avg` |
+| **TotalPower** | The TotalPower entity (load). | `/total_power` |
 | **TrafficModel** | The TrafficModel entity (list). | `/signal` |
+| **WindOffshoreShare** | The WindOffshoreShare entity (load). | `/wind_offshore_share` |
+| **WindOffshoreShareDailyAvg** | The WindOffshoreShareDailyAvg entity (list). | `/wind_offshore_share_daily_avg` |
+| **WindOnshoreShare** | The WindOnshoreShare entity (load). | `/wind_onshore_share` |
+| **WindOnshoreShareDailyAvg** | The WindOnshoreShareDailyAvg entity (list). | `/wind_onshore_share_daily_avg` |
 
 The operations available across these entities are **load**, **list** — see each entity's
 own list above for exactly which it supports.
@@ -190,9 +197,9 @@ from energycharts_sdk import EnergyChartsSDK
 client = EnergyChartsSDK()
 
 
-# Load a specific crossbordermodel (returns the record, raises on error)
-crossbordermodel = client.CrossBorderModel().load()
-print(crossbordermodel)
+# Load a specific cbet (returns the record, raises on error)
+cbet = client.Cbet().load()
+print(cbet)
 ```
 
 ### PHP
@@ -204,9 +211,9 @@ require_once 'energycharts_sdk.php';
 $client = new EnergyChartsSDK();
 
 
-// Load a specific crossbordermodel (returns the ENTITY; call data_get() for the record; throws on error)
-$crossbordermodel = $client->CrossBorderModel()->load();
-print_r($crossbordermodel->data_get());
+// Load a specific cbet (returns the ENTITY; call data_get() for the record; throws on error)
+$cbet = $client->Cbet()->load();
+print_r($cbet->data_get());
 ```
 
 ### Golang
@@ -216,12 +223,12 @@ import sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 
 client := sdk.New()
 
-// Load crossbordermodel data
-crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
+// Load cbet data
+cbet, err := client.Cbet(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crossBorderModel)
+fmt.Println(cbet)
 ```
 
 ### Ruby
@@ -232,9 +239,9 @@ require_relative "EnergyCharts_sdk"
 client = EnergyChartsSDK.new
 
 
-# Load a specific crossbordermodel (returns the ENTITY; call data_get for the record)
-crossbordermodel = client.CrossBorderModel.load()
-puts crossbordermodel
+# Load a specific cbet (returns the ENTITY; call data_get for the record)
+cbet = client.Cbet.load()
+puts cbet
 ```
 
 ### Lua
@@ -245,9 +252,9 @@ local sdk = require("energy-charts_sdk")
 local client = sdk.new()
 
 
--- Load a specific crossbordermodel
-local crossbordermodel, err = client:CrossBorderModel():load()
-print(crossbordermodel)
+-- Load a specific cbet
+local cbet, err = client:Cbet():load()
+print(cbet)
 ```
 
 ## Direct and prepare

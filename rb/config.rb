@@ -91,67 +91,52 @@ module EnergyChartsConfig
           "content-type" => "application/json",
         },
         "entity" => {
-          "cross_border_model" => {},
-          "daily_avg_dict" => {},
+          "cbet" => {},
+          "cbpf" => {},
           "frequency" => {},
           "installed_model" => {},
           "price" => {},
-          "production_model" => {},
+          "public_power" => {},
           "public_power_forecast" => {},
+          "ren_share_daily_avg" => {},
           "ren_share_model" => {},
-          "share_model" => {},
+          "solar_share" => {},
+          "solar_share_daily_avg" => {},
+          "total_power" => {},
           "traffic_model" => {},
+          "wind_offshore_share" => {},
+          "wind_offshore_share_daily_avg" => {},
+          "wind_onshore_share" => {},
+          "wind_onshore_share_daily_avg" => {},
         },
       },
       "entity" => {
-        "cross_border_model" => {
+        "cbet" => {
           "fields" => [
             {
               "name" => "countries",
+              "title" => "Countries",
               "type" => "`$ANY`",
             },
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
+              "title" => "Unix Seconds",
               "type" => "`$ANY`",
             },
           ],
-          "name" => "cross_border_model",
+          "name" => "cbet",
           "op" => {
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cbet",
@@ -160,55 +145,39 @@ module EnergyChartsConfig
                       "lit" => "cbet",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "cbet",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "args" => {
                     "query" => [
                       {
-                        "example" => "de",
-                        "kind" => "query",
                         "name" => "country",
                         "orig" => "country",
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
                       },
                       {
-                        "example" => "",
-                        "kind" => "query",
                         "name" => "end",
                         "orig" => "end",
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
                       },
                       {
-                        "example" => "",
-                        "kind" => "query",
                         "name" => "start",
                         "orig" => "start",
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
                       },
                     ],
                   },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/cbpf",
-                  "segments" => [
-                    {
-                      "lit" => "cbpf",
-                    },
-                  ],
                   "select" => {
                     "exist" => [
                       "country",
@@ -216,13 +185,6 @@ module EnergyChartsConfig
                       "start",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "cbpf",
-                  ],
                 },
               ],
             },
@@ -231,195 +193,80 @@ module EnergyChartsConfig
             "ancestors" => [],
           },
         },
-        "daily_avg_dict" => {
+        "cbpf" => {
           "fields" => [
             {
-              "name" => "data",
-              "req" => true,
-              "short" => "List of average daily values",
-              "type" => "`$ARRAY`",
-            },
-            {
-              "name" => "days",
-              "req" => true,
-              "short" => "List of days in the format dd.mm.yyyy",
-              "type" => "`$ARRAY`",
+              "name" => "countries",
+              "title" => "Countries",
+              "type" => "`$ANY`",
             },
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+            {
+              "name" => "unix_seconds",
+              "title" => "Unix Seconds",
+              "type" => "`$ANY`",
             },
           ],
-          "name" => "daily_avg_dict",
+          "name" => "cbpf",
           "op" => {
-            "list" => {
+            "load" => {
               "input" => "data",
-              "name" => "list",
+              "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => -1,
-                        "kind" => "query",
-                        "name" => "year",
-                        "orig" => "year",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
-                  "orig" => "/ren_share_daily_avg",
+                  "orig" => "/cbpf",
                   "segments" => [
                     {
-                      "lit" => "ren_share_daily_avg",
+                      "lit" => "cbpf",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
-                  },
+                  "parts" => [
+                    "cbpf",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "ren_share_daily_avg",
-                  ],
-                },
-                {
                   "args" => {
                     "query" => [
                       {
-                        "example" => "de",
-                        "kind" => "query",
                         "name" => "country",
                         "orig" => "country",
                         "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => -1,
                         "kind" => "query",
-                        "name" => "year",
-                        "orig" => "year",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/solar_share_daily_avg",
-                  "segments" => [
-                    {
-                      "lit" => "solar_share_daily_avg",
-                    },
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "solar_share_daily_avg",
-                  ],
-                },
-                {
-                  "args" => {
-                    "query" => [
-                      {
                         "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
                       },
                       {
-                        "example" => -1,
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
                         "kind" => "query",
-                        "name" => "year",
-                        "orig" => "year",
-                        "type" => "`$INTEGER`",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
                       },
                     ],
                   },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/wind_offshore_share_daily_avg",
-                  "segments" => [
-                    {
-                      "lit" => "wind_offshore_share_daily_avg",
-                    },
-                  ],
                   "select" => {
                     "exist" => [
                       "country",
-                      "year",
+                      "end",
+                      "start",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "wind_offshore_share_daily_avg",
-                  ],
-                },
-                {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => -1,
-                        "kind" => "query",
-                        "name" => "year",
-                        "orig" => "year",
-                        "type" => "`$INTEGER`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/wind_onshore_share_daily_avg",
-                  "segments" => [
-                    {
-                      "lit" => "wind_onshore_share_daily_avg",
-                    },
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "wind_onshore_share_daily_avg",
-                  ],
                 },
               ],
             },
@@ -432,16 +279,19 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "data",
-              "req" => true,
+              "title" => "Data",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
+              "title" => "Unix Seconds",
               "type" => "`$ANY`",
             },
           ],
@@ -452,31 +302,6 @@ module EnergyChartsConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "DE-Freiburg",
-                        "kind" => "query",
-                        "name" => "region",
-                        "orig" => "region",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/frequency",
@@ -485,6 +310,39 @@ module EnergyChartsConfig
                       "lit" => "frequency",
                     },
                   ],
+                  "parts" => [
+                    "frequency",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "region",
+                        "orig" => "region",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "DE-Freiburg",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "end",
@@ -492,13 +350,6 @@ module EnergyChartsConfig
                       "start",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "frequency",
-                  ],
                 },
               ],
             },
@@ -511,22 +362,26 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "last_update",
-              "req" => true,
+              "title" => "Last Update",
               "type" => "`$ANY`",
+              "req" => true,
             },
             {
               "name" => "production_types",
+              "title" => "Production Types",
               "type" => "`$ANY`",
             },
             {
               "name" => "time",
-              "req" => true,
+              "title" => "Time",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
           ],
           "name" => "installed_model",
@@ -536,31 +391,6 @@ module EnergyChartsConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => false,
-                        "kind" => "query",
-                        "name" => "installation_decommission",
-                        "orig" => "installation_decommission",
-                        "type" => "`$BOOLEAN`",
-                      },
-                      {
-                        "example" => "yearly",
-                        "kind" => "query",
-                        "name" => "time_step",
-                        "orig" => "time_step",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/installed_power",
@@ -569,6 +399,39 @@ module EnergyChartsConfig
                       "lit" => "installed_power",
                     },
                   ],
+                  "parts" => [
+                    "installed_power",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "installation_decommission",
+                        "orig" => "installation_decommission",
+                        "type" => "`$BOOLEAN`",
+                        "kind" => "query",
+                        "example" => false,
+                      },
+                      {
+                        "name" => "time_step",
+                        "orig" => "time_step",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "yearly",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "country",
@@ -576,13 +439,6 @@ module EnergyChartsConfig
                       "time_step",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "installed_power",
-                  ],
                 },
               ],
             },
@@ -595,25 +451,30 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "license_info",
-              "req" => true,
+              "title" => "License Info",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "price",
+              "title" => "Price",
               "type" => "`$NUMBER`",
             },
             {
               "name" => "unit",
-              "req" => true,
+              "title" => "Unit",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
+              "title" => "Unix Seconds",
               "type" => "`$ANY`",
             },
           ],
@@ -624,31 +485,6 @@ module EnergyChartsConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "DE-LU",
-                        "kind" => "query",
-                        "name" => "bzn",
-                        "orig" => "bzn",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/price",
@@ -657,6 +493,39 @@ module EnergyChartsConfig
                       "lit" => "price",
                     },
                   ],
+                  "parts" => [
+                    "price",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.price`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "bzn",
+                        "orig" => "bzn",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "DE-LU",
+                      },
+                      {
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "bzn",
@@ -664,13 +533,6 @@ module EnergyChartsConfig
                       "start",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.price`",
-                  },
-                  "parts" => [
-                    "price",
-                  ],
                 },
               ],
             },
@@ -679,61 +541,32 @@ module EnergyChartsConfig
             "ancestors" => [],
           },
         },
-        "production_model" => {
+        "public_power" => {
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "production_types",
+              "title" => "Production Types",
               "type" => "`$ANY`",
             },
             {
               "name" => "unix_seconds",
+              "title" => "Unix Seconds",
               "type" => "`$ANY`",
             },
           ],
-          "name" => "production_model",
+          "name" => "public_power",
           "op" => {
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "subtype",
-                        "orig" => "subtype",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/public_power",
@@ -742,6 +575,46 @@ module EnergyChartsConfig
                       "lit" => "public_power",
                     },
                   ],
+                  "parts" => [
+                    "public_power",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "subtype",
+                        "orig" => "subtype",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "country",
@@ -750,62 +623,6 @@ module EnergyChartsConfig
                       "subtype",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "public_power",
-                  ],
-                },
-                {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/total_power",
-                  "segments" => [
-                    {
-                      "lit" => "total_power",
-                    },
-                  ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "total_power",
-                  ],
                 },
               ],
             },
@@ -818,28 +635,33 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "forecast_type",
-              "req" => true,
+              "title" => "Forecast Type",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "forecast_values",
-              "req" => true,
+              "title" => "Forecast Values",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "production_type",
-              "req" => true,
+              "title" => "Production Type",
               "type" => "`$STRING`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
-              "req" => true,
+              "title" => "Unix Seconds",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
           ],
           "name" => "public_power_forecast",
@@ -849,45 +671,6 @@ module EnergyChartsConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "end",
-                        "orig" => "end",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "current",
-                        "kind" => "query",
-                        "name" => "forecast_type",
-                        "orig" => "forecast_type",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "solar",
-                        "kind" => "query",
-                        "name" => "production_type",
-                        "orig" => "production_type",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/public_power_forecast",
@@ -896,6 +679,53 @@ module EnergyChartsConfig
                       "lit" => "public_power_forecast",
                     },
                   ],
+                  "parts" => [
+                    "public_power_forecast",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "forecast_type",
+                        "orig" => "forecast_type",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "current",
+                      },
+                      {
+                        "name" => "production_type",
+                        "orig" => "production_type",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "solar",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "country",
@@ -905,13 +735,84 @@ module EnergyChartsConfig
                       "start",
                     ],
                   },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "ren_share_daily_avg" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of average daily values",
+            },
+            {
+              "name" => "days",
+              "title" => "Days",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of days in the format dd.mm.yyyy",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+          ],
+          "name" => "ren_share_daily_avg",
+          "op" => {
+            "list" => {
+              "input" => "data",
+              "name" => "list",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/ren_share_daily_avg",
+                  "segments" => [
+                    {
+                      "lit" => "ren_share_daily_avg",
+                    },
+                  ],
+                  "parts" => [
+                    "ren_share_daily_avg",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "public_power_forecast",
-                  ],
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "year",
+                        "orig" => "year",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => -1,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                      "year",
+                    ],
+                  },
                 },
               ],
             },
@@ -924,34 +825,41 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "ren_share",
-              "req" => true,
+              "title" => "Ren Share",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "solar_share",
+              "title" => "Solar Share",
               "type" => "`$ANY`",
             },
             {
               "name" => "substitute",
-              "req" => true,
+              "title" => "Substitute",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
-              "req" => true,
+              "title" => "Unix Seconds",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "wind_offshore_share",
+              "title" => "Wind Offshore Share",
               "type" => "`$ANY`",
             },
             {
               "name" => "wind_onshore_share",
+              "title" => "Wind Onshore Share",
               "type" => "`$ANY`",
             },
           ],
@@ -962,17 +870,6 @@ module EnergyChartsConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ren_share_forecast",
@@ -981,18 +878,30 @@ module EnergyChartsConfig
                       "lit" => "ren_share_forecast",
                     },
                   ],
+                  "parts" => [
+                    "ren_share_forecast",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "country",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "ren_share_forecast",
-                  ],
                 },
               ],
             },
@@ -1001,44 +910,37 @@ module EnergyChartsConfig
             "ancestors" => [],
           },
         },
-        "share_model" => {
+        "solar_share" => {
           "fields" => [
             {
               "name" => "data",
+              "title" => "Data",
               "type" => "`$ANY`",
             },
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "forecast",
+              "title" => "Forecast",
               "type" => "`$ANY`",
             },
             {
               "name" => "unix_seconds",
+              "title" => "Unix Seconds",
               "type" => "`$ANY`",
             },
           ],
-          "name" => "share_model",
+          "name" => "solar_share",
           "op" => {
             "load" => {
               "input" => "data",
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/solar_share",
@@ -1047,84 +949,190 @@ module EnergyChartsConfig
                       "lit" => "solar_share",
                     },
                   ],
-                  "select" => {
-                    "exist" => [
-                      "country",
-                    ],
-                  },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
                   "parts" => [
                     "solar_share",
                   ],
-                },
-                {
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
                   "args" => {
                     "query" => [
                       {
-                        "example" => "de",
-                        "kind" => "query",
                         "name" => "country",
                         "orig" => "country",
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
                       },
                     ],
                   },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/wind_offshore_share",
-                  "segments" => [
-                    {
-                      "lit" => "wind_offshore_share",
-                    },
-                  ],
                   "select" => {
                     "exist" => [
                       "country",
                     ],
                   },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "solar_share_daily_avg" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of average daily values",
+            },
+            {
+              "name" => "days",
+              "title" => "Days",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of days in the format dd.mm.yyyy",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+          ],
+          "name" => "solar_share_daily_avg",
+          "op" => {
+            "list" => {
+              "input" => "data",
+              "name" => "list",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/solar_share_daily_avg",
+                  "segments" => [
+                    {
+                      "lit" => "solar_share_daily_avg",
+                    },
+                  ],
+                  "parts" => [
+                    "solar_share_daily_avg",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "wind_offshore_share",
-                  ],
-                },
-                {
                   "args" => {
                     "query" => [
                       {
-                        "example" => "de",
-                        "kind" => "query",
                         "name" => "country",
                         "orig" => "country",
                         "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "year",
+                        "orig" => "year",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => -1,
                       },
                     ],
                   },
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/wind_onshore_share",
-                  "segments" => [
-                    {
-                      "lit" => "wind_onshore_share",
-                    },
-                  ],
                   "select" => {
                     "exist" => [
                       "country",
+                      "year",
                     ],
                   },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "total_power" => {
+          "fields" => [
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+            {
+              "name" => "production_types",
+              "title" => "Production Types",
+              "type" => "`$ANY`",
+            },
+            {
+              "name" => "unix_seconds",
+              "title" => "Unix Seconds",
+              "type" => "`$ANY`",
+            },
+          ],
+          "name" => "total_power",
+          "op" => {
+            "load" => {
+              "input" => "data",
+              "name" => "load",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/total_power",
+                  "segments" => [
+                    {
+                      "lit" => "total_power",
+                    },
+                  ],
+                  "parts" => [
+                    "total_power",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "wind_onshore_share",
-                  ],
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "end",
+                        "orig" => "end",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                      "end",
+                      "start",
+                    ],
+                  },
                 },
               ],
             },
@@ -1137,28 +1145,33 @@ module EnergyChartsConfig
           "fields" => [
             {
               "name" => "deprecated",
-              "req" => true,
+              "title" => "Deprecated",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "share",
-              "req" => true,
+              "title" => "Share",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
             {
               "name" => "signal",
-              "short" => "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
+              "title" => "Signal",
               "type" => "`$ARRAY`",
+              "short" => "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
             },
             {
               "name" => "substitute",
-              "req" => true,
+              "title" => "Substitute",
               "type" => "`$BOOLEAN`",
+              "req" => true,
             },
             {
               "name" => "unix_seconds",
-              "req" => true,
+              "title" => "Unix Seconds",
               "type" => "`$ARRAY`",
+              "req" => true,
             },
           ],
           "name" => "traffic_model",
@@ -1168,24 +1181,6 @@ module EnergyChartsConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "country",
-                        "orig" => "country",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "",
-                        "kind" => "query",
-                        "name" => "postal_code",
-                        "orig" => "postal_code",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/signal",
@@ -1194,19 +1189,336 @@ module EnergyChartsConfig
                       "lit" => "signal",
                     },
                   ],
+                  "parts" => [
+                    "signal",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "postal_code",
+                        "orig" => "postal_code",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "country",
                       "postal_code",
                     ],
                   },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "wind_offshore_share" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ANY`",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+            {
+              "name" => "forecast",
+              "title" => "Forecast",
+              "type" => "`$ANY`",
+            },
+            {
+              "name" => "unix_seconds",
+              "title" => "Unix Seconds",
+              "type" => "`$ANY`",
+            },
+          ],
+          "name" => "wind_offshore_share",
+          "op" => {
+            "load" => {
+              "input" => "data",
+              "name" => "load",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/wind_offshore_share",
+                  "segments" => [
+                    {
+                      "lit" => "wind_offshore_share",
+                    },
+                  ],
+                  "parts" => [
+                    "wind_offshore_share",
+                  ],
+                  "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "parts" => [
-                    "signal",
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "wind_offshore_share_daily_avg" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of average daily values",
+            },
+            {
+              "name" => "days",
+              "title" => "Days",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of days in the format dd.mm.yyyy",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+          ],
+          "name" => "wind_offshore_share_daily_avg",
+          "op" => {
+            "list" => {
+              "input" => "data",
+              "name" => "list",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/wind_offshore_share_daily_avg",
+                  "segments" => [
+                    {
+                      "lit" => "wind_offshore_share_daily_avg",
+                    },
                   ],
+                  "parts" => [
+                    "wind_offshore_share_daily_avg",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "year",
+                        "orig" => "year",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => -1,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                      "year",
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "wind_onshore_share" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ANY`",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+            {
+              "name" => "forecast",
+              "title" => "Forecast",
+              "type" => "`$ANY`",
+            },
+            {
+              "name" => "unix_seconds",
+              "title" => "Unix Seconds",
+              "type" => "`$ANY`",
+            },
+          ],
+          "name" => "wind_onshore_share",
+          "op" => {
+            "load" => {
+              "input" => "data",
+              "name" => "load",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/wind_onshore_share",
+                  "segments" => [
+                    {
+                      "lit" => "wind_onshore_share",
+                    },
+                  ],
+                  "parts" => [
+                    "wind_onshore_share",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          "relations" => {
+            "ancestors" => [],
+          },
+        },
+        "wind_onshore_share_daily_avg" => {
+          "fields" => [
+            {
+              "name" => "data",
+              "title" => "Data",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of average daily values",
+            },
+            {
+              "name" => "days",
+              "title" => "Days",
+              "type" => "`$ARRAY`",
+              "req" => true,
+              "short" => "List of days in the format dd.mm.yyyy",
+            },
+            {
+              "name" => "deprecated",
+              "title" => "Deprecated",
+              "type" => "`$BOOLEAN`",
+              "req" => true,
+            },
+          ],
+          "name" => "wind_onshore_share_daily_avg",
+          "op" => {
+            "list" => {
+              "input" => "data",
+              "name" => "list",
+              "points" => [
+                {
+                  "kind" => "http",
+                  "method" => "GET",
+                  "orig" => "/wind_onshore_share_daily_avg",
+                  "segments" => [
+                    {
+                      "lit" => "wind_onshore_share_daily_avg",
+                    },
+                  ],
+                  "parts" => [
+                    "wind_onshore_share_daily_avg",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "country",
+                        "orig" => "country",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "year",
+                        "orig" => "year",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => -1,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "country",
+                      "year",
+                    ],
+                  },
                 },
               ],
             },

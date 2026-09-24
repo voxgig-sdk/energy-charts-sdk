@@ -1,7 +1,7 @@
 # Typed models for the EnergyCharts SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Field/param types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
 #
@@ -16,30 +16,34 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class CrossBorderModelRequired(TypedDict):
+class CbetRequired(TypedDict):
     deprecated: bool
 
 
-class CrossBorderModel(CrossBorderModelRequired, total=False):
+class Cbet(CbetRequired, total=False):
     countries: Any
     unix_seconds: Any
 
 
-class CrossBorderModelLoadMatch(TypedDict, total=False):
+class CbetLoadMatch(TypedDict, total=False):
     country: str
     end: str
     start: str
 
 
-class DailyAvgDict(TypedDict):
-    data: list
-    days: list
+class CbpfRequired(TypedDict):
     deprecated: bool
 
 
-class DailyAvgDictListMatch(TypedDict, total=False):
+class Cbpf(CbpfRequired, total=False):
+    countries: Any
+    unix_seconds: Any
+
+
+class CbpfLoadMatch(TypedDict, total=False):
     country: str
-    year: int
+    end: str
+    start: str
 
 
 class FrequencyRequired(TypedDict):
@@ -90,16 +94,16 @@ class PriceLoadMatch(TypedDict, total=False):
     start: str
 
 
-class ProductionModelRequired(TypedDict):
+class PublicPowerRequired(TypedDict):
     deprecated: bool
 
 
-class ProductionModel(ProductionModelRequired, total=False):
+class PublicPower(PublicPowerRequired, total=False):
     production_types: Any
     unix_seconds: Any
 
 
-class ProductionModelLoadMatch(TypedDict, total=False):
+class PublicPowerLoadMatch(TypedDict, total=False):
     country: str
     end: str
     start: str
@@ -122,6 +126,17 @@ class PublicPowerForecastListMatch(TypedDict, total=False):
     start: str
 
 
+class RenShareDailyAvg(TypedDict):
+    data: list
+    days: list
+    deprecated: bool
+
+
+class RenShareDailyAvgListMatch(TypedDict, total=False):
+    country: str
+    year: int
+
+
 class RenShareModelRequired(TypedDict):
     deprecated: bool
     ren_share: list
@@ -139,18 +154,44 @@ class RenShareModelListMatch(TypedDict, total=False):
     country: str
 
 
-class ShareModelRequired(TypedDict):
+class SolarShareRequired(TypedDict):
     deprecated: bool
 
 
-class ShareModel(ShareModelRequired, total=False):
+class SolarShare(SolarShareRequired, total=False):
     data: Any
     forecast: Any
     unix_seconds: Any
 
 
-class ShareModelLoadMatch(TypedDict, total=False):
+class SolarShareLoadMatch(TypedDict, total=False):
     country: str
+
+
+class SolarShareDailyAvg(TypedDict):
+    data: list
+    days: list
+    deprecated: bool
+
+
+class SolarShareDailyAvgListMatch(TypedDict, total=False):
+    country: str
+    year: int
+
+
+class TotalPowerRequired(TypedDict):
+    deprecated: bool
+
+
+class TotalPower(TotalPowerRequired, total=False):
+    production_types: Any
+    unix_seconds: Any
+
+
+class TotalPowerLoadMatch(TypedDict, total=False):
+    country: str
+    end: str
+    start: str
 
 
 class TrafficModelRequired(TypedDict):
@@ -167,3 +208,53 @@ class TrafficModel(TrafficModelRequired, total=False):
 class TrafficModelListMatch(TypedDict, total=False):
     country: str
     postal_code: str
+
+
+class WindOffshoreShareRequired(TypedDict):
+    deprecated: bool
+
+
+class WindOffshoreShare(WindOffshoreShareRequired, total=False):
+    data: Any
+    forecast: Any
+    unix_seconds: Any
+
+
+class WindOffshoreShareLoadMatch(TypedDict, total=False):
+    country: str
+
+
+class WindOffshoreShareDailyAvg(TypedDict):
+    data: list
+    days: list
+    deprecated: bool
+
+
+class WindOffshoreShareDailyAvgListMatch(TypedDict, total=False):
+    country: str
+    year: int
+
+
+class WindOnshoreShareRequired(TypedDict):
+    deprecated: bool
+
+
+class WindOnshoreShare(WindOnshoreShareRequired, total=False):
+    data: Any
+    forecast: Any
+    unix_seconds: Any
+
+
+class WindOnshoreShareLoadMatch(TypedDict, total=False):
+    country: str
+
+
+class WindOnshoreShareDailyAvg(TypedDict):
+    data: list
+    days: list
+    deprecated: bool
+
+
+class WindOnshoreShareDailyAvgListMatch(TypedDict, total=False):
+    country: str
+    year: int

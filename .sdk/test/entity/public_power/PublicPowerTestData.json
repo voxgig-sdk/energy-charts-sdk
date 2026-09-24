@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "public_power": {
+      "PUBLIC_POWER00": {
+        "deprecated": true,
+        "production_types": "s1f",
+        "unix_seconds": "s20",
+        "id": "PUBLIC_POWER00"
+      },
+      "PUBLIC_POWER01": {
+        "deprecated": true,
+        "production_types": "s3d",
+        "unix_seconds": "s3e",
+        "id": "PUBLIC_POWER01"
+      },
+      "PUBLIC_POWER02": {
+        "deprecated": true,
+        "production_types": "s5b",
+        "unix_seconds": "s5c",
+        "id": "PUBLIC_POWER02"
+      }
+    }
+  },
+  "new": {
+    "public_power": {
+      "public_power_ref01": {
+        "deprecated": true,
+        "production_types": "s79",
+        "unix_seconds": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /public_power": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

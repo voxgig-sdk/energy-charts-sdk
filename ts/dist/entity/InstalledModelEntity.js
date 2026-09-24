@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstalledModelEntity = void 0;
 const EnergyChartsEntityBase_1 = require("../EnergyChartsEntityBase");
-// TODO: needs Entity superclass
 class InstalledModelEntity extends EnergyChartsEntityBase_1.EnergyChartsEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

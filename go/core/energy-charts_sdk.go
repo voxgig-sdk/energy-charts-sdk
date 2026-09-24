@@ -264,7 +264,6 @@ func (sdk *EnergyChartsSDK) rawRequest(fetchargs map[string]any) (map[string]any
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
-					// f() returns nil on parse error in our fetcher.
 					jsonData = f()
 				}
 			}
@@ -281,17 +280,6 @@ func (sdk *EnergyChartsSDK) rawRequest(fetchargs map[string]any) (map[string]any
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
 }
 
-// Raw GraphQL access: the pressure valve that makes the generated surface's
-// deliberate omissions (per-call selection sets, typed filter builders,
-// batching, subscriptions) livable — the whole schema stays reachable.
-//
-// Thin wrapper over the same prepare/fetch path Direct uses, with the one
-// thing raw Direct cannot do for GraphQL: a GraphQL failure rides HTTP 200
-// as a top-level `errors` array, so status alone would report a failed query
-// as ok.
-//
-// NOTE: like Direct, this bypasses the feature pipeline — no retry,
-// ratelimit or paging features apply.
 func (sdk *EnergyChartsSDK) Graphql(
 	query string, variables map[string]any, ctrl map[string]any,
 ) (map[string]any, error) {
@@ -338,19 +326,19 @@ func (sdk *EnergyChartsSDK) Graphql(
 }
 
 
-// CrossBorderModel returns a CrossBorderModel entity bound to this client.
-// Idiomatic usage: client.CrossBorderModel(nil).List(nil, nil) or
-// client.CrossBorderModel(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *EnergyChartsSDK) CrossBorderModel(data map[string]any) EnergyChartsEntity {
-	return NewCrossBorderModelEntityFunc(sdk, data)
+// Cbet returns a Cbet entity bound to this client.
+// Idiomatic usage: client.Cbet(nil).List(nil, nil) or
+// client.Cbet(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) Cbet(data map[string]any) EnergyChartsEntity {
+	return NewCbetEntityFunc(sdk, data)
 }
 
 
-// DailyAvgDict returns a DailyAvgDict entity bound to this client.
-// Idiomatic usage: client.DailyAvgDict(nil).List(nil, nil) or
-// client.DailyAvgDict(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *EnergyChartsSDK) DailyAvgDict(data map[string]any) EnergyChartsEntity {
-	return NewDailyAvgDictEntityFunc(sdk, data)
+// Cbpf returns a Cbpf entity bound to this client.
+// Idiomatic usage: client.Cbpf(nil).List(nil, nil) or
+// client.Cbpf(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) Cbpf(data map[string]any) EnergyChartsEntity {
+	return NewCbpfEntityFunc(sdk, data)
 }
 
 
@@ -378,11 +366,11 @@ func (sdk *EnergyChartsSDK) Price(data map[string]any) EnergyChartsEntity {
 }
 
 
-// ProductionModel returns a ProductionModel entity bound to this client.
-// Idiomatic usage: client.ProductionModel(nil).List(nil, nil) or
-// client.ProductionModel(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *EnergyChartsSDK) ProductionModel(data map[string]any) EnergyChartsEntity {
-	return NewProductionModelEntityFunc(sdk, data)
+// PublicPower returns a PublicPower entity bound to this client.
+// Idiomatic usage: client.PublicPower(nil).List(nil, nil) or
+// client.PublicPower(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) PublicPower(data map[string]any) EnergyChartsEntity {
+	return NewPublicPowerEntityFunc(sdk, data)
 }
 
 
@@ -394,6 +382,14 @@ func (sdk *EnergyChartsSDK) PublicPowerForecast(data map[string]any) EnergyChart
 }
 
 
+// RenShareDailyAvg returns a RenShareDailyAvg entity bound to this client.
+// Idiomatic usage: client.RenShareDailyAvg(nil).List(nil, nil) or
+// client.RenShareDailyAvg(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) RenShareDailyAvg(data map[string]any) EnergyChartsEntity {
+	return NewRenShareDailyAvgEntityFunc(sdk, data)
+}
+
+
 // RenShareModel returns a RenShareModel entity bound to this client.
 // Idiomatic usage: client.RenShareModel(nil).List(nil, nil) or
 // client.RenShareModel(nil).Load(map[string]any{"id": ...}, nil).
@@ -402,11 +398,27 @@ func (sdk *EnergyChartsSDK) RenShareModel(data map[string]any) EnergyChartsEntit
 }
 
 
-// ShareModel returns a ShareModel entity bound to this client.
-// Idiomatic usage: client.ShareModel(nil).List(nil, nil) or
-// client.ShareModel(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *EnergyChartsSDK) ShareModel(data map[string]any) EnergyChartsEntity {
-	return NewShareModelEntityFunc(sdk, data)
+// SolarShare returns a SolarShare entity bound to this client.
+// Idiomatic usage: client.SolarShare(nil).List(nil, nil) or
+// client.SolarShare(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) SolarShare(data map[string]any) EnergyChartsEntity {
+	return NewSolarShareEntityFunc(sdk, data)
+}
+
+
+// SolarShareDailyAvg returns a SolarShareDailyAvg entity bound to this client.
+// Idiomatic usage: client.SolarShareDailyAvg(nil).List(nil, nil) or
+// client.SolarShareDailyAvg(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) SolarShareDailyAvg(data map[string]any) EnergyChartsEntity {
+	return NewSolarShareDailyAvgEntityFunc(sdk, data)
+}
+
+
+// TotalPower returns a TotalPower entity bound to this client.
+// Idiomatic usage: client.TotalPower(nil).List(nil, nil) or
+// client.TotalPower(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) TotalPower(data map[string]any) EnergyChartsEntity {
+	return NewTotalPowerEntityFunc(sdk, data)
 }
 
 
@@ -415,6 +427,38 @@ func (sdk *EnergyChartsSDK) ShareModel(data map[string]any) EnergyChartsEntity {
 // client.TrafficModel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *EnergyChartsSDK) TrafficModel(data map[string]any) EnergyChartsEntity {
 	return NewTrafficModelEntityFunc(sdk, data)
+}
+
+
+// WindOffshoreShare returns a WindOffshoreShare entity bound to this client.
+// Idiomatic usage: client.WindOffshoreShare(nil).List(nil, nil) or
+// client.WindOffshoreShare(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) WindOffshoreShare(data map[string]any) EnergyChartsEntity {
+	return NewWindOffshoreShareEntityFunc(sdk, data)
+}
+
+
+// WindOffshoreShareDailyAvg returns a WindOffshoreShareDailyAvg entity bound to this client.
+// Idiomatic usage: client.WindOffshoreShareDailyAvg(nil).List(nil, nil) or
+// client.WindOffshoreShareDailyAvg(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) WindOffshoreShareDailyAvg(data map[string]any) EnergyChartsEntity {
+	return NewWindOffshoreShareDailyAvgEntityFunc(sdk, data)
+}
+
+
+// WindOnshoreShare returns a WindOnshoreShare entity bound to this client.
+// Idiomatic usage: client.WindOnshoreShare(nil).List(nil, nil) or
+// client.WindOnshoreShare(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) WindOnshoreShare(data map[string]any) EnergyChartsEntity {
+	return NewWindOnshoreShareEntityFunc(sdk, data)
+}
+
+
+// WindOnshoreShareDailyAvg returns a WindOnshoreShareDailyAvg entity bound to this client.
+// Idiomatic usage: client.WindOnshoreShareDailyAvg(nil).List(nil, nil) or
+// client.WindOnshoreShareDailyAvg(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *EnergyChartsSDK) WindOnshoreShareDailyAvg(data map[string]any) EnergyChartsEntity {
+	return NewWindOnshoreShareDailyAvgEntityFunc(sdk, data)
 }
 
 

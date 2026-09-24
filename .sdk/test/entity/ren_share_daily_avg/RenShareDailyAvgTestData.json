@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "ren_share_daily_avg": {
+      "REN_SHARE_DAILY_AVG00": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "REN_SHARE_DAILY_AVG01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "REN_SHARE_DAILY_AVG02": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "new": {
+    "ren_share_daily_avg": {
+      "ren_share_daily_avg_ref01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "requests": {
+    "GET /ren_share_daily_avg": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

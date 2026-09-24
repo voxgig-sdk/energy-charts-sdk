@@ -27,11 +27,11 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // energy-charts_list: first page of records
-{ "entity": "daily_avg_dict" }
-{ "entity": "daily_avg_dict", "query": { } }
+{ "entity": "frequency" }
+{ "entity": "frequency", "query": { } }
 
 // energy-charts_load: one record by id
-{ "entity": "cross_border_model", "query": { "id": 1 } }
+{ "entity": "cbet", "query": { "id": 1 } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `energy-charts_list` and `energy-charts_load` tools now appear
-   in new sessions. Ask the agent to *"list daily_avg_dict using energy-charts"*
-   and it calls `energy-charts_list` with `{"entity":"daily_avg_dict"}`.
+   in new sessions. Ask the agent to *"list frequency using energy-charts"*
+   and it calls `energy-charts_list` with `{"entity":"frequency"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "daily_avg_dict" }
+{ "entity": "frequency" }
 ```
 
 ### Call the `energy-charts_load` tool
@@ -101,7 +101,7 @@ Args: `entity` (required), `query` = `{"id":N}` (required). Returns the single
 record as JSON:
 
 ```jsonc
-{ "entity": "cross_border_model", "query": { "id": 1 } }
+{ "entity": "cbet", "query": { "id": 1 } }
 ```
 
 ### Cross-compile release binaries
@@ -129,7 +129,7 @@ Both tools take the same argument object:
 
 | Field | Type | Notes |
 |-------|------|-------|
-| `entity` | string | One of the 10 supported entities (see below). |
+| `entity` | string | One of the 17 supported entities (see below). |
 | `query` | object | Optional match map. `{"id":N}` for load; omit or `{}` for list. |
 
 JSON schemas are emitted by the SDK from the `Args` struct's `json` /
@@ -151,9 +151,9 @@ JSON schemas are emitted by the SDK from the `Args` struct's `json` /
 
 ### Entities
 
-The 10 entities valid as the `entity` argument:
+The 17 entities valid as the `entity` argument:
 
-cross_border_model | daily_avg_dict | frequency | installed_model | price | production_model | public_power_forecast | ren_share_model | share_model | traffic_model
+cbet | cbpf | frequency | installed_model | price | public_power | public_power_forecast | ren_share_daily_avg | ren_share_model | solar_share | solar_share_daily_avg | total_power | traffic_model | wind_offshore_share | wind_offshore_share_daily_avg | wind_onshore_share | wind_onshore_share_daily_avg
 
 ### Smoke test via HTTP (raw JSON-RPC)
 
@@ -173,7 +173,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"energy-charts_load","arguments":{"entity":"cross_border_model","query":{"id":1}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"energy-charts_load","arguments":{"entity":"cbet","query":{"id":1}}}}'
 ```
 
 ## Explanation

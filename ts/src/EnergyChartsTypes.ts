@@ -1,31 +1,32 @@
 // Typed models for the EnergyCharts SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
-export interface CrossBorderModel {
+export interface Cbet {
   countries?: any
   deprecated: boolean
   unix_seconds?: any
 }
 
-export interface CrossBorderModelLoadMatch {
+export interface CbetLoadMatch {
   country?: string
   end?: string
   start?: string
 }
 
-export interface DailyAvgDict {
-  data: any[]
-  days: any[]
+export interface Cbpf {
+  countries?: any
   deprecated: boolean
+  unix_seconds?: any
 }
 
-export interface DailyAvgDictListMatch {
+export interface CbpfLoadMatch {
   country?: string
-  year?: number
+  end?: string
+  start?: string
 }
 
 export interface Frequency {
@@ -67,13 +68,13 @@ export interface PriceLoadMatch {
   start?: string
 }
 
-export interface ProductionModel {
+export interface PublicPower {
   deprecated: boolean
   production_types?: any
   unix_seconds?: any
 }
 
-export interface ProductionModelLoadMatch {
+export interface PublicPowerLoadMatch {
   country?: string
   end?: string
   start?: string
@@ -96,6 +97,17 @@ export interface PublicPowerForecastListMatch {
   start?: string
 }
 
+export interface RenShareDailyAvg {
+  data: any[]
+  days: any[]
+  deprecated: boolean
+}
+
+export interface RenShareDailyAvgListMatch {
+  country?: string
+  year?: number
+}
+
 export interface RenShareModel {
   deprecated: boolean
   ren_share: any[]
@@ -110,15 +122,38 @@ export interface RenShareModelListMatch {
   country?: string
 }
 
-export interface ShareModel {
+export interface SolarShare {
   data?: any
   deprecated: boolean
   forecast?: any
   unix_seconds?: any
 }
 
-export interface ShareModelLoadMatch {
+export interface SolarShareLoadMatch {
   country?: string
+}
+
+export interface SolarShareDailyAvg {
+  data: any[]
+  days: any[]
+  deprecated: boolean
+}
+
+export interface SolarShareDailyAvgListMatch {
+  country?: string
+  year?: number
+}
+
+export interface TotalPower {
+  deprecated: boolean
+  production_types?: any
+  unix_seconds?: any
+}
+
+export interface TotalPowerLoadMatch {
+  country?: string
+  end?: string
+  start?: string
 }
 
 export interface TrafficModel {
@@ -132,5 +167,49 @@ export interface TrafficModel {
 export interface TrafficModelListMatch {
   country?: string
   postal_code?: string
+}
+
+export interface WindOffshoreShare {
+  data?: any
+  deprecated: boolean
+  forecast?: any
+  unix_seconds?: any
+}
+
+export interface WindOffshoreShareLoadMatch {
+  country?: string
+}
+
+export interface WindOffshoreShareDailyAvg {
+  data: any[]
+  days: any[]
+  deprecated: boolean
+}
+
+export interface WindOffshoreShareDailyAvgListMatch {
+  country?: string
+  year?: number
+}
+
+export interface WindOnshoreShare {
+  data?: any
+  deprecated: boolean
+  forecast?: any
+  unix_seconds?: any
+}
+
+export interface WindOnshoreShareLoadMatch {
+  country?: string
+}
+
+export interface WindOnshoreShareDailyAvg {
+  data: any[]
+  days: any[]
+  deprecated: boolean
+}
+
+export interface WindOnshoreShareDailyAvgListMatch {
+  country?: string
+  year?: number
 }
 

@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "wind_offshore_share_daily_avg": {
+      "WIND_OFFSHORE_SHARE_DAILY_AVG00": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "WIND_OFFSHORE_SHARE_DAILY_AVG01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "WIND_OFFSHORE_SHARE_DAILY_AVG02": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "new": {
+    "wind_offshore_share_daily_avg": {
+      "wind_offshore_share_daily_avg_ref01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "requests": {
+    "GET /wind_offshore_share_daily_avg": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

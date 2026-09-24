@@ -1,0 +1,104 @@
+# Entity: price
+
+main: kit: entity: price: {
+
+  alias: field: {}
+
+  fields: {
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    license_info: {
+      h: "License Info"
+      n: "license_info"
+      r: true
+      t: "`$STRING`"
+    }
+    price: {
+      h: "Price"
+      n: "price"
+      r: false
+      t: "`$NUMBER`"
+    }
+    unit: {
+      h: "Unit"
+      n: "unit"
+      r: true
+      t: "`$STRING`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "price"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /price"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "DE-LU"
+                k: "query"
+                n: "bzn"
+                or: "bzn"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/price"
+          q: {
+            exist: [
+              "bzn"
+              "end"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "price"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.price`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

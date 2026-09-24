@@ -2,13 +2,13 @@
 
 # Typed models for the EnergyCharts SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
 
-# CrossBorderModel entity data model.
+# Cbet entity data model.
 #
 # @!attribute [rw] countries
 #   @return [Object, nil]
@@ -18,14 +18,14 @@
 #
 # @!attribute [rw] unix_seconds
 #   @return [Object, nil]
-CrossBorderModel = Struct.new(
+Cbet = Struct.new(
   :countries,
   :deprecated,
   :unix_seconds,
   keyword_init: true
 )
 
-# Request payload for CrossBorderModel#load.
+# Request payload for Cbet#load.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -35,40 +35,44 @@ CrossBorderModel = Struct.new(
 #
 # @!attribute [rw] start
 #   @return [String, nil]
-CrossBorderModelLoadMatch = Struct.new(
+CbetLoadMatch = Struct.new(
   :country,
   :end,
   :start,
   keyword_init: true
 )
 
-# DailyAvgDict entity data model.
+# Cbpf entity data model.
 #
-# @!attribute [rw] data
-#   @return [Array]
-#
-# @!attribute [rw] days
-#   @return [Array]
+# @!attribute [rw] countries
+#   @return [Object, nil]
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean]
-DailyAvgDict = Struct.new(
-  :data,
-  :days,
+#
+# @!attribute [rw] unix_seconds
+#   @return [Object, nil]
+Cbpf = Struct.new(
+  :countries,
   :deprecated,
+  :unix_seconds,
   keyword_init: true
 )
 
-# Request payload for DailyAvgDict#list.
+# Request payload for Cbpf#load.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
 #
-# @!attribute [rw] year
-#   @return [Integer, nil]
-DailyAvgDictListMatch = Struct.new(
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [String, nil]
+CbpfLoadMatch = Struct.new(
   :country,
-  :year,
+  :end,
+  :start,
   keyword_init: true
 )
 
@@ -186,7 +190,7 @@ PriceLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# ProductionModel entity data model.
+# PublicPower entity data model.
 #
 # @!attribute [rw] deprecated
 #   @return [Boolean]
@@ -196,14 +200,14 @@ PriceLoadMatch = Struct.new(
 #
 # @!attribute [rw] unix_seconds
 #   @return [Object, nil]
-ProductionModel = Struct.new(
+PublicPower = Struct.new(
   :deprecated,
   :production_types,
   :unix_seconds,
   keyword_init: true
 )
 
-# Request payload for ProductionModel#load.
+# Request payload for PublicPower#load.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -216,7 +220,7 @@ ProductionModel = Struct.new(
 #
 # @!attribute [rw] subtype
 #   @return [String, nil]
-ProductionModelLoadMatch = Struct.new(
+PublicPowerLoadMatch = Struct.new(
   :country,
   :end,
   :start,
@@ -274,6 +278,36 @@ PublicPowerForecastListMatch = Struct.new(
   keyword_init: true
 )
 
+# RenShareDailyAvg entity data model.
+#
+# @!attribute [rw] data
+#   @return [Array]
+#
+# @!attribute [rw] days
+#   @return [Array]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+RenShareDailyAvg = Struct.new(
+  :data,
+  :days,
+  :deprecated,
+  keyword_init: true
+)
+
+# Request payload for RenShareDailyAvg#list.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] year
+#   @return [Integer, nil]
+RenShareDailyAvgListMatch = Struct.new(
+  :country,
+  :year,
+  keyword_init: true
+)
+
 # RenShareModel entity data model.
 #
 # @!attribute [rw] deprecated
@@ -316,7 +350,7 @@ RenShareModelListMatch = Struct.new(
   keyword_init: true
 )
 
-# ShareModel entity data model.
+# SolarShare entity data model.
 #
 # @!attribute [rw] data
 #   @return [Object, nil]
@@ -329,7 +363,7 @@ RenShareModelListMatch = Struct.new(
 #
 # @!attribute [rw] unix_seconds
 #   @return [Object, nil]
-ShareModel = Struct.new(
+SolarShare = Struct.new(
   :data,
   :deprecated,
   :forecast,
@@ -337,12 +371,76 @@ ShareModel = Struct.new(
   keyword_init: true
 )
 
-# Request payload for ShareModel#load.
+# Request payload for SolarShare#load.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
-ShareModelLoadMatch = Struct.new(
+SolarShareLoadMatch = Struct.new(
   :country,
+  keyword_init: true
+)
+
+# SolarShareDailyAvg entity data model.
+#
+# @!attribute [rw] data
+#   @return [Array]
+#
+# @!attribute [rw] days
+#   @return [Array]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+SolarShareDailyAvg = Struct.new(
+  :data,
+  :days,
+  :deprecated,
+  keyword_init: true
+)
+
+# Request payload for SolarShareDailyAvg#list.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] year
+#   @return [Integer, nil]
+SolarShareDailyAvgListMatch = Struct.new(
+  :country,
+  :year,
+  keyword_init: true
+)
+
+# TotalPower entity data model.
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+#
+# @!attribute [rw] production_types
+#   @return [Object, nil]
+#
+# @!attribute [rw] unix_seconds
+#   @return [Object, nil]
+TotalPower = Struct.new(
+  :deprecated,
+  :production_types,
+  :unix_seconds,
+  keyword_init: true
+)
+
+# Request payload for TotalPower#load.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] end
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [String, nil]
+TotalPowerLoadMatch = Struct.new(
+  :country,
+  :end,
+  :start,
   keyword_init: true
 )
 
@@ -381,6 +479,126 @@ TrafficModel = Struct.new(
 TrafficModelListMatch = Struct.new(
   :country,
   :postal_code,
+  keyword_init: true
+)
+
+# WindOffshoreShare entity data model.
+#
+# @!attribute [rw] data
+#   @return [Object, nil]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+#
+# @!attribute [rw] forecast
+#   @return [Object, nil]
+#
+# @!attribute [rw] unix_seconds
+#   @return [Object, nil]
+WindOffshoreShare = Struct.new(
+  :data,
+  :deprecated,
+  :forecast,
+  :unix_seconds,
+  keyword_init: true
+)
+
+# Request payload for WindOffshoreShare#load.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+WindOffshoreShareLoadMatch = Struct.new(
+  :country,
+  keyword_init: true
+)
+
+# WindOffshoreShareDailyAvg entity data model.
+#
+# @!attribute [rw] data
+#   @return [Array]
+#
+# @!attribute [rw] days
+#   @return [Array]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+WindOffshoreShareDailyAvg = Struct.new(
+  :data,
+  :days,
+  :deprecated,
+  keyword_init: true
+)
+
+# Request payload for WindOffshoreShareDailyAvg#list.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] year
+#   @return [Integer, nil]
+WindOffshoreShareDailyAvgListMatch = Struct.new(
+  :country,
+  :year,
+  keyword_init: true
+)
+
+# WindOnshoreShare entity data model.
+#
+# @!attribute [rw] data
+#   @return [Object, nil]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+#
+# @!attribute [rw] forecast
+#   @return [Object, nil]
+#
+# @!attribute [rw] unix_seconds
+#   @return [Object, nil]
+WindOnshoreShare = Struct.new(
+  :data,
+  :deprecated,
+  :forecast,
+  :unix_seconds,
+  keyword_init: true
+)
+
+# Request payload for WindOnshoreShare#load.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+WindOnshoreShareLoadMatch = Struct.new(
+  :country,
+  keyword_init: true
+)
+
+# WindOnshoreShareDailyAvg entity data model.
+#
+# @!attribute [rw] data
+#   @return [Array]
+#
+# @!attribute [rw] days
+#   @return [Array]
+#
+# @!attribute [rw] deprecated
+#   @return [Boolean]
+WindOnshoreShareDailyAvg = Struct.new(
+  :data,
+  :days,
+  :deprecated,
+  keyword_init: true
+)
+
+# Request payload for WindOnshoreShareDailyAvg#list.
+#
+# @!attribute [rw] country
+#   @return [String, nil]
+#
+# @!attribute [rw] year
+#   @return [Integer, nil]
+WindOnshoreShareDailyAvgListMatch = Struct.new(
+  :country,
+  :year,
   keyword_init: true
 )
 

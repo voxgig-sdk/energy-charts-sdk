@@ -1,0 +1,114 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 17
+  metrics: count: path: 17
+  metrics: count: method: 17
+
+  entity: cbet: {
+    path: "/cbet": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: cbpf: {
+    path: "/cbpf": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: frequency: {
+    path: "/frequency": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: installed_model: {
+    path: "/installed_power": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: price: {
+    path: "/price": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.price`")|top
+    }
+  }
+
+  entity: public_power: {
+    path: "/public_power": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: public_power_forecast: {
+    path: "/public_power_forecast": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ren_share_daily_avg: {
+    path: "/ren_share_daily_avg": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: ren_share_model: {
+    path: "/ren_share_forecast": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: solar_share: {
+    path: "/solar_share": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: solar_share_daily_avg: {
+    path: "/solar_share_daily_avg": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: total_power: {
+    path: "/total_power": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: traffic_model: {
+    path: "/signal": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: wind_offshore_share: {
+    path: "/wind_offshore_share": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: wind_offshore_share_daily_avg: {
+    path: "/wind_offshore_share_daily_avg": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: wind_onshore_share: {
+    path: "/wind_onshore_share": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: wind_onshore_share_daily_avg: {
+    path: "/wind_onshore_share_daily_avg": {
+      op: list: method: *GET
+    }
+  }
+
+}

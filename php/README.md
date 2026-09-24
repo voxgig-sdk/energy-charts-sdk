@@ -4,7 +4,7 @@
 
 The PHP SDK for the EnergyCharts API — an entity-oriented client using PHP conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->CrossBorderModel()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Cbet()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -31,13 +31,13 @@ require_once 'energycharts_sdk.php';
 $client = new EnergyChartsSDK();
 ```
 
-### 3. Load a crossbordermodel
+### 3. Load a cbet
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the CrossBorderModel record (throws on error).
-    $crossbordermodel = $client->CrossBorderModel()->load();
-    print_r($crossbordermodel->data_get());
+    // load() returns the ENTITY — call data_get() for the Cbet record (throws on error).
+    $cbet = $client->Cbet()->load();
+    print_r($cbet->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $installedmodels = $client->InstalledModel()->list();
+    $publicpower = $client->PublicPower()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,10 +123,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = EnergyChartsSDK::test();
 
-// list() returns entity instances (throws on error);
+// Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$installedmodel = $client->InstalledModel()->list();
-print_r(array_map(fn($item) => $item->data_get(), $installedmodel));
+$publicpower = $client->PublicPower()->load();
+print_r($publicpower->data_get());
 ```
 
 ### Use a custom fetch function
@@ -205,16 +205,23 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `CrossBorderModel` | `($data): CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
-| `DailyAvgDict` | `($data): DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
+| `Cbet` | `($data): CbetEntity` | Create a Cbet entity instance. |
+| `Cbpf` | `($data): CbpfEntity` | Create a Cbpf entity instance. |
 | `Frequency` | `($data): FrequencyEntity` | Create a Frequency entity instance. |
 | `InstalledModel` | `($data): InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price` | `($data): PriceEntity` | Create a Price entity instance. |
-| `ProductionModel` | `($data): ProductionModelEntity` | Create a ProductionModel entity instance. |
+| `PublicPower` | `($data): PublicPowerEntity` | Create a PublicPower entity instance. |
 | `PublicPowerForecast` | `($data): PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
+| `RenShareDailyAvg` | `($data): RenShareDailyAvgEntity` | Create a RenShareDailyAvg entity instance. |
 | `RenShareModel` | `($data): RenShareModelEntity` | Create a RenShareModel entity instance. |
-| `ShareModel` | `($data): ShareModelEntity` | Create a ShareModel entity instance. |
+| `SolarShare` | `($data): SolarShareEntity` | Create a SolarShare entity instance. |
+| `SolarShareDailyAvg` | `($data): SolarShareDailyAvgEntity` | Create a SolarShareDailyAvg entity instance. |
+| `TotalPower` | `($data): TotalPowerEntity` | Create a TotalPower entity instance. |
 | `TrafficModel` | `($data): TrafficModelEntity` | Create a TrafficModel entity instance. |
+| `WindOffshoreShare` | `($data): WindOffshoreShareEntity` | Create a WindOffshoreShare entity instance. |
+| `WindOffshoreShareDailyAvg` | `($data): WindOffshoreShareDailyAvgEntity` | Create a WindOffshoreShareDailyAvg entity instance. |
+| `WindOnshoreShare` | `($data): WindOnshoreShareEntity` | Create a WindOnshoreShare entity instance. |
+| `WindOnshoreShareDailyAvg` | `($data): WindOnshoreShareDailyAvgEntity` | Create a WindOnshoreShareDailyAvg entity instance. |
 
 ### Entity interface
 
@@ -251,7 +258,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 ### Entities
 
-#### CrossBorderModel
+#### Cbet
 
 | Field | Description |
 | --- | --- |
@@ -263,17 +270,17 @@ Operations: Load.
 
 API path: `/cbet`
 
-#### DailyAvgDict
+#### Cbpf
 
 | Field | Description |
 | --- | --- |
-| `data` | List of average daily values |
-| `days` | List of days in the format dd.mm.yyyy |
+| `countries` |  |
 | `deprecated` |  |
+| `unix_seconds` |  |
 
-Operations: List.
+Operations: Load.
 
-API path: `/ren_share_daily_avg`
+API path: `/cbpf`
 
 #### Frequency
 
@@ -314,7 +321,7 @@ Operations: Load.
 
 API path: `/price`
 
-#### ProductionModel
+#### PublicPower
 
 | Field | Description |
 | --- | --- |
@@ -340,6 +347,18 @@ Operations: List.
 
 API path: `/public_power_forecast`
 
+#### RenShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/ren_share_daily_avg`
+
 #### RenShareModel
 
 | Field | Description |
@@ -356,7 +375,7 @@ Operations: List.
 
 API path: `/ren_share_forecast`
 
-#### ShareModel
+#### SolarShare
 
 | Field | Description |
 | --- | --- |
@@ -368,6 +387,30 @@ API path: `/ren_share_forecast`
 Operations: Load.
 
 API path: `/solar_share`
+
+#### SolarShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/solar_share_daily_avg`
+
+#### TotalPower
+
+| Field | Description |
+| --- | --- |
+| `deprecated` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/total_power`
 
 #### TrafficModel
 
@@ -383,14 +426,64 @@ Operations: List.
 
 API path: `/signal`
 
+#### WindOffshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_offshore_share`
+
+#### WindOffshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_offshore_share_daily_avg`
+
+#### WindOnshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_onshore_share`
+
+#### WindOnshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_onshore_share_daily_avg`
+
 
 
 ## Entities
 
 
-### CrossBorderModel
+### Cbet
 
-Create an instance: `$cross_border_model = $client->CrossBorderModel();`
+Create an instance: `$cbet = $client->Cbet();`
 
 #### Operations
 
@@ -409,34 +502,34 @@ Create an instance: `$cross_border_model = $client->CrossBorderModel();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the CrossBorderModel record (throws on error).
-$cross_border_model = $client->CrossBorderModel()->load();
+// load() returns the ENTITY — call data_get() for the Cbet record (throws on error).
+$cbet = $client->Cbet()->load();
 ```
 
 
-### DailyAvgDict
+### Cbpf
 
-Create an instance: `$daily_avg_dict = $client->DailyAvgDict();`
+Create an instance: `$cbpf = $client->Cbpf();`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` | List of average daily values |
-| `days` | `array` | List of days in the format dd.mm.yyyy |
+| `countries` | `mixed` |  |
 | `deprecated` | `bool` |  |
+| `unix_seconds` | `mixed` |  |
 
-#### Example: List
+#### Example: Load
 
 ```php
-// list() returns an array of DailyAvgDict records (throws on error).
-$daily_avg_dicts = $client->DailyAvgDict()->list();
+// load() returns the ENTITY — call data_get() for the Cbpf record (throws on error).
+$cbpf = $client->Cbpf()->load();
 ```
 
 
@@ -521,9 +614,9 @@ $price = $client->Price()->load();
 ```
 
 
-### ProductionModel
+### PublicPower
 
-Create an instance: `$production_model = $client->ProductionModel();`
+Create an instance: `$public_power = $client->PublicPower();`
 
 #### Operations
 
@@ -542,8 +635,8 @@ Create an instance: `$production_model = $client->ProductionModel();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the ProductionModel record (throws on error).
-$production_model = $client->ProductionModel()->load();
+// load() returns the ENTITY — call data_get() for the PublicPower record (throws on error).
+$public_power = $client->PublicPower()->load();
 ```
 
 
@@ -572,6 +665,32 @@ Create an instance: `$public_power_forecast = $client->PublicPowerForecast();`
 ```php
 // list() returns an array of PublicPowerForecast records (throws on error).
 $public_power_forecasts = $client->PublicPowerForecast()->list();
+```
+
+
+### RenShareDailyAvg
+
+Create an instance: `$ren_share_daily_avg = $client->RenShareDailyAvg();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `array` | List of average daily values |
+| `days` | `array` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```php
+// list() returns an array of RenShareDailyAvg records (throws on error).
+$ren_share_daily_avgs = $client->RenShareDailyAvg()->list();
 ```
 
 
@@ -605,9 +724,9 @@ $ren_share_models = $client->RenShareModel()->list();
 ```
 
 
-### ShareModel
+### SolarShare
 
-Create an instance: `$share_model = $client->ShareModel();`
+Create an instance: `$solar_share = $client->SolarShare();`
 
 #### Operations
 
@@ -627,8 +746,60 @@ Create an instance: `$share_model = $client->ShareModel();`
 #### Example: Load
 
 ```php
-// load() returns the ENTITY — call data_get() for the ShareModel record (throws on error).
-$share_model = $client->ShareModel()->load();
+// load() returns the ENTITY — call data_get() for the SolarShare record (throws on error).
+$solar_share = $client->SolarShare()->load();
+```
+
+
+### SolarShareDailyAvg
+
+Create an instance: `$solar_share_daily_avg = $client->SolarShareDailyAvg();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `array` | List of average daily values |
+| `days` | `array` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```php
+// list() returns an array of SolarShareDailyAvg records (throws on error).
+$solar_share_daily_avgs = $client->SolarShareDailyAvg()->list();
+```
+
+
+### TotalPower
+
+Create an instance: `$total_power = $client->TotalPower();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `deprecated` | `bool` |  |
+| `production_types` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
+
+#### Example: Load
+
+```php
+// load() returns the ENTITY — call data_get() for the TotalPower record (throws on error).
+$total_power = $client->TotalPower()->load();
 ```
 
 
@@ -657,6 +828,112 @@ Create an instance: `$traffic_model = $client->TrafficModel();`
 ```php
 // list() returns an array of TrafficModel records (throws on error).
 $traffic_models = $client->TrafficModel()->list();
+```
+
+
+### WindOffshoreShare
+
+Create an instance: `$wind_offshore_share = $client->WindOffshoreShare();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `mixed` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
+
+#### Example: Load
+
+```php
+// load() returns the ENTITY — call data_get() for the WindOffshoreShare record (throws on error).
+$wind_offshore_share = $client->WindOffshoreShare()->load();
+```
+
+
+### WindOffshoreShareDailyAvg
+
+Create an instance: `$wind_offshore_share_daily_avg = $client->WindOffshoreShareDailyAvg();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `array` | List of average daily values |
+| `days` | `array` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```php
+// list() returns an array of WindOffshoreShareDailyAvg records (throws on error).
+$wind_offshore_share_daily_avgs = $client->WindOffshoreShareDailyAvg()->list();
+```
+
+
+### WindOnshoreShare
+
+Create an instance: `$wind_onshore_share = $client->WindOnshoreShare();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `mixed` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `mixed` |  |
+| `unix_seconds` | `mixed` |  |
+
+#### Example: Load
+
+```php
+// load() returns the ENTITY — call data_get() for the WindOnshoreShare record (throws on error).
+$wind_onshore_share = $client->WindOnshoreShare()->load();
+```
+
+
+### WindOnshoreShareDailyAvg
+
+Create an instance: `$wind_onshore_share_daily_avg = $client->WindOnshoreShareDailyAvg();`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `array` | List of average daily values |
+| `days` | `array` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```php
+// list() returns an array of WindOnshoreShareDailyAvg records (throws on error).
+$wind_onshore_share_daily_avgs = $client->WindOnshoreShareDailyAvg()->list();
 ```
 
 ## Features
@@ -817,15 +1094,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$installedmodel = $client->InstalledModel();
-$installedmodel->list();
+$publicpower = $client->PublicPower();
+$publicpower->load();
 
-// $installedmodel->data_get() now returns the installedmodel data from the last list
-// $installedmodel->match_get() returns the last match criteria
+// $publicpower->data_get() now returns the publicpower data from the last load
+// $publicpower->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -19,7 +19,6 @@ import type {
   FrequencyListMatch,
 } from '../EnergyChartsTypes'
 
-// TODO: needs Entity superclass
 class FrequencyEntity extends EnergyChartsEntityBase<Frequency> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {

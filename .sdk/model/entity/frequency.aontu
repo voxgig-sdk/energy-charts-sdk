@@ -1,0 +1,92 @@
+# Entity: frequency
+
+main: kit: entity: frequency: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: true
+      t: "`$ARRAY`"
+    }
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "frequency"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /frequency"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "DE-Freiburg"
+                k: "query"
+                n: "region"
+                or: "region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/frequency"
+          q: {
+            exist: [
+              "end"
+              "region"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "frequency"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,22 @@
+# BasicInstalledModelFlow
+
+main: kit: flow: BasicInstalledModelFlow:
+{
+  entity: "installed_model",
+  kind: "basic",
+  name: "BasicInstalledModelFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "installed_model_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicInstalledModelFlow"
+}

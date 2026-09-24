@@ -1,21 +1,22 @@
-export interface CrossBorderModel {
+export interface Cbet {
     countries?: any;
     deprecated: boolean;
     unix_seconds?: any;
 }
-export interface CrossBorderModelLoadMatch {
+export interface CbetLoadMatch {
     country?: string;
     end?: string;
     start?: string;
 }
-export interface DailyAvgDict {
-    data: any[];
-    days: any[];
+export interface Cbpf {
+    countries?: any;
     deprecated: boolean;
+    unix_seconds?: any;
 }
-export interface DailyAvgDictListMatch {
+export interface CbpfLoadMatch {
     country?: string;
-    year?: number;
+    end?: string;
+    start?: string;
 }
 export interface Frequency {
     data: any[];
@@ -50,12 +51,12 @@ export interface PriceLoadMatch {
     end?: string;
     start?: string;
 }
-export interface ProductionModel {
+export interface PublicPower {
     deprecated: boolean;
     production_types?: any;
     unix_seconds?: any;
 }
-export interface ProductionModelLoadMatch {
+export interface PublicPowerLoadMatch {
     country?: string;
     end?: string;
     start?: string;
@@ -75,6 +76,15 @@ export interface PublicPowerForecastListMatch {
     production_type?: string;
     start?: string;
 }
+export interface RenShareDailyAvg {
+    data: any[];
+    days: any[];
+    deprecated: boolean;
+}
+export interface RenShareDailyAvgListMatch {
+    country?: string;
+    year?: number;
+}
 export interface RenShareModel {
     deprecated: boolean;
     ren_share: any[];
@@ -87,14 +97,33 @@ export interface RenShareModel {
 export interface RenShareModelListMatch {
     country?: string;
 }
-export interface ShareModel {
+export interface SolarShare {
     data?: any;
     deprecated: boolean;
     forecast?: any;
     unix_seconds?: any;
 }
-export interface ShareModelLoadMatch {
+export interface SolarShareLoadMatch {
     country?: string;
+}
+export interface SolarShareDailyAvg {
+    data: any[];
+    days: any[];
+    deprecated: boolean;
+}
+export interface SolarShareDailyAvgListMatch {
+    country?: string;
+    year?: number;
+}
+export interface TotalPower {
+    deprecated: boolean;
+    production_types?: any;
+    unix_seconds?: any;
+}
+export interface TotalPowerLoadMatch {
+    country?: string;
+    end?: string;
+    start?: string;
 }
 export interface TrafficModel {
     deprecated: boolean;
@@ -106,4 +135,40 @@ export interface TrafficModel {
 export interface TrafficModelListMatch {
     country?: string;
     postal_code?: string;
+}
+export interface WindOffshoreShare {
+    data?: any;
+    deprecated: boolean;
+    forecast?: any;
+    unix_seconds?: any;
+}
+export interface WindOffshoreShareLoadMatch {
+    country?: string;
+}
+export interface WindOffshoreShareDailyAvg {
+    data: any[];
+    days: any[];
+    deprecated: boolean;
+}
+export interface WindOffshoreShareDailyAvgListMatch {
+    country?: string;
+    year?: number;
+}
+export interface WindOnshoreShare {
+    data?: any;
+    deprecated: boolean;
+    forecast?: any;
+    unix_seconds?: any;
+}
+export interface WindOnshoreShareLoadMatch {
+    country?: string;
+}
+export interface WindOnshoreShareDailyAvg {
+    data: any[];
+    days: any[];
+    deprecated: boolean;
+}
+export interface WindOnshoreShareDailyAvgListMatch {
+    country?: string;
+    year?: number;
 }

@@ -1,0 +1,28 @@
+# BasicWindOnshoreShareFlow
+
+main: kit: flow: BasicWindOnshoreShareFlow:
+{
+  entity: "wind_onshore_share",
+  kind: "basic",
+  name: "BasicWindOnshoreShareFlow",
+  step: [
+    {
+      i: {
+        ref: "wind_onshore_share_ref01",
+        srcdatavar: "wind_onshore_share_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-wind_onshore_share_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWindOnshoreShareFlow"
+}

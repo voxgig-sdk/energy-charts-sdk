@@ -1,0 +1,28 @@
+# BasicCbetFlow
+
+main: kit: flow: BasicCbetFlow:
+{
+  entity: "cbet",
+  kind: "basic",
+  name: "BasicCbetFlow",
+  step: [
+    {
+      i: {
+        ref: "cbet_ref01",
+        srcdatavar: "cbet_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-cbet_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCbetFlow"
+}

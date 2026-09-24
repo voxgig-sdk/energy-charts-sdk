@@ -341,39 +341,39 @@ class EnergyChartsSDK
     }
 
 
-    private $_cross_border_model = null;
+    private $_cbet = null;
 
-    // Canonical facade: $client->CrossBorderModel()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->cross_border_model()
+    // Canonical facade: $client->Cbet()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cbet()
     // resolves here too.
-    public function CrossBorderModel($data = null)
+    public function Cbet($data = null)
     {
-        require_once __DIR__ . '/entity/cross_border_model_entity.php';
+        require_once __DIR__ . '/entity/cbet_entity.php';
         if ($data === null) {
-            if ($this->_cross_border_model === null) {
-                $this->_cross_border_model = new CrossBorderModelEntity($this, null);
+            if ($this->_cbet === null) {
+                $this->_cbet = new CbetEntity($this, null);
             }
-            return $this->_cross_border_model;
+            return $this->_cbet;
         }
-        return new CrossBorderModelEntity($this, $data);
+        return new CbetEntity($this, $data);
     }
 
 
-    private $_daily_avg_dict = null;
+    private $_cbpf = null;
 
-    // Canonical facade: $client->DailyAvgDict()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->daily_avg_dict()
+    // Canonical facade: $client->Cbpf()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cbpf()
     // resolves here too.
-    public function DailyAvgDict($data = null)
+    public function Cbpf($data = null)
     {
-        require_once __DIR__ . '/entity/daily_avg_dict_entity.php';
+        require_once __DIR__ . '/entity/cbpf_entity.php';
         if ($data === null) {
-            if ($this->_daily_avg_dict === null) {
-                $this->_daily_avg_dict = new DailyAvgDictEntity($this, null);
+            if ($this->_cbpf === null) {
+                $this->_cbpf = new CbpfEntity($this, null);
             }
-            return $this->_daily_avg_dict;
+            return $this->_cbpf;
         }
-        return new DailyAvgDictEntity($this, $data);
+        return new CbpfEntity($this, $data);
     }
 
 
@@ -431,21 +431,21 @@ class EnergyChartsSDK
     }
 
 
-    private $_production_model = null;
+    private $_public_power = null;
 
-    // Canonical facade: $client->ProductionModel()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->production_model()
+    // Canonical facade: $client->PublicPower()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->public_power()
     // resolves here too.
-    public function ProductionModel($data = null)
+    public function PublicPower($data = null)
     {
-        require_once __DIR__ . '/entity/production_model_entity.php';
+        require_once __DIR__ . '/entity/public_power_entity.php';
         if ($data === null) {
-            if ($this->_production_model === null) {
-                $this->_production_model = new ProductionModelEntity($this, null);
+            if ($this->_public_power === null) {
+                $this->_public_power = new PublicPowerEntity($this, null);
             }
-            return $this->_production_model;
+            return $this->_public_power;
         }
-        return new ProductionModelEntity($this, $data);
+        return new PublicPowerEntity($this, $data);
     }
 
 
@@ -467,6 +467,24 @@ class EnergyChartsSDK
     }
 
 
+    private $_ren_share_daily_avg = null;
+
+    // Canonical facade: $client->RenShareDailyAvg()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ren_share_daily_avg()
+    // resolves here too.
+    public function RenShareDailyAvg($data = null)
+    {
+        require_once __DIR__ . '/entity/ren_share_daily_avg_entity.php';
+        if ($data === null) {
+            if ($this->_ren_share_daily_avg === null) {
+                $this->_ren_share_daily_avg = new RenShareDailyAvgEntity($this, null);
+            }
+            return $this->_ren_share_daily_avg;
+        }
+        return new RenShareDailyAvgEntity($this, $data);
+    }
+
+
     private $_ren_share_model = null;
 
     // Canonical facade: $client->RenShareModel()->list() / ->load(["id" => ...]).
@@ -485,21 +503,57 @@ class EnergyChartsSDK
     }
 
 
-    private $_share_model = null;
+    private $_solar_share = null;
 
-    // Canonical facade: $client->ShareModel()->list() / ->load(["id" => ...]).
-    // PHP method names are case-insensitive, so lowercase $client->share_model()
+    // Canonical facade: $client->SolarShare()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->solar_share()
     // resolves here too.
-    public function ShareModel($data = null)
+    public function SolarShare($data = null)
     {
-        require_once __DIR__ . '/entity/share_model_entity.php';
+        require_once __DIR__ . '/entity/solar_share_entity.php';
         if ($data === null) {
-            if ($this->_share_model === null) {
-                $this->_share_model = new ShareModelEntity($this, null);
+            if ($this->_solar_share === null) {
+                $this->_solar_share = new SolarShareEntity($this, null);
             }
-            return $this->_share_model;
+            return $this->_solar_share;
         }
-        return new ShareModelEntity($this, $data);
+        return new SolarShareEntity($this, $data);
+    }
+
+
+    private $_solar_share_daily_avg = null;
+
+    // Canonical facade: $client->SolarShareDailyAvg()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->solar_share_daily_avg()
+    // resolves here too.
+    public function SolarShareDailyAvg($data = null)
+    {
+        require_once __DIR__ . '/entity/solar_share_daily_avg_entity.php';
+        if ($data === null) {
+            if ($this->_solar_share_daily_avg === null) {
+                $this->_solar_share_daily_avg = new SolarShareDailyAvgEntity($this, null);
+            }
+            return $this->_solar_share_daily_avg;
+        }
+        return new SolarShareDailyAvgEntity($this, $data);
+    }
+
+
+    private $_total_power = null;
+
+    // Canonical facade: $client->TotalPower()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->total_power()
+    // resolves here too.
+    public function TotalPower($data = null)
+    {
+        require_once __DIR__ . '/entity/total_power_entity.php';
+        if ($data === null) {
+            if ($this->_total_power === null) {
+                $this->_total_power = new TotalPowerEntity($this, null);
+            }
+            return $this->_total_power;
+        }
+        return new TotalPowerEntity($this, $data);
     }
 
 
@@ -518,6 +572,78 @@ class EnergyChartsSDK
             return $this->_traffic_model;
         }
         return new TrafficModelEntity($this, $data);
+    }
+
+
+    private $_wind_offshore_share = null;
+
+    // Canonical facade: $client->WindOffshoreShare()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_offshore_share()
+    // resolves here too.
+    public function WindOffshoreShare($data = null)
+    {
+        require_once __DIR__ . '/entity/wind_offshore_share_entity.php';
+        if ($data === null) {
+            if ($this->_wind_offshore_share === null) {
+                $this->_wind_offshore_share = new WindOffshoreShareEntity($this, null);
+            }
+            return $this->_wind_offshore_share;
+        }
+        return new WindOffshoreShareEntity($this, $data);
+    }
+
+
+    private $_wind_offshore_share_daily_avg = null;
+
+    // Canonical facade: $client->WindOffshoreShareDailyAvg()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_offshore_share_daily_avg()
+    // resolves here too.
+    public function WindOffshoreShareDailyAvg($data = null)
+    {
+        require_once __DIR__ . '/entity/wind_offshore_share_daily_avg_entity.php';
+        if ($data === null) {
+            if ($this->_wind_offshore_share_daily_avg === null) {
+                $this->_wind_offshore_share_daily_avg = new WindOffshoreShareDailyAvgEntity($this, null);
+            }
+            return $this->_wind_offshore_share_daily_avg;
+        }
+        return new WindOffshoreShareDailyAvgEntity($this, $data);
+    }
+
+
+    private $_wind_onshore_share = null;
+
+    // Canonical facade: $client->WindOnshoreShare()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_onshore_share()
+    // resolves here too.
+    public function WindOnshoreShare($data = null)
+    {
+        require_once __DIR__ . '/entity/wind_onshore_share_entity.php';
+        if ($data === null) {
+            if ($this->_wind_onshore_share === null) {
+                $this->_wind_onshore_share = new WindOnshoreShareEntity($this, null);
+            }
+            return $this->_wind_onshore_share;
+        }
+        return new WindOnshoreShareEntity($this, $data);
+    }
+
+
+    private $_wind_onshore_share_daily_avg = null;
+
+    // Canonical facade: $client->WindOnshoreShareDailyAvg()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->wind_onshore_share_daily_avg()
+    // resolves here too.
+    public function WindOnshoreShareDailyAvg($data = null)
+    {
+        require_once __DIR__ . '/entity/wind_onshore_share_daily_avg_entity.php';
+        if ($data === null) {
+            if ($this->_wind_onshore_share_daily_avg === null) {
+                $this->_wind_onshore_share_daily_avg = new WindOnshoreShareDailyAvgEntity($this, null);
+            }
+            return $this->_wind_onshore_share_daily_avg;
+        }
+        return new WindOnshoreShareDailyAvgEntity($this, $data);
     }
 
 

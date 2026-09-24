@@ -2,16 +2,23 @@
 // EnergyCharts Ts SDK
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.EnergyChartsSDK = exports.EnergyChartsEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
-const CrossBorderModelEntity_1 = require("./entity/CrossBorderModelEntity");
-const DailyAvgDictEntity_1 = require("./entity/DailyAvgDictEntity");
+const CbetEntity_1 = require("./entity/CbetEntity");
+const CbpfEntity_1 = require("./entity/CbpfEntity");
 const FrequencyEntity_1 = require("./entity/FrequencyEntity");
 const InstalledModelEntity_1 = require("./entity/InstalledModelEntity");
 const PriceEntity_1 = require("./entity/PriceEntity");
-const ProductionModelEntity_1 = require("./entity/ProductionModelEntity");
+const PublicPowerEntity_1 = require("./entity/PublicPowerEntity");
 const PublicPowerForecastEntity_1 = require("./entity/PublicPowerForecastEntity");
+const RenShareDailyAvgEntity_1 = require("./entity/RenShareDailyAvgEntity");
 const RenShareModelEntity_1 = require("./entity/RenShareModelEntity");
-const ShareModelEntity_1 = require("./entity/ShareModelEntity");
+const SolarShareEntity_1 = require("./entity/SolarShareEntity");
+const SolarShareDailyAvgEntity_1 = require("./entity/SolarShareDailyAvgEntity");
+const TotalPowerEntity_1 = require("./entity/TotalPowerEntity");
 const TrafficModelEntity_1 = require("./entity/TrafficModelEntity");
+const WindOffshoreShareEntity_1 = require("./entity/WindOffshoreShareEntity");
+const WindOffshoreShareDailyAvgEntity_1 = require("./entity/WindOffshoreShareDailyAvgEntity");
+const WindOnshoreShareEntity_1 = require("./entity/WindOnshoreShareEntity");
+const WindOnshoreShareDailyAvgEntity_1 = require("./entity/WindOnshoreShareDailyAvgEntity");
 const node_util_1 = require("node:util");
 const Config_1 = require("./Config");
 Object.defineProperty(exports, "config", { enumerable: true, get: function () { return Config_1.config; } });
@@ -93,7 +100,6 @@ class EnergyChartsSDK {
             ctrl: fetchargs.ctrl || {},
         }, this._rootctx);
         const options = this._options;
-        // Build spec directly from SDK options + user-provided fetch args.
         const spec = {
             base: options.base,
             prefix: options.prefix,
@@ -107,14 +113,12 @@ class EnergyChartsSDK {
             step: 'start',
         };
         ctx.spec = spec;
-        // Merge user-provided headers over SDK defaults.
         if (fetchargs.headers) {
             const uheaders = fetchargs.headers;
             for (let key in uheaders) {
                 spec.headers[key] = uheaders[key];
             }
         }
-        // Apply SDK auth (apikey, auth prefix, etc.)
         const authResult = prepareAuth(ctx);
         if (authResult instanceof Error) {
             return authResult;
@@ -189,18 +193,6 @@ class EnergyChartsSDK {
             return { ok: false, err };
         }
     }
-    // Raw GraphQL access: the pressure valve that makes the generated
-    // surface's deliberate omissions (per-call selection sets, typed filter
-    // builders, batching, subscriptions) livable — the whole schema stays
-    // reachable.
-    //
-    // Thin wrapper over the same prepare/fetch path `direct` uses, with the
-    // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
-    // HTTP 200 as a top-level `errors` array, so status alone would report a
-    // failed query as ok.
-    //
-    // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
-    // ratelimit or paging features apply.
     async graphql(query, variables, ctrl) {
         const options = this._options;
         if (!options.allow.op.includes('graphql')) {
@@ -234,19 +226,19 @@ class EnergyChartsSDK {
         }
         return res;
     }
-    // Entity access: `client.CrossBorderModel().list()` / `client.CrossBorderModel().load({ id })`.
+    // Entity access: `client.Cbet().list()` / `client.Cbet().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    CrossBorderModel(entopts) {
+    Cbet(entopts) {
         const self = this;
-        return new CrossBorderModelEntity_1.CrossBorderModelEntity(self, entopts);
+        return new CbetEntity_1.CbetEntity(self, entopts);
     }
-    // Entity access: `client.DailyAvgDict().list()` / `client.DailyAvgDict().load({ id })`.
+    // Entity access: `client.Cbpf().list()` / `client.Cbpf().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    DailyAvgDict(entopts) {
+    Cbpf(entopts) {
         const self = this;
-        return new DailyAvgDictEntity_1.DailyAvgDictEntity(self, entopts);
+        return new CbpfEntity_1.CbpfEntity(self, entopts);
     }
     // Entity access: `client.Frequency().list()` / `client.Frequency().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -269,12 +261,12 @@ class EnergyChartsSDK {
         const self = this;
         return new PriceEntity_1.PriceEntity(self, entopts);
     }
-    // Entity access: `client.ProductionModel().list()` / `client.ProductionModel().load({ id })`.
+    // Entity access: `client.PublicPower().list()` / `client.PublicPower().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    ProductionModel(entopts) {
+    PublicPower(entopts) {
         const self = this;
-        return new ProductionModelEntity_1.ProductionModelEntity(self, entopts);
+        return new PublicPowerEntity_1.PublicPowerEntity(self, entopts);
     }
     // Entity access: `client.PublicPowerForecast().list()` / `client.PublicPowerForecast().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -283,6 +275,13 @@ class EnergyChartsSDK {
         const self = this;
         return new PublicPowerForecastEntity_1.PublicPowerForecastEntity(self, entopts);
     }
+    // Entity access: `client.RenShareDailyAvg().list()` / `client.RenShareDailyAvg().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    RenShareDailyAvg(entopts) {
+        const self = this;
+        return new RenShareDailyAvgEntity_1.RenShareDailyAvgEntity(self, entopts);
+    }
     // Entity access: `client.RenShareModel().list()` / `client.RenShareModel().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -290,12 +289,26 @@ class EnergyChartsSDK {
         const self = this;
         return new RenShareModelEntity_1.RenShareModelEntity(self, entopts);
     }
-    // Entity access: `client.ShareModel().list()` / `client.ShareModel().load({ id })`.
+    // Entity access: `client.SolarShare().list()` / `client.SolarShare().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    ShareModel(entopts) {
+    SolarShare(entopts) {
         const self = this;
-        return new ShareModelEntity_1.ShareModelEntity(self, entopts);
+        return new SolarShareEntity_1.SolarShareEntity(self, entopts);
+    }
+    // Entity access: `client.SolarShareDailyAvg().list()` / `client.SolarShareDailyAvg().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    SolarShareDailyAvg(entopts) {
+        const self = this;
+        return new SolarShareDailyAvgEntity_1.SolarShareDailyAvgEntity(self, entopts);
+    }
+    // Entity access: `client.TotalPower().list()` / `client.TotalPower().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    TotalPower(entopts) {
+        const self = this;
+        return new TotalPowerEntity_1.TotalPowerEntity(self, entopts);
     }
     // Entity access: `client.TrafficModel().list()` / `client.TrafficModel().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -303,6 +316,34 @@ class EnergyChartsSDK {
     TrafficModel(entopts) {
         const self = this;
         return new TrafficModelEntity_1.TrafficModelEntity(self, entopts);
+    }
+    // Entity access: `client.WindOffshoreShare().list()` / `client.WindOffshoreShare().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    WindOffshoreShare(entopts) {
+        const self = this;
+        return new WindOffshoreShareEntity_1.WindOffshoreShareEntity(self, entopts);
+    }
+    // Entity access: `client.WindOffshoreShareDailyAvg().list()` / `client.WindOffshoreShareDailyAvg().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    WindOffshoreShareDailyAvg(entopts) {
+        const self = this;
+        return new WindOffshoreShareDailyAvgEntity_1.WindOffshoreShareDailyAvgEntity(self, entopts);
+    }
+    // Entity access: `client.WindOnshoreShare().list()` / `client.WindOnshoreShare().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    WindOnshoreShare(entopts) {
+        const self = this;
+        return new WindOnshoreShareEntity_1.WindOnshoreShareEntity(self, entopts);
+    }
+    // Entity access: `client.WindOnshoreShareDailyAvg().list()` / `client.WindOnshoreShareDailyAvg().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    WindOnshoreShareDailyAvg(entopts) {
+        const self = this;
+        return new WindOnshoreShareDailyAvgEntity_1.WindOnshoreShareDailyAvgEntity(self, entopts);
     }
     static test(testoptsarg, sdkoptsarg) {
         const struct = stdutil.struct;

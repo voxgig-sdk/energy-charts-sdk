@@ -24,152 +24,162 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
-        "cross_border_model": {
+        "cbet": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "countries",
-              "req": false,
-              "type": "`$ANY`"
+          "fields": {
+            "countries": {
+              "a": true,
+              "h": "Countries",
+              "n": "countries",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": false,
-              "type": "`$ANY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
-          "name": "cross_border_model",
+          },
+          "name": "cbet",
           "op": {
             "load": {
               "input": "data",
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cbet",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cbet",
-                    "json": "{\"operationId\":\"cross_border_electricity_trading_cbet_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"countries\":{\"anyOf\":[{\"items\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"name\":{\"title\":\"Name\",\"type\":\"string\"}},\"required\":[\"name\",\"data\"],\"title\":\"NamedData\",\"type\":\"object\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Countries\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"CrossBorderModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cbet",
+                  "q": {
+                    "exist": [
+                      "country",
+                      "end",
+                      "start"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cbet",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cbet"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /cbpf",
-                    "json": "{\"operationId\":\"cross_border_physical_flows_cbpf_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"countries\":{\"anyOf\":[{\"items\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"name\":{\"title\":\"Name\",\"type\":\"string\"}},\"required\":[\"name\",\"data\"],\"title\":\"NamedData\",\"type\":\"object\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Countries\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"CrossBorderModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cbpf",
-                  "segments": [
-                    {
-                      "lit": "cbpf"
-                    }
-                  ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -181,231 +191,95 @@
             "ancestors": []
           }
         },
-        "daily_avg_dict": {
+        "cbpf": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "short": "List of average daily values",
-              "type": "`$ARRAY`"
+          "fields": {
+            "countries": {
+              "a": true,
+              "h": "Countries",
+              "n": "countries",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "days",
-              "req": true,
-              "short": "List of days in the format dd.mm.yyyy",
-              "type": "`$ARRAY`"
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
-          "name": "daily_avg_dict",
+          },
+          "name": "cbpf",
           "op": {
-            "list": {
+            "load": {
               "input": "data",
-              "name": "list",
+              "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cbpf",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": -1,
-                        "kind": "query",
-                        "name": "year",
-                        "orig": "year",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /ren_share_daily_avg",
-                    "json": "{\"operationId\":\"ren_share_daily_avg_ren_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ren_share_daily_avg",
-                  "segments": [
-                    {
-                      "lit": "ren_share_daily_avg"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cbpf",
+                  "q": {
                     "exist": [
                       "country",
-                      "year"
+                      "end",
+                      "start"
                     ]
                   },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": -1,
-                        "kind": "query",
-                        "name": "year",
-                        "orig": "year",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /solar_share_daily_avg",
-                    "json": "{\"operationId\":\"solar_share_daily_avg_solar_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/solar_share_daily_avg",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
-                      "lit": "solar_share_daily_avg"
+                      "lit": "cbpf"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": -1,
-                        "kind": "query",
-                        "name": "year",
-                        "orig": "year",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /wind_offshore_share_daily_avg",
-                    "json": "{\"operationId\":\"wind_offshore_share_daily_avg_wind_offshore_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/wind_offshore_share_daily_avg",
-                  "segments": [
-                    {
-                      "lit": "wind_offshore_share_daily_avg"
-                    }
-                  ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": -1,
-                        "kind": "query",
-                        "name": "year",
-                        "orig": "year",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /wind_onshore_share_daily_avg",
-                    "json": "{\"operationId\":\"wind_onshore_share_daily_avg_wind_onshore_share_daily_avg_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"year\",\"required\":false,\"schema\":{\"default\":-1,\"title\":\"Year\",\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"description\":\"List of average daily values\",\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"days\":{\"description\":\"List of days in the format dd.mm.yyyy\",\"items\":{\"type\":\"string\"},\"title\":\"Days\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"}},\"required\":[\"days\",\"data\",\"deprecated\"],\"title\":\"DailyAvgDict\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/wind_onshore_share_daily_avg",
-                  "segments": [
-                    {
-                      "lit": "wind_onshore_share_daily_avg"
-                    }
-                  ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -422,26 +296,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": true,
-              "type": "`$ARRAY`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": false,
-              "type": "`$ANY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
+          },
           "name": "frequency",
           "op": {
             "list": {
@@ -449,60 +326,60 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /frequency",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "DE-Freiburg",
-                        "kind": "query",
-                        "name": "region",
-                        "orig": "region",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "DE-Freiburg",
+                        "k": "query",
+                        "n": "region",
+                        "or": "region",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /frequency",
-                    "json": "{\"operationId\":\"frequency_frequency_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"region\",\"required\":false,\"schema\":{\"default\":\"DE-Freiburg\",\"title\":\"Region\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"data\",\"deprecated\"],\"title\":\"FrequencyModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/frequency",
-                  "segments": [
-                    {
-                      "lit": "frequency"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/frequency",
+                  "q": {
                     "exist": [
                       "end",
                       "region",
                       "start"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "frequency"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -519,32 +396,36 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "last_update",
-              "req": true,
-              "type": "`$ANY`"
+            "last_update": {
+              "a": true,
+              "h": "Last Update",
+              "n": "last_update",
+              "r": true,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "production_types",
-              "req": false,
-              "type": "`$ANY`"
+            "production_types": {
+              "a": true,
+              "h": "Production Types",
+              "n": "production_types",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "time",
-              "req": true,
-              "type": "`$ARRAY`"
+            "time": {
+              "a": true,
+              "h": "Time",
+              "n": "time",
+              "r": true,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "installed_model",
           "op": {
             "list": {
@@ -552,60 +433,60 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /installed_power",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": false,
-                        "kind": "query",
-                        "name": "installation_decommission",
-                        "orig": "installation_decommission",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
+                        "a": true,
+                        "ex": false,
+                        "k": "query",
+                        "n": "installation_decommission",
+                        "or": "installation_decommission",
+                        "r": false,
+                        "t": "`$BOOLEAN`"
                       },
                       {
-                        "active": true,
-                        "example": "yearly",
-                        "kind": "query",
-                        "name": "time_step",
-                        "orig": "time_step",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "yearly",
+                        "k": "query",
+                        "n": "time_step",
+                        "or": "time_step",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /installed_power",
-                    "json": "{\"operationId\":\"installed_power_installed_power_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"time_step\",\"required\":false,\"schema\":{\"default\":\"yearly\",\"title\":\"Time Step\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"installation_decommission\",\"required\":false,\"schema\":{\"default\":false,\"title\":\"Installation Decommission\",\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"last_update\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}],\"title\":\"Last Update\"},\"production_types\":{\"anyOf\":[{\"items\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"name\":{\"title\":\"Name\",\"type\":\"string\"}},\"required\":[\"name\",\"data\"],\"title\":\"NamedData\",\"type\":\"object\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Production Types\"},\"time\":{\"items\":{\"type\":\"string\"},\"title\":\"Time\",\"type\":\"array\"}},\"required\":[\"time\",\"last_update\",\"deprecated\"],\"title\":\"InstalledModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/installed_power",
-                  "segments": [
-                    {
-                      "lit": "installed_power"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/installed_power",
+                  "q": {
                     "exist": [
                       "country",
                       "installation_decommission",
                       "time_step"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "installed_power"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -622,38 +503,43 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "license_info",
-              "req": true,
-              "type": "`$STRING`"
+            "license_info": {
+              "a": true,
+              "h": "License Info",
+              "n": "license_info",
+              "r": true,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "price",
-              "req": false,
-              "type": "`$NUMBER`"
+            "price": {
+              "a": true,
+              "h": "Price",
+              "n": "price",
+              "r": false,
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "unit",
-              "req": true,
-              "type": "`$STRING`"
+            "unit": {
+              "a": true,
+              "h": "Unit",
+              "n": "unit",
+              "r": true,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": false,
-              "type": "`$ANY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
+          },
           "name": "price",
           "op": {
             "load": {
@@ -661,60 +547,60 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /price",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "DE-LU",
-                        "kind": "query",
-                        "name": "bzn",
-                        "orig": "bzn",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "DE-LU",
+                        "k": "query",
+                        "n": "bzn",
+                        "or": "bzn",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /price",
-                    "json": "{\"operationId\":\"day_ahead_price_price_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"bzn\",\"required\":false,\"schema\":{\"default\":\"DE-LU\",\"title\":\"Bzn\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"license_info\":{\"title\":\"License Info\",\"type\":\"string\"},\"price\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Price\"},\"unit\":{\"title\":\"Unit\",\"type\":\"string\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"license_info\",\"unit\",\"deprecated\"],\"title\":\"PriceModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"404\":{\"description\":\"No price data available for that bidding zone/time range\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/price",
-                  "segments": [
-                    {
-                      "lit": "price"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/price",
+                  "q": {
                     "exist": [
                       "bzn",
                       "end",
                       "start"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "price"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.price`"
                   }
@@ -726,94 +612,91 @@
             "ancestors": []
           }
         },
-        "production_model": {
+        "public_power": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "production_types",
-              "req": false,
-              "type": "`$ANY`"
+            "production_types": {
+              "a": true,
+              "h": "Production Types",
+              "n": "production_types",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": false,
-              "type": "`$ANY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
-          "name": "production_model",
+          },
+          "name": "public_power",
           "op": {
             "load": {
               "input": "data",
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /public_power",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "subtype",
-                        "orig": "subtype",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "subtype",
+                        "or": "subtype",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /public_power",
-                    "json": "{\"operationId\":\"public_power_public_power_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"subtype\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Subtype\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"production_types\":{\"anyOf\":[{\"items\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"name\":{\"title\":\"Name\",\"type\":\"string\"}},\"required\":[\"name\",\"data\"],\"title\":\"NamedData\",\"type\":\"object\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Production Types\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"ProductionModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/public_power",
-                  "segments": [
-                    {
-                      "lit": "public_power"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/public_power",
+                  "q": {
                     "exist": [
                       "country",
                       "end",
@@ -821,66 +704,13 @@
                       "subtype"
                     ]
                   },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "active": true,
-                  "args": {
-                    "query": [
-                      {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "contract": {
-                    "id": "GET /total_power",
-                    "json": "{\"operationId\":\"total_power_total_power_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"production_types\":{\"anyOf\":[{\"items\":{\"properties\":{\"data\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Data\",\"type\":\"array\"},\"name\":{\"title\":\"Name\",\"type\":\"string\"}},\"required\":[\"name\",\"data\"],\"title\":\"NamedData\",\"type\":\"object\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Production Types\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"ProductionModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/total_power",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
-                      "lit": "total_power"
+                      "lit": "public_power"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -897,38 +727,43 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "forecast_type",
-              "req": true,
-              "type": "`$STRING`"
+            "forecast_type": {
+              "a": true,
+              "h": "Forecast Type",
+              "n": "forecast_type",
+              "r": true,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "forecast_values",
-              "req": true,
-              "type": "`$ARRAY`"
+            "forecast_values": {
+              "a": true,
+              "h": "Forecast Values",
+              "n": "forecast_values",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "production_type",
-              "req": true,
-              "type": "`$STRING`"
+            "production_type": {
+              "a": true,
+              "h": "Production Type",
+              "n": "production_type",
+              "r": true,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": true,
-              "type": "`$ARRAY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": true,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "public_power_forecast",
           "op": {
             "list": {
@@ -936,71 +771,65 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /public_power_forecast",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "end",
-                        "orig": "end",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "current",
-                        "kind": "query",
-                        "name": "forecast_type",
-                        "orig": "forecast_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "current",
+                        "k": "query",
+                        "n": "forecast_type",
+                        "or": "forecast_type",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "solar",
-                        "kind": "query",
-                        "name": "production_type",
-                        "orig": "production_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "solar",
+                        "k": "query",
+                        "n": "production_type",
+                        "or": "production_type",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /public_power_forecast",
-                    "json": "{\"operationId\":\"public_power_forecast_public_power_forecast_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"production_type\",\"required\":false,\"schema\":{\"default\":\"solar\",\"title\":\"Production Type\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"forecast_type\",\"required\":false,\"schema\":{\"default\":\"current\",\"title\":\"Forecast Type\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Start\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"end\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"End\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"forecast_type\":{\"title\":\"Forecast Type\",\"type\":\"string\"},\"forecast_values\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Forecast Values\",\"type\":\"array\"},\"production_type\":{\"title\":\"Production Type\",\"type\":\"string\"},\"unix_seconds\":{\"items\":{\"type\":\"integer\"},\"title\":\"Unix Seconds\",\"type\":\"array\"}},\"required\":[\"unix_seconds\",\"forecast_values\",\"production_type\",\"forecast_type\",\"deprecated\"],\"title\":\"PublicPowerForecastModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/public_power_forecast",
-                  "segments": [
-                    {
-                      "lit": "public_power_forecast"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/public_power_forecast",
+                  "q": {
                     "exist": [
                       "country",
                       "end",
@@ -1009,7 +838,105 @@
                       "start"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "public_power_forecast"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ren_share_daily_avg": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": true,
+              "sh": "List of average daily values",
+              "t": "`$ARRAY`"
+            },
+            "days": {
+              "a": true,
+              "h": "Days",
+              "n": "days",
+              "r": true,
+              "sh": "List of days in the format dd.mm.yyyy",
+              "t": "`$ARRAY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            }
+          },
+          "name": "ren_share_daily_avg",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /ren_share_daily_avg",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": -1,
+                        "k": "query",
+                        "n": "year",
+                        "or": "year",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ren_share_daily_avg",
+                  "q": {
+                    "exist": [
+                      "country",
+                      "year"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "ren_share_daily_avg"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1026,50 +953,57 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "ren_share",
-              "req": true,
-              "type": "`$ARRAY`"
+            "ren_share": {
+              "a": true,
+              "h": "Ren Share",
+              "n": "ren_share",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "solar_share",
-              "req": false,
-              "type": "`$ANY`"
+            "solar_share": {
+              "a": true,
+              "h": "Solar Share",
+              "n": "solar_share",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "substitute",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "substitute": {
+              "a": true,
+              "h": "Substitute",
+              "n": "substitute",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": true,
-              "type": "`$ARRAY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "wind_offshore_share",
-              "req": false,
-              "type": "`$ANY`"
+            "wind_offshore_share": {
+              "a": true,
+              "h": "Wind Offshore Share",
+              "n": "wind_offshore_share",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "wind_onshore_share",
-              "req": false,
-              "type": "`$ANY`"
+            "wind_onshore_share": {
+              "a": true,
+              "h": "Wind Onshore Share",
+              "n": "wind_onshore_share",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
+          },
           "name": "ren_share_model",
           "op": {
             "list": {
@@ -1077,40 +1011,40 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /ren_share_forecast",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /ren_share_forecast",
-                    "json": "{\"operationId\":\"renewable_share_forecast_ren_share_forecast_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"ren_share\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Ren Share\",\"type\":\"array\"},\"solar_share\":{\"anyOf\":[{\"items\":{\"type\":\"number\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Solar Share\"},\"substitute\":{\"title\":\"Substitute\",\"type\":\"boolean\"},\"unix_seconds\":{\"items\":{\"type\":\"integer\"},\"title\":\"Unix Seconds\",\"type\":\"array\"},\"wind_offshore_share\":{\"anyOf\":[{\"items\":{\"type\":\"number\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Wind Offshore Share\"},\"wind_onshore_share\":{\"anyOf\":[{\"items\":{\"type\":\"number\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Wind Onshore Share\"}},\"required\":[\"unix_seconds\",\"ren_share\",\"substitute\",\"deprecated\"],\"title\":\"RenShareModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/ren_share_forecast",
-                  "segments": [
-                    {
-                      "lit": "ren_share_forecast"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/ren_share_forecast",
+                  "q": {
                     "exist": [
                       "country"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "ren_share_forecast"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1122,156 +1056,274 @@
             "ancestors": []
           }
         },
-        "share_model": {
+        "solar_share": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$ANY`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "forecast",
-              "req": false,
-              "type": "`$ANY`"
+            "forecast": {
+              "a": true,
+              "h": "Forecast",
+              "n": "forecast",
+              "r": false,
+              "t": "`$ANY`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": false,
-              "type": "`$ANY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
             }
-          ],
-          "name": "share_model",
+          },
+          "name": "solar_share",
           "op": {
             "load": {
               "input": "data",
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /solar_share",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /solar_share",
-                    "json": "{\"operationId\":\"solar_share_solar_share_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Data\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"forecast\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Forecast\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"ShareModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/solar_share",
+                  "q": {
+                    "exist": [
+                      "country"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/solar_share",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "solar_share"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "country"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
-                },
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "solar_share_daily_avg": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": true,
+              "sh": "List of average daily values",
+              "t": "`$ARRAY`"
+            },
+            "days": {
+              "a": true,
+              "h": "Days",
+              "n": "days",
+              "r": true,
+              "sh": "List of days in the format dd.mm.yyyy",
+              "t": "`$ARRAY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            }
+          },
+          "name": "solar_share_daily_avg",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /solar_share_daily_avg",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": -1,
+                        "k": "query",
+                        "n": "year",
+                        "or": "year",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /wind_offshore_share",
-                    "json": "{\"operationId\":\"wind_offshore_share_wind_offshore_share_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Data\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"forecast\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Forecast\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"ShareModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/wind_offshore_share",
-                  "segments": [
-                    {
-                      "lit": "wind_offshore_share"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/solar_share_daily_avg",
+                  "q": {
                     "exist": [
-                      "country"
+                      "country",
+                      "year"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "solar_share_daily_avg"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
-                },
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "total_power": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            },
+            "production_types": {
+              "a": true,
+              "h": "Production Types",
+              "n": "production_types",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
+            }
+          },
+          "name": "total_power",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /total_power",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "end",
+                        "or": "end",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /wind_onshore_share",
-                    "json": "{\"operationId\":\"wind_onshore_share_wind_onshore_share_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Data\"},\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"forecast\":{\"anyOf\":[{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Forecast\"},\"unix_seconds\":{\"anyOf\":[{\"items\":{\"type\":\"integer\"},\"type\":\"array\"},{\"type\":\"null\"}],\"title\":\"Unix Seconds\"}},\"required\":[\"deprecated\"],\"title\":\"ShareModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/wind_onshore_share",
-                  "segments": [
-                    {
-                      "lit": "wind_onshore_share"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/total_power",
+                  "q": {
                     "exist": [
-                      "country"
+                      "country",
+                      "end",
+                      "start"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "total_power"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1288,39 +1340,44 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "deprecated",
-              "req": true,
-              "type": "`$BOOLEAN`"
+          "fields": {
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "share",
-              "req": true,
-              "type": "`$ARRAY`"
+            "share": {
+              "a": true,
+              "h": "Share",
+              "n": "share",
+              "r": true,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "signal",
-              "req": false,
-              "short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
-              "type": "`$ARRAY`"
+            "signal": {
+              "a": true,
+              "h": "Signal",
+              "n": "signal",
+              "r": false,
+              "sh": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "substitute",
-              "req": true,
-              "type": "`$BOOLEAN`"
+            "substitute": {
+              "a": true,
+              "h": "Substitute",
+              "n": "substitute",
+              "r": true,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "unix_seconds",
-              "req": true,
-              "type": "`$ARRAY`"
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": true,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "traffic_model",
           "op": {
             "list": {
@@ -1328,50 +1385,408 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /signal",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "de",
-                        "kind": "query",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "",
-                        "kind": "query",
-                        "name": "postal_code",
-                        "orig": "postal_code",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "",
+                        "k": "query",
+                        "n": "postal_code",
+                        "or": "postal_code",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /signal",
-                    "json": "{\"operationId\":\"traffic_signal_signal_get\",\"parameters\":[{\"in\":\"query\",\"name\":\"country\",\"required\":false,\"schema\":{\"default\":\"de\",\"title\":\"Country\",\"type\":\"string\"}},{\"in\":\"query\",\"name\":\"postal_code\",\"required\":false,\"schema\":{\"default\":\"\",\"title\":\"Postal Code\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"deprecated\":{\"title\":\"Deprecated\",\"type\":\"boolean\"},\"share\":{\"items\":{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"null\"}]},\"title\":\"Share\",\"type\":\"array\"},\"signal\":{\"description\":\"\\n    0: Red (low renewable share)\\n    1: Yellow (average renewable share)\\n    2: Green (high renewable share)\\n    \",\"items\":{\"anyOf\":[{\"type\":\"integer\"},{\"type\":\"null\"}]},\"title\":\"Signal\",\"type\":\"array\"},\"substitute\":{\"title\":\"Substitute\",\"type\":\"boolean\"},\"unix_seconds\":{\"items\":{\"type\":\"integer\"},\"title\":\"Unix Seconds\",\"type\":\"array\"}},\"required\":[\"unix_seconds\",\"share\",\"substitute\",\"deprecated\"],\"title\":\"TrafficModel\",\"type\":\"object\"}}},\"description\":\"Successful Response\"},\"422\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"detail\":{\"items\":{\"properties\":{\"loc\":{\"items\":{\"anyOf\":[{\"type\":\"string\"},{\"type\":\"integer\"}]},\"title\":\"Location\",\"type\":\"array\"},\"msg\":{\"title\":\"Message\",\"type\":\"string\"},\"type\":{\"title\":\"Error Type\",\"type\":\"string\"}},\"required\":[\"loc\",\"msg\",\"type\"],\"title\":\"ValidationError\",\"type\":\"object\"},\"title\":\"Detail\",\"type\":\"array\"}},\"title\":\"HTTPValidationError\",\"type\":\"object\"}}},\"description\":\"Validation Error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/signal",
-                  "segments": [
-                    {
-                      "lit": "signal"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/signal",
+                  "q": {
                     "exist": [
                       "country",
                       "postal_code"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "signal"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "wind_offshore_share": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            },
+            "forecast": {
+              "a": true,
+              "h": "Forecast",
+              "n": "forecast",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
+            }
+          },
+          "name": "wind_offshore_share",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /wind_offshore_share",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/wind_offshore_share",
+                  "q": {
+                    "exist": [
+                      "country"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "wind_offshore_share"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "wind_offshore_share_daily_avg": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": true,
+              "sh": "List of average daily values",
+              "t": "`$ARRAY`"
+            },
+            "days": {
+              "a": true,
+              "h": "Days",
+              "n": "days",
+              "r": true,
+              "sh": "List of days in the format dd.mm.yyyy",
+              "t": "`$ARRAY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            }
+          },
+          "name": "wind_offshore_share_daily_avg",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /wind_offshore_share_daily_avg",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": -1,
+                        "k": "query",
+                        "n": "year",
+                        "or": "year",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/wind_offshore_share_daily_avg",
+                  "q": {
+                    "exist": [
+                      "country",
+                      "year"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "wind_offshore_share_daily_avg"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "wind_onshore_share": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            },
+            "forecast": {
+              "a": true,
+              "h": "Forecast",
+              "n": "forecast",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "unix_seconds": {
+              "a": true,
+              "h": "Unix Seconds",
+              "n": "unix_seconds",
+              "r": false,
+              "t": "`$ANY`"
+            }
+          },
+          "name": "wind_onshore_share",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /wind_onshore_share",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/wind_onshore_share",
+                  "q": {
+                    "exist": [
+                      "country"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "wind_onshore_share"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "wind_onshore_share_daily_avg": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": true,
+              "sh": "List of average daily values",
+              "t": "`$ARRAY`"
+            },
+            "days": {
+              "a": true,
+              "h": "Days",
+              "n": "days",
+              "r": true,
+              "sh": "List of days in the format dd.mm.yyyy",
+              "t": "`$ARRAY`"
+            },
+            "deprecated": {
+              "a": true,
+              "h": "Deprecated",
+              "n": "deprecated",
+              "r": true,
+              "t": "`$BOOLEAN`"
+            }
+          },
+          "name": "wind_onshore_share_daily_avg",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /wind_onshore_share_daily_avg",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "de",
+                        "k": "query",
+                        "n": "country",
+                        "or": "country",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": -1,
+                        "k": "query",
+                        "n": "year",
+                        "or": "year",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/wind_onshore_share_daily_avg",
+                  "q": {
+                    "exist": [
+                      "country",
+                      "year"
+                    ]
+                  },
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "wind_onshore_share_daily_avg"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1791,56 +2206,60 @@
         }
       },
       "flow": {
-        "BasicCrossBorderModelFlow": {
+        "BasicCbetFlow": {
           "active": true,
-          "entity": "cross_border_model",
-          "key$": "BasicCrossBorderModelFlow",
+          "entity": "cbet",
+          "key$": "BasicCbetFlow",
           "kind": "basic",
-          "name": "BasicCrossBorderModelFlow",
+          "name": "BasicCbetFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "cross_border_model_ref01",
-                "srcdatavar": "cross_border_model_ref01_data",
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "cbet_ref01",
+                "srcdatavar": "cbet_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-cross_border_model_ref01"
+                    "mark": "Mark01-cbet_ref01"
                   }
                 }
               ]
             }
           ]
         },
-        "BasicDailyAvgDictFlow": {
+        "BasicCbpfFlow": {
           "active": true,
-          "entity": "daily_avg_dict",
-          "key$": "BasicDailyAvgDictFlow",
+          "entity": "cbpf",
+          "key$": "BasicCbpfFlow",
           "kind": "basic",
-          "name": "BasicDailyAvgDictFlow",
+          "name": "BasicCbpfFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "cbpf_ref01",
+                "srcdatavar": "cbpf_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
-                  "apply": "ItemExists",
+                  "apply": "TextFieldMark",
                   "def": {
-                    "ref": "daily_avg_dict_ref01"
+                    "mark": "Mark01-cbpf_ref01"
                   }
                 }
               ]
@@ -1856,13 +2275,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1882,13 +2301,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1908,17 +2327,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "price_ref01",
                 "srcdatavar": "price_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1929,30 +2348,30 @@
             }
           ]
         },
-        "BasicProductionModelFlow": {
+        "BasicPublicPowerFlow": {
           "active": true,
-          "entity": "production_model",
-          "key$": "BasicProductionModelFlow",
+          "entity": "public_power",
+          "key$": "BasicPublicPowerFlow",
           "kind": "basic",
-          "name": "BasicProductionModelFlow",
+          "name": "BasicPublicPowerFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "production_model_ref01",
-                "srcdatavar": "production_model_ref01_data",
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "public_power_ref01",
+                "srcdatavar": "public_power_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-production_model_ref01"
+                    "mark": "Mark01-public_power_ref01"
                   }
                 }
               ]
@@ -1968,17 +2387,43 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
                     "ref": "public_power_forecast_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicRenShareDailyAvgFlow": {
+          "active": true,
+          "entity": "ren_share_daily_avg",
+          "key$": "BasicRenShareDailyAvgFlow",
+          "kind": "basic",
+          "name": "BasicRenShareDailyAvgFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "ren_share_daily_avg_ref01"
                   }
                 }
               ]
@@ -1994,13 +2439,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -2011,30 +2456,86 @@
             }
           ]
         },
-        "BasicShareModelFlow": {
+        "BasicSolarShareDailyAvgFlow": {
           "active": true,
-          "entity": "share_model",
-          "key$": "BasicShareModelFlow",
+          "entity": "solar_share_daily_avg",
+          "key$": "BasicSolarShareDailyAvgFlow",
           "kind": "basic",
-          "name": "BasicShareModelFlow",
+          "name": "BasicSolarShareDailyAvgFlow",
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
-                "ref": "share_model_ref01",
-                "srcdatavar": "share_model_ref01_data",
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "solar_share_daily_avg_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicSolarShareFlow": {
+          "active": true,
+          "entity": "solar_share",
+          "key$": "BasicSolarShareFlow",
+          "kind": "basic",
+          "name": "BasicSolarShareFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "solar_share_ref01",
+                "srcdatavar": "solar_share_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-share_model_ref01"
+                    "mark": "Mark01-solar_share_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicTotalPowerFlow": {
+          "active": true,
+          "entity": "total_power",
+          "key$": "BasicTotalPowerFlow",
+          "kind": "basic",
+          "name": "BasicTotalPowerFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "total_power_ref01",
+                "srcdatavar": "total_power_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-total_power_ref01"
                   }
                 }
               ]
@@ -2050,17 +2551,129 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
                     "ref": "traffic_model_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWindOffshoreShareDailyAvgFlow": {
+          "active": true,
+          "entity": "wind_offshore_share_daily_avg",
+          "key$": "BasicWindOffshoreShareDailyAvgFlow",
+          "kind": "basic",
+          "name": "BasicWindOffshoreShareDailyAvgFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "wind_offshore_share_daily_avg_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWindOffshoreShareFlow": {
+          "active": true,
+          "entity": "wind_offshore_share",
+          "key$": "BasicWindOffshoreShareFlow",
+          "kind": "basic",
+          "name": "BasicWindOffshoreShareFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "wind_offshore_share_ref01",
+                "srcdatavar": "wind_offshore_share_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-wind_offshore_share_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWindOnshoreShareDailyAvgFlow": {
+          "active": true,
+          "entity": "wind_onshore_share_daily_avg",
+          "key$": "BasicWindOnshoreShareDailyAvgFlow",
+          "kind": "basic",
+          "name": "BasicWindOnshoreShareDailyAvgFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "wind_onshore_share_daily_avg_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWindOnshoreShareFlow": {
+          "active": true,
+          "entity": "wind_onshore_share",
+          "key$": "BasicWindOnshoreShareFlow",
+          "kind": "basic",
+          "name": "BasicWindOnshoreShareFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "wind_onshore_share_ref01",
+                "srcdatavar": "wind_onshore_share_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-wind_onshore_share_ref01"
                   }
                 }
               ]

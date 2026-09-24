@@ -40,13 +40,13 @@ local client = sdk.test()
 
 ### Instance Methods
 
-#### `CrossBorderModel(data)`
+#### `Cbet(data)`
 
-Create a new `CrossBorderModel` entity instance. Pass `nil` for no initial data.
+Create a new `Cbet` entity instance. Pass `nil` for no initial data.
 
-#### `DailyAvgDict(data)`
+#### `Cbpf(data)`
 
-Create a new `DailyAvgDict` entity instance. Pass `nil` for no initial data.
+Create a new `Cbpf` entity instance. Pass `nil` for no initial data.
 
 #### `Frequency(data)`
 
@@ -60,25 +60,53 @@ Create a new `InstalledModel` entity instance. Pass `nil` for no initial data.
 
 Create a new `Price` entity instance. Pass `nil` for no initial data.
 
-#### `ProductionModel(data)`
+#### `PublicPower(data)`
 
-Create a new `ProductionModel` entity instance. Pass `nil` for no initial data.
+Create a new `PublicPower` entity instance. Pass `nil` for no initial data.
 
 #### `PublicPowerForecast(data)`
 
 Create a new `PublicPowerForecast` entity instance. Pass `nil` for no initial data.
 
+#### `RenShareDailyAvg(data)`
+
+Create a new `RenShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
 #### `RenShareModel(data)`
 
 Create a new `RenShareModel` entity instance. Pass `nil` for no initial data.
 
-#### `ShareModel(data)`
+#### `SolarShare(data)`
 
-Create a new `ShareModel` entity instance. Pass `nil` for no initial data.
+Create a new `SolarShare` entity instance. Pass `nil` for no initial data.
+
+#### `SolarShareDailyAvg(data)`
+
+Create a new `SolarShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `TotalPower(data)`
+
+Create a new `TotalPower` entity instance. Pass `nil` for no initial data.
 
 #### `TrafficModel(data)`
 
 Create a new `TrafficModel` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShare(data)`
+
+Create a new `WindOffshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOffshoreShareDailyAvg(data)`
+
+Create a new `WindOffshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShare(data)`
+
+Create a new `WindOnshoreShare` entity instance. Pass `nil` for no initial data.
+
+#### `WindOnshoreShareDailyAvg(data)`
+
+Create a new `WindOnshoreShareDailyAvg` entity instance. Pass `nil` for no initial data.
 
 #### `options_map() -> table`
 
@@ -116,10 +144,10 @@ same parameters as `direct()`.
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```lua
-local cross_border_model = client:CrossBorderModel(nil)
+local cbet = client:Cbet(nil)
 ```
 
 ### Fields
@@ -137,7 +165,7 @@ local cross_border_model = client:CrossBorderModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CrossBorderModel():load()
+local result, err = client:Cbet():load()
 ```
 
 ### Common Methods
@@ -160,7 +188,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `CrossBorderModelEntity` instance with the same client and
+Create a new `CbetEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -170,28 +198,28 @@ Return the entity name.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```lua
-local daily_avg_dict = client:DailyAvgDict(nil)
+local cbpf = client:Cbpf(nil)
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes | List of average daily values |
-| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl) -> any, err`
+#### `load(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+Load a single entity matching the given criteria.
 
 ```lua
-local results, err = client:DailyAvgDict():list()
+local result, err = client:Cbpf():load()
 ```
 
 ### Common Methods
@@ -214,7 +242,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `DailyAvgDictEntity` instance with the same client and
+Create a new `CbpfEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -389,10 +417,10 @@ Return the entity name.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```lua
-local production_model = client:ProductionModel(nil)
+local public_power = client:PublicPower(nil)
 ```
 
 ### Fields
@@ -410,7 +438,7 @@ local production_model = client:ProductionModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ProductionModel():load()
+local result, err = client:PublicPower():load()
 ```
 
 ### Common Methods
@@ -433,7 +461,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ProductionModelEntity` instance with the same client and
+Create a new `PublicPowerEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -490,6 +518,60 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `PublicPowerForecastEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```lua
+local ren_share_daily_avg = client:RenShareDailyAvg(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `table` | Yes | List of average daily values |
+| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:RenShareDailyAvg():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `RenShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -557,10 +639,10 @@ Return the entity name.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```lua
-local share_model = client:ShareModel(nil)
+local solar_share = client:SolarShare(nil)
 ```
 
 ### Fields
@@ -579,7 +661,7 @@ local share_model = client:ShareModel(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ShareModel():load()
+local result, err = client:SolarShare():load()
 ```
 
 ### Common Methods
@@ -602,7 +684,115 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ShareModelEntity` instance with the same client and
+Create a new `SolarShareEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```lua
+local solar_share_daily_avg = client:SolarShareDailyAvg(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `table` | Yes | List of average daily values |
+| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:SolarShareDailyAvg():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## TotalPowerEntity
+
+```lua
+local total_power = client:TotalPower(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `boolean` | Yes |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:TotalPower():load()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `TotalPowerEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`
@@ -659,6 +849,224 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TrafficModelEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```lua
+local wind_offshore_share = client:WindOffshoreShare(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:WindOffshoreShare():load()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOffshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```lua
+local wind_offshore_share_daily_avg = client:WindOffshoreShareDailyAvg(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `table` | Yes | List of average daily values |
+| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:WindOffshoreShareDailyAvg():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```lua
+local wind_onshore_share = client:WindOnshoreShare(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:WindOnshoreShare():load()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOnshoreShareEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```lua
+local wind_onshore_share_daily_avg = client:WindOnshoreShareDailyAvg(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `table` | Yes | List of average daily values |
+| `days` | `table` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch, ctrl) -> any, err`
+
+List entities matching the given criteria. Returns an array.
+
+```lua
+local results, err = client:WindOnshoreShareDailyAvg():list()
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

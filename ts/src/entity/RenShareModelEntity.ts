@@ -19,7 +19,6 @@ import type {
   RenShareModelListMatch,
 } from '../EnergyChartsTypes'
 
-// TODO: needs Entity superclass
 class RenShareModelEntity extends EnergyChartsEntityBase<RenShareModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {

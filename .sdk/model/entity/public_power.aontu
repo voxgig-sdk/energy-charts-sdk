@@ -1,0 +1,101 @@
+# Entity: public_power
+
+main: kit: entity: public_power: {
+
+  alias: field: {}
+
+  fields: {
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    production_types: {
+      h: "Production Types"
+      n: "production_types"
+      r: false
+      t: "`$ANY`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "public_power"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /public_power"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "subtype"
+                or: "subtype"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/public_power"
+          q: {
+            exist: [
+              "country"
+              "end"
+              "start"
+              "subtype"
+            ]
+          }
+          s: [
+            {
+              lit: "public_power"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -349,29 +349,29 @@ end
 
 
 
--- Idiomatic facade: client:CrossBorderModel():list() / client:CrossBorderModel():load({ id = ... })
+-- Idiomatic facade: client:Cbet():list() / client:Cbet():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function EnergyChartsSDK:CrossBorderModel(data)
-  local EntityMod = require("entity.cross_border_model_entity")
+function EnergyChartsSDK:Cbet(data)
+  local EntityMod = require("entity.cbet_entity")
   if data == nil then
-    if self._cross_border_model == nil then
-      self._cross_border_model = EntityMod.new(self, nil)
+    if self._cbet == nil then
+      self._cbet = EntityMod.new(self, nil)
     end
-    return self._cross_border_model
+    return self._cbet
   end
   return EntityMod.new(self, data)
 end
 
 
--- Idiomatic facade: client:DailyAvgDict():list() / client:DailyAvgDict():load({ id = ... })
+-- Idiomatic facade: client:Cbpf():list() / client:Cbpf():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function EnergyChartsSDK:DailyAvgDict(data)
-  local EntityMod = require("entity.daily_avg_dict_entity")
+function EnergyChartsSDK:Cbpf(data)
+  local EntityMod = require("entity.cbpf_entity")
   if data == nil then
-    if self._daily_avg_dict == nil then
-      self._daily_avg_dict = EntityMod.new(self, nil)
+    if self._cbpf == nil then
+      self._cbpf = EntityMod.new(self, nil)
     end
-    return self._daily_avg_dict
+    return self._cbpf
   end
   return EntityMod.new(self, data)
 end
@@ -419,15 +419,15 @@ function EnergyChartsSDK:Price(data)
 end
 
 
--- Idiomatic facade: client:ProductionModel():list() / client:ProductionModel():load({ id = ... })
+-- Idiomatic facade: client:PublicPower():list() / client:PublicPower():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function EnergyChartsSDK:ProductionModel(data)
-  local EntityMod = require("entity.production_model_entity")
+function EnergyChartsSDK:PublicPower(data)
+  local EntityMod = require("entity.public_power_entity")
   if data == nil then
-    if self._production_model == nil then
-      self._production_model = EntityMod.new(self, nil)
+    if self._public_power == nil then
+      self._public_power = EntityMod.new(self, nil)
     end
-    return self._production_model
+    return self._public_power
   end
   return EntityMod.new(self, data)
 end
@@ -447,6 +447,20 @@ function EnergyChartsSDK:PublicPowerForecast(data)
 end
 
 
+-- Idiomatic facade: client:RenShareDailyAvg():list() / client:RenShareDailyAvg():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:RenShareDailyAvg(data)
+  local EntityMod = require("entity.ren_share_daily_avg_entity")
+  if data == nil then
+    if self._ren_share_daily_avg == nil then
+      self._ren_share_daily_avg = EntityMod.new(self, nil)
+    end
+    return self._ren_share_daily_avg
+  end
+  return EntityMod.new(self, data)
+end
+
+
 -- Idiomatic facade: client:RenShareModel():list() / client:RenShareModel():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
 function EnergyChartsSDK:RenShareModel(data)
@@ -461,15 +475,43 @@ function EnergyChartsSDK:RenShareModel(data)
 end
 
 
--- Idiomatic facade: client:ShareModel():list() / client:ShareModel():load({ id = ... })
+-- Idiomatic facade: client:SolarShare():list() / client:SolarShare():load({ id = ... })
 -- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function EnergyChartsSDK:ShareModel(data)
-  local EntityMod = require("entity.share_model_entity")
+function EnergyChartsSDK:SolarShare(data)
+  local EntityMod = require("entity.solar_share_entity")
   if data == nil then
-    if self._share_model == nil then
-      self._share_model = EntityMod.new(self, nil)
+    if self._solar_share == nil then
+      self._solar_share = EntityMod.new(self, nil)
     end
-    return self._share_model
+    return self._solar_share
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:SolarShareDailyAvg():list() / client:SolarShareDailyAvg():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:SolarShareDailyAvg(data)
+  local EntityMod = require("entity.solar_share_daily_avg_entity")
+  if data == nil then
+    if self._solar_share_daily_avg == nil then
+      self._solar_share_daily_avg = EntityMod.new(self, nil)
+    end
+    return self._solar_share_daily_avg
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:TotalPower():list() / client:TotalPower():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:TotalPower(data)
+  local EntityMod = require("entity.total_power_entity")
+  if data == nil then
+    if self._total_power == nil then
+      self._total_power = EntityMod.new(self, nil)
+    end
+    return self._total_power
   end
   return EntityMod.new(self, data)
 end
@@ -484,6 +526,62 @@ function EnergyChartsSDK:TrafficModel(data)
       self._traffic_model = EntityMod.new(self, nil)
     end
     return self._traffic_model
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:WindOffshoreShare():list() / client:WindOffshoreShare():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:WindOffshoreShare(data)
+  local EntityMod = require("entity.wind_offshore_share_entity")
+  if data == nil then
+    if self._wind_offshore_share == nil then
+      self._wind_offshore_share = EntityMod.new(self, nil)
+    end
+    return self._wind_offshore_share
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:WindOffshoreShareDailyAvg():list() / client:WindOffshoreShareDailyAvg():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:WindOffshoreShareDailyAvg(data)
+  local EntityMod = require("entity.wind_offshore_share_daily_avg_entity")
+  if data == nil then
+    if self._wind_offshore_share_daily_avg == nil then
+      self._wind_offshore_share_daily_avg = EntityMod.new(self, nil)
+    end
+    return self._wind_offshore_share_daily_avg
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:WindOnshoreShare():list() / client:WindOnshoreShare():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:WindOnshoreShare(data)
+  local EntityMod = require("entity.wind_onshore_share_entity")
+  if data == nil then
+    if self._wind_onshore_share == nil then
+      self._wind_onshore_share = EntityMod.new(self, nil)
+    end
+    return self._wind_onshore_share
+  end
+  return EntityMod.new(self, data)
+end
+
+
+-- Idiomatic facade: client:WindOnshoreShareDailyAvg():list() / client:WindOnshoreShareDailyAvg():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function EnergyChartsSDK:WindOnshoreShareDailyAvg(data)
+  local EntityMod = require("entity.wind_onshore_share_daily_avg_entity")
+  if data == nil then
+    if self._wind_onshore_share_daily_avg == nil then
+      self._wind_onshore_share_daily_avg = EntityMod.new(self, nil)
+    end
+    return self._wind_onshore_share_daily_avg
   end
   return EntityMod.new(self, data)
 end

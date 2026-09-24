@@ -1,0 +1,22 @@
+# BasicRenShareDailyAvgFlow
+
+main: kit: flow: BasicRenShareDailyAvgFlow:
+{
+  entity: "ren_share_daily_avg",
+  kind: "basic",
+  name: "BasicRenShareDailyAvgFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ren_share_daily_avg_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRenShareDailyAvgFlow"
+}

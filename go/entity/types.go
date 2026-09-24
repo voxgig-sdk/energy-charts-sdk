@@ -1,7 +1,7 @@
 // Typed models for the EnergyCharts SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -12,38 +12,30 @@ import (
 	"github.com/voxgig-sdk/energy-charts-sdk/go/core"
 )
 
-// CrossBorderModel is the typed data model for the cross_border_model entity.
-type CrossBorderModel struct {
-	Countries *any `json:"countries,omitempty"`
-	Deprecated bool `json:"deprecated"`
-	UnixSeconds *any `json:"unix_seconds,omitempty"`
+// Cbet is the typed data model for the cbet entity.
+type Cbet struct {
 }
 
-// CrossBorderModelLoadMatch is the typed request payload for CrossBorderModel.LoadTyped.
-type CrossBorderModelLoadMatch struct {
+// CbetLoadMatch is the typed request payload for Cbet.LoadTyped.
+type CbetLoadMatch struct {
 	Country *string `json:"country,omitempty"`
 	End *string `json:"end,omitempty"`
 	Start *string `json:"start,omitempty"`
 }
 
-// DailyAvgDict is the typed data model for the daily_avg_dict entity.
-type DailyAvgDict struct {
-	Data []any `json:"data"`
-	Days []any `json:"days"`
-	Deprecated bool `json:"deprecated"`
+// Cbpf is the typed data model for the cbpf entity.
+type Cbpf struct {
 }
 
-// DailyAvgDictListMatch is the typed request payload for DailyAvgDict.ListTyped.
-type DailyAvgDictListMatch struct {
+// CbpfLoadMatch is the typed request payload for Cbpf.LoadTyped.
+type CbpfLoadMatch struct {
 	Country *string `json:"country,omitempty"`
-	Year *int `json:"year,omitempty"`
+	End *string `json:"end,omitempty"`
+	Start *string `json:"start,omitempty"`
 }
 
 // Frequency is the typed data model for the frequency entity.
 type Frequency struct {
-	Data []any `json:"data"`
-	Deprecated bool `json:"deprecated"`
-	UnixSeconds *any `json:"unix_seconds,omitempty"`
 }
 
 // FrequencyListMatch is the typed request payload for Frequency.ListTyped.
@@ -55,10 +47,6 @@ type FrequencyListMatch struct {
 
 // InstalledModel is the typed data model for the installed_model entity.
 type InstalledModel struct {
-	Deprecated bool `json:"deprecated"`
-	LastUpdate any `json:"last_update"`
-	ProductionTypes *any `json:"production_types,omitempty"`
-	Time []any `json:"time"`
 }
 
 // InstalledModelListMatch is the typed request payload for InstalledModel.ListTyped.
@@ -70,11 +58,6 @@ type InstalledModelListMatch struct {
 
 // Price is the typed data model for the price entity.
 type Price struct {
-	Deprecated bool `json:"deprecated"`
-	LicenseInfo string `json:"license_info"`
-	Price *float64 `json:"price,omitempty"`
-	Unit string `json:"unit"`
-	UnixSeconds *any `json:"unix_seconds,omitempty"`
 }
 
 // PriceLoadMatch is the typed request payload for Price.LoadTyped.
@@ -84,15 +67,12 @@ type PriceLoadMatch struct {
 	Start *string `json:"start,omitempty"`
 }
 
-// ProductionModel is the typed data model for the production_model entity.
-type ProductionModel struct {
-	Deprecated bool `json:"deprecated"`
-	ProductionTypes *any `json:"production_types,omitempty"`
-	UnixSeconds *any `json:"unix_seconds,omitempty"`
+// PublicPower is the typed data model for the public_power entity.
+type PublicPower struct {
 }
 
-// ProductionModelLoadMatch is the typed request payload for ProductionModel.LoadTyped.
-type ProductionModelLoadMatch struct {
+// PublicPowerLoadMatch is the typed request payload for PublicPower.LoadTyped.
+type PublicPowerLoadMatch struct {
 	Country *string `json:"country,omitempty"`
 	End *string `json:"end,omitempty"`
 	Start *string `json:"start,omitempty"`
@@ -101,11 +81,6 @@ type ProductionModelLoadMatch struct {
 
 // PublicPowerForecast is the typed data model for the public_power_forecast entity.
 type PublicPowerForecast struct {
-	Deprecated bool `json:"deprecated"`
-	ForecastType string `json:"forecast_type"`
-	ForecastValues []any `json:"forecast_values"`
-	ProductionType string `json:"production_type"`
-	UnixSeconds []any `json:"unix_seconds"`
 }
 
 // PublicPowerForecastListMatch is the typed request payload for PublicPowerForecast.ListTyped.
@@ -117,15 +92,18 @@ type PublicPowerForecastListMatch struct {
 	Start *string `json:"start,omitempty"`
 }
 
+// RenShareDailyAvg is the typed data model for the ren_share_daily_avg entity.
+type RenShareDailyAvg struct {
+}
+
+// RenShareDailyAvgListMatch is the typed request payload for RenShareDailyAvg.ListTyped.
+type RenShareDailyAvgListMatch struct {
+	Country *string `json:"country,omitempty"`
+	Year *int `json:"year,omitempty"`
+}
+
 // RenShareModel is the typed data model for the ren_share_model entity.
 type RenShareModel struct {
-	Deprecated bool `json:"deprecated"`
-	RenShare []any `json:"ren_share"`
-	SolarShare *any `json:"solar_share,omitempty"`
-	Substitute bool `json:"substitute"`
-	UnixSeconds []any `json:"unix_seconds"`
-	WindOffshoreShare *any `json:"wind_offshore_share,omitempty"`
-	WindOnshoreShare *any `json:"wind_onshore_share,omitempty"`
 }
 
 // RenShareModelListMatch is the typed request payload for RenShareModel.ListTyped.
@@ -133,32 +111,82 @@ type RenShareModelListMatch struct {
 	Country *string `json:"country,omitempty"`
 }
 
-// ShareModel is the typed data model for the share_model entity.
-type ShareModel struct {
-	Data *any `json:"data,omitempty"`
-	Deprecated bool `json:"deprecated"`
-	Forecast *any `json:"forecast,omitempty"`
-	UnixSeconds *any `json:"unix_seconds,omitempty"`
+// SolarShare is the typed data model for the solar_share entity.
+type SolarShare struct {
 }
 
-// ShareModelLoadMatch is the typed request payload for ShareModel.LoadTyped.
-type ShareModelLoadMatch struct {
+// SolarShareLoadMatch is the typed request payload for SolarShare.LoadTyped.
+type SolarShareLoadMatch struct {
 	Country *string `json:"country,omitempty"`
+}
+
+// SolarShareDailyAvg is the typed data model for the solar_share_daily_avg entity.
+type SolarShareDailyAvg struct {
+}
+
+// SolarShareDailyAvgListMatch is the typed request payload for SolarShareDailyAvg.ListTyped.
+type SolarShareDailyAvgListMatch struct {
+	Country *string `json:"country,omitempty"`
+	Year *int `json:"year,omitempty"`
+}
+
+// TotalPower is the typed data model for the total_power entity.
+type TotalPower struct {
+}
+
+// TotalPowerLoadMatch is the typed request payload for TotalPower.LoadTyped.
+type TotalPowerLoadMatch struct {
+	Country *string `json:"country,omitempty"`
+	End *string `json:"end,omitempty"`
+	Start *string `json:"start,omitempty"`
 }
 
 // TrafficModel is the typed data model for the traffic_model entity.
 type TrafficModel struct {
-	Deprecated bool `json:"deprecated"`
-	Share []any `json:"share"`
-	Signal *[]any `json:"signal,omitempty"`
-	Substitute bool `json:"substitute"`
-	UnixSeconds []any `json:"unix_seconds"`
 }
 
 // TrafficModelListMatch is the typed request payload for TrafficModel.ListTyped.
 type TrafficModelListMatch struct {
 	Country *string `json:"country,omitempty"`
 	PostalCode *string `json:"postal_code,omitempty"`
+}
+
+// WindOffshoreShare is the typed data model for the wind_offshore_share entity.
+type WindOffshoreShare struct {
+}
+
+// WindOffshoreShareLoadMatch is the typed request payload for WindOffshoreShare.LoadTyped.
+type WindOffshoreShareLoadMatch struct {
+	Country *string `json:"country,omitempty"`
+}
+
+// WindOffshoreShareDailyAvg is the typed data model for the wind_offshore_share_daily_avg entity.
+type WindOffshoreShareDailyAvg struct {
+}
+
+// WindOffshoreShareDailyAvgListMatch is the typed request payload for WindOffshoreShareDailyAvg.ListTyped.
+type WindOffshoreShareDailyAvgListMatch struct {
+	Country *string `json:"country,omitempty"`
+	Year *int `json:"year,omitempty"`
+}
+
+// WindOnshoreShare is the typed data model for the wind_onshore_share entity.
+type WindOnshoreShare struct {
+}
+
+// WindOnshoreShareLoadMatch is the typed request payload for WindOnshoreShare.LoadTyped.
+type WindOnshoreShareLoadMatch struct {
+	Country *string `json:"country,omitempty"`
+}
+
+// WindOnshoreShareDailyAvg is the typed data model for the wind_onshore_share_daily_avg entity.
+type WindOnshoreShareDailyAvg struct {
+}
+
+// WindOnshoreShareDailyAvgListMatch is the typed request payload for WindOnshoreShareDailyAvg.ListTyped.
+type WindOnshoreShareDailyAvgListMatch struct {
+	Country *string `json:"country,omitempty"`
+	Year *int `json:"year,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

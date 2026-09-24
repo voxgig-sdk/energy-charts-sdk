@@ -307,16 +307,16 @@ class EnergyChartsSDK:
         return res
 
 
-    def CrossBorderModel(self, data=None) -> "CrossBorderModelEntity":
-        """Entity factory: client.CrossBorderModel().list() / client.CrossBorderModel().load({"id": ...})."""
-        from energycharts_sdk.entity.cross_border_model_entity import CrossBorderModelEntity
-        return CrossBorderModelEntity(self, data)
+    def Cbet(self, data=None) -> "CbetEntity":
+        """Entity factory: client.Cbet().list() / client.Cbet().load({"id": ...})."""
+        from energycharts_sdk.entity.cbet_entity import CbetEntity
+        return CbetEntity(self, data)
 
 
-    def DailyAvgDict(self, data=None) -> "DailyAvgDictEntity":
-        """Entity factory: client.DailyAvgDict().list() / client.DailyAvgDict().load({"id": ...})."""
-        from energycharts_sdk.entity.daily_avg_dict_entity import DailyAvgDictEntity
-        return DailyAvgDictEntity(self, data)
+    def Cbpf(self, data=None) -> "CbpfEntity":
+        """Entity factory: client.Cbpf().list() / client.Cbpf().load({"id": ...})."""
+        from energycharts_sdk.entity.cbpf_entity import CbpfEntity
+        return CbpfEntity(self, data)
 
 
     def Frequency(self, data=None) -> "FrequencyEntity":
@@ -337,10 +337,10 @@ class EnergyChartsSDK:
         return PriceEntity(self, data)
 
 
-    def ProductionModel(self, data=None) -> "ProductionModelEntity":
-        """Entity factory: client.ProductionModel().list() / client.ProductionModel().load({"id": ...})."""
-        from energycharts_sdk.entity.production_model_entity import ProductionModelEntity
-        return ProductionModelEntity(self, data)
+    def PublicPower(self, data=None) -> "PublicPowerEntity":
+        """Entity factory: client.PublicPower().list() / client.PublicPower().load({"id": ...})."""
+        from energycharts_sdk.entity.public_power_entity import PublicPowerEntity
+        return PublicPowerEntity(self, data)
 
 
     def PublicPowerForecast(self, data=None) -> "PublicPowerForecastEntity":
@@ -349,22 +349,64 @@ class EnergyChartsSDK:
         return PublicPowerForecastEntity(self, data)
 
 
+    def RenShareDailyAvg(self, data=None) -> "RenShareDailyAvgEntity":
+        """Entity factory: client.RenShareDailyAvg().list() / client.RenShareDailyAvg().load({"id": ...})."""
+        from energycharts_sdk.entity.ren_share_daily_avg_entity import RenShareDailyAvgEntity
+        return RenShareDailyAvgEntity(self, data)
+
+
     def RenShareModel(self, data=None) -> "RenShareModelEntity":
         """Entity factory: client.RenShareModel().list() / client.RenShareModel().load({"id": ...})."""
         from energycharts_sdk.entity.ren_share_model_entity import RenShareModelEntity
         return RenShareModelEntity(self, data)
 
 
-    def ShareModel(self, data=None) -> "ShareModelEntity":
-        """Entity factory: client.ShareModel().list() / client.ShareModel().load({"id": ...})."""
-        from energycharts_sdk.entity.share_model_entity import ShareModelEntity
-        return ShareModelEntity(self, data)
+    def SolarShare(self, data=None) -> "SolarShareEntity":
+        """Entity factory: client.SolarShare().list() / client.SolarShare().load({"id": ...})."""
+        from energycharts_sdk.entity.solar_share_entity import SolarShareEntity
+        return SolarShareEntity(self, data)
+
+
+    def SolarShareDailyAvg(self, data=None) -> "SolarShareDailyAvgEntity":
+        """Entity factory: client.SolarShareDailyAvg().list() / client.SolarShareDailyAvg().load({"id": ...})."""
+        from energycharts_sdk.entity.solar_share_daily_avg_entity import SolarShareDailyAvgEntity
+        return SolarShareDailyAvgEntity(self, data)
+
+
+    def TotalPower(self, data=None) -> "TotalPowerEntity":
+        """Entity factory: client.TotalPower().list() / client.TotalPower().load({"id": ...})."""
+        from energycharts_sdk.entity.total_power_entity import TotalPowerEntity
+        return TotalPowerEntity(self, data)
 
 
     def TrafficModel(self, data=None) -> "TrafficModelEntity":
         """Entity factory: client.TrafficModel().list() / client.TrafficModel().load({"id": ...})."""
         from energycharts_sdk.entity.traffic_model_entity import TrafficModelEntity
         return TrafficModelEntity(self, data)
+
+
+    def WindOffshoreShare(self, data=None) -> "WindOffshoreShareEntity":
+        """Entity factory: client.WindOffshoreShare().list() / client.WindOffshoreShare().load({"id": ...})."""
+        from energycharts_sdk.entity.wind_offshore_share_entity import WindOffshoreShareEntity
+        return WindOffshoreShareEntity(self, data)
+
+
+    def WindOffshoreShareDailyAvg(self, data=None) -> "WindOffshoreShareDailyAvgEntity":
+        """Entity factory: client.WindOffshoreShareDailyAvg().list() / client.WindOffshoreShareDailyAvg().load({"id": ...})."""
+        from energycharts_sdk.entity.wind_offshore_share_daily_avg_entity import WindOffshoreShareDailyAvgEntity
+        return WindOffshoreShareDailyAvgEntity(self, data)
+
+
+    def WindOnshoreShare(self, data=None) -> "WindOnshoreShareEntity":
+        """Entity factory: client.WindOnshoreShare().list() / client.WindOnshoreShare().load({"id": ...})."""
+        from energycharts_sdk.entity.wind_onshore_share_entity import WindOnshoreShareEntity
+        return WindOnshoreShareEntity(self, data)
+
+
+    def WindOnshoreShareDailyAvg(self, data=None) -> "WindOnshoreShareDailyAvgEntity":
+        """Entity factory: client.WindOnshoreShareDailyAvg().list() / client.WindOnshoreShareDailyAvg().load({"id": ...})."""
+        from energycharts_sdk.entity.wind_onshore_share_daily_avg_entity import WindOnshoreShareDailyAvgEntity
+        return WindOnshoreShareDailyAvgEntity(self, data)
 
 
 
@@ -394,13 +436,20 @@ class EnergyChartsSDK:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from energycharts_sdk.entity.cross_border_model_entity import CrossBorderModelEntity
-    from energycharts_sdk.entity.daily_avg_dict_entity import DailyAvgDictEntity
+    from energycharts_sdk.entity.cbet_entity import CbetEntity
+    from energycharts_sdk.entity.cbpf_entity import CbpfEntity
     from energycharts_sdk.entity.frequency_entity import FrequencyEntity
     from energycharts_sdk.entity.installed_model_entity import InstalledModelEntity
     from energycharts_sdk.entity.price_entity import PriceEntity
-    from energycharts_sdk.entity.production_model_entity import ProductionModelEntity
+    from energycharts_sdk.entity.public_power_entity import PublicPowerEntity
     from energycharts_sdk.entity.public_power_forecast_entity import PublicPowerForecastEntity
+    from energycharts_sdk.entity.ren_share_daily_avg_entity import RenShareDailyAvgEntity
     from energycharts_sdk.entity.ren_share_model_entity import RenShareModelEntity
-    from energycharts_sdk.entity.share_model_entity import ShareModelEntity
+    from energycharts_sdk.entity.solar_share_entity import SolarShareEntity
+    from energycharts_sdk.entity.solar_share_daily_avg_entity import SolarShareDailyAvgEntity
+    from energycharts_sdk.entity.total_power_entity import TotalPowerEntity
     from energycharts_sdk.entity.traffic_model_entity import TrafficModelEntity
+    from energycharts_sdk.entity.wind_offshore_share_entity import WindOffshoreShareEntity
+    from energycharts_sdk.entity.wind_offshore_share_daily_avg_entity import WindOffshoreShareDailyAvgEntity
+    from energycharts_sdk.entity.wind_onshore_share_entity import WindOnshoreShareEntity
+    from energycharts_sdk.entity.wind_onshore_share_daily_avg_entity import WindOnshoreShareDailyAvgEntity

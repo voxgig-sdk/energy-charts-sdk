@@ -1,0 +1,122 @@
+# Entity: public_power_forecast
+
+main: kit: entity: public_power_forecast: {
+
+  alias: field: {}
+
+  fields: {
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    forecast_type: {
+      h: "Forecast Type"
+      n: "forecast_type"
+      r: true
+      t: "`$STRING`"
+    }
+    forecast_values: {
+      h: "Forecast Values"
+      n: "forecast_values"
+      r: true
+      t: "`$ARRAY`"
+    }
+    production_type: {
+      h: "Production Type"
+      n: "production_type"
+      r: true
+      t: "`$STRING`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: true
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "public_power_forecast"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /public_power_forecast"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "current"
+                k: "query"
+                n: "forecast_type"
+                or: "forecast_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "solar"
+                k: "query"
+                n: "production_type"
+                or: "production_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/public_power_forecast"
+          q: {
+            exist: [
+              "country"
+              "end"
+              "forecast_type"
+              "production_type"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "public_power_forecast"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

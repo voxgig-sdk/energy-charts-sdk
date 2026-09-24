@@ -4,7 +4,7 @@
 
 The Lua SDK for the EnergyCharts API — an entity-oriented client using Lua conventions.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client:CrossBorderModel()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Cbet()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -33,12 +33,12 @@ local sdk = require("energy-charts_sdk")
 local client = sdk.new()
 ```
 
-### 3. Load a crossbordermodel
+### 3. Load a cbet
 
 ```lua
-local crossbordermodel, err = client:CrossBorderModel():load()
+local cbet, err = client:Cbet():load()
 if err then error(err) end
-print(crossbordermodel)
+print(cbet)
 ```
 
 
@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local installedmodels, err = client:InstalledModel():list()
+local publicpower, err = client:PublicPower():load()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:InstalledModel():list()
+local result, err = client:PublicPower():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -185,16 +185,23 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `CrossBorderModel` | `(data) -> CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
-| `DailyAvgDict` | `(data) -> DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
+| `Cbet` | `(data) -> CbetEntity` | Create a Cbet entity instance. |
+| `Cbpf` | `(data) -> CbpfEntity` | Create a Cbpf entity instance. |
 | `Frequency` | `(data) -> FrequencyEntity` | Create a Frequency entity instance. |
 | `InstalledModel` | `(data) -> InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price` | `(data) -> PriceEntity` | Create a Price entity instance. |
-| `ProductionModel` | `(data) -> ProductionModelEntity` | Create a ProductionModel entity instance. |
+| `PublicPower` | `(data) -> PublicPowerEntity` | Create a PublicPower entity instance. |
 | `PublicPowerForecast` | `(data) -> PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
+| `RenShareDailyAvg` | `(data) -> RenShareDailyAvgEntity` | Create a RenShareDailyAvg entity instance. |
 | `RenShareModel` | `(data) -> RenShareModelEntity` | Create a RenShareModel entity instance. |
-| `ShareModel` | `(data) -> ShareModelEntity` | Create a ShareModel entity instance. |
+| `SolarShare` | `(data) -> SolarShareEntity` | Create a SolarShare entity instance. |
+| `SolarShareDailyAvg` | `(data) -> SolarShareDailyAvgEntity` | Create a SolarShareDailyAvg entity instance. |
+| `TotalPower` | `(data) -> TotalPowerEntity` | Create a TotalPower entity instance. |
 | `TrafficModel` | `(data) -> TrafficModelEntity` | Create a TrafficModel entity instance. |
+| `WindOffshoreShare` | `(data) -> WindOffshoreShareEntity` | Create a WindOffshoreShare entity instance. |
+| `WindOffshoreShareDailyAvg` | `(data) -> WindOffshoreShareDailyAvgEntity` | Create a WindOffshoreShareDailyAvg entity instance. |
+| `WindOnshoreShare` | `(data) -> WindOnshoreShareEntity` | Create a WindOnshoreShare entity instance. |
+| `WindOnshoreShareDailyAvg` | `(data) -> WindOnshoreShareDailyAvgEntity` | Create a WindOnshoreShareDailyAvg entity instance. |
 
 ### Entity interface
 
@@ -223,16 +230,16 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local cross_border_model, err = client:CrossBorderModel():load()
+    local cbet, err = client:Cbet():load()
     if err then error(err) end
-    -- cross_border_model is the loaded record
+    -- cbet is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
 
 ### Entities
 
-#### CrossBorderModel
+#### Cbet
 
 | Field | Description |
 | --- | --- |
@@ -244,17 +251,17 @@ Operations: Load.
 
 API path: `/cbet`
 
-#### DailyAvgDict
+#### Cbpf
 
 | Field | Description |
 | --- | --- |
-| `data` | List of average daily values |
-| `days` | List of days in the format dd.mm.yyyy |
+| `countries` |  |
 | `deprecated` |  |
+| `unix_seconds` |  |
 
-Operations: List.
+Operations: Load.
 
-API path: `/ren_share_daily_avg`
+API path: `/cbpf`
 
 #### Frequency
 
@@ -295,7 +302,7 @@ Operations: Load.
 
 API path: `/price`
 
-#### ProductionModel
+#### PublicPower
 
 | Field | Description |
 | --- | --- |
@@ -321,6 +328,18 @@ Operations: List.
 
 API path: `/public_power_forecast`
 
+#### RenShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/ren_share_daily_avg`
+
 #### RenShareModel
 
 | Field | Description |
@@ -337,7 +356,7 @@ Operations: List.
 
 API path: `/ren_share_forecast`
 
-#### ShareModel
+#### SolarShare
 
 | Field | Description |
 | --- | --- |
@@ -349,6 +368,30 @@ API path: `/ren_share_forecast`
 Operations: Load.
 
 API path: `/solar_share`
+
+#### SolarShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/solar_share_daily_avg`
+
+#### TotalPower
+
+| Field | Description |
+| --- | --- |
+| `deprecated` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/total_power`
 
 #### TrafficModel
 
@@ -364,14 +407,64 @@ Operations: List.
 
 API path: `/signal`
 
+#### WindOffshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_offshore_share`
+
+#### WindOffshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_offshore_share_daily_avg`
+
+#### WindOnshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: Load.
+
+API path: `/wind_onshore_share`
+
+#### WindOnshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: List.
+
+API path: `/wind_onshore_share_daily_avg`
+
 
 
 ## Entities
 
 
-### CrossBorderModel
+### Cbet
 
-Create an instance: `local cross_border_model = client:CrossBorderModel(nil)`
+Create an instance: `local cbet = client:Cbet(nil)`
 
 #### Operations
 
@@ -390,32 +483,32 @@ Create an instance: `local cross_border_model = client:CrossBorderModel(nil)`
 #### Example: Load
 
 ```lua
-local cross_border_model, err = client:CrossBorderModel():load()
+local cbet, err = client:Cbet():load()
 ```
 
 
-### DailyAvgDict
+### Cbpf
 
-Create an instance: `local daily_avg_dict = client:DailyAvgDict(nil)`
+Create an instance: `local cbpf = client:Cbpf(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` | List of average daily values |
-| `days` | `table` | List of days in the format dd.mm.yyyy |
+| `countries` | `any` |  |
 | `deprecated` | `boolean` |  |
+| `unix_seconds` | `any` |  |
 
-#### Example: List
+#### Example: Load
 
 ```lua
-local daily_avg_dicts, err = client:DailyAvgDict():list()
+local cbpf, err = client:Cbpf():load()
 ```
 
 
@@ -497,9 +590,9 @@ local price, err = client:Price():load()
 ```
 
 
-### ProductionModel
+### PublicPower
 
-Create an instance: `local production_model = client:ProductionModel(nil)`
+Create an instance: `local public_power = client:PublicPower(nil)`
 
 #### Operations
 
@@ -518,7 +611,7 @@ Create an instance: `local production_model = client:ProductionModel(nil)`
 #### Example: Load
 
 ```lua
-local production_model, err = client:ProductionModel():load()
+local public_power, err = client:PublicPower():load()
 ```
 
 
@@ -546,6 +639,31 @@ Create an instance: `local public_power_forecast = client:PublicPowerForecast(ni
 
 ```lua
 local public_power_forecasts, err = client:PublicPowerForecast():list()
+```
+
+
+### RenShareDailyAvg
+
+Create an instance: `local ren_share_daily_avg = client:RenShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `table` | List of average daily values |
+| `days` | `table` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```lua
+local ren_share_daily_avgs, err = client:RenShareDailyAvg():list()
 ```
 
 
@@ -578,9 +696,9 @@ local ren_share_models, err = client:RenShareModel():list()
 ```
 
 
-### ShareModel
+### SolarShare
 
-Create an instance: `local share_model = client:ShareModel(nil)`
+Create an instance: `local solar_share = client:SolarShare(nil)`
 
 #### Operations
 
@@ -600,7 +718,57 @@ Create an instance: `local share_model = client:ShareModel(nil)`
 #### Example: Load
 
 ```lua
-local share_model, err = client:ShareModel():load()
+local solar_share, err = client:SolarShare():load()
+```
+
+
+### SolarShareDailyAvg
+
+Create an instance: `local solar_share_daily_avg = client:SolarShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `table` | List of average daily values |
+| `days` | `table` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```lua
+local solar_share_daily_avgs, err = client:SolarShareDailyAvg():list()
+```
+
+
+### TotalPower
+
+Create an instance: `local total_power = client:TotalPower(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `deprecated` | `boolean` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```lua
+local total_power, err = client:TotalPower():load()
 ```
 
 
@@ -628,6 +796,108 @@ Create an instance: `local traffic_model = client:TrafficModel(nil)`
 
 ```lua
 local traffic_models, err = client:TrafficModel():list()
+```
+
+
+### WindOffshoreShare
+
+Create an instance: `local wind_offshore_share = client:WindOffshoreShare(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```lua
+local wind_offshore_share, err = client:WindOffshoreShare():load()
+```
+
+
+### WindOffshoreShareDailyAvg
+
+Create an instance: `local wind_offshore_share_daily_avg = client:WindOffshoreShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `table` | List of average daily values |
+| `days` | `table` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```lua
+local wind_offshore_share_daily_avgs, err = client:WindOffshoreShareDailyAvg():list()
+```
+
+
+### WindOnshoreShare
+
+Create an instance: `local wind_onshore_share = client:WindOnshoreShare(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```lua
+local wind_onshore_share, err = client:WindOnshoreShare():load()
+```
+
+
+### WindOnshoreShareDailyAvg
+
+Create an instance: `local wind_onshore_share_daily_avg = client:WindOnshoreShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `table` | List of average daily values |
+| `days` | `table` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```lua
+local wind_onshore_share_daily_avgs, err = client:WindOnshoreShareDailyAvg():list()
 ```
 
 ## Features
@@ -788,15 +1058,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local installedmodel = client:InstalledModel()
-installedmodel:list()
+local publicpower = client:PublicPower()
+publicpower:load()
 
--- installedmodel:data_get() now returns the installedmodel data from the last list
--- installedmodel:match_get() returns the last match criteria
+-- publicpower:data_get() now returns the publicpower data from the last load
+-- publicpower:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

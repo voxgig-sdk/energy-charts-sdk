@@ -48,21 +48,9 @@ const client = EnergyChartsSDK.test()
 
 ### Instance Methods
 
-#### `CrossBorderModel(data?: object)`
+#### `Cbet(data?: object)`
 
-Create a new `CrossBorderModel` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `CrossBorderModelEntity` instance.
-
-#### `DailyAvgDict(data?: object)`
-
-Create a new `DailyAvgDict` entity instance.
+Create a new `Cbet` entity instance.
 
 **Parameters:**
 
@@ -70,7 +58,19 @@ Create a new `DailyAvgDict` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `DailyAvgDictEntity` instance.
+**Returns:** `CbetEntity` instance.
+
+#### `Cbpf(data?: object)`
+
+Create a new `Cbpf` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `CbpfEntity` instance.
 
 #### `Frequency(data?: object)`
 
@@ -108,9 +108,9 @@ Create a new `Price` entity instance.
 
 **Returns:** `PriceEntity` instance.
 
-#### `ProductionModel(data?: object)`
+#### `PublicPower(data?: object)`
 
-Create a new `ProductionModel` entity instance.
+Create a new `PublicPower` entity instance.
 
 **Parameters:**
 
@@ -118,7 +118,7 @@ Create a new `ProductionModel` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `ProductionModelEntity` instance.
+**Returns:** `PublicPowerEntity` instance.
 
 #### `PublicPowerForecast(data?: object)`
 
@@ -132,6 +132,18 @@ Create a new `PublicPowerForecast` entity instance.
 
 **Returns:** `PublicPowerForecastEntity` instance.
 
+#### `RenShareDailyAvg(data?: object)`
+
+Create a new `RenShareDailyAvg` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `RenShareDailyAvgEntity` instance.
+
 #### `RenShareModel(data?: object)`
 
 Create a new `RenShareModel` entity instance.
@@ -144,9 +156,9 @@ Create a new `RenShareModel` entity instance.
 
 **Returns:** `RenShareModelEntity` instance.
 
-#### `ShareModel(data?: object)`
+#### `SolarShare(data?: object)`
 
-Create a new `ShareModel` entity instance.
+Create a new `SolarShare` entity instance.
 
 **Parameters:**
 
@@ -154,7 +166,31 @@ Create a new `ShareModel` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `ShareModelEntity` instance.
+**Returns:** `SolarShareEntity` instance.
+
+#### `SolarShareDailyAvg(data?: object)`
+
+Create a new `SolarShareDailyAvg` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `SolarShareDailyAvgEntity` instance.
+
+#### `TotalPower(data?: object)`
+
+Create a new `TotalPower` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `TotalPowerEntity` instance.
 
 #### `TrafficModel(data?: object)`
 
@@ -167,6 +203,54 @@ Create a new `TrafficModel` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `TrafficModelEntity` instance.
+
+#### `WindOffshoreShare(data?: object)`
+
+Create a new `WindOffshoreShare` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WindOffshoreShareEntity` instance.
+
+#### `WindOffshoreShareDailyAvg(data?: object)`
+
+Create a new `WindOffshoreShareDailyAvg` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WindOffshoreShareDailyAvgEntity` instance.
+
+#### `WindOnshoreShare(data?: object)`
+
+Create a new `WindOnshoreShare` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WindOnshoreShareEntity` instance.
+
+#### `WindOnshoreShareDailyAvg(data?: object)`
+
+Create a new `WindOnshoreShareDailyAvg` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WindOnshoreShareDailyAvgEntity` instance.
 
 #### `options()`
 
@@ -214,10 +298,10 @@ Alias for `EnergyChartsSDK.test()`.
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```ts
-const cross_border_model = client.CrossBorderModel()
+const cbet = client.Cbet()
 ```
 
 ### Fields
@@ -235,7 +319,7 @@ const cross_border_model = client.CrossBorderModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CrossBorderModel().load()
+const result = await client.Cbet().load()
 ```
 
 ### Common Methods
@@ -252,7 +336,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `CrossBorderModelEntity` instance with the same client and
+Create a new `CbetEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -266,28 +350,28 @@ Return a copy of the entity options.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```ts
-const daily_avg_dict = client.DailyAvgDict()
+const cbpf = client.Cbpf()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `any[]` | Yes | List of average daily values |
-| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `any` | No |  |
 | `deprecated` | `boolean` | Yes |  |
+| `unix_seconds` | `any` | No |  |
 
 ### Operations
 
-#### `list(match: object, ctrl?: object)`
+#### `load(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Returns an array.
+Load a single entity matching the given criteria.
 
 ```ts
-const results = await client.DailyAvgDict().list()
+const result = await client.Cbpf().load()
 ```
 
 ### Common Methods
@@ -304,7 +388,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `DailyAvgDictEntity` instance with the same client and
+Create a new `CbpfEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -477,10 +561,10 @@ Return a copy of the entity options.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```ts
-const production_model = client.ProductionModel()
+const public_power = client.PublicPower()
 ```
 
 ### Fields
@@ -498,7 +582,7 @@ const production_model = client.ProductionModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ProductionModel().load()
+const result = await client.PublicPower().load()
 ```
 
 ### Common Methods
@@ -515,7 +599,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ProductionModelEntity` instance with the same client and
+Create a new `PublicPowerEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -570,6 +654,58 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `PublicPowerForecastEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```ts
+const ren_share_daily_avg = client.RenShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any[]` | Yes | List of average daily values |
+| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.RenShareDailyAvg().list()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `RenShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -639,10 +775,10 @@ Return a copy of the entity options.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```ts
-const share_model = client.ShareModel()
+const solar_share = client.SolarShare()
 ```
 
 ### Fields
@@ -661,7 +797,7 @@ const share_model = client.ShareModel()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ShareModel().load()
+const result = await client.SolarShare().load()
 ```
 
 ### Common Methods
@@ -678,7 +814,111 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ShareModelEntity` instance with the same client and
+Create a new `SolarShareEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```ts
+const solar_share_daily_avg = client.SolarShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any[]` | Yes | List of average daily values |
+| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.SolarShareDailyAvg().list()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## TotalPowerEntity
+
+```ts
+const total_power = client.TotalPower()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `boolean` | Yes |  |
+| `production_types` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.TotalPower().load()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `TotalPowerEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -733,6 +973,216 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `TrafficModelEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```ts
+const wind_offshore_share = client.WindOffshoreShare()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.WindOffshoreShare().load()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WindOffshoreShareEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```ts
+const wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any[]` | Yes | List of average daily values |
+| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.WindOffshoreShareDailyAvg().list()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```ts
+const wind_onshore_share = client.WindOnshoreShare()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any` | No |  |
+| `deprecated` | `boolean` | Yes |  |
+| `forecast` | `any` | No |  |
+| `unix_seconds` | `any` | No |  |
+
+### Operations
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.WindOnshoreShare().load()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WindOnshoreShareEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `EnergyChartsSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```ts
+const wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `any[]` | Yes | List of average daily values |
+| `days` | `any[]` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` | Yes |  |
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Returns an array.
+
+```ts
+const results = await client.WindOnshoreShareDailyAvg().list()
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same client and
 options.
 
 #### `client()`

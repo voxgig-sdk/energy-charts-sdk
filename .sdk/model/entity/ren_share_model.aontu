@@ -1,0 +1,98 @@
+# Entity: ren_share_model
+
+main: kit: entity: ren_share_model: {
+
+  alias: field: {}
+
+  fields: {
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    ren_share: {
+      h: "Ren Share"
+      n: "ren_share"
+      r: true
+      t: "`$ARRAY`"
+    }
+    solar_share: {
+      h: "Solar Share"
+      n: "solar_share"
+      r: false
+      t: "`$ANY`"
+    }
+    substitute: {
+      h: "Substitute"
+      n: "substitute"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: true
+      t: "`$ARRAY`"
+    }
+    wind_offshore_share: {
+      h: "Wind Offshore Share"
+      n: "wind_offshore_share"
+      r: false
+      t: "`$ANY`"
+    }
+    wind_onshore_share: {
+      h: "Wind Onshore Share"
+      n: "wind_onshore_share"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "ren_share_model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /ren_share_forecast"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/ren_share_forecast"
+          q: {
+            exist: [
+              "country"
+            ]
+          }
+          s: [
+            {
+              lit: "ren_share_forecast"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

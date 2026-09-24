@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "cbet": {
+      "CBET00": {
+        "countries": "s1e",
+        "deprecated": false,
+        "unix_seconds": "s20",
+        "id": "CBET00"
+      },
+      "CBET01": {
+        "countries": "s3c",
+        "deprecated": false,
+        "unix_seconds": "s3e",
+        "id": "CBET01"
+      },
+      "CBET02": {
+        "countries": "s5a",
+        "deprecated": false,
+        "unix_seconds": "s5c",
+        "id": "CBET02"
+      }
+    }
+  },
+  "new": {
+    "cbet": {
+      "cbet_ref01": {
+        "countries": "s78",
+        "deprecated": false,
+        "unix_seconds": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /cbet": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

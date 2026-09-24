@@ -4,7 +4,7 @@
 
 The Golang SDK for the EnergyCharts API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client.CrossBorderModel(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Cbet(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single crossBorderModel — the value is the loaded record.
-    crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
+    // Load a single cbet — the value is the loaded record.
+    cbet, err := client.Cbet(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(crossBorderModel)
+    fmt.Println(cbet)
 }
 ```
 
@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-installedmodels, err := client.InstalledModel(nil).List(nil, nil)
+publicpower, err := client.PublicPower(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = installedmodels
+_ = publicpower
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-installedModel, err := client.InstalledModel(nil).List(
+publicPower, err := client.PublicPower(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(installedModel) // the returned mock data
+fmt.Println(publicPower) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -218,16 +218,23 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `CrossBorderModel` | `(data map[string]any) EnergyChartsEntity` | Create a CrossBorderModel entity instance. |
-| `DailyAvgDict` | `(data map[string]any) EnergyChartsEntity` | Create a DailyAvgDict entity instance. |
+| `Cbet` | `(data map[string]any) EnergyChartsEntity` | Create a Cbet entity instance. |
+| `Cbpf` | `(data map[string]any) EnergyChartsEntity` | Create a Cbpf entity instance. |
 | `Frequency` | `(data map[string]any) EnergyChartsEntity` | Create a Frequency entity instance. |
 | `InstalledModel` | `(data map[string]any) EnergyChartsEntity` | Create an InstalledModel entity instance. |
 | `Price` | `(data map[string]any) EnergyChartsEntity` | Create a Price entity instance. |
-| `ProductionModel` | `(data map[string]any) EnergyChartsEntity` | Create a ProductionModel entity instance. |
+| `PublicPower` | `(data map[string]any) EnergyChartsEntity` | Create a PublicPower entity instance. |
 | `PublicPowerForecast` | `(data map[string]any) EnergyChartsEntity` | Create a PublicPowerForecast entity instance. |
+| `RenShareDailyAvg` | `(data map[string]any) EnergyChartsEntity` | Create a RenShareDailyAvg entity instance. |
 | `RenShareModel` | `(data map[string]any) EnergyChartsEntity` | Create a RenShareModel entity instance. |
-| `ShareModel` | `(data map[string]any) EnergyChartsEntity` | Create a ShareModel entity instance. |
+| `SolarShare` | `(data map[string]any) EnergyChartsEntity` | Create a SolarShare entity instance. |
+| `SolarShareDailyAvg` | `(data map[string]any) EnergyChartsEntity` | Create a SolarShareDailyAvg entity instance. |
+| `TotalPower` | `(data map[string]any) EnergyChartsEntity` | Create a TotalPower entity instance. |
 | `TrafficModel` | `(data map[string]any) EnergyChartsEntity` | Create a TrafficModel entity instance. |
+| `WindOffshoreShare` | `(data map[string]any) EnergyChartsEntity` | Create a WindOffshoreShare entity instance. |
+| `WindOffshoreShareDailyAvg` | `(data map[string]any) EnergyChartsEntity` | Create a WindOffshoreShareDailyAvg entity instance. |
+| `WindOnshoreShare` | `(data map[string]any) EnergyChartsEntity` | Create a WindOnshoreShare entity instance. |
+| `WindOnshoreShareDailyAvg` | `(data map[string]any) EnergyChartsEntity` | Create a WindOnshoreShareDailyAvg entity instance. |
 
 ### Entity interface (EnergyChartsEntity)
 
@@ -256,16 +263,16 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
+    cbet, err := client.Cbet(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // crossBorderModel is the returned record
+    // cbet is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
-#### CrossBorderModel
+#### Cbet
 
 | Field | Description |
 | --- | --- |
@@ -277,17 +284,17 @@ Operations: Load.
 
 API path: `/cbet`
 
-#### DailyAvgDict
+#### Cbpf
 
 | Field | Description |
 | --- | --- |
-| `"data"` | List of average daily values |
-| `"days"` | List of days in the format dd.mm.yyyy |
+| `"countries"` |  |
 | `"deprecated"` |  |
+| `"unix_seconds"` |  |
 
-Operations: List.
+Operations: Load.
 
-API path: `/ren_share_daily_avg`
+API path: `/cbpf`
 
 #### Frequency
 
@@ -328,7 +335,7 @@ Operations: Load.
 
 API path: `/price`
 
-#### ProductionModel
+#### PublicPower
 
 | Field | Description |
 | --- | --- |
@@ -354,6 +361,18 @@ Operations: List.
 
 API path: `/public_power_forecast`
 
+#### RenShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `"data"` | List of average daily values |
+| `"days"` | List of days in the format dd.mm.yyyy |
+| `"deprecated"` |  |
+
+Operations: List.
+
+API path: `/ren_share_daily_avg`
+
 #### RenShareModel
 
 | Field | Description |
@@ -370,7 +389,7 @@ Operations: List.
 
 API path: `/ren_share_forecast`
 
-#### ShareModel
+#### SolarShare
 
 | Field | Description |
 | --- | --- |
@@ -382,6 +401,30 @@ API path: `/ren_share_forecast`
 Operations: Load.
 
 API path: `/solar_share`
+
+#### SolarShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `"data"` | List of average daily values |
+| `"days"` | List of days in the format dd.mm.yyyy |
+| `"deprecated"` |  |
+
+Operations: List.
+
+API path: `/solar_share_daily_avg`
+
+#### TotalPower
+
+| Field | Description |
+| --- | --- |
+| `"deprecated"` |  |
+| `"production_types"` |  |
+| `"unix_seconds"` |  |
+
+Operations: Load.
+
+API path: `/total_power`
 
 #### TrafficModel
 
@@ -397,14 +440,64 @@ Operations: List.
 
 API path: `/signal`
 
+#### WindOffshoreShare
+
+| Field | Description |
+| --- | --- |
+| `"data"` |  |
+| `"deprecated"` |  |
+| `"forecast"` |  |
+| `"unix_seconds"` |  |
+
+Operations: Load.
+
+API path: `/wind_offshore_share`
+
+#### WindOffshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `"data"` | List of average daily values |
+| `"days"` | List of days in the format dd.mm.yyyy |
+| `"deprecated"` |  |
+
+Operations: List.
+
+API path: `/wind_offshore_share_daily_avg`
+
+#### WindOnshoreShare
+
+| Field | Description |
+| --- | --- |
+| `"data"` |  |
+| `"deprecated"` |  |
+| `"forecast"` |  |
+| `"unix_seconds"` |  |
+
+Operations: Load.
+
+API path: `/wind_onshore_share`
+
+#### WindOnshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `"data"` | List of average daily values |
+| `"days"` | List of days in the format dd.mm.yyyy |
+| `"deprecated"` |  |
+
+Operations: List.
+
+API path: `/wind_onshore_share_daily_avg`
+
 
 
 ## Entities
 
 
-### CrossBorderModel
+### Cbet
 
-Create an instance: `crossBorderModel := client.CrossBorderModel(nil)`
+Create an instance: `cbet := client.Cbet(nil)`
 
 #### Operations
 
@@ -423,40 +516,40 @@ Create an instance: `crossBorderModel := client.CrossBorderModel(nil)`
 #### Example: Load
 
 ```go
-crossBorderModel, err := client.CrossBorderModel(nil).Load(nil, nil)
+cbet, err := client.Cbet(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(crossBorderModel) // the loaded record
+fmt.Println(cbet) // the loaded record
 ```
 
 
-### DailyAvgDict
+### Cbpf
 
-Create an instance: `dailyAvgDict := client.DailyAvgDict(nil)`
+Create an instance: `cbpf := client.Cbpf(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `[]any` | List of average daily values |
-| `days` | `[]any` | List of days in the format dd.mm.yyyy |
+| `countries` | `any` |  |
 | `deprecated` | `bool` |  |
+| `unix_seconds` | `any` |  |
 
-#### Example: List
+#### Example: Load
 
 ```go
-dailyAvgDicts, err := client.DailyAvgDict(nil).List(nil, nil)
+cbpf, err := client.Cbpf(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(dailyAvgDicts) // the array of records
+fmt.Println(cbpf) // the loaded record
 ```
 
 
@@ -550,9 +643,9 @@ fmt.Println(price) // the loaded record
 ```
 
 
-### ProductionModel
+### PublicPower
 
-Create an instance: `productionModel := client.ProductionModel(nil)`
+Create an instance: `publicPower := client.PublicPower(nil)`
 
 #### Operations
 
@@ -571,11 +664,11 @@ Create an instance: `productionModel := client.ProductionModel(nil)`
 #### Example: Load
 
 ```go
-productionModel, err := client.ProductionModel(nil).Load(nil, nil)
+publicPower, err := client.PublicPower(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(productionModel) // the loaded record
+fmt.Println(publicPower) // the loaded record
 ```
 
 
@@ -607,6 +700,35 @@ if err != nil {
     panic(err)
 }
 fmt.Println(publicPowerForecasts) // the array of records
+```
+
+
+### RenShareDailyAvg
+
+Create an instance: `renShareDailyAvg := client.RenShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `[]any` | List of average daily values |
+| `days` | `[]any` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```go
+renShareDailyAvgs, err := client.RenShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(renShareDailyAvgs) // the array of records
 ```
 
 
@@ -643,9 +765,9 @@ fmt.Println(renShareModels) // the array of records
 ```
 
 
-### ShareModel
+### SolarShare
 
-Create an instance: `shareModel := client.ShareModel(nil)`
+Create an instance: `solarShare := client.SolarShare(nil)`
 
 #### Operations
 
@@ -665,11 +787,69 @@ Create an instance: `shareModel := client.ShareModel(nil)`
 #### Example: Load
 
 ```go
-shareModel, err := client.ShareModel(nil).Load(nil, nil)
+solarShare, err := client.SolarShare(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(shareModel) // the loaded record
+fmt.Println(solarShare) // the loaded record
+```
+
+
+### SolarShareDailyAvg
+
+Create an instance: `solarShareDailyAvg := client.SolarShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `[]any` | List of average daily values |
+| `days` | `[]any` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```go
+solarShareDailyAvgs, err := client.SolarShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(solarShareDailyAvgs) // the array of records
+```
+
+
+### TotalPower
+
+Create an instance: `totalPower := client.TotalPower(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `deprecated` | `bool` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```go
+totalPower, err := client.TotalPower(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(totalPower) // the loaded record
 ```
 
 
@@ -701,6 +881,124 @@ if err != nil {
     panic(err)
 }
 fmt.Println(trafficModels) // the array of records
+```
+
+
+### WindOffshoreShare
+
+Create an instance: `windOffshoreShare := client.WindOffshoreShare(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```go
+windOffshoreShare, err := client.WindOffshoreShare(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(windOffshoreShare) // the loaded record
+```
+
+
+### WindOffshoreShareDailyAvg
+
+Create an instance: `windOffshoreShareDailyAvg := client.WindOffshoreShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `[]any` | List of average daily values |
+| `days` | `[]any` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```go
+windOffshoreShareDailyAvgs, err := client.WindOffshoreShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(windOffshoreShareDailyAvgs) // the array of records
+```
+
+
+### WindOnshoreShare
+
+Create an instance: `windOnshoreShare := client.WindOnshoreShare(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `bool` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```go
+windOnshoreShare, err := client.WindOnshoreShare(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(windOnshoreShare) // the loaded record
+```
+
+
+### WindOnshoreShareDailyAvg
+
+Create an instance: `windOnshoreShareDailyAvg := client.WindOnshoreShareDailyAvg(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `[]any` | List of average daily values |
+| `days` | `[]any` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` |  |
+
+#### Example: List
+
+```go
+windOnshoreShareDailyAvgs, err := client.WindOnshoreShareDailyAvg(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(windOnshoreShareDailyAvgs) // the array of records
 ```
 
 ## Features
@@ -857,15 +1155,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-installedmodel := client.InstalledModel(nil)
-installedmodel.List(nil, nil)
+publicpower := client.PublicPower(nil)
+publicpower.Load(nil, nil)
 
-// installedmodel.Data() now returns the installedmodel data from the last list
-// installedmodel.Match() returns the last match criteria
+// publicpower.Data() now returns the publicpower data from the last load
+// publicpower.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

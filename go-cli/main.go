@@ -20,7 +20,7 @@ import (
 const prompt = "energy-charts"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "cross_border_model daily_avg_dict frequency installed_model price production_model public_power_forecast ren_share_model share_model traffic_model"
+const entitiesHelp = "cbet cbpf frequency installed_model price public_power public_power_forecast ren_share_daily_avg ren_share_model solar_share solar_share_daily_avg total_power traffic_model wind_offshore_share wind_offshore_share_daily_avg wind_onshore_share wind_onshore_share_daily_avg"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

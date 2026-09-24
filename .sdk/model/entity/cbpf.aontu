@@ -1,0 +1,92 @@
+# Entity: cbpf
+
+main: kit: entity: cbpf: {
+
+  alias: field: {}
+
+  fields: {
+    countries: {
+      h: "Countries"
+      n: "countries"
+      r: false
+      t: "`$ANY`"
+    }
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "cbpf"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cbpf"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cbpf"
+          q: {
+            exist: [
+              "country"
+              "end"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "cbpf"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

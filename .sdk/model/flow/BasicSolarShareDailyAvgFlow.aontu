@@ -1,0 +1,22 @@
+# BasicSolarShareDailyAvgFlow
+
+main: kit: flow: BasicSolarShareDailyAvgFlow:
+{
+  entity: "solar_share_daily_avg",
+  kind: "basic",
+  name: "BasicSolarShareDailyAvgFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "solar_share_daily_avg_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSolarShareDailyAvgFlow"
+}

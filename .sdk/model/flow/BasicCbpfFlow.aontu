@@ -1,0 +1,28 @@
+# BasicCbpfFlow
+
+main: kit: flow: BasicCbpfFlow:
+{
+  entity: "cbpf",
+  kind: "basic",
+  name: "BasicCbpfFlow",
+  step: [
+    {
+      i: {
+        ref: "cbpf_ref01",
+        srcdatavar: "cbpf_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-cbpf_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCbpfFlow"
+}

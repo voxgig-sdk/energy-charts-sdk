@@ -289,17 +289,17 @@ class EnergyChartsSDK
   end
 
 
-  # Canonical facade: client.CrossBorderModel.list / client.CrossBorderModel.load({ "id" => ... })
-  def CrossBorderModel(data = nil)
-    require_relative 'entity/cross_border_model_entity'
-    CrossBorderModelEntity.new(self, data)
+  # Canonical facade: client.Cbet.list / client.Cbet.load({ "id" => ... })
+  def Cbet(data = nil)
+    require_relative 'entity/cbet_entity'
+    CbetEntity.new(self, data)
   end
 
 
-  # Canonical facade: client.DailyAvgDict.list / client.DailyAvgDict.load({ "id" => ... })
-  def DailyAvgDict(data = nil)
-    require_relative 'entity/daily_avg_dict_entity'
-    DailyAvgDictEntity.new(self, data)
+  # Canonical facade: client.Cbpf.list / client.Cbpf.load({ "id" => ... })
+  def Cbpf(data = nil)
+    require_relative 'entity/cbpf_entity'
+    CbpfEntity.new(self, data)
   end
 
 
@@ -324,10 +324,10 @@ class EnergyChartsSDK
   end
 
 
-  # Canonical facade: client.ProductionModel.list / client.ProductionModel.load({ "id" => ... })
-  def ProductionModel(data = nil)
-    require_relative 'entity/production_model_entity'
-    ProductionModelEntity.new(self, data)
+  # Canonical facade: client.PublicPower.list / client.PublicPower.load({ "id" => ... })
+  def PublicPower(data = nil)
+    require_relative 'entity/public_power_entity'
+    PublicPowerEntity.new(self, data)
   end
 
 
@@ -338,6 +338,13 @@ class EnergyChartsSDK
   end
 
 
+  # Canonical facade: client.RenShareDailyAvg.list / client.RenShareDailyAvg.load({ "id" => ... })
+  def RenShareDailyAvg(data = nil)
+    require_relative 'entity/ren_share_daily_avg_entity'
+    RenShareDailyAvgEntity.new(self, data)
+  end
+
+
   # Canonical facade: client.RenShareModel.list / client.RenShareModel.load({ "id" => ... })
   def RenShareModel(data = nil)
     require_relative 'entity/ren_share_model_entity'
@@ -345,10 +352,24 @@ class EnergyChartsSDK
   end
 
 
-  # Canonical facade: client.ShareModel.list / client.ShareModel.load({ "id" => ... })
-  def ShareModel(data = nil)
-    require_relative 'entity/share_model_entity'
-    ShareModelEntity.new(self, data)
+  # Canonical facade: client.SolarShare.list / client.SolarShare.load({ "id" => ... })
+  def SolarShare(data = nil)
+    require_relative 'entity/solar_share_entity'
+    SolarShareEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.SolarShareDailyAvg.list / client.SolarShareDailyAvg.load({ "id" => ... })
+  def SolarShareDailyAvg(data = nil)
+    require_relative 'entity/solar_share_daily_avg_entity'
+    SolarShareDailyAvgEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.TotalPower.list / client.TotalPower.load({ "id" => ... })
+  def TotalPower(data = nil)
+    require_relative 'entity/total_power_entity'
+    TotalPowerEntity.new(self, data)
   end
 
 
@@ -356,6 +377,34 @@ class EnergyChartsSDK
   def TrafficModel(data = nil)
     require_relative 'entity/traffic_model_entity'
     TrafficModelEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.WindOffshoreShare.list / client.WindOffshoreShare.load({ "id" => ... })
+  def WindOffshoreShare(data = nil)
+    require_relative 'entity/wind_offshore_share_entity'
+    WindOffshoreShareEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.WindOffshoreShareDailyAvg.list / client.WindOffshoreShareDailyAvg.load({ "id" => ... })
+  def WindOffshoreShareDailyAvg(data = nil)
+    require_relative 'entity/wind_offshore_share_daily_avg_entity'
+    WindOffshoreShareDailyAvgEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.WindOnshoreShare.list / client.WindOnshoreShare.load({ "id" => ... })
+  def WindOnshoreShare(data = nil)
+    require_relative 'entity/wind_onshore_share_entity'
+    WindOnshoreShareEntity.new(self, data)
+  end
+
+
+  # Canonical facade: client.WindOnshoreShareDailyAvg.list / client.WindOnshoreShareDailyAvg.load({ "id" => ... })
+  def WindOnshoreShareDailyAvg(data = nil)
+    require_relative 'entity/wind_onshore_share_daily_avg_entity'
+    WindOnshoreShareDailyAvgEntity.new(self, data)
   end
 
 

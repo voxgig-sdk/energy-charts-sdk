@@ -37,7 +37,7 @@ const SDK_NAME = 'EnergyChartsSDK'
 
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = {"entity":{"cross_border_model":{"test01":{"id":"test01"}},"daily_avg_dict":{"test01":{"id":"test01"}},"frequency":{"test01":{"id":"test01"}},"installed_model":{"test01":{"id":"test01"}},"price":{"test01":{"id":"test01"}},"production_model":{"test01":{"id":"test01"}},"public_power_forecast":{"test01":{"id":"test01"}},"ren_share_model":{"test01":{"id":"test01"}},"share_model":{"test01":{"id":"test01"}},"traffic_model":{"test01":{"id":"test01"}}}}
+const TEST_SEED = {"entity":{"cbet":{"test01":{"id":"test01"}},"cbpf":{"test01":{"id":"test01"}},"frequency":{"test01":{"id":"test01"}},"installed_model":{"test01":{"id":"test01"}},"price":{"test01":{"id":"test01"}},"public_power":{"test01":{"id":"test01"}},"public_power_forecast":{"test01":{"id":"test01"}},"ren_share_daily_avg":{"test01":{"id":"test01"}},"ren_share_model":{"test01":{"id":"test01"}},"solar_share":{"test01":{"id":"test01"}},"solar_share_daily_avg":{"test01":{"id":"test01"}},"total_power":{"test01":{"id":"test01"}},"traffic_model":{"test01":{"id":"test01"}},"wind_offshore_share":{"test01":{"id":"test01"}},"wind_offshore_share_daily_avg":{"test01":{"id":"test01"}},"wind_onshore_share":{"test01":{"id":"test01"}},"wind_onshore_share_daily_avg":{"test01":{"id":"test01"}}}}
 const SEED_ARG = JSON.stringify(TEST_SEED)
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')'
 

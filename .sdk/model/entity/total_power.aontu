@@ -1,0 +1,92 @@
+# Entity: total_power
+
+main: kit: entity: total_power: {
+
+  alias: field: {}
+
+  fields: {
+    deprecated: {
+      h: "Deprecated"
+      n: "deprecated"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    production_types: {
+      h: "Production Types"
+      n: "production_types"
+      r: false
+      t: "`$ANY`"
+    }
+    unix_seconds: {
+      h: "Unix Seconds"
+      n: "unix_seconds"
+      r: false
+      t: "`$ANY`"
+    }
+  }
+
+  name: "total_power"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /total_power"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "de"
+                k: "query"
+                n: "country"
+                or: "country"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "end"
+                or: "end"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: ""
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/total_power"
+          q: {
+            exist: [
+              "country"
+              "end"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "total_power"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

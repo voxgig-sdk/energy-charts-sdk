@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "solar_share_daily_avg": {
+      "SOLAR_SHARE_DAILY_AVG00": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "SOLAR_SHARE_DAILY_AVG01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      },
+      "SOLAR_SHARE_DAILY_AVG02": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "new": {
+    "solar_share_daily_avg": {
+      "solar_share_daily_avg_ref01": {
+        "data": [],
+        "days": [],
+        "deprecated": true
+      }
+    }
+  },
+  "requests": {
+    "GET /solar_share_daily_avg": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

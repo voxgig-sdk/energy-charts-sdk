@@ -41,13 +41,13 @@ client = EnergyChartsSDK.test()
 
 ### Instance Methods
 
-#### `CrossBorderModel(data=None)`
+#### `Cbet(data=None)`
 
-Create a new `CrossBorderModelEntity` instance. Pass `None` for no initial data.
+Create a new `CbetEntity` instance. Pass `None` for no initial data.
 
-#### `DailyAvgDict(data=None)`
+#### `Cbpf(data=None)`
 
-Create a new `DailyAvgDictEntity` instance. Pass `None` for no initial data.
+Create a new `CbpfEntity` instance. Pass `None` for no initial data.
 
 #### `Frequency(data=None)`
 
@@ -61,25 +61,53 @@ Create a new `InstalledModelEntity` instance. Pass `None` for no initial data.
 
 Create a new `PriceEntity` instance. Pass `None` for no initial data.
 
-#### `ProductionModel(data=None)`
+#### `PublicPower(data=None)`
 
-Create a new `ProductionModelEntity` instance. Pass `None` for no initial data.
+Create a new `PublicPowerEntity` instance. Pass `None` for no initial data.
 
 #### `PublicPowerForecast(data=None)`
 
 Create a new `PublicPowerForecastEntity` instance. Pass `None` for no initial data.
 
+#### `RenShareDailyAvg(data=None)`
+
+Create a new `RenShareDailyAvgEntity` instance. Pass `None` for no initial data.
+
 #### `RenShareModel(data=None)`
 
 Create a new `RenShareModelEntity` instance. Pass `None` for no initial data.
 
-#### `ShareModel(data=None)`
+#### `SolarShare(data=None)`
 
-Create a new `ShareModelEntity` instance. Pass `None` for no initial data.
+Create a new `SolarShareEntity` instance. Pass `None` for no initial data.
+
+#### `SolarShareDailyAvg(data=None)`
+
+Create a new `SolarShareDailyAvgEntity` instance. Pass `None` for no initial data.
+
+#### `TotalPower(data=None)`
+
+Create a new `TotalPowerEntity` instance. Pass `None` for no initial data.
 
 #### `TrafficModel(data=None)`
 
 Create a new `TrafficModelEntity` instance. Pass `None` for no initial data.
+
+#### `WindOffshoreShare(data=None)`
+
+Create a new `WindOffshoreShareEntity` instance. Pass `None` for no initial data.
+
+#### `WindOffshoreShareDailyAvg(data=None)`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance. Pass `None` for no initial data.
+
+#### `WindOnshoreShare(data=None)`
+
+Create a new `WindOnshoreShareEntity` instance. Pass `None` for no initial data.
+
+#### `WindOnshoreShareDailyAvg(data=None)`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance. Pass `None` for no initial data.
 
 #### `options_map() -> dict`
 
@@ -113,10 +141,10 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 
 ---
 
-## CrossBorderModelEntity
+## CbetEntity
 
 ```python
-cross_border_model = client.CrossBorderModel()
+cbet = client.Cbet()
 ```
 
 ### Fields
@@ -134,7 +162,7 @@ cross_border_model = client.CrossBorderModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CrossBorderModel().load()
+result = client.Cbet().load()
 ```
 
 ### Common Methods
@@ -157,7 +185,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `CrossBorderModelEntity` instance with the same options.
+Create a new `CbetEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -166,30 +194,28 @@ Return the entity name.
 
 ---
 
-## DailyAvgDictEntity
+## CbpfEntity
 
 ```python
-daily_avg_dict = client.DailyAvgDict()
+cbpf = client.Cbpf()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `list` | Yes | List of average daily values |
-| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
+| `countries` | `Any` | No |  |
 | `deprecated` | `bool` | Yes |  |
+| `unix_seconds` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-results = client.DailyAvgDict().list()
-for daily_avg_dict in results:
-    print(daily_avg_dict)
+result = client.Cbpf().load()
 ```
 
 ### Common Methods
@@ -212,7 +238,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `DailyAvgDictEntity` instance with the same options.
+Create a new `CbpfEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -387,10 +413,10 @@ Return the entity name.
 
 ---
 
-## ProductionModelEntity
+## PublicPowerEntity
 
 ```python
-production_model = client.ProductionModel()
+public_power = client.PublicPower()
 ```
 
 ### Fields
@@ -408,7 +434,7 @@ production_model = client.ProductionModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ProductionModel().load()
+result = client.PublicPower().load()
 ```
 
 ### Common Methods
@@ -431,7 +457,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ProductionModelEntity` instance with the same options.
+Create a new `PublicPowerEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -489,6 +515,61 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `PublicPowerForecastEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## RenShareDailyAvgEntity
+
+```python
+ren_share_daily_avg = client.RenShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `list` | Yes | List of average daily values |
+| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.RenShareDailyAvg().list()
+for ren_share_daily_avg in results:
+    print(ren_share_daily_avg)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `RenShareDailyAvgEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -556,10 +637,10 @@ Return the entity name.
 
 ---
 
-## ShareModelEntity
+## SolarShareEntity
 
 ```python
-share_model = client.ShareModel()
+solar_share = client.SolarShare()
 ```
 
 ### Fields
@@ -578,7 +659,7 @@ share_model = client.ShareModel()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ShareModel().load()
+result = client.SolarShare().load()
 ```
 
 ### Common Methods
@@ -601,7 +682,115 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ShareModelEntity` instance with the same options.
+Create a new `SolarShareEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## SolarShareDailyAvgEntity
+
+```python
+solar_share_daily_avg = client.SolarShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `list` | Yes | List of average daily values |
+| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.SolarShareDailyAvg().list()
+for solar_share_daily_avg in results:
+    print(solar_share_daily_avg)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `SolarShareDailyAvgEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## TotalPowerEntity
+
+```python
+total_power = client.TotalPower()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `deprecated` | `bool` | Yes |  |
+| `production_types` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl=None) -> dict`
+
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
+
+```python
+result = client.TotalPower().load()
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `TotalPowerEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -659,6 +848,224 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TrafficModelEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareEntity
+
+```python
+wind_offshore_share = client.WindOffshoreShare()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl=None) -> dict`
+
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
+
+```python
+result = client.WindOffshoreShare().load()
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOffshoreShareEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WindOffshoreShareDailyAvgEntity
+
+```python
+wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `list` | Yes | List of average daily values |
+| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.WindOffshoreShareDailyAvg().list()
+for wind_offshore_share_daily_avg in results:
+    print(wind_offshore_share_daily_avg)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOffshoreShareDailyAvgEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareEntity
+
+```python
+wind_onshore_share = client.WindOnshoreShare()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `Any` | No |  |
+| `deprecated` | `bool` | Yes |  |
+| `forecast` | `Any` | No |  |
+| `unix_seconds` | `Any` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl=None) -> dict`
+
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
+
+```python
+result = client.WindOnshoreShare().load()
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOnshoreShareEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WindOnshoreShareDailyAvgEntity
+
+```python
+wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `data` | `list` | Yes | List of average daily values |
+| `days` | `list` | Yes | List of days in the format dd.mm.yyyy |
+| `deprecated` | `bool` | Yes |  |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+
+```python
+results = client.WindOnshoreShareDailyAvg().list()
+for wind_onshore_share_daily_avg in results:
+    print(wind_onshore_share_daily_avg)
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WindOnshoreShareDailyAvgEntity` instance with the same options.
 
 #### `get_name() -> str`
 

@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "wind_offshore_share": {
+      "WIND_OFFSHORE_SHARE00": {
+        "data": "s28",
+        "deprecated": false,
+        "forecast": "s2a",
+        "unix_seconds": "s2b",
+        "id": "WIND_OFFSHORE_SHARE00"
+      },
+      "WIND_OFFSHORE_SHARE01": {
+        "data": "s50",
+        "deprecated": false,
+        "forecast": "s52",
+        "unix_seconds": "s53",
+        "id": "WIND_OFFSHORE_SHARE01"
+      },
+      "WIND_OFFSHORE_SHARE02": {
+        "data": "s78",
+        "deprecated": false,
+        "forecast": "s7a",
+        "unix_seconds": "s7b",
+        "id": "WIND_OFFSHORE_SHARE02"
+      }
+    }
+  },
+  "new": {
+    "wind_offshore_share": {
+      "wind_offshore_share_ref01": {
+        "data": "sa0",
+        "deprecated": false,
+        "forecast": "sa2",
+        "unix_seconds": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /wind_offshore_share": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

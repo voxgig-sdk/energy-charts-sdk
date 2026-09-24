@@ -108,67 +108,52 @@ def make_config():
         "content-type": "application/json",
       },
             "entity": {
-                "cross_border_model": {},
-                "daily_avg_dict": {},
+                "cbet": {},
+                "cbpf": {},
                 "frequency": {},
                 "installed_model": {},
                 "price": {},
-                "production_model": {},
+                "public_power": {},
                 "public_power_forecast": {},
+                "ren_share_daily_avg": {},
                 "ren_share_model": {},
-                "share_model": {},
+                "solar_share": {},
+                "solar_share_daily_avg": {},
+                "total_power": {},
                 "traffic_model": {},
+                "wind_offshore_share": {},
+                "wind_offshore_share_daily_avg": {},
+                "wind_onshore_share": {},
+                "wind_onshore_share_daily_avg": {},
             },
         },
         "entity": {
-      "cross_border_model": {
+      "cbet": {
         "fields": [
           {
             "name": "countries",
+            "title": "Countries",
             "type": "`$ANY`",
           },
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
+            "title": "Unix Seconds",
             "type": "`$ANY`",
           },
         ],
-        "name": "cross_border_model",
+        "name": "cbet",
         "op": {
           "load": {
             "input": "data",
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cbet",
@@ -177,55 +162,39 @@ def make_config():
                     "lit": "cbet",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "country",
-                    "end",
-                    "start",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "cbet",
                 ],
-              },
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "query": [
                     {
-                      "example": "de",
-                      "kind": "query",
                       "name": "country",
                       "orig": "country",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
                     },
                     {
-                      "example": "",
-                      "kind": "query",
                       "name": "end",
                       "orig": "end",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
                     },
                     {
-                      "example": "",
-                      "kind": "query",
                       "name": "start",
                       "orig": "start",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/cbpf",
-                "segments": [
-                  {
-                    "lit": "cbpf",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "country",
@@ -233,13 +202,6 @@ def make_config():
                     "start",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "cbpf",
-                ],
               },
             ],
           },
@@ -248,195 +210,80 @@ def make_config():
           "ancestors": [],
         },
       },
-      "daily_avg_dict": {
+      "cbpf": {
         "fields": [
           {
-            "name": "data",
-            "req": True,
-            "short": "List of average daily values",
-            "type": "`$ARRAY`",
-          },
-          {
-            "name": "days",
-            "req": True,
-            "short": "List of days in the format dd.mm.yyyy",
-            "type": "`$ARRAY`",
+            "name": "countries",
+            "title": "Countries",
+            "type": "`$ANY`",
           },
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
+          },
+          {
+            "name": "unix_seconds",
+            "title": "Unix Seconds",
+            "type": "`$ANY`",
           },
         ],
-        "name": "daily_avg_dict",
+        "name": "cbpf",
         "op": {
-          "list": {
+          "load": {
             "input": "data",
-            "name": "list",
+            "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": -1,
-                      "kind": "query",
-                      "name": "year",
-                      "orig": "year",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
-                "orig": "/ren_share_daily_avg",
+                "orig": "/cbpf",
                 "segments": [
                   {
-                    "lit": "ren_share_daily_avg",
+                    "lit": "cbpf",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "country",
-                    "year",
-                  ],
-                },
+                "parts": [
+                  "cbpf",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "ren_share_daily_avg",
-                ],
-              },
-              {
                 "args": {
                   "query": [
                     {
-                      "example": "de",
-                      "kind": "query",
                       "name": "country",
                       "orig": "country",
                       "type": "`$STRING`",
-                    },
-                    {
-                      "example": -1,
                       "kind": "query",
-                      "name": "year",
-                      "orig": "year",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/solar_share_daily_avg",
-                "segments": [
-                  {
-                    "lit": "solar_share_daily_avg",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "country",
-                    "year",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "solar_share_daily_avg",
-                ],
-              },
-              {
-                "args": {
-                  "query": [
-                    {
                       "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
                     },
                     {
-                      "example": -1,
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
                       "kind": "query",
-                      "name": "year",
-                      "orig": "year",
-                      "type": "`$INTEGER`",
+                      "example": "",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/wind_offshore_share_daily_avg",
-                "segments": [
-                  {
-                    "lit": "wind_offshore_share_daily_avg",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "country",
-                    "year",
+                    "end",
+                    "start",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "wind_offshore_share_daily_avg",
-                ],
-              },
-              {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": -1,
-                      "kind": "query",
-                      "name": "year",
-                      "orig": "year",
-                      "type": "`$INTEGER`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/wind_onshore_share_daily_avg",
-                "segments": [
-                  {
-                    "lit": "wind_onshore_share_daily_avg",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "country",
-                    "year",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "wind_onshore_share_daily_avg",
-                ],
               },
             ],
           },
@@ -449,16 +296,19 @@ def make_config():
         "fields": [
           {
             "name": "data",
-            "req": True,
+            "title": "Data",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
+            "title": "Unix Seconds",
             "type": "`$ANY`",
           },
         ],
@@ -469,31 +319,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "DE-Freiburg",
-                      "kind": "query",
-                      "name": "region",
-                      "orig": "region",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/frequency",
@@ -502,6 +327,39 @@ def make_config():
                     "lit": "frequency",
                   },
                 ],
+                "parts": [
+                  "frequency",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "region",
+                      "orig": "region",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "DE-Freiburg",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "end",
@@ -509,13 +367,6 @@ def make_config():
                     "start",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "frequency",
-                ],
               },
             ],
           },
@@ -528,22 +379,26 @@ def make_config():
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "last_update",
-            "req": True,
+            "title": "Last Update",
             "type": "`$ANY`",
+            "req": True,
           },
           {
             "name": "production_types",
+            "title": "Production Types",
             "type": "`$ANY`",
           },
           {
             "name": "time",
-            "req": True,
+            "title": "Time",
             "type": "`$ARRAY`",
+            "req": True,
           },
         ],
         "name": "installed_model",
@@ -553,31 +408,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": False,
-                      "kind": "query",
-                      "name": "installation_decommission",
-                      "orig": "installation_decommission",
-                      "type": "`$BOOLEAN`",
-                    },
-                    {
-                      "example": "yearly",
-                      "kind": "query",
-                      "name": "time_step",
-                      "orig": "time_step",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/installed_power",
@@ -586,6 +416,39 @@ def make_config():
                     "lit": "installed_power",
                   },
                 ],
+                "parts": [
+                  "installed_power",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "installation_decommission",
+                      "orig": "installation_decommission",
+                      "type": "`$BOOLEAN`",
+                      "kind": "query",
+                      "example": False,
+                    },
+                    {
+                      "name": "time_step",
+                      "orig": "time_step",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "yearly",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "country",
@@ -593,13 +456,6 @@ def make_config():
                     "time_step",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "installed_power",
-                ],
               },
             ],
           },
@@ -612,25 +468,30 @@ def make_config():
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "license_info",
-            "req": True,
+            "title": "License Info",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "price",
+            "title": "Price",
             "type": "`$NUMBER`",
           },
           {
             "name": "unit",
-            "req": True,
+            "title": "Unit",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
+            "title": "Unix Seconds",
             "type": "`$ANY`",
           },
         ],
@@ -641,31 +502,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "DE-LU",
-                      "kind": "query",
-                      "name": "bzn",
-                      "orig": "bzn",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/price",
@@ -674,6 +510,39 @@ def make_config():
                     "lit": "price",
                   },
                 ],
+                "parts": [
+                  "price",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.price`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "bzn",
+                      "orig": "bzn",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "DE-LU",
+                    },
+                    {
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "bzn",
@@ -681,13 +550,6 @@ def make_config():
                     "start",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.price`",
-                },
-                "parts": [
-                  "price",
-                ],
               },
             ],
           },
@@ -696,61 +558,32 @@ def make_config():
           "ancestors": [],
         },
       },
-      "production_model": {
+      "public_power": {
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "production_types",
+            "title": "Production Types",
             "type": "`$ANY`",
           },
           {
             "name": "unix_seconds",
+            "title": "Unix Seconds",
             "type": "`$ANY`",
           },
         ],
-        "name": "production_model",
+        "name": "public_power",
         "op": {
           "load": {
             "input": "data",
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "subtype",
-                      "orig": "subtype",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/public_power",
@@ -759,6 +592,46 @@ def make_config():
                     "lit": "public_power",
                   },
                 ],
+                "parts": [
+                  "public_power",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "subtype",
+                      "orig": "subtype",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "country",
@@ -767,62 +640,6 @@ def make_config():
                     "subtype",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "public_power",
-                ],
-              },
-              {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/total_power",
-                "segments": [
-                  {
-                    "lit": "total_power",
-                  },
-                ],
-                "select": {
-                  "exist": [
-                    "country",
-                    "end",
-                    "start",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "total_power",
-                ],
               },
             ],
           },
@@ -835,28 +652,33 @@ def make_config():
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "forecast_type",
-            "req": True,
+            "title": "Forecast Type",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "forecast_values",
-            "req": True,
+            "title": "Forecast Values",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "production_type",
-            "req": True,
+            "title": "Production Type",
             "type": "`$STRING`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
-            "req": True,
+            "title": "Unix Seconds",
             "type": "`$ARRAY`",
+            "req": True,
           },
         ],
         "name": "public_power_forecast",
@@ -866,45 +688,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "end",
-                      "orig": "end",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "current",
-                      "kind": "query",
-                      "name": "forecast_type",
-                      "orig": "forecast_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "solar",
-                      "kind": "query",
-                      "name": "production_type",
-                      "orig": "production_type",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "start",
-                      "orig": "start",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/public_power_forecast",
@@ -913,6 +696,53 @@ def make_config():
                     "lit": "public_power_forecast",
                   },
                 ],
+                "parts": [
+                  "public_power_forecast",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "forecast_type",
+                      "orig": "forecast_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "current",
+                    },
+                    {
+                      "name": "production_type",
+                      "orig": "production_type",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "solar",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "country",
@@ -922,13 +752,84 @@ def make_config():
                     "start",
                   ],
                 },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "ren_share_daily_avg": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of average daily values",
+          },
+          {
+            "name": "days",
+            "title": "Days",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of days in the format dd.mm.yyyy",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+        ],
+        "name": "ren_share_daily_avg",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/ren_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "ren_share_daily_avg",
+                  },
+                ],
+                "parts": [
+                  "ren_share_daily_avg",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "public_power_forecast",
-                ],
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "year",
+                      "orig": "year",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": -1,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                    "year",
+                  ],
+                },
               },
             ],
           },
@@ -941,34 +842,41 @@ def make_config():
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "ren_share",
-            "req": True,
+            "title": "Ren Share",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "solar_share",
+            "title": "Solar Share",
             "type": "`$ANY`",
           },
           {
             "name": "substitute",
-            "req": True,
+            "title": "Substitute",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
-            "req": True,
+            "title": "Unix Seconds",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "wind_offshore_share",
+            "title": "Wind Offshore Share",
             "type": "`$ANY`",
           },
           {
             "name": "wind_onshore_share",
+            "title": "Wind Onshore Share",
             "type": "`$ANY`",
           },
         ],
@@ -979,17 +887,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ren_share_forecast",
@@ -998,18 +895,30 @@ def make_config():
                     "lit": "ren_share_forecast",
                   },
                 ],
+                "parts": [
+                  "ren_share_forecast",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "country",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "ren_share_forecast",
-                ],
               },
             ],
           },
@@ -1018,44 +927,37 @@ def make_config():
           "ancestors": [],
         },
       },
-      "share_model": {
+      "solar_share": {
         "fields": [
           {
             "name": "data",
+            "title": "Data",
             "type": "`$ANY`",
           },
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "forecast",
+            "title": "Forecast",
             "type": "`$ANY`",
           },
           {
             "name": "unix_seconds",
+            "title": "Unix Seconds",
             "type": "`$ANY`",
           },
         ],
-        "name": "share_model",
+        "name": "solar_share",
         "op": {
           "load": {
             "input": "data",
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/solar_share",
@@ -1064,84 +966,190 @@ def make_config():
                     "lit": "solar_share",
                   },
                 ],
-                "select": {
-                  "exist": [
-                    "country",
-                  ],
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "solar_share",
                 ],
-              },
-              {
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "args": {
                   "query": [
                     {
-                      "example": "de",
-                      "kind": "query",
                       "name": "country",
                       "orig": "country",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/wind_offshore_share",
-                "segments": [
-                  {
-                    "lit": "wind_offshore_share",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "country",
                   ],
                 },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "solar_share_daily_avg": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of average daily values",
+          },
+          {
+            "name": "days",
+            "title": "Days",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of days in the format dd.mm.yyyy",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+        ],
+        "name": "solar_share_daily_avg",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/solar_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "solar_share_daily_avg",
+                  },
+                ],
+                "parts": [
+                  "solar_share_daily_avg",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "wind_offshore_share",
-                ],
-              },
-              {
                 "args": {
                   "query": [
                     {
-                      "example": "de",
-                      "kind": "query",
                       "name": "country",
                       "orig": "country",
                       "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "year",
+                      "orig": "year",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": -1,
                     },
                   ],
                 },
-                "kind": "http",
-                "method": "GET",
-                "orig": "/wind_onshore_share",
-                "segments": [
-                  {
-                    "lit": "wind_onshore_share",
-                  },
-                ],
                 "select": {
                   "exist": [
                     "country",
+                    "year",
                   ],
                 },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "total_power": {
+        "fields": [
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+          {
+            "name": "production_types",
+            "title": "Production Types",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "unix_seconds",
+            "title": "Unix Seconds",
+            "type": "`$ANY`",
+          },
+        ],
+        "name": "total_power",
+        "op": {
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/total_power",
+                "segments": [
+                  {
+                    "lit": "total_power",
+                  },
+                ],
+                "parts": [
+                  "total_power",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "wind_onshore_share",
-                ],
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "end",
+                      "orig": "end",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                    {
+                      "name": "start",
+                      "orig": "start",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                    "end",
+                    "start",
+                  ],
+                },
               },
             ],
           },
@@ -1154,28 +1162,33 @@ def make_config():
         "fields": [
           {
             "name": "deprecated",
-            "req": True,
+            "title": "Deprecated",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "share",
-            "req": True,
+            "title": "Share",
             "type": "`$ARRAY`",
+            "req": True,
           },
           {
             "name": "signal",
-            "short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
+            "title": "Signal",
             "type": "`$ARRAY`",
+            "short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
           },
           {
             "name": "substitute",
-            "req": True,
+            "title": "Substitute",
             "type": "`$BOOLEAN`",
+            "req": True,
           },
           {
             "name": "unix_seconds",
-            "req": True,
+            "title": "Unix Seconds",
             "type": "`$ARRAY`",
+            "req": True,
           },
         ],
         "name": "traffic_model",
@@ -1185,24 +1198,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "de",
-                      "kind": "query",
-                      "name": "country",
-                      "orig": "country",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "example": "",
-                      "kind": "query",
-                      "name": "postal_code",
-                      "orig": "postal_code",
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/signal",
@@ -1211,19 +1206,336 @@ def make_config():
                     "lit": "signal",
                   },
                 ],
+                "parts": [
+                  "signal",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "postal_code",
+                      "orig": "postal_code",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "country",
                     "postal_code",
                   ],
                 },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "wind_offshore_share": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+          {
+            "name": "forecast",
+            "title": "Forecast",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "unix_seconds",
+            "title": "Unix Seconds",
+            "type": "`$ANY`",
+          },
+        ],
+        "name": "wind_offshore_share",
+        "op": {
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/wind_offshore_share",
+                "segments": [
+                  {
+                    "lit": "wind_offshore_share",
+                  },
+                ],
+                "parts": [
+                  "wind_offshore_share",
+                ],
+                "rename": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "parts": [
-                  "signal",
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "wind_offshore_share_daily_avg": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of average daily values",
+          },
+          {
+            "name": "days",
+            "title": "Days",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of days in the format dd.mm.yyyy",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+        ],
+        "name": "wind_offshore_share_daily_avg",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/wind_offshore_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "wind_offshore_share_daily_avg",
+                  },
                 ],
+                "parts": [
+                  "wind_offshore_share_daily_avg",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "year",
+                      "orig": "year",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": -1,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                    "year",
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "wind_onshore_share": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+          {
+            "name": "forecast",
+            "title": "Forecast",
+            "type": "`$ANY`",
+          },
+          {
+            "name": "unix_seconds",
+            "title": "Unix Seconds",
+            "type": "`$ANY`",
+          },
+        ],
+        "name": "wind_onshore_share",
+        "op": {
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/wind_onshore_share",
+                "segments": [
+                  {
+                    "lit": "wind_onshore_share",
+                  },
+                ],
+                "parts": [
+                  "wind_onshore_share",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "wind_onshore_share_daily_avg": {
+        "fields": [
+          {
+            "name": "data",
+            "title": "Data",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of average daily values",
+          },
+          {
+            "name": "days",
+            "title": "Days",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "List of days in the format dd.mm.yyyy",
+          },
+          {
+            "name": "deprecated",
+            "title": "Deprecated",
+            "type": "`$BOOLEAN`",
+            "req": True,
+          },
+        ],
+        "name": "wind_onshore_share_daily_avg",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/wind_onshore_share_daily_avg",
+                "segments": [
+                  {
+                    "lit": "wind_onshore_share_daily_avg",
+                  },
+                ],
+                "parts": [
+                  "wind_onshore_share_daily_avg",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "country",
+                      "orig": "country",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "example": "de",
+                    },
+                    {
+                      "name": "year",
+                      "orig": "year",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": -1,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "country",
+                    "year",
+                  ],
+                },
               },
             ],
           },

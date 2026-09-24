@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the EnergyCharts SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -12,35 +12,36 @@ declare(strict_types=1);
 // registered on the composer classmap autoload. The SDK boundary exchanges
 // assoc-arrays; these classes name the shapes for tooling and typed callers.
 
-/** CrossBorderModel entity data model. */
-class CrossBorderModel
+/** Cbet entity data model. */
+class Cbet
 {
     public mixed $countries = null;
     public bool $deprecated;
     public mixed $unix_seconds = null;
 }
 
-/** Request payload for CrossBorderModel#load. */
-class CrossBorderModelLoadMatch
+/** Request payload for Cbet#load. */
+class CbetLoadMatch
 {
     public ?string $country = null;
     public ?string $end = null;
     public ?string $start = null;
 }
 
-/** DailyAvgDict entity data model. */
-class DailyAvgDict
+/** Cbpf entity data model. */
+class Cbpf
 {
-    public array $data;
-    public array $days;
+    public mixed $countries = null;
     public bool $deprecated;
+    public mixed $unix_seconds = null;
 }
 
-/** Request payload for DailyAvgDict#list. */
-class DailyAvgDictListMatch
+/** Request payload for Cbpf#load. */
+class CbpfLoadMatch
 {
     public ?string $country = null;
-    public ?int $year = null;
+    public ?string $end = null;
+    public ?string $start = null;
 }
 
 /** Frequency entity data model. */
@@ -94,16 +95,16 @@ class PriceLoadMatch
     public ?string $start = null;
 }
 
-/** ProductionModel entity data model. */
-class ProductionModel
+/** PublicPower entity data model. */
+class PublicPower
 {
     public bool $deprecated;
     public mixed $production_types = null;
     public mixed $unix_seconds = null;
 }
 
-/** Request payload for ProductionModel#load. */
-class ProductionModelLoadMatch
+/** Request payload for PublicPower#load. */
+class PublicPowerLoadMatch
 {
     public ?string $country = null;
     public ?string $end = null;
@@ -131,6 +132,21 @@ class PublicPowerForecastListMatch
     public ?string $start = null;
 }
 
+/** RenShareDailyAvg entity data model. */
+class RenShareDailyAvg
+{
+    public array $data;
+    public array $days;
+    public bool $deprecated;
+}
+
+/** Request payload for RenShareDailyAvg#list. */
+class RenShareDailyAvgListMatch
+{
+    public ?string $country = null;
+    public ?int $year = null;
+}
+
 /** RenShareModel entity data model. */
 class RenShareModel
 {
@@ -149,8 +165,8 @@ class RenShareModelListMatch
     public ?string $country = null;
 }
 
-/** ShareModel entity data model. */
-class ShareModel
+/** SolarShare entity data model. */
+class SolarShare
 {
     public mixed $data = null;
     public bool $deprecated;
@@ -158,10 +174,41 @@ class ShareModel
     public mixed $unix_seconds = null;
 }
 
-/** Request payload for ShareModel#load. */
-class ShareModelLoadMatch
+/** Request payload for SolarShare#load. */
+class SolarShareLoadMatch
 {
     public ?string $country = null;
+}
+
+/** SolarShareDailyAvg entity data model. */
+class SolarShareDailyAvg
+{
+    public array $data;
+    public array $days;
+    public bool $deprecated;
+}
+
+/** Request payload for SolarShareDailyAvg#list. */
+class SolarShareDailyAvgListMatch
+{
+    public ?string $country = null;
+    public ?int $year = null;
+}
+
+/** TotalPower entity data model. */
+class TotalPower
+{
+    public bool $deprecated;
+    public mixed $production_types = null;
+    public mixed $unix_seconds = null;
+}
+
+/** Request payload for TotalPower#load. */
+class TotalPowerLoadMatch
+{
+    public ?string $country = null;
+    public ?string $end = null;
+    public ?string $start = null;
 }
 
 /** TrafficModel entity data model. */
@@ -179,5 +226,65 @@ class TrafficModelListMatch
 {
     public ?string $country = null;
     public ?string $postal_code = null;
+}
+
+/** WindOffshoreShare entity data model. */
+class WindOffshoreShare
+{
+    public mixed $data = null;
+    public bool $deprecated;
+    public mixed $forecast = null;
+    public mixed $unix_seconds = null;
+}
+
+/** Request payload for WindOffshoreShare#load. */
+class WindOffshoreShareLoadMatch
+{
+    public ?string $country = null;
+}
+
+/** WindOffshoreShareDailyAvg entity data model. */
+class WindOffshoreShareDailyAvg
+{
+    public array $data;
+    public array $days;
+    public bool $deprecated;
+}
+
+/** Request payload for WindOffshoreShareDailyAvg#list. */
+class WindOffshoreShareDailyAvgListMatch
+{
+    public ?string $country = null;
+    public ?int $year = null;
+}
+
+/** WindOnshoreShare entity data model. */
+class WindOnshoreShare
+{
+    public mixed $data = null;
+    public bool $deprecated;
+    public mixed $forecast = null;
+    public mixed $unix_seconds = null;
+}
+
+/** Request payload for WindOnshoreShare#load. */
+class WindOnshoreShareLoadMatch
+{
+    public ?string $country = null;
+}
+
+/** WindOnshoreShareDailyAvg entity data model. */
+class WindOnshoreShareDailyAvg
+{
+    public array $data;
+    public array $days;
+    public bool $deprecated;
+}
+
+/** Request payload for WindOnshoreShareDailyAvg#list. */
+class WindOnshoreShareDailyAvgListMatch
+{
+    public ?string $country = null;
+    public ?int $year = null;
 }
 

@@ -83,67 +83,52 @@ func MakeConfig() map[string]any {
 				"content-type": "application/json",
 			},
 			"entity": map[string]any{
-				"cross_border_model": map[string]any{},
-				"daily_avg_dict": map[string]any{},
+				"cbet": map[string]any{},
+				"cbpf": map[string]any{},
 				"frequency": map[string]any{},
 				"installed_model": map[string]any{},
 				"price": map[string]any{},
-				"production_model": map[string]any{},
+				"public_power": map[string]any{},
 				"public_power_forecast": map[string]any{},
+				"ren_share_daily_avg": map[string]any{},
 				"ren_share_model": map[string]any{},
-				"share_model": map[string]any{},
+				"solar_share": map[string]any{},
+				"solar_share_daily_avg": map[string]any{},
+				"total_power": map[string]any{},
 				"traffic_model": map[string]any{},
+				"wind_offshore_share": map[string]any{},
+				"wind_offshore_share_daily_avg": map[string]any{},
+				"wind_onshore_share": map[string]any{},
+				"wind_onshore_share_daily_avg": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
-			"cross_border_model": map[string]any{
+			"cbet": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "countries",
+						"title": "Countries",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
+						"title": "Unix Seconds",
 						"type": "`$ANY`",
 					},
 				},
-				"name": "cross_border_model",
+				"name": "cbet",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cbet",
@@ -152,53 +137,37 @@ func MakeConfig() map[string]any {
 										"lit": "cbet",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-										"end",
-										"start",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"cbet",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"example": "de",
-											"kind": "query",
 											"name": "country",
 											"orig": "country",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
 										},
 										map[string]any{
-											"example": "",
-											"kind": "query",
 											"name": "end",
 											"orig": "end",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
 										},
 										map[string]any{
-											"example": "",
-											"kind": "query",
 											"name": "start",
 											"orig": "start",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/cbpf",
-								"segments": []any{
-									map[string]any{
-										"lit": "cbpf",
 									},
 								},
 								"select": map[string]any{
@@ -207,13 +176,6 @@ func MakeConfig() map[string]any {
 										"end",
 										"start",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"cbpf",
 								},
 							},
 						},
@@ -223,194 +185,79 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"daily_avg_dict": map[string]any{
+			"cbpf": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "data",
-						"req": true,
-						"short": "List of average daily values",
-						"type": "`$ARRAY`",
-					},
-					map[string]any{
-						"name": "days",
-						"req": true,
-						"short": "List of days in the format dd.mm.yyyy",
-						"type": "`$ARRAY`",
+						"name": "countries",
+						"title": "Countries",
+						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "unix_seconds",
+						"title": "Unix Seconds",
+						"type": "`$ANY`",
 					},
 				},
-				"name": "daily_avg_dict",
+				"name": "cbpf",
 				"op": map[string]any{
-					"list": map[string]any{
+					"load": map[string]any{
 						"input": "data",
-						"name": "list",
+						"name": "load",
 						"points": []any{
 							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/cbpf",
+								"segments": []any{
+									map[string]any{
+										"lit": "cbpf",
+									},
+								},
+								"parts": []any{
+									"cbpf",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"example": "de",
-											"kind": "query",
 											"name": "country",
 											"orig": "country",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
 										},
 										map[string]any{
-											"example": -1,
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
 											"kind": "query",
-											"name": "year",
-											"orig": "year",
-											"type": "`$INTEGER`",
+											"example": "",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/ren_share_daily_avg",
-								"segments": []any{
-									map[string]any{
-										"lit": "ren_share_daily_avg",
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"country",
-										"year",
+										"end",
+										"start",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"ren_share_daily_avg",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": -1,
-											"kind": "query",
-											"name": "year",
-											"orig": "year",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/solar_share_daily_avg",
-								"segments": []any{
-									map[string]any{
-										"lit": "solar_share_daily_avg",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-										"year",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"solar_share_daily_avg",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": -1,
-											"kind": "query",
-											"name": "year",
-											"orig": "year",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/wind_offshore_share_daily_avg",
-								"segments": []any{
-									map[string]any{
-										"lit": "wind_offshore_share_daily_avg",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-										"year",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"wind_offshore_share_daily_avg",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": -1,
-											"kind": "query",
-											"name": "year",
-											"orig": "year",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/wind_onshore_share_daily_avg",
-								"segments": []any{
-									map[string]any{
-										"lit": "wind_onshore_share_daily_avg",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-										"year",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"wind_onshore_share_daily_avg",
 								},
 							},
 						},
@@ -424,16 +271,19 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "data",
-						"req": true,
+						"title": "Data",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
+						"title": "Unix Seconds",
 						"type": "`$ANY`",
 					},
 				},
@@ -444,31 +294,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "DE-Freiburg",
-											"kind": "query",
-											"name": "region",
-											"orig": "region",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/frequency",
@@ -477,19 +302,45 @@ func MakeConfig() map[string]any {
 										"lit": "frequency",
 									},
 								},
+								"parts": []any{
+									"frequency",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "region",
+											"orig": "region",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "DE-Freiburg",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"end",
 										"region",
 										"start",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"frequency",
 								},
 							},
 						},
@@ -503,22 +354,26 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "last_update",
-						"req": true,
+						"title": "Last Update",
 						"type": "`$ANY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "production_types",
+						"title": "Production Types",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "time",
-						"req": true,
+						"title": "Time",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 				},
 				"name": "installed_model",
@@ -528,31 +383,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": false,
-											"kind": "query",
-											"name": "installation_decommission",
-											"orig": "installation_decommission",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": "yearly",
-											"kind": "query",
-											"name": "time_step",
-											"orig": "time_step",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/installed_power",
@@ -561,19 +391,45 @@ func MakeConfig() map[string]any {
 										"lit": "installed_power",
 									},
 								},
+								"parts": []any{
+									"installed_power",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "installation_decommission",
+											"orig": "installation_decommission",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+											"example": false,
+										},
+										map[string]any{
+											"name": "time_step",
+											"orig": "time_step",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "yearly",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"country",
 										"installation_decommission",
 										"time_step",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"installed_power",
 								},
 							},
 						},
@@ -587,25 +443,30 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "license_info",
-						"req": true,
+						"title": "License Info",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "price",
+						"title": "Price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "unit",
-						"req": true,
+						"title": "Unit",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
+						"title": "Unix Seconds",
 						"type": "`$ANY`",
 					},
 				},
@@ -616,37 +477,45 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "DE-LU",
-											"kind": "query",
-											"name": "bzn",
-											"orig": "bzn",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/price",
 								"segments": []any{
 									map[string]any{
 										"lit": "price",
+									},
+								},
+								"parts": []any{
+									"price",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.price`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bzn",
+											"orig": "bzn",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "DE-LU",
+										},
+										map[string]any{
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -656,13 +525,6 @@ func MakeConfig() map[string]any {
 										"start",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.price`",
-								},
-								"parts": []any{
-									"price",
-								},
 							},
 						},
 					},
@@ -671,67 +533,78 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"production_model": map[string]any{
+			"public_power": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "production_types",
+						"title": "Production Types",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "unix_seconds",
+						"title": "Unix Seconds",
 						"type": "`$ANY`",
 					},
 				},
-				"name": "production_model",
+				"name": "public_power",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "subtype",
-											"orig": "subtype",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power",
 								"segments": []any{
 									map[string]any{
 										"lit": "public_power",
+									},
+								},
+								"parts": []any{
+									"public_power",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "subtype",
+											"orig": "subtype",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -741,62 +614,6 @@ func MakeConfig() map[string]any {
 										"start",
 										"subtype",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"public_power",
-								},
-							},
-							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/total_power",
-								"segments": []any{
-									map[string]any{
-										"lit": "total_power",
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-										"end",
-										"start",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"total_power",
 								},
 							},
 						},
@@ -810,28 +627,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "forecast_type",
-						"req": true,
+						"title": "Forecast Type",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "forecast_values",
-						"req": true,
+						"title": "Forecast Values",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "production_type",
-						"req": true,
+						"title": "Production Type",
 						"type": "`$STRING`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
-						"req": true,
+						"title": "Unix Seconds",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 				},
 				"name": "public_power_forecast",
@@ -841,51 +663,59 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "end",
-											"orig": "end",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "current",
-											"kind": "query",
-											"name": "forecast_type",
-											"orig": "forecast_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "solar",
-											"kind": "query",
-											"name": "production_type",
-											"orig": "production_type",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "start",
-											"orig": "start",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/public_power_forecast",
 								"segments": []any{
 									map[string]any{
 										"lit": "public_power_forecast",
+									},
+								},
+								"parts": []any{
+									"public_power_forecast",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "forecast_type",
+											"orig": "forecast_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "current",
+										},
+										map[string]any{
+											"name": "production_type",
+											"orig": "production_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "solar",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -897,12 +727,83 @@ func MakeConfig() map[string]any {
 										"start",
 									},
 								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"ren_share_daily_avg": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of average daily values",
+					},
+					map[string]any{
+						"name": "days",
+						"title": "Days",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of days in the format dd.mm.yyyy",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+				},
+				"name": "ren_share_daily_avg",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/ren_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "ren_share_daily_avg",
+									},
+								},
+								"parts": []any{
+									"ren_share_daily_avg",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"public_power_forecast",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "year",
+											"orig": "year",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": -1,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+										"year",
+									},
 								},
 							},
 						},
@@ -916,34 +817,41 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "ren_share",
-						"req": true,
+						"title": "Ren Share",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "solar_share",
+						"title": "Solar Share",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "substitute",
-						"req": true,
+						"title": "Substitute",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
-						"req": true,
+						"title": "Unix Seconds",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "wind_offshore_share",
+						"title": "Wind Offshore Share",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "wind_onshore_share",
+						"title": "Wind Onshore Share",
 						"type": "`$ANY`",
 					},
 				},
@@ -954,17 +862,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/ren_share_forecast",
@@ -973,17 +870,29 @@ func MakeConfig() map[string]any {
 										"lit": "ren_share_forecast",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-									},
+								"parts": []any{
+									"ren_share_forecast",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"ren_share_forecast",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+									},
 								},
 							},
 						},
@@ -993,44 +902,37 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"share_model": map[string]any{
+			"solar_share": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "data",
+						"title": "Data",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "forecast",
+						"title": "Forecast",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "unix_seconds",
+						"title": "Unix Seconds",
 						"type": "`$ANY`",
 					},
 				},
-				"name": "share_model",
+				"name": "solar_share",
 				"op": map[string]any{
 					"load": map[string]any{
 						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/solar_share",
@@ -1039,37 +941,23 @@ func MakeConfig() map[string]any {
 										"lit": "solar_share",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"country",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"solar_share",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"example": "de",
-											"kind": "query",
 											"name": "country",
 											"orig": "country",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/wind_offshore_share",
-								"segments": []any{
-									map[string]any{
-										"lit": "wind_offshore_share",
 									},
 								},
 								"select": map[string]any{
@@ -1077,45 +965,165 @@ func MakeConfig() map[string]any {
 										"country",
 									},
 								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"solar_share_daily_avg": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of average daily values",
+					},
+					map[string]any{
+						"name": "days",
+						"title": "Days",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of days in the format dd.mm.yyyy",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+				},
+				"name": "solar_share_daily_avg",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/solar_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "solar_share_daily_avg",
+									},
+								},
+								"parts": []any{
+									"solar_share_daily_avg",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"wind_offshore_share",
-								},
-							},
-							map[string]any{
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"example": "de",
-											"kind": "query",
 											"name": "country",
 											"orig": "country",
 											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
 										},
-									},
-								},
-								"kind": "http",
-								"method": "GET",
-								"orig": "/wind_onshore_share",
-								"segments": []any{
-									map[string]any{
-										"lit": "wind_onshore_share",
+										map[string]any{
+											"name": "year",
+											"orig": "year",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": -1,
+										},
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
 										"country",
+										"year",
 									},
 								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"total_power": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "production_types",
+						"title": "Production Types",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "unix_seconds",
+						"title": "Unix Seconds",
+						"type": "`$ANY`",
+					},
+				},
+				"name": "total_power",
+				"op": map[string]any{
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/total_power",
+								"segments": []any{
+									map[string]any{
+										"lit": "total_power",
+									},
+								},
+								"parts": []any{
+									"total_power",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"wind_onshore_share",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "end",
+											"orig": "end",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+										"end",
+										"start",
+									},
 								},
 							},
 						},
@@ -1129,28 +1137,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "deprecated",
-						"req": true,
+						"title": "Deprecated",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "share",
-						"req": true,
+						"title": "Share",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "signal",
-						"short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
+						"title": "Signal",
 						"type": "`$ARRAY`",
+						"short": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)",
 					},
 					map[string]any{
 						"name": "substitute",
-						"req": true,
+						"title": "Substitute",
 						"type": "`$BOOLEAN`",
+						"req": true,
 					},
 					map[string]any{
 						"name": "unix_seconds",
-						"req": true,
+						"title": "Unix Seconds",
 						"type": "`$ARRAY`",
+						"req": true,
 					},
 				},
 				"name": "traffic_model",
@@ -1160,24 +1173,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "de",
-											"kind": "query",
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "",
-											"kind": "query",
-											"name": "postal_code",
-											"orig": "postal_code",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/signal",
@@ -1186,18 +1181,335 @@ func MakeConfig() map[string]any {
 										"lit": "signal",
 									},
 								},
+								"parts": []any{
+									"signal",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "postal_code",
+											"orig": "postal_code",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"country",
 										"postal_code",
 									},
 								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"wind_offshore_share": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "forecast",
+						"title": "Forecast",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "unix_seconds",
+						"title": "Unix Seconds",
+						"type": "`$ANY`",
+					},
+				},
+				"name": "wind_offshore_share",
+				"op": map[string]any{
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/wind_offshore_share",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_offshore_share",
+									},
+								},
+								"parts": []any{
+									"wind_offshore_share",
+								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+									},
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"wind_offshore_share_daily_avg": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of average daily values",
+					},
+					map[string]any{
+						"name": "days",
+						"title": "Days",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of days in the format dd.mm.yyyy",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+				},
+				"name": "wind_offshore_share_daily_avg",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/wind_offshore_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_offshore_share_daily_avg",
+									},
+								},
 								"parts": []any{
-									"signal",
+									"wind_offshore_share_daily_avg",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "year",
+											"orig": "year",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": -1,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+										"year",
+									},
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"wind_onshore_share": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+					map[string]any{
+						"name": "forecast",
+						"title": "Forecast",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "unix_seconds",
+						"title": "Unix Seconds",
+						"type": "`$ANY`",
+					},
+				},
+				"name": "wind_onshore_share",
+				"op": map[string]any{
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/wind_onshore_share",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_onshore_share",
+									},
+								},
+								"parts": []any{
+									"wind_onshore_share",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+									},
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"wind_onshore_share_daily_avg": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "data",
+						"title": "Data",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of average daily values",
+					},
+					map[string]any{
+						"name": "days",
+						"title": "Days",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "List of days in the format dd.mm.yyyy",
+					},
+					map[string]any{
+						"name": "deprecated",
+						"title": "Deprecated",
+						"type": "`$BOOLEAN`",
+						"req": true,
+					},
+				},
+				"name": "wind_onshore_share_daily_avg",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/wind_onshore_share_daily_avg",
+								"segments": []any{
+									map[string]any{
+										"lit": "wind_onshore_share_daily_avg",
+									},
+								},
+								"parts": []any{
+									"wind_onshore_share_daily_avg",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "de",
+										},
+										map[string]any{
+											"name": "year",
+											"orig": "year",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": -1,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"country",
+										"year",
+									},
 								},
 							},
 						},

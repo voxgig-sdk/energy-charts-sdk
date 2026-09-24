@@ -1,29 +1,30 @@
 -- Typed models for the EnergyCharts SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
 
----@class CrossBorderModel
+---@class Cbet
 ---@field countries? any
 ---@field deprecated boolean
 ---@field unix_seconds? any
 
----@class CrossBorderModelLoadMatch
+---@class CbetLoadMatch
 ---@field country? string
 ---@field end? string
 ---@field start? string
 
----@class DailyAvgDict
----@field data table
----@field days table
+---@class Cbpf
+---@field countries? any
 ---@field deprecated boolean
+---@field unix_seconds? any
 
----@class DailyAvgDictListMatch
+---@class CbpfLoadMatch
 ---@field country? string
----@field year? number
+---@field end? string
+---@field start? string
 
 ---@class Frequency
 ---@field data table
@@ -58,12 +59,12 @@
 ---@field end? string
 ---@field start? string
 
----@class ProductionModel
+---@class PublicPower
 ---@field deprecated boolean
 ---@field production_types? any
 ---@field unix_seconds? any
 
----@class ProductionModelLoadMatch
+---@class PublicPowerLoadMatch
 ---@field country? string
 ---@field end? string
 ---@field start? string
@@ -83,6 +84,15 @@
 ---@field production_type? string
 ---@field start? string
 
+---@class RenShareDailyAvg
+---@field data table
+---@field days table
+---@field deprecated boolean
+
+---@class RenShareDailyAvgListMatch
+---@field country? string
+---@field year? number
+
 ---@class RenShareModel
 ---@field deprecated boolean
 ---@field ren_share table
@@ -95,14 +105,33 @@
 ---@class RenShareModelListMatch
 ---@field country? string
 
----@class ShareModel
+---@class SolarShare
 ---@field data? any
 ---@field deprecated boolean
 ---@field forecast? any
 ---@field unix_seconds? any
 
----@class ShareModelLoadMatch
+---@class SolarShareLoadMatch
 ---@field country? string
+
+---@class SolarShareDailyAvg
+---@field data table
+---@field days table
+---@field deprecated boolean
+
+---@class SolarShareDailyAvgListMatch
+---@field country? string
+---@field year? number
+
+---@class TotalPower
+---@field deprecated boolean
+---@field production_types? any
+---@field unix_seconds? any
+
+---@class TotalPowerLoadMatch
+---@field country? string
+---@field end? string
+---@field start? string
 
 ---@class TrafficModel
 ---@field deprecated boolean
@@ -114,6 +143,42 @@
 ---@class TrafficModelListMatch
 ---@field country? string
 ---@field postal_code? string
+
+---@class WindOffshoreShare
+---@field data? any
+---@field deprecated boolean
+---@field forecast? any
+---@field unix_seconds? any
+
+---@class WindOffshoreShareLoadMatch
+---@field country? string
+
+---@class WindOffshoreShareDailyAvg
+---@field data table
+---@field days table
+---@field deprecated boolean
+
+---@class WindOffshoreShareDailyAvgListMatch
+---@field country? string
+---@field year? number
+
+---@class WindOnshoreShare
+---@field data? any
+---@field deprecated boolean
+---@field forecast? any
+---@field unix_seconds? any
+
+---@class WindOnshoreShareLoadMatch
+---@field country? string
+
+---@class WindOnshoreShareDailyAvg
+---@field data table
+---@field days table
+---@field deprecated boolean
+
+---@class WindOnshoreShareDailyAvgListMatch
+---@field country? string
+---@field year? number
 
 local M = {}
 

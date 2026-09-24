@@ -9,18 +9,6 @@ import (
 	sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 )
 
-// registerSDKWords installs three native boru words bound to the SDK:
-// list / load / update. Each is declared with two overloads matching
-// the signature  [query?:(Node or Scalar) entity:atom]:
-//
-//   [entity:Atom]            — no query (e.g. `list book`)
-//   [query:Any entity:Atom]  — query is any Node or Scalar (e.g.
-//                              `load {id:1} book`, `load 1 book`)
-//
-// The entity slot is /q-quoted so a bareword `book` parses as the
-// Atom "book" rather than dispatching as an undefined word. Both
-// overloads are all-forward (BarrierAllForward), so args are collected
-// from the tokens following the word.
 func registerSDKWords(r *eng.Registry, client *sdk.EnergyChartsSDK) {
 	for _, op := range []string{"list", "load", "update"} {
 		op := op
@@ -89,26 +77,40 @@ func runOp(client *sdk.EnergyChartsSDK, op string, query *eng.Value, entityAtom 
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.EnergyChartsSDK, name string) (sdk.EnergyChartsEntity, error) {
 	switch strings.ToLower(name) {
-	case "cross_border_model":
-		return client.CrossBorderModel(nil), nil
-	case "daily_avg_dict":
-		return client.DailyAvgDict(nil), nil
+	case "cbet":
+		return client.Cbet(nil), nil
+	case "cbpf":
+		return client.Cbpf(nil), nil
 	case "frequency":
 		return client.Frequency(nil), nil
 	case "installed_model":
 		return client.InstalledModel(nil), nil
 	case "price":
 		return client.Price(nil), nil
-	case "production_model":
-		return client.ProductionModel(nil), nil
+	case "public_power":
+		return client.PublicPower(nil), nil
 	case "public_power_forecast":
 		return client.PublicPowerForecast(nil), nil
+	case "ren_share_daily_avg":
+		return client.RenShareDailyAvg(nil), nil
 	case "ren_share_model":
 		return client.RenShareModel(nil), nil
-	case "share_model":
-		return client.ShareModel(nil), nil
+	case "solar_share":
+		return client.SolarShare(nil), nil
+	case "solar_share_daily_avg":
+		return client.SolarShareDailyAvg(nil), nil
+	case "total_power":
+		return client.TotalPower(nil), nil
 	case "traffic_model":
 		return client.TrafficModel(nil), nil
+	case "wind_offshore_share":
+		return client.WindOffshoreShare(nil), nil
+	case "wind_offshore_share_daily_avg":
+		return client.WindOffshoreShareDailyAvg(nil), nil
+	case "wind_onshore_share":
+		return client.WindOnshoreShare(nil), nil
+	case "wind_onshore_share_daily_avg":
+		return client.WindOnshoreShareDailyAvg(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

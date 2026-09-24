@@ -5,7 +5,7 @@
 The TypeScript SDK for the EnergyCharts API — a type-safe, entity-oriented client with full async/await support.
 
 The API is exposed as capitalised, semantic **Entities** — e.g.
-`client.CrossBorderModel()` — each with a small set of operations (`list`, `load`)
+`client.Cbet()` — each with a small set of operations (`list`, `load`)
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
@@ -33,14 +33,14 @@ import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts-sdk'
 const client = new EnergyChartsSDK()
 ```
 
-### 3. Load a crossbordermodel
+### 3. Load a cbet
 
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const crossbordermodel = await client.CrossBorderModel().load()
-  console.log(crossbordermodel)
+  const cbet = await client.Cbet().load()
+  console.log(cbet)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -53,10 +53,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const installedmodels = await client.InstalledModel().list()
-  console.log(installedmodels)
+  const publicpower = await client.PublicPower().load()
+  console.log(publicpower)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -120,10 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = EnergyChartsSDK.test()
 
-const installedmodel = await client.InstalledModel().list()
-// installedmodel is the entity, populated with mock response data
-// — call installedmodel.data() for the record itself
-console.log(installedmodel)
+const publicpower = await client.PublicPower().load()
+// publicpower is the entity, populated with mock response data
+// — call publicpower.data() for the record itself
+console.log(publicpower)
 ```
 
 You can also use the instance method:
@@ -138,10 +138,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.InstalledModel()
+const entity = client.PublicPower()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -221,16 +221,23 @@ new EnergyChartsSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `CrossBorderModel(data?)` | `CrossBorderModelEntity` | Create a CrossBorderModel entity instance. |
-| `DailyAvgDict(data?)` | `DailyAvgDictEntity` | Create a DailyAvgDict entity instance. |
+| `Cbet(data?)` | `CbetEntity` | Create a Cbet entity instance. |
+| `Cbpf(data?)` | `CbpfEntity` | Create a Cbpf entity instance. |
 | `Frequency(data?)` | `FrequencyEntity` | Create a Frequency entity instance. |
 | `InstalledModel(data?)` | `InstalledModelEntity` | Create an InstalledModel entity instance. |
 | `Price(data?)` | `PriceEntity` | Create a Price entity instance. |
-| `ProductionModel(data?)` | `ProductionModelEntity` | Create a ProductionModel entity instance. |
+| `PublicPower(data?)` | `PublicPowerEntity` | Create a PublicPower entity instance. |
 | `PublicPowerForecast(data?)` | `PublicPowerForecastEntity` | Create a PublicPowerForecast entity instance. |
+| `RenShareDailyAvg(data?)` | `RenShareDailyAvgEntity` | Create a RenShareDailyAvg entity instance. |
 | `RenShareModel(data?)` | `RenShareModelEntity` | Create a RenShareModel entity instance. |
-| `ShareModel(data?)` | `ShareModelEntity` | Create a ShareModel entity instance. |
+| `SolarShare(data?)` | `SolarShareEntity` | Create a SolarShare entity instance. |
+| `SolarShareDailyAvg(data?)` | `SolarShareDailyAvgEntity` | Create a SolarShareDailyAvg entity instance. |
+| `TotalPower(data?)` | `TotalPowerEntity` | Create a TotalPower entity instance. |
 | `TrafficModel(data?)` | `TrafficModelEntity` | Create a TrafficModel entity instance. |
+| `WindOffshoreShare(data?)` | `WindOffshoreShareEntity` | Create a WindOffshoreShare entity instance. |
+| `WindOffshoreShareDailyAvg(data?)` | `WindOffshoreShareDailyAvgEntity` | Create a WindOffshoreShareDailyAvg entity instance. |
+| `WindOnshoreShare(data?)` | `WindOnshoreShareEntity` | Create a WindOnshoreShare entity instance. |
+| `WindOnshoreShareDailyAvg(data?)` | `WindOnshoreShareDailyAvgEntity` | Create a WindOnshoreShareDailyAvg entity instance. |
 | `tester(testopts?, sdkopts?)` | `EnergyChartsSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -298,7 +305,7 @@ The `prepare()` method returns:
 
 ### Entities
 
-#### CrossBorderModel
+#### Cbet
 
 | Field | Description |
 | --- | --- |
@@ -310,17 +317,17 @@ Operations: load.
 
 API path: `/cbet`
 
-#### DailyAvgDict
+#### Cbpf
 
 | Field | Description |
 | --- | --- |
-| `data` | List of average daily values |
-| `days` | List of days in the format dd.mm.yyyy |
+| `countries` |  |
 | `deprecated` |  |
+| `unix_seconds` |  |
 
-Operations: list.
+Operations: load.
 
-API path: `/ren_share_daily_avg`
+API path: `/cbpf`
 
 #### Frequency
 
@@ -361,7 +368,7 @@ Operations: load.
 
 API path: `/price`
 
-#### ProductionModel
+#### PublicPower
 
 | Field | Description |
 | --- | --- |
@@ -387,6 +394,18 @@ Operations: list.
 
 API path: `/public_power_forecast`
 
+#### RenShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: list.
+
+API path: `/ren_share_daily_avg`
+
 #### RenShareModel
 
 | Field | Description |
@@ -403,7 +422,7 @@ Operations: list.
 
 API path: `/ren_share_forecast`
 
-#### ShareModel
+#### SolarShare
 
 | Field | Description |
 | --- | --- |
@@ -415,6 +434,30 @@ API path: `/ren_share_forecast`
 Operations: load.
 
 API path: `/solar_share`
+
+#### SolarShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: list.
+
+API path: `/solar_share_daily_avg`
+
+#### TotalPower
+
+| Field | Description |
+| --- | --- |
+| `deprecated` |  |
+| `production_types` |  |
+| `unix_seconds` |  |
+
+Operations: load.
+
+API path: `/total_power`
 
 #### TrafficModel
 
@@ -430,14 +473,64 @@ Operations: list.
 
 API path: `/signal`
 
+#### WindOffshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: load.
+
+API path: `/wind_offshore_share`
+
+#### WindOffshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: list.
+
+API path: `/wind_offshore_share_daily_avg`
+
+#### WindOnshoreShare
+
+| Field | Description |
+| --- | --- |
+| `data` |  |
+| `deprecated` |  |
+| `forecast` |  |
+| `unix_seconds` |  |
+
+Operations: load.
+
+API path: `/wind_onshore_share`
+
+#### WindOnshoreShareDailyAvg
+
+| Field | Description |
+| --- | --- |
+| `data` | List of average daily values |
+| `days` | List of days in the format dd.mm.yyyy |
+| `deprecated` |  |
+
+Operations: list.
+
+API path: `/wind_onshore_share_daily_avg`
+
 
 
 ## Entities
 
 
-### CrossBorderModel
+### Cbet
 
-Create an instance: `const cross_border_model = client.CrossBorderModel()`
+Create an instance: `const cbet = client.Cbet()`
 
 #### Operations
 
@@ -456,32 +549,32 @@ Create an instance: `const cross_border_model = client.CrossBorderModel()`
 #### Example: Load
 
 ```ts
-const cross_border_model = await client.CrossBorderModel().load()
+const cbet = await client.Cbet().load()
 ```
 
 
-### DailyAvgDict
+### Cbpf
 
-Create an instance: `const daily_avg_dict = client.DailyAvgDict()`
+Create an instance: `const cbpf = client.Cbpf()`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `any[]` | List of average daily values |
-| `days` | `any[]` | List of days in the format dd.mm.yyyy |
+| `countries` | `any` |  |
 | `deprecated` | `boolean` |  |
+| `unix_seconds` | `any` |  |
 
-#### Example: List
+#### Example: Load
 
 ```ts
-const daily_avg_dicts = await client.DailyAvgDict().list()
+const cbpf = await client.Cbpf().load()
 ```
 
 
@@ -563,9 +656,9 @@ const price = await client.Price().load()
 ```
 
 
-### ProductionModel
+### PublicPower
 
-Create an instance: `const production_model = client.ProductionModel()`
+Create an instance: `const public_power = client.PublicPower()`
 
 #### Operations
 
@@ -584,7 +677,7 @@ Create an instance: `const production_model = client.ProductionModel()`
 #### Example: Load
 
 ```ts
-const production_model = await client.ProductionModel().load()
+const public_power = await client.PublicPower().load()
 ```
 
 
@@ -612,6 +705,31 @@ Create an instance: `const public_power_forecast = client.PublicPowerForecast()`
 
 ```ts
 const public_power_forecasts = await client.PublicPowerForecast().list()
+```
+
+
+### RenShareDailyAvg
+
+Create an instance: `const ren_share_daily_avg = client.RenShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any[]` | List of average daily values |
+| `days` | `any[]` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```ts
+const ren_share_daily_avgs = await client.RenShareDailyAvg().list()
 ```
 
 
@@ -644,9 +762,9 @@ const ren_share_models = await client.RenShareModel().list()
 ```
 
 
-### ShareModel
+### SolarShare
 
-Create an instance: `const share_model = client.ShareModel()`
+Create an instance: `const solar_share = client.SolarShare()`
 
 #### Operations
 
@@ -666,7 +784,57 @@ Create an instance: `const share_model = client.ShareModel()`
 #### Example: Load
 
 ```ts
-const share_model = await client.ShareModel().load()
+const solar_share = await client.SolarShare().load()
+```
+
+
+### SolarShareDailyAvg
+
+Create an instance: `const solar_share_daily_avg = client.SolarShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any[]` | List of average daily values |
+| `days` | `any[]` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```ts
+const solar_share_daily_avgs = await client.SolarShareDailyAvg().list()
+```
+
+
+### TotalPower
+
+Create an instance: `const total_power = client.TotalPower()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `deprecated` | `boolean` |  |
+| `production_types` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```ts
+const total_power = await client.TotalPower().load()
 ```
 
 
@@ -694,6 +862,108 @@ Create an instance: `const traffic_model = client.TrafficModel()`
 
 ```ts
 const traffic_models = await client.TrafficModel().list()
+```
+
+
+### WindOffshoreShare
+
+Create an instance: `const wind_offshore_share = client.WindOffshoreShare()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```ts
+const wind_offshore_share = await client.WindOffshoreShare().load()
+```
+
+
+### WindOffshoreShareDailyAvg
+
+Create an instance: `const wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any[]` | List of average daily values |
+| `days` | `any[]` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```ts
+const wind_offshore_share_daily_avgs = await client.WindOffshoreShareDailyAvg().list()
+```
+
+
+### WindOnshoreShare
+
+Create an instance: `const wind_onshore_share = client.WindOnshoreShare()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any` |  |
+| `deprecated` | `boolean` |  |
+| `forecast` | `any` |  |
+| `unix_seconds` | `any` |  |
+
+#### Example: Load
+
+```ts
+const wind_onshore_share = await client.WindOnshoreShare().load()
+```
+
+
+### WindOnshoreShareDailyAvg
+
+Create an instance: `const wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list(match)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `data` | `any[]` | List of average daily values |
+| `days` | `any[]` | List of days in the format dd.mm.yyyy |
+| `deprecated` | `boolean` |  |
+
+#### Example: List
+
+```ts
+const wind_onshore_share_daily_avgs = await client.WindOnshoreShareDailyAvg().list()
 ```
 
 ## Features
@@ -845,16 +1115,16 @@ import { EnergyChartsSDK } from '@voxgig-sdk/energy-charts-sdk'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const installedmodel = client.InstalledModel()
-await installedmodel.list()
+const publicpower = client.PublicPower()
+await publicpower.load()
 
-// installedmodel.data() now returns the installedmodel data from the last `list`
-// installedmodel.match() returns the last match criteria
+// publicpower.data() now returns the publicpower data from the last `load`
+// publicpower.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

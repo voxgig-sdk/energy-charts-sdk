@@ -19,7 +19,6 @@ import type {
   InstalledModelListMatch,
 } from '../EnergyChartsTypes'
 
-// TODO: needs Entity superclass
 class InstalledModelEntity extends EnergyChartsEntityBase<InstalledModel> {
 
   constructor(client: EnergyChartsSDK, entopts: any) {

@@ -41,11 +41,11 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewCrossBorderModelEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
-		return entity.NewCrossBorderModelEntity(client, entopts)
+	core.NewCbetEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewCbetEntity(client, entopts)
 	}
-	core.NewDailyAvgDictEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
-		return entity.NewDailyAvgDictEntity(client, entopts)
+	core.NewCbpfEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewCbpfEntity(client, entopts)
 	}
 	core.NewFrequencyEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
 		return entity.NewFrequencyEntity(client, entopts)
@@ -56,20 +56,41 @@ func init() {
 	core.NewPriceEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
 		return entity.NewPriceEntity(client, entopts)
 	}
-	core.NewProductionModelEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
-		return entity.NewProductionModelEntity(client, entopts)
+	core.NewPublicPowerEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewPublicPowerEntity(client, entopts)
 	}
 	core.NewPublicPowerForecastEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
 		return entity.NewPublicPowerForecastEntity(client, entopts)
 	}
+	core.NewRenShareDailyAvgEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewRenShareDailyAvgEntity(client, entopts)
+	}
 	core.NewRenShareModelEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
 		return entity.NewRenShareModelEntity(client, entopts)
 	}
-	core.NewShareModelEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
-		return entity.NewShareModelEntity(client, entopts)
+	core.NewSolarShareEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewSolarShareEntity(client, entopts)
+	}
+	core.NewSolarShareDailyAvgEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewSolarShareDailyAvgEntity(client, entopts)
+	}
+	core.NewTotalPowerEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewTotalPowerEntity(client, entopts)
 	}
 	core.NewTrafficModelEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
 		return entity.NewTrafficModelEntity(client, entopts)
+	}
+	core.NewWindOffshoreShareEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewWindOffshoreShareEntity(client, entopts)
+	}
+	core.NewWindOffshoreShareDailyAvgEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewWindOffshoreShareDailyAvgEntity(client, entopts)
+	}
+	core.NewWindOnshoreShareEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewWindOnshoreShareEntity(client, entopts)
+	}
+	core.NewWindOnshoreShareDailyAvgEntityFunc = func(client *core.EnergyChartsSDK, entopts map[string]any) core.EnergyChartsEntity {
+		return entity.NewWindOnshoreShareDailyAvgEntity(client, entopts)
 	}
 }
 
