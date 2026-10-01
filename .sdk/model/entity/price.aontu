@@ -92,7 +92,7 @@ main: kit: entity: price: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.price`"
+            res: "`body`"
           }
         }
       ]

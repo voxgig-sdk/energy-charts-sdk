@@ -513,7 +513,7 @@ class EnergyChartsConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.price`',
+                    'res' => '`body`',
                   ],
                   'args' => [
                     'query' => [

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 EnergyChartsUtility.registrar = ->(u) {
   u.clean = EnergyChartsUtilities::Clean
+  u.clean_add = EnergyChartsUtilities::CleanAdd
+  u.clean_explain = EnergyChartsUtilities::CleanExplain
   u.done = EnergyChartsUtilities::Done
   u.make_error = EnergyChartsUtilities::MakeError
   u.feature_add = EnergyChartsUtilities::FeatureAdd

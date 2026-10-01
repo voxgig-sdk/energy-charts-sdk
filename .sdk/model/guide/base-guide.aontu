@@ -35,7 +35,6 @@ guide: {
   entity: price: {
     path: "/price": {
       op: load: method: *GET
-      op: load: transform: res: *("`body.price`")|top
     }
   }
 

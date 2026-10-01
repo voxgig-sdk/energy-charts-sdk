@@ -516,7 +516,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.price`",
+                  "res": "`body`",
                 },
                 "args": {
                   "query": [

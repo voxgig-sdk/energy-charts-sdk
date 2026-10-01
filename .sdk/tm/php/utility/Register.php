@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 EnergyChartsUtility::setRegistrar(function (EnergyChartsUtility $u): void {
     $u->clean = [EnergyChartsClean::class, 'call'];
+    $u->clean_add = [EnergyChartsClean::class, 'add'];
+    $u->clean_explain = [EnergyChartsDone::class, 'clean_explain'];
     $u->done = [EnergyChartsDone::class, 'call'];
     $u->make_error = [EnergyChartsMakeError::class, 'call'];
     $u->feature_add = [EnergyChartsFeatureAdd::class, 'call'];
