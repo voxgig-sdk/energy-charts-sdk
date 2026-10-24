@@ -66,12 +66,9 @@ main: kit: entity: cbpf: {
           }
           m: "GET"
           o: "/cbpf"
-          q: {
-            exist: [
-              "country"
-              "end"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -66,12 +66,9 @@ main: kit: entity: cbet: {
           }
           m: "GET"
           o: "/cbet"
-          q: {
-            exist: [
-              "country"
-              "end"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

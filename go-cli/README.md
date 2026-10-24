@@ -21,6 +21,7 @@ export ENERGY_CHARTS_APIKEY=sk_live_xxx
 # 4. Each command line is ONE boru expression, run against the API:
 ./energy-charts-cli load 1 cbet            # {id:1} shorthand
 ./energy-charts-cli load '{id:1}' cbet       # explicit match map
+./energy-charts-cli list frequency
 
 # 5. Override the API base URL for a single call
 ENERGY_CHARTS_BASE=https://api.example.com ./energy-charts-cli load 1 cbet

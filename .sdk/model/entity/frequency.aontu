@@ -66,12 +66,9 @@ main: kit: entity: frequency: {
           }
           m: "GET"
           o: "/frequency"
-          q: {
-            exist: [
-              "end"
-              "region"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

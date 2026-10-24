@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { EnergyChartsSDK, BaseFeature, stdutil } from '../../..'
+import { EnergyChartsSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('CbetEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Cbet().load({"country":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE
@@ -51,7 +63,7 @@ describe('CbetEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"countries":{"a":true,"h":"Countries","n":"countries","r":false,"t":"`$ANY`","key$":"countries","index$":0},"deprecated":{"a":true,"h":"Deprecated","n":"deprecated","r":true,"t":"`$BOOLEAN`","key$":"deprecated","index$":1},"unix_seconds":{"a":true,"h":"Unix Seconds","n":"unix_seconds","r":false,"t":"`$ANY`","key$":"unix_seconds","index$":2}},"name":"cbet","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cbet","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"de","k":"query","n":"country","or":"country","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"","k":"query","n":"end","or":"end","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"","k":"query","n":"start","or":"start","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/cbet","q":{"exist":["country","end","start"]},"r":{},"s":[{"lit":"cbet"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"cbet","name__orig":"cbet","Name":"Cbet","name_":"cbet","name-":"cbet","NAME":"CBET","index$":0}, {"active":true,"entity":"cbet","key$":"BasicCbetFlow","kind":"basic","name":"BasicCbetFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"cbet_ref01","srcdatavar":"cbet_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-cbet_ref01"}}],"index$":0}]}, 'Cbet', {"GET /cbet":{"protocol":"http","parameters":[{"name":"country","in":"query","required":false,"schema":{"type":"string","default":"de","title":"Country"},"index$":0},{"name":"start","in":"query","required":false,"schema":{"type":"string","default":"","title":"Start"},"index$":1},{"name":"end","in":"query","required":false,"schema":{"type":"string","default":"","title":"End"},"index$":2}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"countries":{"a":true,"h":"Countries","n":"countries","r":false,"t":"`$ANY`","key$":"countries","index$":0},"deprecated":{"a":true,"h":"Deprecated","n":"deprecated","r":true,"t":"`$BOOLEAN`","key$":"deprecated","index$":1},"unix_seconds":{"a":true,"h":"Unix Seconds","n":"unix_seconds","r":false,"t":"`$ANY`","key$":"unix_seconds","index$":2}},"name":"cbet","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cbet","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"de","k":"query","n":"country","or":"country","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"","k":"query","n":"end","or":"end","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"","k":"query","n":"start","or":"start","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/cbet","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"cbet"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"cbet","name__orig":"cbet","Name":"Cbet","name_":"cbet","name-":"cbet","NAME":"CBET","index$":0}, {"active":true,"entity":"cbet","key$":"BasicCbetFlow","kind":"basic","name":"BasicCbetFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"cbet_ref01","srcdatavar":"cbet_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-cbet_ref01"}}],"index$":0}]}, 'Cbet', {"GET /cbet":{"protocol":"http","parameters":[{"name":"country","in":"query","required":false,"schema":{"type":"string","default":"de","title":"Country"},"index$":0},{"name":"start","in":"query","required":false,"schema":{"type":"string","default":"","title":"Start"},"index$":1},{"name":"end","in":"query","required":false,"schema":{"type":"string","default":"","title":"End"},"index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('CbetEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

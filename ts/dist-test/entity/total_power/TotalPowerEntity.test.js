@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.TotalPower();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.TotalPower().load({ "country": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "production_types": { "a": true, "h": "Production Types", "n": "production_types", "r": false, "t": "`$ANY`", "key$": "production_types", "index$": 1 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": false, "t": "`$ANY`", "key$": "unix_seconds", "index$": 2 } }, "name": "total_power", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /total_power", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "end", "or": "end", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "", "k": "query", "n": "start", "or": "start", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/total_power", "q": { "exist": ["country", "end", "start"] }, "r": {}, "s": [{ "lit": "total_power" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "total_power", "name__orig": "total_power", "Name": "TotalPower", "name_": "total_power", "name-": "total-power", "NAME": "TOTAL_POWER", "index$": 11 }, { "active": true, "entity": "total_power", "key$": "BasicTotalPowerFlow", "kind": "basic", "name": "BasicTotalPowerFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "total_power_ref01", "srcdatavar": "total_power_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-total_power_ref01" } }], "index$": 0 }] }, 'TotalPower', { "GET /total_power": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "start", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Start" }, "index$": 1 }, { "name": "end", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "End" }, "index$": 2 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "production_types": { "a": true, "h": "Production Types", "n": "production_types", "r": false, "t": "`$ANY`", "key$": "production_types", "index$": 1 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": false, "t": "`$ANY`", "key$": "unix_seconds", "index$": 2 } }, "name": "total_power", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /total_power", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "end", "or": "end", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "", "k": "query", "n": "start", "or": "start", "r": false, "t": "`$STRING`", "index$": 2 }] }, "k": "http", "m": "GET", "o": "/total_power", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "total_power" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "total_power", "name__orig": "total_power", "Name": "TotalPower", "name_": "total_power", "name-": "total-power", "NAME": "TOTAL_POWER", "index$": 11 }, { "active": true, "entity": "total_power", "key$": "BasicTotalPowerFlow", "kind": "basic", "name": "BasicTotalPowerFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "total_power_ref01", "srcdatavar": "total_power_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-total_power_ref01" } }], "index$": 0 }] }, 'TotalPower', { "GET /total_power": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "start", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Start" }, "index$": 1 }, { "name": "end", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "End" }, "index$": 2 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != total_power_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -16,15 +16,33 @@ const PLAN = [
         "path": "/cbet",
         "args": [],
         "select": {
-            "country": "v1",
-            "end": "v1",
-            "start": "v1"
+            "country": "de",
+            "end": "",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -34,10 +52,10 @@ const PLAN = [
             ],
             "countries": [
                 {
+                    "name": "x",
                     "data": [
                         1
-                    ],
-                    "name": "x"
+                    ]
                 }
             ],
             "deprecated": true
@@ -52,15 +70,33 @@ const PLAN = [
         "path": "/cbpf",
         "args": [],
         "select": {
-            "country": "v1",
-            "end": "v1",
-            "start": "v1"
+            "country": "de",
+            "end": "",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -70,10 +106,10 @@ const PLAN = [
             ],
             "countries": [
                 {
+                    "name": "x",
                     "data": [
                         1
-                    ],
-                    "name": "x"
+                    ]
                 }
             ],
             "deprecated": true
@@ -88,15 +124,33 @@ const PLAN = [
         "path": "/frequency",
         "args": [],
         "select": {
-            "end": "v1",
-            "region": "v1",
-            "start": "v1"
+            "end": "",
+            "region": "DE-Freiburg",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "region",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "region",
+                "wire": "region"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -119,15 +173,33 @@ const PLAN = [
         "path": "/installed_power",
         "args": [],
         "select": {
-            "country": "v1",
+            "country": "de",
             "installation_decommission": "v1",
-            "time_step": "v1"
+            "time_step": "yearly"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "time_step",
             "installation_decommission"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "installation_decommission",
+                "wire": "installation_decommission"
+            },
+            {
+                "name": "time_step",
+                "wire": "time_step"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -137,10 +209,10 @@ const PLAN = [
             ],
             "production_types": [
                 {
+                    "name": "x",
                     "data": [
                         1
-                    ],
-                    "name": "x"
+                    ]
                 }
             ],
             "last_update": 1,
@@ -156,15 +228,33 @@ const PLAN = [
         "path": "/price",
         "args": [],
         "select": {
-            "bzn": "v1",
-            "end": "v1",
-            "start": "v1"
+            "bzn": "DE-LU",
+            "end": "",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "bzn",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "bzn",
+                "wire": "bzn"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -189,17 +279,39 @@ const PLAN = [
         "path": "/public_power",
         "args": [],
         "select": {
-            "country": "v1",
-            "end": "v1",
-            "start": "v1",
-            "subtype": "v1"
+            "country": "de",
+            "end": "",
+            "start": "",
+            "subtype": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "start",
             "end",
             "subtype"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            },
+            {
+                "name": "subtype",
+                "wire": "subtype"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -209,10 +321,10 @@ const PLAN = [
             ],
             "production_types": [
                 {
+                    "name": "x",
                     "data": [
                         1
-                    ],
-                    "name": "x"
+                    ]
                 }
             ],
             "deprecated": true
@@ -227,19 +339,45 @@ const PLAN = [
         "path": "/public_power_forecast",
         "args": [],
         "select": {
-            "country": "v1",
-            "end": "v1",
-            "forecast_type": "v1",
-            "production_type": "v1",
-            "start": "v1"
+            "country": "de",
+            "end": "",
+            "forecast_type": "current",
+            "production_type": "solar",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "production_type",
             "forecast_type",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "forecast_type",
+                "wire": "forecast_type"
+            },
+            {
+                "name": "production_type",
+                "wire": "production_type"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -264,13 +402,27 @@ const PLAN = [
         "path": "/ren_share_daily_avg",
         "args": [],
         "select": {
-            "country": "v1",
-            "year": "v1"
+            "country": "de",
+            "year": -1
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "year"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "year",
+                "wire": "year"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -293,11 +445,21 @@ const PLAN = [
         "path": "/ren_share_forecast",
         "args": [],
         "select": {
-            "country": "v1"
+            "country": "de"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -330,11 +492,21 @@ const PLAN = [
         "path": "/solar_share",
         "args": [],
         "select": {
-            "country": "v1"
+            "country": "de"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -360,13 +532,27 @@ const PLAN = [
         "path": "/solar_share_daily_avg",
         "args": [],
         "select": {
-            "country": "v1",
-            "year": "v1"
+            "country": "de",
+            "year": -1
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "year"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "year",
+                "wire": "year"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -389,15 +575,33 @@ const PLAN = [
         "path": "/total_power",
         "args": [],
         "select": {
-            "country": "v1",
-            "end": "v1",
-            "start": "v1"
+            "country": "de",
+            "end": "",
+            "start": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "start",
             "end"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "end",
+                "wire": "end"
+            },
+            {
+                "name": "start",
+                "wire": "start"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -407,10 +611,10 @@ const PLAN = [
             ],
             "production_types": [
                 {
+                    "name": "x",
                     "data": [
                         1
-                    ],
-                    "name": "x"
+                    ]
                 }
             ],
             "deprecated": true
@@ -425,13 +629,27 @@ const PLAN = [
         "path": "/signal",
         "args": [],
         "select": {
-            "country": "v1",
-            "postal_code": "v1"
+            "country": "de",
+            "postal_code": ""
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "postal_code"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "postal_code",
+                "wire": "postal_code"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -458,11 +676,21 @@ const PLAN = [
         "path": "/wind_offshore_share",
         "args": [],
         "select": {
-            "country": "v1"
+            "country": "de"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -488,13 +716,27 @@ const PLAN = [
         "path": "/wind_offshore_share_daily_avg",
         "args": [],
         "select": {
-            "country": "v1",
-            "year": "v1"
+            "country": "de",
+            "year": -1
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "year"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "year",
+                "wire": "year"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -517,11 +759,21 @@ const PLAN = [
         "path": "/wind_onshore_share",
         "args": [],
         "select": {
-            "country": "v1"
+            "country": "de"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -547,13 +799,27 @@ const PLAN = [
         "path": "/wind_onshore_share_daily_avg",
         "args": [],
         "select": {
-            "country": "v1",
-            "year": "v1"
+            "country": "de",
+            "year": -1
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "country",
             "year"
+        ],
+        "queryArgs": [
+            {
+                "name": "country",
+                "wire": "country"
+            },
+            {
+                "name": "year",
+                "wire": "year"
+            }
         ],
         "auth": null,
         "status": 200,

@@ -56,10 +56,9 @@ main: kit: entity: wind_onshore_share: {
           }
           m: "GET"
           o: "/wind_onshore_share"
-          q: {
-            exist: [
-              "country"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

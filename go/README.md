@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/energy-charts-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/energy-charts-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/energy-charts-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -50,12 +51,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single cbet — the value is the loaded record.
+    // Load a single cbet — the value is the entity; Data() reads its record.
     cbet, err := client.Cbet(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(cbet)
+    fmt.Println(cbet.(sdk.Entity).Data())
 }
 ```
 
@@ -141,7 +142,7 @@ publicPower, err := client.PublicPower(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(publicPower) // the returned mock data
+fmt.Println(publicPower.(sdk.Entity).Data()) // the entity's mock record
 ```
 
 ### Use a custom fetch function
@@ -242,8 +243,8 @@ All entities implement the `EnergyChartsEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -251,13 +252,13 @@ All entities implement the `EnergyChartsEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -265,7 +266,7 @@ slice):
 
     cbet, err := client.Cbet(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // cbet is the returned record
+    // cbet is the entity; cbet.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -520,7 +521,7 @@ cbet, err := client.Cbet(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cbet) // the loaded record
+fmt.Println(cbet.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -549,7 +550,7 @@ cbpf, err := client.Cbpf(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(cbpf) // the loaded record
+fmt.Println(cbpf.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -578,7 +579,10 @@ frequencys, err := client.Frequency(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(frequencys) // the array of records
+// A []any of entities, one per record.
+for _, item := range frequencys.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -608,7 +612,10 @@ installedModels, err := client.InstalledModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(installedModels) // the array of records
+// A []any of entities, one per record.
+for _, item := range installedModels.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -639,7 +646,7 @@ price, err := client.Price(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(price) // the loaded record
+fmt.Println(price.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -668,7 +675,7 @@ publicPower, err := client.PublicPower(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(publicPower) // the loaded record
+fmt.Println(publicPower.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -699,7 +706,10 @@ publicPowerForecasts, err := client.PublicPowerForecast(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(publicPowerForecasts) // the array of records
+// A []any of entities, one per record.
+for _, item := range publicPowerForecasts.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -728,7 +738,10 @@ renShareDailyAvgs, err := client.RenShareDailyAvg(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(renShareDailyAvgs) // the array of records
+// A []any of entities, one per record.
+for _, item := range renShareDailyAvgs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -761,7 +774,10 @@ renShareModels, err := client.RenShareModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(renShareModels) // the array of records
+// A []any of entities, one per record.
+for _, item := range renShareModels.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -791,7 +807,7 @@ solarShare, err := client.SolarShare(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(solarShare) // the loaded record
+fmt.Println(solarShare.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -820,7 +836,10 @@ solarShareDailyAvgs, err := client.SolarShareDailyAvg(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(solarShareDailyAvgs) // the array of records
+// A []any of entities, one per record.
+for _, item := range solarShareDailyAvgs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -849,7 +868,7 @@ totalPower, err := client.TotalPower(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(totalPower) // the loaded record
+fmt.Println(totalPower.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -880,7 +899,10 @@ trafficModels, err := client.TrafficModel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(trafficModels) // the array of records
+// A []any of entities, one per record.
+for _, item := range trafficModels.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -910,7 +932,7 @@ windOffshoreShare, err := client.WindOffshoreShare(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(windOffshoreShare) // the loaded record
+fmt.Println(windOffshoreShare.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -939,7 +961,10 @@ windOffshoreShareDailyAvgs, err := client.WindOffshoreShareDailyAvg(nil).List(ni
 if err != nil {
     panic(err)
 }
-fmt.Println(windOffshoreShareDailyAvgs) // the array of records
+// A []any of entities, one per record.
+for _, item := range windOffshoreShareDailyAvgs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -969,7 +994,7 @@ windOnshoreShare, err := client.WindOnshoreShare(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(windOnshoreShare) // the loaded record
+fmt.Println(windOnshoreShare.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -998,7 +1023,10 @@ windOnshoreShareDailyAvgs, err := client.WindOnshoreShareDailyAvg(nil).List(nil,
 if err != nil {
     panic(err)
 }
-fmt.Println(windOnshoreShareDailyAvgs) // the array of records
+// A []any of entities, one per record.
+for _, item := range windOnshoreShareDailyAvgs.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -1135,7 +1163,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

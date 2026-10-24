@@ -165,7 +165,7 @@ cbet = client.Cbet
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Cbet.load()
@@ -219,7 +219,7 @@ cbpf = client.Cbpf
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Cbpf.load()
@@ -273,10 +273,11 @@ frequency = client.Frequency
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Frequency.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -328,10 +329,11 @@ installed_model = client.InstalledModel
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.InstalledModel.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -384,7 +386,7 @@ price = client.Price
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Price.load()
@@ -438,7 +440,7 @@ public_power = client.PublicPower
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.PublicPower.load()
@@ -494,10 +496,11 @@ public_power_forecast = client.PublicPowerForecast
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.PublicPowerForecast.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -548,10 +551,11 @@ ren_share_daily_avg = client.RenShareDailyAvg
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.RenShareDailyAvg.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -606,10 +610,11 @@ ren_share_model = client.RenShareModel
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.RenShareModel.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -661,7 +666,7 @@ solar_share = client.SolarShare
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.SolarShare.load()
@@ -715,10 +720,11 @@ solar_share_daily_avg = client.SolarShareDailyAvg
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.SolarShareDailyAvg.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -769,7 +775,7 @@ total_power = client.TotalPower
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.TotalPower.load()
@@ -825,10 +831,11 @@ traffic_model = client.TrafficModel
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.TrafficModel.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -880,7 +887,7 @@ wind_offshore_share = client.WindOffshoreShare
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.WindOffshoreShare.load()
@@ -934,10 +941,11 @@ wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.WindOffshoreShareDailyAvg.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -989,7 +997,7 @@ wind_onshore_share = client.WindOnshoreShare
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.WindOnshoreShare.load()
@@ -1043,10 +1051,11 @@ wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.WindOnshoreShareDailyAvg.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -1236,6 +1245,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

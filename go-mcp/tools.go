@@ -6,40 +6,59 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/google/jsonschema-go/jsonschema"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 	sdk "github.com/voxgig-sdk/energy-charts-sdk/go"
 )
 
-// Args is the common argument shape for both tools. `entity` selects
-// the SDK entity to operate on; `query` is the optional reqmatch /
-// reqdata map passed through to the SDK. For load, `query` should be
-// `{"id": <value>}`. For list, omit `query` or pass an empty map.
-type Args struct {
-	Entity string         `json:"entity" jsonschema:"cbet | cbpf | frequency | installed_model | price | public_power | public_power_forecast | ren_share_daily_avg | ren_share_model | solar_share | solar_share_daily_avg | total_power | traffic_model | wind_offshore_share | wind_offshore_share_daily_avg | wind_onshore_share | wind_onshore_share_daily_avg"`
-	Query  map[string]any `json:"query,omitempty" jsonschema:"optional match map e.g. {\"id\":1} for load, omit for list"`
+// ListArgs is what an agent sends to energy-charts_list.
+type ListArgs struct {
+	Entity string         `json:"entity" jsonschema:"one of: frequency | installed_model | public_power_forecast | ren_share_daily_avg | ren_share_model | solar_share_daily_avg | traffic_model | wind_offshore_share_daily_avg | wind_onshore_share_daily_avg"`
+	Query  map[string]any `json:"query,omitempty" jsonschema:"optional filter map; omit it for the first page"`
+}
+
+// LoadArgs is what an agent sends to energy-charts_load.
+type LoadArgs struct {
+	Entity string         `json:"entity" jsonschema:"one of: cbet | cbpf | price | public_power | solar_share | total_power | wind_offshore_share | wind_onshore_share"`
+	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
 }
 
 func registerTools(server *mcp.Server, client *sdk.EnergyChartsSDK) {
 	mcp.AddTool(server, &mcp.Tool{
-		Name: "energy-charts_list",
-		Description: "List records from EnergyCharts. " +
-			"Args: entity (one of the supported SDK entities), query (optional filter map). " +
-			"Returns the first page of records as JSON.",
-	}, func(ctx context.Context, req *mcp.CallToolRequest, args Args) (*mcp.CallToolResult, any, error) {
-		return runOp(client, "list", args)
+		Name:        "energy-charts_list",
+		Description: "List records from EnergyCharts. Args: entity, query (optional filter map; omit it for the first page). Returns the first page of records as JSON.",
+		Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true},
+		InputSchema: entitySchema[ListArgs]("frequency", "installed_model", "public_power_forecast", "ren_share_daily_avg", "ren_share_model", "solar_share_daily_avg", "traffic_model", "wind_offshore_share_daily_avg", "wind_onshore_share_daily_avg"),
+	}, func(ctx context.Context, req *mcp.CallToolRequest, args ListArgs) (*mcp.CallToolResult, any, error) {
+		return runOp(ctx, client, "list", args.Entity, args.Query)
 	})
-
 	mcp.AddTool(server, &mcp.Tool{
-		Name: "energy-charts_load",
-		Description: "Load a single record from EnergyCharts. " +
-			"Args: entity, query ({\"id\":N} required). Returns the record as JSON.",
-	}, func(ctx context.Context, req *mcp.CallToolRequest, args Args) (*mcp.CallToolResult, any, error) {
-		return runOp(client, "load", args)
+		Name:        "energy-charts_load",
+		Description: "Load one record from EnergyCharts. Args: entity, query (match map naming the record, such as {\"id\":1}). Returns the record as JSON.",
+		Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true},
+		InputSchema: entitySchema[LoadArgs]("cbet", "cbpf", "price", "public_power", "solar_share", "total_power", "wind_offshore_share", "wind_onshore_share"),
+	}, func(ctx context.Context, req *mcp.CallToolRequest, args LoadArgs) (*mcp.CallToolResult, any, error) {
+		return runOp(ctx, client, "load", args.Entity, args.Query)
 	})
 }
 
-func runOp(client *sdk.EnergyChartsSDK, op string, args Args) (*mcp.CallToolResult, any, error) {
-	ent, err := entityFor(client, args.Entity)
+// entitySchema is the schema inferred from In, its entity limited to the
+// entities the tool serves.
+func entitySchema[In any](names ...string) *jsonschema.Schema {
+	schema, err := jsonschema.For[In](nil)
+	if err != nil {
+		panic(err)
+	}
+	enum := make([]any, len(names))
+	for i, name := range names {
+		enum[i] = name
+	}
+	schema.Properties["entity"].Enum = enum
+	return schema
+}
+
+func runOp(_ context.Context, client *sdk.EnergyChartsSDK, op string, entity string, input map[string]any) (*mcp.CallToolResult, any, error) {
+	ent, err := entityFor(client, entity)
 	if err != nil {
 		return toolError(err.Error())
 	}
@@ -47,9 +66,17 @@ func runOp(client *sdk.EnergyChartsSDK, op string, args Args) (*mcp.CallToolResu
 	var result any
 	switch op {
 	case "list":
-		result, err = ent.List(args.Query, nil)
+		result, err = ent.List(input, nil)
 	case "load":
-		result, err = ent.Load(args.Query, nil)
+		result, err = ent.Load(input, nil)
+	case "create":
+		result, err = ent.Create(input, nil)
+	case "update":
+		result, err = ent.Update(input, nil)
+	case "patch":
+		result, err = ent.Patch(input, nil)
+	case "remove":
+		result, err = ent.Remove(input, nil)
 	default:
 		return toolError(fmt.Sprintf("unknown op %q", op))
 	}
@@ -110,7 +137,6 @@ func entityFor(client *sdk.EnergyChartsSDK, name string) (sdk.EnergyChartsEntity
 		return client.WindOnshoreShare(nil), nil
 	case "wind_onshore_share_daily_avg":
 		return client.WindOnshoreShareDailyAvg(nil), nil
-
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)
 }
@@ -142,4 +168,9 @@ func toolError(msg string) (*mcp.CallToolResult, any, error) {
 			&mcp.TextContent{Text: msg},
 		},
 	}, nil, nil
+}
+
+// hint is an MCP annotation that defaults to true unless stated.
+func hint(b bool) *bool {
+	return &b
 }

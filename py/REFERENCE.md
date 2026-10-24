@@ -157,9 +157,9 @@ cbet = client.Cbet()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> CbetEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Cbet().load()
@@ -210,9 +210,9 @@ cbpf = client.Cbpf()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> CbpfEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Cbpf().load()
@@ -263,14 +263,14 @@ frequency = client.Frequency()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[FrequencyEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Frequency().list()
 for frequency in results:
-    print(frequency)
+    print(frequency.data_get())
 ```
 
 ### Common Methods
@@ -319,14 +319,14 @@ installed_model = client.InstalledModel()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[InstalledModelEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.InstalledModel().list()
 for installed_model in results:
-    print(installed_model)
+    print(installed_model.data_get())
 ```
 
 ### Common Methods
@@ -376,9 +376,9 @@ price = client.Price()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> PriceEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Price().load()
@@ -429,9 +429,9 @@ public_power = client.PublicPower()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> PublicPowerEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.PublicPower().load()
@@ -484,14 +484,14 @@ public_power_forecast = client.PublicPowerForecast()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[PublicPowerForecastEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.PublicPowerForecast().list()
 for public_power_forecast in results:
-    print(public_power_forecast)
+    print(public_power_forecast.data_get())
 ```
 
 ### Common Methods
@@ -539,14 +539,14 @@ ren_share_daily_avg = client.RenShareDailyAvg()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[RenShareDailyAvgEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.RenShareDailyAvg().list()
 for ren_share_daily_avg in results:
-    print(ren_share_daily_avg)
+    print(ren_share_daily_avg.data_get())
 ```
 
 ### Common Methods
@@ -598,14 +598,14 @@ ren_share_model = client.RenShareModel()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[RenShareModelEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.RenShareModel().list()
 for ren_share_model in results:
-    print(ren_share_model)
+    print(ren_share_model.data_get())
 ```
 
 ### Common Methods
@@ -654,9 +654,9 @@ solar_share = client.SolarShare()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> SolarShareEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.SolarShare().load()
@@ -707,14 +707,14 @@ solar_share_daily_avg = client.SolarShareDailyAvg()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[SolarShareDailyAvgEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.SolarShareDailyAvg().list()
 for solar_share_daily_avg in results:
-    print(solar_share_daily_avg)
+    print(solar_share_daily_avg.data_get())
 ```
 
 ### Common Methods
@@ -762,9 +762,9 @@ total_power = client.TotalPower()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> TotalPowerEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.TotalPower().load()
@@ -817,14 +817,14 @@ traffic_model = client.TrafficModel()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[TrafficModelEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.TrafficModel().list()
 for traffic_model in results:
-    print(traffic_model)
+    print(traffic_model.data_get())
 ```
 
 ### Common Methods
@@ -873,9 +873,9 @@ wind_offshore_share = client.WindOffshoreShare()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> WindOffshoreShareEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.WindOffshoreShare().load()
@@ -926,14 +926,14 @@ wind_offshore_share_daily_avg = client.WindOffshoreShareDailyAvg()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[WindOffshoreShareDailyAvgEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.WindOffshoreShareDailyAvg().list()
 for wind_offshore_share_daily_avg in results:
-    print(wind_offshore_share_daily_avg)
+    print(wind_offshore_share_daily_avg.data_get())
 ```
 
 ### Common Methods
@@ -982,9 +982,9 @@ wind_onshore_share = client.WindOnshoreShare()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> WindOnshoreShareEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.WindOnshoreShare().load()
@@ -1035,14 +1035,14 @@ wind_onshore_share_daily_avg = client.WindOnshoreShareDailyAvg()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[WindOnshoreShareDailyAvgEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.WindOnshoreShareDailyAvg().list()
 for wind_onshore_share_daily_avg in results:
-    print(wind_onshore_share_daily_avg)
+    print(wind_onshore_share_daily_avg.data_get())
 ```
 
 ### Common Methods
@@ -1231,6 +1231,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

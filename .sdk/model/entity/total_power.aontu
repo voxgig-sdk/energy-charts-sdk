@@ -66,12 +66,9 @@ main: kit: entity: total_power: {
           }
           m: "GET"
           o: "/total_power"
-          q: {
-            exist: [
-              "country"
-              "end"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

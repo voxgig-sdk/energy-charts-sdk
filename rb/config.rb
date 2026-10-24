@@ -79,6 +79,7 @@ module EnergyChartsConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -178,12 +179,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -260,12 +259,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -343,12 +340,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "end",
-                      "region",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -432,12 +427,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "installation_decommission",
-                      "time_step",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -526,12 +519,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bzn",
-                      "end",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -615,13 +606,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                      "subtype",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -709,6 +697,7 @@ module EnergyChartsConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "current",
+                        "field" => true,
                       },
                       {
                         "name" => "production_type",
@@ -716,6 +705,7 @@ module EnergyChartsConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "solar",
+                        "field" => true,
                       },
                       {
                         "name" => "start",
@@ -726,14 +716,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "forecast_type",
-                      "production_type",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -807,11 +793,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -897,10 +882,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -968,10 +953,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1045,11 +1030,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1126,12 +1110,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "end",
-                      "start",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1215,11 +1197,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "postal_code",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1287,10 +1268,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1364,11 +1345,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1436,10 +1416,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1513,11 +1493,10 @@ module EnergyChartsConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "country",
-                      "year",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

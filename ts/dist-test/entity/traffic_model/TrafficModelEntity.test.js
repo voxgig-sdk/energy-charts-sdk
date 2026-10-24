@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.TrafficModel();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('traffic_model hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.EnergyChartsSDK.test(offline).TrafficModel().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.EnergyChartsSDK.test(offline).TrafficModel()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.EnergyChartsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.TrafficModel().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.EnergyChartsSDK.test().TrafficModel().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.EnergyChartsSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.TrafficModel().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.TrafficModel().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.TrafficModel().list({ "country": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "share": { "a": true, "h": "Share", "n": "share", "r": true, "t": "`$ARRAY`", "key$": "share", "index$": 1 }, "signal": { "a": true, "h": "Signal", "n": "signal", "r": false, "sh": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)", "t": "`$ARRAY`", "key$": "signal", "index$": 2 }, "substitute": { "a": true, "h": "Substitute", "n": "substitute", "r": true, "t": "`$BOOLEAN`", "key$": "substitute", "index$": 3 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": true, "t": "`$ARRAY`", "key$": "unix_seconds", "index$": 4 } }, "name": "traffic_model", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /signal", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "postal_code", "or": "postal_code", "r": false, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/signal", "q": { "exist": ["country", "postal_code"] }, "r": {}, "s": [{ "lit": "signal" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "traffic_model", "name__orig": "traffic_model", "Name": "TrafficModel", "name_": "traffic_model", "name-": "traffic-model", "NAME": "TRAFFIC_MODEL", "index$": 12 }, { "active": true, "entity": "traffic_model", "key$": "BasicTrafficModelFlow", "kind": "basic", "name": "BasicTrafficModelFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "traffic_model_ref01" } }], "index$": 0 }] }, 'TrafficModel', { "GET /signal": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "postal_code", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Postal Code" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "share": { "a": true, "h": "Share", "n": "share", "r": true, "t": "`$ARRAY`", "key$": "share", "index$": 1 }, "signal": { "a": true, "h": "Signal", "n": "signal", "r": false, "sh": "0: Red (low renewable share) 1: Yellow (average renewable share) 2: Green (high renewable share)", "t": "`$ARRAY`", "key$": "signal", "index$": 2 }, "substitute": { "a": true, "h": "Substitute", "n": "substitute", "r": true, "t": "`$BOOLEAN`", "key$": "substitute", "index$": 3 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": true, "t": "`$ARRAY`", "key$": "unix_seconds", "index$": 4 } }, "name": "traffic_model", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /signal", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "postal_code", "or": "postal_code", "r": false, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/signal", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "signal" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "traffic_model", "name__orig": "traffic_model", "Name": "TrafficModel", "name_": "traffic_model", "name-": "traffic-model", "NAME": "TRAFFIC_MODEL", "index$": 12 }, { "active": true, "entity": "traffic_model", "key$": "BasicTrafficModelFlow", "kind": "basic", "name": "BasicTrafficModelFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "traffic_model_ref01" } }], "index$": 0 }] }, 'TrafficModel', { "GET /signal": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "postal_code", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Postal Code" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const traffic_model_ref01_list = (await traffic_model_ref01_ent.list(traffic_model_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

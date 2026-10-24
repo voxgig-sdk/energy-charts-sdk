@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { EnergyChartsSDK, BaseFeature, stdutil } from '../../..'
+import { EnergyChartsSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('RenShareModelEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('ren_share_model hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of EnergyChartsSDK.test(offline).RenShareModel().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of EnergyChartsSDK.test(offline).RenShareModel()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = EnergyChartsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.RenShareModel().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of EnergyChartsSDK.test().RenShareModel().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new EnergyChartsSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.RenShareModel().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.RenShareModel().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.RenShareModel().list({"country":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE
@@ -51,7 +109,7 @@ describe('RenShareModelEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"deprecated":{"a":true,"h":"Deprecated","n":"deprecated","r":true,"t":"`$BOOLEAN`","key$":"deprecated","index$":0},"ren_share":{"a":true,"h":"Ren Share","n":"ren_share","r":true,"t":"`$ARRAY`","key$":"ren_share","index$":1},"solar_share":{"a":true,"h":"Solar Share","n":"solar_share","r":false,"t":"`$ANY`","key$":"solar_share","index$":2},"substitute":{"a":true,"h":"Substitute","n":"substitute","r":true,"t":"`$BOOLEAN`","key$":"substitute","index$":3},"unix_seconds":{"a":true,"h":"Unix Seconds","n":"unix_seconds","r":true,"t":"`$ARRAY`","key$":"unix_seconds","index$":4},"wind_offshore_share":{"a":true,"h":"Wind Offshore Share","n":"wind_offshore_share","r":false,"t":"`$ANY`","key$":"wind_offshore_share","index$":5},"wind_onshore_share":{"a":true,"h":"Wind Onshore Share","n":"wind_onshore_share","r":false,"t":"`$ANY`","key$":"wind_onshore_share","index$":6}},"name":"ren_share_model","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /ren_share_forecast","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"de","k":"query","n":"country","or":"country","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/ren_share_forecast","q":{"exist":["country"]},"r":{},"s":[{"lit":"ren_share_forecast"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"ren_share_model","name__orig":"ren_share_model","Name":"RenShareModel","name_":"ren_share_model","name-":"ren-share-model","NAME":"REN_SHARE_MODEL","index$":8}, {"active":true,"entity":"ren_share_model","key$":"BasicRenShareModelFlow","kind":"basic","name":"BasicRenShareModelFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"ren_share_model_ref01"}}],"index$":0}]}, 'RenShareModel', {"GET /ren_share_forecast":{"protocol":"http","parameters":[{"name":"country","in":"query","required":false,"schema":{"type":"string","default":"de","title":"Country"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"deprecated":{"a":true,"h":"Deprecated","n":"deprecated","r":true,"t":"`$BOOLEAN`","key$":"deprecated","index$":0},"ren_share":{"a":true,"h":"Ren Share","n":"ren_share","r":true,"t":"`$ARRAY`","key$":"ren_share","index$":1},"solar_share":{"a":true,"h":"Solar Share","n":"solar_share","r":false,"t":"`$ANY`","key$":"solar_share","index$":2},"substitute":{"a":true,"h":"Substitute","n":"substitute","r":true,"t":"`$BOOLEAN`","key$":"substitute","index$":3},"unix_seconds":{"a":true,"h":"Unix Seconds","n":"unix_seconds","r":true,"t":"`$ARRAY`","key$":"unix_seconds","index$":4},"wind_offshore_share":{"a":true,"h":"Wind Offshore Share","n":"wind_offshore_share","r":false,"t":"`$ANY`","key$":"wind_offshore_share","index$":5},"wind_onshore_share":{"a":true,"h":"Wind Onshore Share","n":"wind_onshore_share","r":false,"t":"`$ANY`","key$":"wind_onshore_share","index$":6}},"name":"ren_share_model","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /ren_share_forecast","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"de","k":"query","n":"country","or":"country","r":false,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/ren_share_forecast","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"ren_share_forecast"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"ren_share_model","name__orig":"ren_share_model","Name":"RenShareModel","name_":"ren_share_model","name-":"ren-share-model","NAME":"REN_SHARE_MODEL","index$":8}, {"active":true,"entity":"ren_share_model","key$":"BasicRenShareModelFlow","kind":"basic","name":"BasicRenShareModelFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"ren_share_model_ref01"}}],"index$":0}]}, 'RenShareModel', {"GET /ren_share_forecast":{"protocol":"http","parameters":[{"name":"country","in":"query","required":false,"schema":{"type":"string","default":"de","title":"Country"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('RenShareModelEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -71,11 +71,9 @@ main: kit: entity: traffic_model: {
           }
           m: "GET"
           o: "/signal"
-          q: {
-            exist: [
-              "country"
-              "postal_code"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

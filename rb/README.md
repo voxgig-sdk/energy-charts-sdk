@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/energy-charts-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/energy-charts-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -45,7 +45,7 @@ client = EnergyChartsSDK.new
 begin
   # load returns the ENTITY — call data_get for the Cbet record (raises on error).
   cbet = client.Cbet.load()
-  puts cbet
+  puts cbet.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -127,9 +127,9 @@ Create a mock client for unit testing — no server required:
 client = EnergyChartsSDK.test
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
+# data_get reads its mock record.
 publicpower = client.PublicPower.load()
-puts publicpower
+puts publicpower.data_get
 ```
 
 ### Use a custom fetch function
@@ -229,8 +229,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -240,9 +240,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `EnergyChartsError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`EnergyChartsError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -553,8 +554,9 @@ Create an instance: `frequency = client.Frequency`
 #### Example: List
 
 ```ruby
-# list returns an Array of Frequency records (raises on error).
+# list returns an Array of Frequency entities, one per record (raises on error).
 frequencys = client.Frequency.list
+frequencys.each { |item| puts item.data_get }
 ```
 
 
@@ -580,8 +582,9 @@ Create an instance: `installed_model = client.InstalledModel`
 #### Example: List
 
 ```ruby
-# list returns an Array of InstalledModel records (raises on error).
+# list returns an Array of InstalledModel entities, one per record (raises on error).
 installed_models = client.InstalledModel.list
+installed_models.each { |item| puts item.data_get }
 ```
 
 
@@ -662,8 +665,9 @@ Create an instance: `public_power_forecast = client.PublicPowerForecast`
 #### Example: List
 
 ```ruby
-# list returns an Array of PublicPowerForecast records (raises on error).
+# list returns an Array of PublicPowerForecast entities, one per record (raises on error).
 public_power_forecasts = client.PublicPowerForecast.list
+public_power_forecasts.each { |item| puts item.data_get }
 ```
 
 
@@ -688,8 +692,9 @@ Create an instance: `ren_share_daily_avg = client.RenShareDailyAvg`
 #### Example: List
 
 ```ruby
-# list returns an Array of RenShareDailyAvg records (raises on error).
+# list returns an Array of RenShareDailyAvg entities, one per record (raises on error).
 ren_share_daily_avgs = client.RenShareDailyAvg.list
+ren_share_daily_avgs.each { |item| puts item.data_get }
 ```
 
 
@@ -718,8 +723,9 @@ Create an instance: `ren_share_model = client.RenShareModel`
 #### Example: List
 
 ```ruby
-# list returns an Array of RenShareModel records (raises on error).
+# list returns an Array of RenShareModel entities, one per record (raises on error).
 ren_share_models = client.RenShareModel.list
+ren_share_models.each { |item| puts item.data_get }
 ```
 
 
@@ -771,8 +777,9 @@ Create an instance: `solar_share_daily_avg = client.SolarShareDailyAvg`
 #### Example: List
 
 ```ruby
-# list returns an Array of SolarShareDailyAvg records (raises on error).
+# list returns an Array of SolarShareDailyAvg entities, one per record (raises on error).
 solar_share_daily_avgs = client.SolarShareDailyAvg.list
+solar_share_daily_avgs.each { |item| puts item.data_get }
 ```
 
 
@@ -825,8 +832,9 @@ Create an instance: `traffic_model = client.TrafficModel`
 #### Example: List
 
 ```ruby
-# list returns an Array of TrafficModel records (raises on error).
+# list returns an Array of TrafficModel entities, one per record (raises on error).
 traffic_models = client.TrafficModel.list
+traffic_models.each { |item| puts item.data_get }
 ```
 
 
@@ -878,8 +886,9 @@ Create an instance: `wind_offshore_share_daily_avg = client.WindOffshoreShareDai
 #### Example: List
 
 ```ruby
-# list returns an Array of WindOffshoreShareDailyAvg records (raises on error).
+# list returns an Array of WindOffshoreShareDailyAvg entities, one per record (raises on error).
 wind_offshore_share_daily_avgs = client.WindOffshoreShareDailyAvg.list
+wind_offshore_share_daily_avgs.each { |item| puts item.data_get }
 ```
 
 
@@ -931,8 +940,9 @@ Create an instance: `wind_onshore_share_daily_avg = client.WindOnshoreShareDaily
 #### Example: List
 
 ```ruby
-# list returns an Array of WindOnshoreShareDailyAvg records (raises on error).
+# list returns an Array of WindOnshoreShareDailyAvg entities, one per record (raises on error).
 wind_onshore_share_daily_avgs = client.WindOnshoreShareDailyAvg.list
+wind_onshore_share_daily_avgs.each { |item| puts item.data_get }
 ```
 
 ## Features

@@ -1,6 +1,218 @@
 # Energy-Charts API
 
-&lt;h4&gt;Timestamp Format Options&lt;/h4&gt; When specifying timestamps, you can choose from the following three formats: &lt;ol&gt; &lt;li&gt;&lt;strong&gt;ISO 8601 Format&lt;/strong&gt;: &lt;ul&gt; &lt;li&gt;This format includes the full date and time, with an optional timezone indicator.&lt;/li&gt; &lt;li&gt;Examples: &lt;ul&gt; &lt;li&gt;&lt;code&gt;2025-01-01T17:00Z&lt;/code&gt; (UTC time)&lt;/li&gt; &lt;li&gt;&lt;code&gt;2025-01-01T18:00+01:00&lt;/code&gt; (Local time offset by +01:00)&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;strong&gt;Daily Format&lt;/strong&gt;: &lt;ul&gt; &lt;li&gt;This format specifies only the date.&lt;/li&gt; &lt;li&gt;The start time is assumed to be at 00:00 on the specified date in the local timezone of the specified country or bidding zone (bzn).&lt;/li&gt; &lt;li&gt;The end timestamp is interpreted as the last minute of the specified day in the same local timezone.&lt;/li&gt; &lt;li&gt;Example: &lt;ul&gt; &lt;li&gt;&lt;code&gt;2025-01-01&lt;/code&gt; (Starts at 00:00 and ends at 23:59 on January 1, 2025, local time)&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;strong&gt;UNIX Timestamp&lt;/strong&gt;: &lt;ul&gt; &lt;li&gt;This format specifies the time as the number of seconds since the Unix Epoch (January 1st, 1970, at 00:00 UTC).&lt;/li&gt; &lt;li&gt;Example: &lt;ul&gt; &lt;li&gt;&lt;code&gt;1735686000&lt;/code&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ol&gt; &lt;h4&gt;Default Behavior for Timestamps&lt;/h4&gt; If an end timestamp is not explicitly provided, it is assumed to be the same as the start timestamp. For daily formats, this means that one full day will be returned. If also no start timestamp is provided, the current day in the local timezone is used. &lt;h4&gt;Discontinuation of endpoints&lt;/h4&gt; Endpoint discontinuations will be preceded by an announcement at least six months in advance, indicated by setting the &quot;deprecated&quot; status to true. &lt;h4&gt;Data License&lt;/h4&gt; Unless stated otherwise, the data provided by the Energy-Charts API is licensed under the &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;_blank&quot;&gt;CC BY 4.0&lt;/a&gt; license. Proper attribution to Energy-Charts.info as the source is required. &lt;details&gt; &lt;summary&gt;&lt;b&gt;New in release v1.5 (2025-10-21)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt; Include stricter rate limitations for public API (please contact &lt;a href=&quot;mailto:leonhard.gandhi@ise.fraunhofer.de&quot;&gt;leonhard.gandhi@ise.fraunhofer.de&lt;/a&gt; for commercial access) &lt;/li&gt; &lt;li&gt;Improved load balancing on concurrent requests&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt; Older Releases &lt;/b&gt;&lt;/summary&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt;v1.4 (2024-07-08)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt;Fix bug with wrong timezone for unix timestamps as input&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt;v1.3 (2024-04-22)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt;Fix bug which hid most recent data for /cbet and /cbpf&lt;/li&gt; &lt;li&gt;Inlcude deprecated tag to all active endpoints&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt;v1.2 (2024-04-16)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt;Allow also input timestamps in day format and UNIX timestamp&lt;/li&gt; &lt;li&gt;Inlcude license info for price data available at /price&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt;v1.1 (2023-10-20)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt;Deprecated /ren_share&lt;/li&gt; &lt;li&gt;Deprecated /ren_share_prognosis and replaced it with /ren_share_forecast&lt;/li&gt; &lt;li&gt;Deprecated /power and replaced it with /public_power&lt;/li&gt; &lt;li&gt;Deprecated /price_spot_market and replaced it with /price&lt;/li&gt; &lt;li&gt;Deprecated /traffic_signal and replaced it with /signal&lt;/li&gt; &lt;li&gt;Added endpoint for cross-border electricity trading (/cbet)&lt;/li&gt; &lt;li&gt;Added endpoint for cross-border physical flow (/cbpf)&lt;/li&gt; &lt;li&gt;Changed response structure of all endpoints to fit with json specification&lt;/li&gt; &lt;li&gt;Simplified the response json structure&lt;/li&gt; &lt;li&gt;Removed unnecessary information from responses like names, descriptions and units&lt;/li&gt; &lt;li&gt;Added typed response schemes to every endpoint&lt;/li&gt; &lt;li&gt;Added example values and example requests to every endpoint&lt;/li&gt; &lt;li&gt;Added postal code to /signal, to consider grid state in future implementations&lt;/li&gt; &lt;li&gt;Responses that return unix timestamps now all return unix seconds&lt;/li&gt; &lt;li&gt;Added error handling for false requests and responses&lt;/li&gt; &lt;li&gt;Added a list of available bidding zones for /price&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;&lt;b&gt;v1.0 (2022-11-30)&lt;/b&gt;&lt;/summary&gt; &lt;ul&gt; &lt;li&gt;Initial release&lt;/li&gt; &lt;/ul&gt; &lt;/details&gt; &lt;/details&gt; &lt;b&gt;Available countries:&lt;/b&gt; &lt;details&gt;&lt;summary&gt;de - Germany (click to show all available countries)&lt;/summary&gt; ch - Switzerland eu - European Union all - Europe al - Albania am - Armenia at - Austria az - Azerbaijan ba - Bosnia-Herzegovina be - Belgium bg - Bulgaria by - Belarus cy - Cyprus cz - Czech Republic dk - Denmark ee - Estonia es - Spain fi - Finland fr - France ge - Georgia gr - Greece hr - Croatia hu - Hungary ie - Ireland it - Italy lt - Lithuania lu - Luxembourg lv - Latvia md - Moldova me - Montenegro mk - North Macedonia mt - Malta nie - North Ireland nl - Netherlands no - Norway pl - Poland pt - Portugal ro - Romania rs - Serbia ru - Russia se - Sweden si - Slovenia sk - Slovak Republic tr - Turkey ua - Ukraine uk - United Kingdom xk - Kosovo &lt;/details&gt; &lt;b&gt;Available bidding zones:&lt;/b&gt; &lt;details&gt;&lt;summary&gt;AT - Austria (click to show all available bidding zones)&lt;/summary&gt; BE - Belgium BG - Bulgaria CH - Switzerland CZ - Czech Republic DE-LU - Germany, Luxembourg DE-AT-LU - Germany, Austria, Luxembourg DK1 - Denmark 1 DK2 - Denmark 2 EE - Estionia ES - Spain FI - Finland FR - France GR - Greece HR - Croatia HU - Hungary IT-Calabria - Italy Calabria IT-Centre-North - Italy Centre North IT-Centre-South - Italy Centre South IT-North - Italy North IT-SACOAC - Italy Sardinia Corsica AC IT-SACODC - Italy Sardinia Corsica DC IT-Sardinia - Italy Sardinia IT-Sicily - Italy Sicily IT-South - Italy South LT - Lithuania LV - Latvia ME - Montenegro NL - Netherlands NO1 - Norway 1 NO2 - Norway 2 NO2NSL - Norway North Sea Link NO3 - Norway 3 NO4 - Norway 4 NO5 - Norway 5 PL - Poland PT - Portugal RO - Romania RS - Serbia SE1 - Sweden 1 SE2 - Sweden 2 SE3 - Sweden 3 SE4 - Sweden 4 SI - Slovenia SK - Slovakia &lt;/details&gt; &lt;b&gt;Hint:&lt;/b&gt; Don&#39;t use the &lt;b&gt;Try it out&lt;/b&gt; button on this documentation page to download large datasets as it might lead to long loading times.
+> &lt;h4&gt;Timestamp Format Options&lt;/h4&gt;
+>
+> When specifying timestamps, you can choose from the following three formats:
+>
+>       &lt;ol&gt;
+>           &lt;li&gt;&lt;strong&gt;ISO 8601 Format&lt;/strong&gt;:
+>               &lt;ul&gt;
+>                   &lt;li&gt;This format includes the full date and time, with an optional timezone indicator.&lt;/li&gt;
+>                   &lt;li&gt;Examples:
+>                       &lt;ul&gt;
+>                           &lt;li&gt;&lt;code&gt;2025-01-01T17:00Z&lt;/code&gt; (UTC time)&lt;/li&gt;
+>                           &lt;li&gt;&lt;code&gt;2025-01-01T18:00+01:00&lt;/code&gt; (Local time offset by +01:00)&lt;/li&gt;
+>                       &lt;/ul&gt;
+>                   &lt;/li&gt;
+>               &lt;/ul&gt;
+>           &lt;/li&gt;
+>           &lt;li&gt;&lt;strong&gt;Daily Format&lt;/strong&gt;:
+>               &lt;ul&gt;
+>                   &lt;li&gt;This format specifies only the date.&lt;/li&gt;
+>                   &lt;li&gt;The start time is assumed to be at 00:00 on the specified date in the local timezone of the specified country or bidding zone (bzn).&lt;/li&gt;
+>                   &lt;li&gt;The end timestamp is interpreted as the last minute of the specified day in the same local timezone.&lt;/li&gt;
+>                   &lt;li&gt;Example:
+>                       &lt;ul&gt;
+>                           &lt;li&gt;&lt;code&gt;2025-01-01&lt;/code&gt; (Starts at 00:00 and ends at 23:59 on January 1, 2025, local time)&lt;/li&gt;
+>                       &lt;/ul&gt;
+>                   &lt;/li&gt;
+>               &lt;/ul&gt;
+>           &lt;/li&gt;
+>           &lt;li&gt;&lt;strong&gt;UNIX Timestamp&lt;/strong&gt;:
+>               &lt;ul&gt;
+>                   &lt;li&gt;This format specifies the time as the number of seconds since the Unix Epoch (January 1st, 1970, at 00:00 UTC).&lt;/li&gt;
+>                   &lt;li&gt;Example:
+>                       &lt;ul&gt;
+>                           &lt;li&gt;&lt;code&gt;1735686000&lt;/code&gt;&lt;/li&gt;
+>                       &lt;/ul&gt;
+>                   &lt;/li&gt;
+>               &lt;/ul&gt;
+>           &lt;/li&gt;
+>       &lt;/ol&gt;
+>       &lt;h4&gt;Default Behavior for Timestamps&lt;/h4&gt;
+>
+> If an end timestamp is not explicitly provided, it is assumed to be the same as the start timestamp. For daily formats, this means that one full day will be returned. If also no start timestamp is provided, the current day in the local timezone is used.
+>
+>       &lt;h4&gt;Discontinuation of endpoints&lt;/h4&gt;
+>
+> Endpoint discontinuations will be preceded by an announcement at least six months in advance, indicated by setting the &quot;deprecated&quot; status to true.
+>
+>       &lt;h4&gt;Data License&lt;/h4&gt;
+>
+> Unless stated otherwise, the data provided by the Energy-Charts API is licensed under the &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;`_blank`&quot;&gt;CC BY 4.0&lt;/a&gt; license. Proper attribution to Energy-Charts.info as the source is required.
+>
+>      &lt;details&gt;
+>      &lt;summary&gt;&lt;b&gt;New in release v1.5 (2025-10-21)&lt;/b&gt;&lt;/summary&gt;
+>      &lt;ul&gt;
+>      &lt;li&gt;
+>         Include stricter rate limitations for public API
+>         (please contact &lt;a href=&quot;mailto:leonhard.gandhi@ise.fraunhofer.de&quot;&gt;leonhard.gandhi@ise.fraunhofer.de&lt;/a&gt; for commercial access)
+>      &lt;/li&gt;
+>      &lt;li&gt;Improved load balancing on concurrent requests&lt;/li&gt;
+>      &lt;/ul&gt;
+>      &lt;/details&gt;
+>      &lt;details&gt;
+>         &lt;summary&gt;&lt;b&gt; Older Releases &lt;/b&gt;&lt;/summary&gt;
+>          &lt;details&gt;
+>          &lt;summary&gt;&lt;b&gt;v1.4 (2024-07-08)&lt;/b&gt;&lt;/summary&gt;
+>          &lt;ul&gt;
+>          &lt;li&gt;Fix bug with wrong timezone for unix timestamps as input&lt;/li&gt;
+>          &lt;/ul&gt;
+>          &lt;/details&gt;
+>          &lt;details&gt;
+>          &lt;summary&gt;&lt;b&gt;v1.3 (2024-04-22)&lt;/b&gt;&lt;/summary&gt;
+>          &lt;ul&gt;
+>          &lt;li&gt;Fix bug which hid most recent data for /cbet and /cbpf&lt;/li&gt;
+>          &lt;li&gt;Inlcude deprecated tag to all active endpoints&lt;/li&gt;
+>          &lt;/ul&gt;
+>          &lt;/details&gt;
+>          &lt;details&gt;
+>          &lt;summary&gt;&lt;b&gt;v1.2 (2024-04-16)&lt;/b&gt;&lt;/summary&gt;
+>          &lt;ul&gt;
+>          &lt;li&gt;Allow also input timestamps in day format and UNIX timestamp&lt;/li&gt;
+>          &lt;li&gt;Inlcude license info for price data available at /price&lt;/li&gt;
+>          &lt;/ul&gt;
+>          &lt;/details&gt;
+>          &lt;details&gt;
+>          &lt;summary&gt;&lt;b&gt;v1.1 (2023-10-20)&lt;/b&gt;&lt;/summary&gt;
+>          &lt;ul&gt;
+>              &lt;li&gt;Deprecated /ren_share&lt;/li&gt;
+>              &lt;li&gt;Deprecated /ren_share_prognosis and replaced it with /ren_share_forecast&lt;/li&gt;
+>              &lt;li&gt;Deprecated /power and replaced it with /public_power&lt;/li&gt;
+>              &lt;li&gt;Deprecated /price_spot_market and replaced it with /price&lt;/li&gt;
+>              &lt;li&gt;Deprecated /traffic_signal and replaced it with /signal&lt;/li&gt;
+>              &lt;li&gt;Added endpoint for cross-border electricity trading (/cbet)&lt;/li&gt;
+>              &lt;li&gt;Added endpoint for cross-border physical flow (/cbpf)&lt;/li&gt;
+>              &lt;li&gt;Changed response structure of all endpoints to fit with json specification&lt;/li&gt;
+>              &lt;li&gt;Simplified the response json structure&lt;/li&gt;
+>              &lt;li&gt;Removed unnecessary information from responses like names, descriptions and units&lt;/li&gt;
+>              &lt;li&gt;Added typed response schemes to every endpoint&lt;/li&gt;
+>              &lt;li&gt;Added example values and example requests to every endpoint&lt;/li&gt;
+>              &lt;li&gt;Added postal code to /signal, to consider grid state in future implementations&lt;/li&gt;
+>              &lt;li&gt;Responses that return unix timestamps now all return unix seconds&lt;/li&gt;
+>              &lt;li&gt;Added error handling for false requests and responses&lt;/li&gt;
+>              &lt;li&gt;Added a list of available bidding zones for /price&lt;/li&gt;
+>          &lt;/ul&gt;
+>          &lt;/details&gt;
+>         &lt;details&gt;
+>             &lt;summary&gt;&lt;b&gt;v1.0 (2022-11-30)&lt;/b&gt;&lt;/summary&gt;
+>             &lt;ul&gt;
+>                 &lt;li&gt;Initial release&lt;/li&gt;
+>             &lt;/ul&gt;
+>         &lt;/details&gt;
+>      &lt;/details&gt;
+>
+> &lt;b&gt;Available countries:&lt;/b&gt;
+>
+> &lt;details&gt;&lt;summary&gt;de - Germany (click to show all available countries)&lt;/summary&gt;
+>      ch - Switzerland
+>      eu - European Union
+>      all - Europe
+>      al - Albania
+>      am - Armenia
+>      at - Austria
+>      az - Azerbaijan
+>      ba - Bosnia-Herzegovina
+>      be - Belgium
+>      bg - Bulgaria
+>      by - Belarus
+>      cy - Cyprus
+>      cz - Czech Republic
+>      dk - Denmark
+>      ee - Estonia
+>      es - Spain
+>      fi - Finland
+>      fr - France
+>      ge - Georgia
+>      gr - Greece
+>      hr - Croatia
+>      hu - Hungary
+>      ie - Ireland
+>      it - Italy
+>      lt - Lithuania
+>      lu - Luxembourg
+>      lv - Latvia
+>      md - Moldova
+>      me - Montenegro
+>      mk - North Macedonia
+>      mt - Malta
+>      nie - North Ireland
+>      nl - Netherlands
+>      no - Norway
+>      pl - Poland
+>      pt - Portugal
+>      ro - Romania
+>      rs - Serbia
+>      ru - Russia
+>      se - Sweden
+>      si - Slovenia
+>      sk - Slovak Republic
+>      tr - Turkey
+>      ua - Ukraine
+>      uk - United Kingdom
+>      xk - Kosovo
+>      &lt;/details&gt;
+>
+> &lt;b&gt;Available bidding zones:&lt;/b&gt;
+>
+> &lt;details&gt;&lt;summary&gt;AT - Austria (click to show all available bidding zones)&lt;/summary&gt;
+>       BE - Belgium
+>       BG - Bulgaria
+>       CH - Switzerland
+>       CZ - Czech Republic
+>       DE-LU - Germany, Luxembourg
+>       DE-AT-LU - Germany, Austria, Luxembourg
+>       DK1 - Denmark 1
+>       DK2 - Denmark 2
+>       EE - Estionia
+>       ES - Spain
+>       FI - Finland
+>       FR - France
+>       GR - Greece
+>       HR - Croatia
+>       HU - Hungary
+>       IT-Calabria - Italy Calabria
+>       IT-Centre-North - Italy Centre North
+>       IT-Centre-South - Italy Centre South
+>       IT-North - Italy North
+>       IT-SACOAC - Italy Sardinia Corsica AC
+>       IT-SACODC - Italy Sardinia Corsica DC
+>       IT-Sardinia - Italy Sardinia
+>       IT-Sicily - Italy Sicily
+>       IT-South - Italy South
+>       LT - Lithuania
+>       LV - Latvia
+>       ME - Montenegro
+>       NL - Netherlands
+>       NO1 - Norway 1
+>       NO2 - Norway 2
+>       NO2NSL - Norway North Sea Link
+>       NO3 - Norway 3
+>       NO4 - Norway 4
+>       NO5 - Norway 5
+>       PL - Poland
+>       PT - Portugal
+>       RO - Romania
+>       RS - Serbia
+>       SE1 - Sweden 1
+>       SE2 - Sweden 2
+>       SE3 - Sweden 3
+>       SE4 - Sweden 4
+>       SI - Slovenia
+>       SK - Slovakia
+>      &lt;/details&gt;
+>
+> &lt;b&gt;Hint:&lt;/b&gt; Don&#39;t use the &lt;b&gt;Try it out&lt;/b&gt; button on this documentation page to download large datasets as it might lead to long loading times.
 
 ## Start here
 
@@ -63,7 +275,7 @@ SDK operations: `list`.
 Key fields to recognise:
 
 - `data`: List of average daily values
-- `days`: List of days in the format dd.mm.yyyy
+- `days`: List of days in the format `dd.mm.yyyy`
 
 ### RenShareModel
 
@@ -86,7 +298,7 @@ SDK operations: `list`.
 Key fields to recognise:
 
 - `data`: List of average daily values
-- `days`: List of days in the format dd.mm.yyyy
+- `days`: List of days in the format `dd.mm.yyyy`
 
 ### TotalPower
 
@@ -119,7 +331,7 @@ SDK operations: `list`.
 Key fields to recognise:
 
 - `data`: List of average daily values
-- `days`: List of days in the format dd.mm.yyyy
+- `days`: List of days in the format `dd.mm.yyyy`
 
 ### WindOnshoreShare
 
@@ -136,7 +348,7 @@ SDK operations: `list`.
 Key fields to recognise:
 
 - `data`: List of average daily values
-- `days`: List of days in the format dd.mm.yyyy
+- `days`: List of days in the format `dd.mm.yyyy`
 
 ### Route map
 

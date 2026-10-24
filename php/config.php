@@ -93,6 +93,7 @@ class EnergyChartsConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -192,12 +193,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'end',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -274,12 +273,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'end',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -357,12 +354,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'end',
-                      'region',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -446,12 +441,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'installation_decommission',
-                      'time_step',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -540,12 +533,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'bzn',
-                      'end',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -629,13 +620,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'end',
-                      'start',
-                      'subtype',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -723,6 +711,7 @@ class EnergyChartsConfig
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'current',
+                        'field' => true,
                       ],
                       [
                         'name' => 'production_type',
@@ -730,6 +719,7 @@ class EnergyChartsConfig
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'solar',
+                        'field' => true,
                       ],
                       [
                         'name' => 'start',
@@ -740,14 +730,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'end',
-                      'forecast_type',
-                      'production_type',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -821,11 +807,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'year',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -911,10 +896,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -982,10 +967,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1059,11 +1044,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'year',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1140,12 +1124,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'end',
-                      'start',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1229,11 +1211,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'postal_code',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1301,10 +1282,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1378,11 +1359,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'year',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1450,10 +1430,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -1527,11 +1507,10 @@ class EnergyChartsConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'country',
-                      'year',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

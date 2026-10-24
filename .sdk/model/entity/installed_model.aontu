@@ -72,12 +72,9 @@ main: kit: entity: installed_model: {
           }
           m: "GET"
           o: "/installed_power"
-          q: {
-            exist: [
-              "country"
-              "installation_decommission"
-              "time_step"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

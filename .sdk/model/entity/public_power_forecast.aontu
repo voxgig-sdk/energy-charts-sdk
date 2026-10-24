@@ -94,14 +94,9 @@ main: kit: entity: public_power_forecast: {
           }
           m: "GET"
           o: "/public_power_forecast"
-          q: {
-            exist: [
-              "country"
-              "end"
-              "forecast_type"
-              "production_type"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

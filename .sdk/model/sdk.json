@@ -166,14 +166,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/cbet",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "cbet"
@@ -266,14 +264,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/cbpf",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "cbpf"
@@ -366,14 +362,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/frequency",
-                  "q": {
-                    "exist": [
-                      "end",
-                      "region",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "frequency"
@@ -473,14 +467,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/installed_power",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "installation_decommission",
-                      "time_step"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "installed_power"
@@ -587,14 +579,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/price",
-                  "q": {
-                    "exist": [
-                      "bzn",
-                      "end",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "price"
@@ -696,15 +686,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/public_power",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start",
-                      "subtype"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "public_power"
@@ -829,16 +816,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/public_power_forecast",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "forecast_type",
-                      "production_type",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "public_power_forecast"
@@ -924,13 +907,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/ren_share_daily_avg",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "ren_share_daily_avg"
@@ -1033,12 +1015,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/ren_share_forecast",
-                  "q": {
-                    "exist": [
-                      "country"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "ren_share_forecast"
@@ -1120,12 +1102,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/solar_share",
-                  "q": {
-                    "exist": [
-                      "country"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "solar_share"
@@ -1211,13 +1193,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/solar_share_daily_avg",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "solar_share_daily_avg"
@@ -1310,14 +1291,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/total_power",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "end",
-                      "start"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "total_power"
@@ -1416,13 +1395,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/signal",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "postal_code"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "signal"
@@ -1504,12 +1482,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/wind_offshore_share",
-                  "q": {
-                    "exist": [
-                      "country"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "wind_offshore_share"
@@ -1595,13 +1573,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/wind_offshore_share_daily_avg",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "wind_offshore_share_daily_avg"
@@ -1683,12 +1660,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/wind_onshore_share",
-                  "q": {
-                    "exist": [
-                      "country"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "wind_onshore_share"
@@ -1774,13 +1751,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/wind_onshore_share_daily_avg",
-                  "q": {
-                    "exist": [
-                      "country",
-                      "year"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "wind_onshore_share_daily_avg"
@@ -2121,6 +2097,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -2702,7 +2679,7 @@
             "url": "https://api.energy-charts.info"
           }
         ],
-        "summary": "<h4>Timestamp Format Options</h4> <p>When specifying timestamps, you can choose from the following three formats:</p> <ol> <li><strong>ISO 8601 Format</strong>: <ul> <li>This format includes the full date and time, with an optional timezon…",
+        "summary": "When specifying timestamps, you can choose from the following three formats:",
         "termsOfService": "https://energy-charts.info/data-protection.html",
         "title": "Energy-Charts API",
         "version": "1.5",
@@ -2712,7 +2689,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -2765,6 +2742,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -2995,7 +2977,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -3372,6 +3357,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

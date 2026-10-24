@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -243,12 +244,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "end",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -325,12 +324,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "end",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -408,12 +405,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "end",
-                  "region",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -497,12 +492,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "installation_decommission",
-                  "time_step"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -591,12 +584,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bzn",
-                  "end",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -680,13 +671,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "end",
-                  "start",
-                  "subtype"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -773,14 +761,16 @@ class Config {
                     "orig": "forecast_type",
                     "type": "`$STRING`",
                     "kind": "query",
-                    "example": "current"
+                    "example": "current",
+                    "field": true
                   },
                   {
                     "name": "production_type",
                     "orig": "production_type",
                     "type": "`$STRING`",
                     "kind": "query",
-                    "example": "solar"
+                    "example": "solar",
+                    "field": true
                   },
                   {
                     "name": "start",
@@ -791,14 +781,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "end",
-                  "forecast_type",
-                  "production_type",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -872,11 +858,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "year"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -962,10 +947,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1033,10 +1018,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1110,11 +1095,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "year"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1191,12 +1175,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "end",
-                  "start"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1280,11 +1262,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "postal_code"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1352,10 +1333,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1429,11 +1410,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "year"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1501,10 +1481,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1578,11 +1558,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "country",
-                  "year"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]

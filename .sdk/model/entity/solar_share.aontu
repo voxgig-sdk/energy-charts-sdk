@@ -56,10 +56,9 @@ main: kit: entity: solar_share: {
           }
           m: "GET"
           o: "/solar_share"
-          q: {
-            exist: [
-              "country"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

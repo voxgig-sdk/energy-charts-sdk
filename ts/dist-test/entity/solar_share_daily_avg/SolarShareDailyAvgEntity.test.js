@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.SolarShareDailyAvg();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('solar_share_daily_avg hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.EnergyChartsSDK.test(offline).SolarShareDailyAvg().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.EnergyChartsSDK.test(offline).SolarShareDailyAvg()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.EnergyChartsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.SolarShareDailyAvg().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.EnergyChartsSDK.test().SolarShareDailyAvg().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.EnergyChartsSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.SolarShareDailyAvg().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.SolarShareDailyAvg().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.SolarShareDailyAvg().list({ "country": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "data": { "a": true, "h": "Data", "n": "data", "r": true, "sh": "List of average daily values", "t": "`$ARRAY`", "key$": "data", "index$": 0 }, "days": { "a": true, "h": "Days", "n": "days", "r": true, "sh": "List of days in the format dd.mm.yyyy", "t": "`$ARRAY`", "key$": "days", "index$": 1 }, "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 2 } }, "name": "solar_share_daily_avg", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /solar_share_daily_avg", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": -1, "k": "query", "n": "year", "or": "year", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/solar_share_daily_avg", "q": { "exist": ["country", "year"] }, "r": {}, "s": [{ "lit": "solar_share_daily_avg" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "solar_share_daily_avg", "name__orig": "solar_share_daily_avg", "Name": "SolarShareDailyAvg", "name_": "solar_share_daily_avg", "name-": "solar-share-daily-avg", "NAME": "SOLAR_SHARE_DAILY_AVG", "index$": 10 }, { "active": true, "entity": "solar_share_daily_avg", "key$": "BasicSolarShareDailyAvgFlow", "kind": "basic", "name": "BasicSolarShareDailyAvgFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "solar_share_daily_avg_ref01" } }], "index$": 0 }] }, 'SolarShareDailyAvg', { "GET /solar_share_daily_avg": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "year", "in": "query", "required": false, "schema": { "type": "integer", "default": -1, "title": "Year" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "data": { "a": true, "h": "Data", "n": "data", "r": true, "sh": "List of average daily values", "t": "`$ARRAY`", "key$": "data", "index$": 0 }, "days": { "a": true, "h": "Days", "n": "days", "r": true, "sh": "List of days in the format dd.mm.yyyy", "t": "`$ARRAY`", "key$": "days", "index$": 1 }, "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 2 } }, "name": "solar_share_daily_avg", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /solar_share_daily_avg", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": -1, "k": "query", "n": "year", "or": "year", "r": false, "t": "`$INTEGER`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/solar_share_daily_avg", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "solar_share_daily_avg" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "solar_share_daily_avg", "name__orig": "solar_share_daily_avg", "Name": "SolarShareDailyAvg", "name_": "solar_share_daily_avg", "name-": "solar-share-daily-avg", "NAME": "SOLAR_SHARE_DAILY_AVG", "index$": 10 }, { "active": true, "entity": "solar_share_daily_avg", "key$": "BasicSolarShareDailyAvgFlow", "kind": "basic", "name": "BasicSolarShareDailyAvgFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "solar_share_daily_avg_ref01" } }], "index$": 0 }] }, 'SolarShareDailyAvg', { "GET /solar_share_daily_avg": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "year", "in": "query", "required": false, "schema": { "type": "integer", "default": -1, "title": "Year" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const solar_share_daily_avg_ref01_list = (await solar_share_daily_avg_ref01_ent.list(solar_share_daily_avg_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

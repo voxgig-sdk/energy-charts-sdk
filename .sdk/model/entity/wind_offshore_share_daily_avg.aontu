@@ -60,11 +60,9 @@ main: kit: entity: wind_offshore_share_daily_avg: {
           }
           m: "GET"
           o: "/wind_offshore_share_daily_avg"
-          q: {
-            exist: [
-              "country"
-              "year"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

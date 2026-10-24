@@ -1,6 +1,9 @@
 # EnergyCharts SDK utility: prepare_body
+require_relative 'media'
 module EnergyChartsUtilities
   PrepareBody = ->(ctx) {
-    ctx.op.input == "data" ? ctx.utility.transform_request.call(ctx) : nil
+    return nil unless ctx.op.input == "data"
+    return EnergyChartsUtilities.raw_body(ctx.reqdata) if EnergyChartsUtilities.raw_request?(ctx.point)
+    ctx.utility.transform_request.call(ctx)
   }
 end

@@ -78,12 +78,9 @@ main: kit: entity: price: {
           }
           m: "GET"
           o: "/price"
-          q: {
-            exist: [
-              "bzn"
-              "end"
-              "start"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

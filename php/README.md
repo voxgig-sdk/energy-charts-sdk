@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/energy-charts-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/energy-charts-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -234,8 +234,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -245,9 +245,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -559,7 +559,7 @@ Create an instance: `$frequency = $client->Frequency();`
 #### Example: List
 
 ```php
-// list() returns an array of Frequency records (throws on error).
+// list() returns an array of Frequency entities, one per record (throws on error).
 $frequencys = $client->Frequency()->list();
 ```
 
@@ -586,7 +586,7 @@ Create an instance: `$installed_model = $client->InstalledModel();`
 #### Example: List
 
 ```php
-// list() returns an array of InstalledModel records (throws on error).
+// list() returns an array of InstalledModel entities, one per record (throws on error).
 $installed_models = $client->InstalledModel()->list();
 ```
 
@@ -668,7 +668,7 @@ Create an instance: `$public_power_forecast = $client->PublicPowerForecast();`
 #### Example: List
 
 ```php
-// list() returns an array of PublicPowerForecast records (throws on error).
+// list() returns an array of PublicPowerForecast entities, one per record (throws on error).
 $public_power_forecasts = $client->PublicPowerForecast()->list();
 ```
 
@@ -694,7 +694,7 @@ Create an instance: `$ren_share_daily_avg = $client->RenShareDailyAvg();`
 #### Example: List
 
 ```php
-// list() returns an array of RenShareDailyAvg records (throws on error).
+// list() returns an array of RenShareDailyAvg entities, one per record (throws on error).
 $ren_share_daily_avgs = $client->RenShareDailyAvg()->list();
 ```
 
@@ -724,7 +724,7 @@ Create an instance: `$ren_share_model = $client->RenShareModel();`
 #### Example: List
 
 ```php
-// list() returns an array of RenShareModel records (throws on error).
+// list() returns an array of RenShareModel entities, one per record (throws on error).
 $ren_share_models = $client->RenShareModel()->list();
 ```
 
@@ -777,7 +777,7 @@ Create an instance: `$solar_share_daily_avg = $client->SolarShareDailyAvg();`
 #### Example: List
 
 ```php
-// list() returns an array of SolarShareDailyAvg records (throws on error).
+// list() returns an array of SolarShareDailyAvg entities, one per record (throws on error).
 $solar_share_daily_avgs = $client->SolarShareDailyAvg()->list();
 ```
 
@@ -831,7 +831,7 @@ Create an instance: `$traffic_model = $client->TrafficModel();`
 #### Example: List
 
 ```php
-// list() returns an array of TrafficModel records (throws on error).
+// list() returns an array of TrafficModel entities, one per record (throws on error).
 $traffic_models = $client->TrafficModel()->list();
 ```
 
@@ -884,7 +884,7 @@ Create an instance: `$wind_offshore_share_daily_avg = $client->WindOffshoreShare
 #### Example: List
 
 ```php
-// list() returns an array of WindOffshoreShareDailyAvg records (throws on error).
+// list() returns an array of WindOffshoreShareDailyAvg entities, one per record (throws on error).
 $wind_offshore_share_daily_avgs = $client->WindOffshoreShareDailyAvg()->list();
 ```
 
@@ -937,7 +937,7 @@ Create an instance: `$wind_onshore_share_daily_avg = $client->WindOnshoreShareDa
 #### Example: List
 
 ```php
-// list() returns an array of WindOnshoreShareDailyAvg records (throws on error).
+// list() returns an array of WindOnshoreShareDailyAvg entities, one per record (throws on error).
 $wind_onshore_share_daily_avgs = $client->WindOnshoreShareDailyAvg()->list();
 ```
 

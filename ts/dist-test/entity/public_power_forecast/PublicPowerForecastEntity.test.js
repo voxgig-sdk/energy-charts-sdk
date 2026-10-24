@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.PublicPowerForecast();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('public_power_forecast hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.EnergyChartsSDK.test(offline).PublicPowerForecast().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.EnergyChartsSDK.test(offline).PublicPowerForecast()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.EnergyChartsSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.PublicPowerForecast().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.EnergyChartsSDK.test().PublicPowerForecast().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.EnergyChartsSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.PublicPowerForecast().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.PublicPowerForecast().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.EnergyChartsSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.PublicPowerForecast().list({ "country": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.ENERGY_CHARTS_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "forecast_type": { "a": true, "h": "Forecast Type", "n": "forecast_type", "r": true, "t": "`$STRING`", "key$": "forecast_type", "index$": 1 }, "forecast_values": { "a": true, "h": "Forecast Values", "n": "forecast_values", "r": true, "t": "`$ARRAY`", "key$": "forecast_values", "index$": 2 }, "production_type": { "a": true, "h": "Production Type", "n": "production_type", "r": true, "t": "`$STRING`", "key$": "production_type", "index$": 3 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": true, "t": "`$ARRAY`", "key$": "unix_seconds", "index$": 4 } }, "name": "public_power_forecast", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /public_power_forecast", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "end", "or": "end", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "current", "k": "query", "n": "forecast_type", "or": "forecast_type", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "ex": "solar", "k": "query", "n": "production_type", "or": "production_type", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "ex": "", "k": "query", "n": "start", "or": "start", "r": false, "t": "`$STRING`", "index$": 4 }] }, "k": "http", "m": "GET", "o": "/public_power_forecast", "q": { "exist": ["country", "end", "forecast_type", "production_type", "start"] }, "r": {}, "s": [{ "lit": "public_power_forecast" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "public_power_forecast", "name__orig": "public_power_forecast", "Name": "PublicPowerForecast", "name_": "public_power_forecast", "name-": "public-power-forecast", "NAME": "PUBLIC_POWER_FORECAST", "index$": 6 }, { "active": true, "entity": "public_power_forecast", "key$": "BasicPublicPowerForecastFlow", "kind": "basic", "name": "BasicPublicPowerForecastFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "public_power_forecast_ref01" } }], "index$": 0 }] }, 'PublicPowerForecast', { "GET /public_power_forecast": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "production_type", "in": "query", "required": false, "schema": { "type": "string", "default": "solar", "title": "Production Type" }, "index$": 1 }, { "name": "forecast_type", "in": "query", "required": false, "schema": { "type": "string", "default": "current", "title": "Forecast Type" }, "index$": 2 }, { "name": "start", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Start" }, "index$": 3 }, { "name": "end", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "End" }, "index$": 4 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "deprecated": { "a": true, "h": "Deprecated", "n": "deprecated", "r": true, "t": "`$BOOLEAN`", "key$": "deprecated", "index$": 0 }, "forecast_type": { "a": true, "h": "Forecast Type", "n": "forecast_type", "r": true, "t": "`$STRING`", "key$": "forecast_type", "index$": 1 }, "forecast_values": { "a": true, "h": "Forecast Values", "n": "forecast_values", "r": true, "t": "`$ARRAY`", "key$": "forecast_values", "index$": 2 }, "production_type": { "a": true, "h": "Production Type", "n": "production_type", "r": true, "t": "`$STRING`", "key$": "production_type", "index$": 3 }, "unix_seconds": { "a": true, "h": "Unix Seconds", "n": "unix_seconds", "r": true, "t": "`$ARRAY`", "key$": "unix_seconds", "index$": 4 } }, "name": "public_power_forecast", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /public_power_forecast", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "de", "k": "query", "n": "country", "or": "country", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "", "k": "query", "n": "end", "or": "end", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "current", "k": "query", "n": "forecast_type", "or": "forecast_type", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "ex": "solar", "k": "query", "n": "production_type", "or": "production_type", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "ex": "", "k": "query", "n": "start", "or": "start", "r": false, "t": "`$STRING`", "index$": 4 }] }, "k": "http", "m": "GET", "o": "/public_power_forecast", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "public_power_forecast" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "public_power_forecast", "name__orig": "public_power_forecast", "Name": "PublicPowerForecast", "name_": "public_power_forecast", "name-": "public-power-forecast", "NAME": "PUBLIC_POWER_FORECAST", "index$": 6 }, { "active": true, "entity": "public_power_forecast", "key$": "BasicPublicPowerForecastFlow", "kind": "basic", "name": "BasicPublicPowerForecastFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "public_power_forecast_ref01" } }], "index$": 0 }] }, 'PublicPowerForecast', { "GET /public_power_forecast": { "protocol": "http", "parameters": [{ "name": "country", "in": "query", "required": false, "schema": { "type": "string", "default": "de", "title": "Country" }, "index$": 0 }, { "name": "production_type", "in": "query", "required": false, "schema": { "type": "string", "default": "solar", "title": "Production Type" }, "index$": 1 }, { "name": "forecast_type", "in": "query", "required": false, "schema": { "type": "string", "default": "current", "title": "Forecast Type" }, "index$": 2 }, { "name": "start", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "Start" }, "index$": 3 }, { "name": "end", "in": "query", "required": false, "schema": { "type": "string", "default": "", "title": "End" }, "index$": 4 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const public_power_forecast_ref01_list = (await public_power_forecast_ref01_ent.list(public_power_forecast_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
